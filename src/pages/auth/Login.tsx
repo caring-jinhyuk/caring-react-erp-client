@@ -2,14 +2,14 @@ import React, { FC, useCallback, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
-import Page from '../../../layout/Page/Page';
-import Card, { CardBody } from '../../../components/bootstrap/Card';
-import FormGroup from '../../../components/bootstrap/forms/FormGroup';
-import Input from '../../../components/bootstrap/forms/Input';
-import Button from '../../../components/bootstrap/Button';
-import Logo from '../../../components/Logo';
-import useDarkMode from '../../../hooks/useDarkMode';
+import PageWrapper from '../../layout/PageWrapper/PageWrapper';
+import Page from '../../layout/Page/Page';
+import Card, { CardBody } from '../../components/bootstrap/Card';
+import FormGroup from '../../components/bootstrap/forms/FormGroup';
+import Input from '../../components/bootstrap/forms/Input';
+import Button from '../../components/bootstrap/Button';
+import Logo from '../../components/Logo';
+import useDarkMode from '../../hooks/useDarkMode';
 
 interface ILoginHeaderProps {
 	isNewUser?: boolean;
@@ -196,7 +196,7 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 						</Card>
 						<div className='text-center'>
 							<a
-								href='/'
+								href='/src/pages'
 								className={classNames('text-decoration-none me-3', {
 									'link-light': isNewUser,
 									'link-dark': !isNewUser,
@@ -204,7 +204,7 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 								Privacy policy
 							</a>
 							<a
-								href='/'
+								href='/src/pages'
 								className={classNames('link-light text-decoration-none', {
 									'link-light': isNewUser,
 									'link-dark': !isNewUser,
