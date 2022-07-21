@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import Brand from '../Brand/Brand';
 import Navigation, { NavigationLine } from '../Navigation/Navigation';
 import User from '../User/User';
-import { dashboardMenu, demoPages, layoutMenu } from '../../menu';
+import { homepages } from '../../menus/menu';
 import ThemeContext from '../../contexts/themeContext';
 
 import Icon from '../../components/icon/Icon';
@@ -43,14 +43,12 @@ const Aside = () => {
 					<Brand asideStatus={asideStatus} setAsideStatus={setAsideStatus} />
 				</div>
 				<div className='aside-body'>
-					<Navigation menu={dashboardMenu} id='aside-dashboard' />
+					<Navigation menu={homepages} id='aside-dashboard' />
 					<NavigationLine />
 					{!doc && (
 						<>
-							<Navigation menu={demoPages} id='aside-demo-pages' />
-							<NavigationLine />
-							<Navigation menu={layoutMenu} id='aside-menu' />
-							<NavigationLine />
+							{/*<Navigation menu={homepages} id='aside-demo-pages' />*/}
+							{/*<NavigationLine />*/}
 							<nav>
 								<div className='navigation'>
 									<div className='navigation-item'>
