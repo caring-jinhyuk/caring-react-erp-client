@@ -15,7 +15,8 @@
 		"lint:check-scss": "stylelint-config-prettier-scss-check",
 		"lint:scss": "stylelint **/*.scss",
 		"lint:fix-scss": "stylelint --fix **/*.scss",
-		"icon": "svgr SvgIcons -d src/components/icon/svg-icons"
+		"icon": "svgr SvgIcons -d src/components/icon/svg-icons",
+		"prepare": "husky install"
 	},
 	"eslintConfig": {
 		"extends": [
@@ -112,6 +113,8 @@
 		"eslint-plugin-prettier": "^4.2.1",
 		"eslint-plugin-react": "^7.30.1",
 		"eslint-plugin-react-hooks": "^4.6.0",
+		"husky": "^8.0.0",
+		"lint-staged": "^13.0.3",
 		"prettier": "^2.7.1",
 		"react-scripts": "5.0.1",
 		"sass": "^1.53.0",
@@ -130,6 +133,9 @@
 		"stylelint-scss": "^4.3.0",
 		"trim-newlines": "^4.0.2",
 		"webpack": "5"
+	},
+	"lint-staged": {
+		"*.{ts,tsx}": "eslint --fix"
 	},
 	"resolutions": {
 		"glob-parent": ">=5.1.2",
