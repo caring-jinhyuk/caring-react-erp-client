@@ -97,11 +97,9 @@ class CarouselItem extends Component<TCarouselItemProps, TCarouselItemState> {
 					// @ts-ignore
 					const { direction } = this.context;
 					const isActive =
-						status === TransitionStatuses.ENTERED ||
-						status === TransitionStatuses.EXITING;
+						status === TransitionStatuses.ENTERED || status === TransitionStatuses.EXITING;
 					const directionClassName =
-						(status === TransitionStatuses.ENTERING ||
-							status === TransitionStatuses.EXITING) &&
+						(status === TransitionStatuses.ENTERING || status === TransitionStatuses.EXITING) &&
 						// eslint-disable-next-line react/destructuring-assignment
 						this.state.startAnimation &&
 						(direction === 'end' ? 'carousel-item-start' : 'carousel-item-end');

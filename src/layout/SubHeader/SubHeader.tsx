@@ -23,9 +23,7 @@ interface ISubHeaderRightProps {
 	className?: string;
 }
 export const SubHeaderRight: FC<ISubHeaderRightProps> = ({ children, className }) => {
-	return (
-		<div className={classNames('subheader-right', 'col-sm-auto', className)}>{children}</div>
-	);
+	return <div className={classNames('subheader-right', 'col-sm-auto', className)}>{children}</div>;
 };
 SubHeaderRight.propTypes = {
 	children: PropTypes.node.isRequired,

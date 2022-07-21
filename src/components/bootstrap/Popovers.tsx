@@ -86,8 +86,7 @@ const Popovers: FC<IPopoversProps> = ({
 
 	const ON_MOUSE_OVER = () => {
 		if (trigger === 'hover') setPopoverOpen(true);
-		if (typeof children !== 'string' && children?.props?.onMouseOver)
-			children.props.onMouseOver();
+		if (typeof children !== 'string' && children?.props?.onMouseOver) children.props.onMouseOver();
 	};
 
 	const ON_MOUSE_LEAVE = () => {
@@ -135,9 +134,7 @@ const Popovers: FC<IPopoversProps> = ({
 						{...attributes.popper}>
 						<div ref={setArrowElement} className='popover-arrow' style={styles.arrow} />
 						{title && <h3 className='popover-header'>{title}</h3>}
-						{desc && (
-							<div className={classNames('popover-body', bodyClassName)}>{desc}</div>
-						)}
+						{desc && <div className={classNames('popover-body', bodyClassName)}>{desc}</div>}
 					</div>
 				</Portal>
 			)}

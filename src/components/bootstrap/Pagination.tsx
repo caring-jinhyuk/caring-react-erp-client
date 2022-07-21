@@ -50,9 +50,7 @@ export const PaginationItem = forwardRef<HTMLLIElement, IPaginationItemProps>(
 					className='page-link'
 					tabIndex={isDisabled ? -1 : undefined}
 					aria-disabled={isDisabled ? 'true' : undefined}
-					aria-label={
-						(isPrev && 'First Page') || (isNext && 'Last Page') || `${children} page`
-					}>
+					aria-label={(isPrev && 'First Page') || (isNext && 'Last Page') || `${children} page`}>
 					{isPrev && <Icon icon='ChevronLeft' />}
 					{isFirst && <Icon icon='FirstPage' />}
 					{isNext && <Icon icon='ChevronRight' />}

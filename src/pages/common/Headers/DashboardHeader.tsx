@@ -82,8 +82,8 @@ const DashboardHeader = () => {
 					<div className='col-auto'>
 						<Dropdown>
 							<DropdownToggle hasIcon={false}>
-								{typeof getLangWithKey(i18n.language as ILang['key']['lng'])
-									?.icon === 'undefined' ? (
+								{typeof getLangWithKey(i18n.language as ILang['key']['lng'])?.icon ===
+								'undefined' ? (
 									<Button
 										// eslint-disable-next-line react/jsx-props-no-spreading
 										{...styledBtn}
@@ -96,10 +96,7 @@ const DashboardHeader = () => {
 									<Button
 										// eslint-disable-next-line react/jsx-props-no-spreading
 										{...styledBtn}
-										icon={
-											getLangWithKey(i18n.language as ILang['key']['lng'])
-												?.icon
-										}
+										icon={getLangWithKey(i18n.language as ILang['key']['lng'])?.icon}
 										aria-label='Change language'
 										data-tour='lang-selector'
 									/>
@@ -108,9 +105,7 @@ const DashboardHeader = () => {
 							<DropdownMenu isAlignmentEnd data-tour='lang-selector-menu'>
 								{Object.keys(LANG).map((i) => (
 									<DropdownItem key={LANG[i].lng}>
-										<Button
-											icon={LANG[i].icon}
-											onClick={() => changeLanguage(LANG[i].lng)}>
+										<Button icon={LANG[i].icon} onClick={() => changeLanguage(LANG[i].lng)}>
 											{LANG[i].text}
 										</Button>
 									</DropdownItem>

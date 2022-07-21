@@ -155,9 +155,7 @@ const Accordion = forwardRef<HTMLDivElement | HTMLTableSectionElement, IAccordio
 							overWriteColor: child?.props?.overWriteColor || color,
 						})
 					) : (
-						<code className='d-block'>
-							Only AccordionItem component should be used as a child.
-						</code>
+						<code className='d-block'>Only AccordionItem component should be used as a child.</code>
 					),
 				)}
 			</TagWrapper>

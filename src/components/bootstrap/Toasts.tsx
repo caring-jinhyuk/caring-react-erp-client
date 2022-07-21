@@ -79,12 +79,7 @@ export const Toast: FC<IToastProps> = ({ children, onDismiss }) => {
 					// eslint-disable-next-line react/no-array-index-key
 					key: index,
 					onDismiss: (
-						<button
-							type='button'
-							className='btn-close'
-							aria-label='Close'
-							onClick={onDismiss}
-						/>
+						<button type='button' className='btn-close' aria-label='Close' onClick={onDismiss} />
 					),
 				}),
 			)}

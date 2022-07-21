@@ -82,9 +82,8 @@ const ListGroup = forwardRef<HTMLDivElement, IListGroupProps>(
 					},
 					{ 'list-group-numbered': isNumbered },
 					{
-						[`list-group-horizontal${
-							typeof isHorizontal === 'string' ? `-${isHorizontal}` : ''
-						}`]: isHorizontal,
+						[`list-group-horizontal${typeof isHorizontal === 'string' ? `-${isHorizontal}` : ''}`]:
+							isHorizontal,
 					},
 					className,
 				)}

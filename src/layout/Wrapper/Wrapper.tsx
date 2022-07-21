@@ -15,11 +15,7 @@ export const WrapperContainer: FC<IWrapperContainerProps> = ({ children, classNa
 	const { rightPanel } = useContext(ThemeContext);
 	return (
 		<div
-			className={classNames(
-				'wrapper',
-				{ 'wrapper-right-panel-active': rightPanel },
-				className,
-			)}
+			className={classNames('wrapper', { 'wrapper-right-panel-active': rightPanel }, className)}
 			// eslint-disable-next-line react/jsx-props-no-spreading
 			{...props}>
 			{children}

@@ -112,17 +112,12 @@ export const ChatListItem: FC<IChatListItemProps> = ({
 		// eslint-disable-next-line react/jsx-props-no-spreading
 		<div className={classNames('col-12 cursor-pointer', className)} {...props}>
 			<div
-				className={classNames(
-					'd-flex align-items-center',
-					'p-3 rounded-2',
-					'transition-base',
-					{
-						'bg-l25-info-hover': !darkModeStatus,
-						'bg-lo50-info-hover': darkModeStatus,
-						'bg-l10-info': !darkModeStatus && isActive,
-						'bg-lo25-info': darkModeStatus && isActive,
-					},
-				)}>
+				className={classNames('d-flex align-items-center', 'p-3 rounded-2', 'transition-base', {
+					'bg-l25-info-hover': !darkModeStatus,
+					'bg-lo50-info-hover': darkModeStatus,
+					'bg-l10-info': !darkModeStatus && isActive,
+					'bg-lo25-info': darkModeStatus && isActive,
+				})}>
 				<ChatAvatar
 					src={src}
 					srcSet={srcSet}
@@ -220,9 +215,7 @@ export const ChatMessages: FC<IChatMessagesProps> = ({ messages, isReply, ...pro
 		// eslint-disable-next-line react/jsx-props-no-spreading
 		<div className='chat-messages' {...props}>
 			{messages.map((i) => (
-				<div
-					key={i.id}
-					className={classNames('chat-message', { 'chat-message-reply': isReply })}>
+				<div key={i.id} className={classNames('chat-message', { 'chat-message-reply': isReply })}>
 					{i.message}
 				</div>
 			))}
@@ -270,12 +263,7 @@ export const ChatGroup: FC<IChatGroupProps> = ({
 	...props
 }) => {
 	const AVATAR = (
-		<ChatAvatar
-			src={user.src}
-			srcSet={user.srcSet}
-			isOnline={user.isOnline}
-			color={user.color}
-		/>
+		<ChatAvatar src={user.src} srcSet={user.srcSet} isOnline={user.isOnline} color={user.color} />
 	);
 	return (
 		// eslint-disable-next-line react/jsx-props-no-spreading

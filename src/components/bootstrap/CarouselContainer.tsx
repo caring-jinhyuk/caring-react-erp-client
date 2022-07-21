@@ -227,8 +227,7 @@ class CarouselContainer extends Component<TCarouselContainerProps, TCarouselCont
 	}
 
 	render() {
-		const { id, slide, className, dark, fade, rounded, isFluid, hasChildren, height } =
-			this.props;
+		const { id, slide, className, dark, fade, rounded, isFluid, hasChildren, height } = this.props;
 		const outerClasses = classNames(className, 'carousel', {
 			'carousel-fade': fade,
 			slide,

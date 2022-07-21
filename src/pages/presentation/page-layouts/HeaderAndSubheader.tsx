@@ -24,9 +24,7 @@ const HeaderAndSubheader = () => {
 				<SubHeaderRight>
 					<Popovers
 						title='HeaderAndSubheader.tsx'
-						desc={
-							<code>src/pages/presentation/page-layouts/HeaderAndSubheader.tsx</code>
-						}>
+						desc={<code>src/pages/presentation/page-layouts/HeaderAndSubheader.tsx</code>}>
 						SubHeaderRight
 					</Popovers>
 					<code>HeaderAndSubheader.tsx</code>
@@ -39,11 +37,7 @@ const HeaderAndSubheader = () => {
 						style={{ fontSize: 'calc(1rem + 1vw)' }}>
 						<Popovers
 							title='HeaderAndSubheader.tsx'
-							desc={
-								<code>
-									src/pages/presentation/page-layouts/HeaderAndSubheader.tsx
-								</code>
-							}>
+							desc={<code>src/pages/presentation/page-layouts/HeaderAndSubheader.tsx</code>}>
 							Page
 						</Popovers>
 						<code className='ps-3'>HeaderAndSubheader.tsx</code>

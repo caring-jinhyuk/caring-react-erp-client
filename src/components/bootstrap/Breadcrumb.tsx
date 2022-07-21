@@ -103,8 +103,7 @@ const Breadcrumb: FC<IBreadcrumbProps> = ({
 			style={
 				divider
 					? {
-							'--bs-breadcrumb-divider':
-								typeof divider === 'string' ? `'${divider}'` : 'none',
+							'--bs-breadcrumb-divider': typeof divider === 'string' ? `'${divider}'` : 'none',
 					  }
 					: null
 			}>

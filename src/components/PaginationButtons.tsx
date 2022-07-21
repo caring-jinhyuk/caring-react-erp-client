@@ -105,15 +105,11 @@ const PaginationButtons: FC<IPaginationButtonsProps> = ({
 							onClick={() => setCurrentPage(currentPage - 1)}
 						/>
 						{currentPage - 1 > 1 && (
-							<PaginationItem onClick={() => setCurrentPage(currentPage - 2)}>
-								...
-							</PaginationItem>
+							<PaginationItem onClick={() => setCurrentPage(currentPage - 2)}>...</PaginationItem>
 						)}
 						{pagination()}
 						{currentPage + 1 < totalPage && (
-							<PaginationItem onClick={() => setCurrentPage(currentPage + 2)}>
-								...
-							</PaginationItem>
+							<PaginationItem onClick={() => setCurrentPage(currentPage + 2)}>...</PaginationItem>
 						)}
 						<PaginationItem
 							isNext

@@ -113,9 +113,8 @@ const LangSwitcherTour = () => {
 				<div>
 					<p className='lead'>Language Switcher</p>
 					<p>
-						"react-i18next" is integrated for internationalization. Currently in demo,
-						it is prepared only for <code>Aside</code>, you can easily use it in your
-						project.
+						"react-i18next" is integrated for internationalization. Currently in demo, it is
+						prepared only for <code>Aside</code>, you can easily use it in your project.
 					</p>
 				</div>
 			</div>

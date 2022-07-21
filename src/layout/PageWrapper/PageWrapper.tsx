@@ -7,10 +7,7 @@ import { IPageProps } from '../Page/Page';
 interface IPageWrapperProps {
 	title?: string;
 	description?: string;
-	children:
-		| ReactElement<ISubHeaderProps>[]
-		| ReactElement<IPageProps>
-		| ReactElement<IPageProps>[];
+	children: ReactElement<ISubHeaderProps>[] | ReactElement<IPageProps> | ReactElement<IPageProps>[];
 	className?: string;
 }
 const PageWrapper = forwardRef<HTMLDivElement, IPageWrapperProps>(

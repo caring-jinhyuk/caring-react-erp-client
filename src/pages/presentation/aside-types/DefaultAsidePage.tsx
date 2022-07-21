@@ -37,9 +37,7 @@ const DefaultAsidePage = () => {
 						style={{ fontSize: 'calc(1rem + 1vw)' }}>
 						<Popovers
 							title='DefaultAsidePage.tsx'
-							desc={
-								<code>src/pages/presentation/aside-types/DefaultAsidePage.tsx</code>
-							}>
+							desc={<code>src/pages/presentation/aside-types/DefaultAsidePage.tsx</code>}>
 							Page
 						</Popovers>
 						<code className='ps-3'>DefaultAsidePage.tsx</code>

@@ -108,10 +108,7 @@ const Carousel = forwardRef<HTMLDivElement, ICarouselProps>(
 				return (
 					<>
 						<img src={_item.src} alt={_item.altText} className='d-block w-100' />
-						<CarouselCaption
-							captionText={_item.captionText}
-							captionHeader={_item.captionHeader}
-						/>
+						<CarouselCaption captionText={_item.captionText} captionHeader={_item.captionHeader} />
 					</>
 				);
 			}
@@ -169,12 +166,7 @@ const Carousel = forwardRef<HTMLDivElement, ICarouselProps>(
 							directionText='Previous'
 							onClickHandler={previous}
 						/>
-						<CarouselControl
-							id={id}
-							direction='next'
-							directionText='Next'
-							onClickHandler={next}
-						/>
+						<CarouselControl id={id} direction='next' directionText='Next' onClickHandler={next} />
 					</>
 				)}
 			</CarouselContainer>

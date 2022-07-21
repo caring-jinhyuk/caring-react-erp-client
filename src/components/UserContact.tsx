@@ -62,13 +62,7 @@ const UserContact: FC<IUserContactProps> = ({
 						)}
 						{onChat && (
 							<div className='col-auto'>
-								<Button
-									color='info'
-									icon='Sms'
-									isLight
-									aria-label='Chat'
-									onClick={onChat}
-								/>
+								<Button color='info' icon='Sms' isLight aria-label='Chat' onClick={onChat} />
 							</div>
 						)}
 					</div>

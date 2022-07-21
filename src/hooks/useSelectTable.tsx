@@ -4,10 +4,7 @@ import Checks from '../components/bootstrap/forms/Checks';
 
 const useSelectTable = (data: any[]) => {
 	const selectTable = useFormik({
-		onSubmit<Values>(
-			values: Values,
-			formikHelpers: FormikHelpers<Values>,
-		): void | Promise<any> {
+		onSubmit<Values>(values: Values, formikHelpers: FormikHelpers<Values>): void | Promise<any> {
 			return undefined;
 		},
 		initialValues: {

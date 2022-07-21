@@ -93,9 +93,7 @@ export const TodoItem = forwardRef<HTMLDivElement, ITodoItemProps>(
 						{itemData.title}
 					</div>
 					{itemData.date && (
-						<div className='todo-subtitle text-muted small'>
-							{moment(itemData.date).fromNow()}
-						</div>
+						<div className='todo-subtitle text-muted small'>{moment(itemData.date).fromNow()}</div>
 					)}
 				</div>
 				<div className='todo-extras'>

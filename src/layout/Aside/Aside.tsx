@@ -59,9 +59,7 @@ const Aside = () => {
 												<span className='navigation-text'>
 													<Popovers
 														title='Aside.tsx'
-														desc={
-															<code>src/layout/Aside/Aside.tsx</code>
-														}>
+														desc={<code>src/layout/Aside/Aside.tsx</code>}>
 														Aside
 													</Popovers>
 													<code className='ps-3'>Aside.tsx</code>
@@ -93,9 +91,7 @@ const Aside = () => {
 											color={doc ? 'success' : undefined}
 											className='navigation-icon'
 										/>
-										<span className='navigation-text'>
-											{t('menu:Documentation')}
-										</span>
+										<span className='navigation-text'>{t('menu:Documentation')}</span>
 									</span>
 									<span className='navigation-link-extra'>
 										<Icon

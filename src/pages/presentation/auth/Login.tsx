@@ -55,13 +55,10 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 								<div className='text-center my-5'>
 									<Link
 										to='/'
-										className={classNames(
-											'text-decoration-none  fw-bold display-2',
-											{
-												'text-dark': !darkModeStatus,
-												'text-light': darkModeStatus,
-											},
-										)}>
+										className={classNames('text-decoration-none  fw-bold display-2', {
+											'text-dark': !darkModeStatus,
+											'text-light': darkModeStatus,
+										})}>
 										<Logo width={200} />
 									</Link>
 								</div>
@@ -106,45 +103,27 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 									{isNewUser ? (
 										<>
 											<div className='col-12'>
-												<FormGroup
-													id='signup-email'
-													isFloating
-													label='Your email'>
+												<FormGroup id='signup-email' isFloating label='Your email'>
 													<Input type='email' autoComplete='email' />
 												</FormGroup>
 											</div>
 											<div className='col-12'>
-												<FormGroup
-													id='signup-name'
-													isFloating
-													label='Your name'>
+												<FormGroup id='signup-name' isFloating label='Your name'>
 													<Input autoComplete='given-name' />
 												</FormGroup>
 											</div>
 											<div className='col-12'>
-												<FormGroup
-													id='signup-surname'
-													isFloating
-													label='Your surname'>
+												<FormGroup id='signup-surname' isFloating label='Your surname'>
 													<Input autoComplete='family-name' />
 												</FormGroup>
 											</div>
 											<div className='col-12'>
-												<FormGroup
-													id='signup-password'
-													isFloating
-													label='Password'>
-													<Input
-														type='password'
-														autoComplete='password'
-													/>
+												<FormGroup id='signup-password' isFloating label='Password'>
+													<Input type='password' autoComplete='password' />
 												</FormGroup>
 											</div>
 											<div className='col-12'>
-												<Button
-													color='info'
-													className='w-100 py-3'
-													onClick={handleOnClick}>
+												<Button color='info' className='w-100 py-3' onClick={handleOnClick}>
 													Sign Up
 												</Button>
 											</div>
@@ -153,21 +132,12 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 										<>
 											<div className='col-12'>
 												{!usernameInput ? (
-													<FormGroup
-														id='login-username'
-														isFloating
-														label='Your email or username'>
+													<FormGroup id='login-username' isFloating label='Your email or username'>
 														<Input autoComplete='username' />
 													</FormGroup>
 												) : (
-													<FormGroup
-														id='login-password'
-														isFloating
-														label='Password'>
-														<Input
-															type='password'
-															autoComplete='password'
-														/>
+													<FormGroup id='login-password' isFloating label='Password'>
+														<Input type='password' autoComplete='password' />
 													</FormGroup>
 												)}
 											</div>
@@ -180,10 +150,7 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 														Continue
 													</Button>
 												) : (
-													<Button
-														color='warning'
-														className='w-100 py-3'
-														onClick={handleOnClick}>
+													<Button color='warning' className='w-100 py-3' onClick={handleOnClick}>
 														Login
 													</Button>
 												)}
@@ -194,9 +161,7 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 									{/* BEGIN :: Social Login */}
 									{!usernameInput && (
 										<>
-											<div className='col-12 mt-3 text-center text-muted'>
-												OR
-											</div>
+											<div className='col-12 mt-3 text-center text-muted'>OR</div>
 											<div className='col-12 mt-3'>
 												<Button
 													isOutline

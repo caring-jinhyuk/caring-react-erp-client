@@ -103,11 +103,9 @@ const Alert: FC<IAlertProps> = ({
 						show: isDismissible,
 						[`alert-light-${color}`]: isLight,
 						[`alert-outline-${color}`]: isOutline,
-						[`shadow${shadow !== 'md' ? `-${shadow}` : ''}`]:
-							!!shadow && shadow !== '3d',
+						[`shadow${shadow !== 'md' ? `-${shadow}` : ''}`]: !!shadow && shadow !== '3d',
 						[`border-${borderWidth}`]: borderWidth || borderWidth === 0,
-						[`rounded${rounded !== 'default' ? `-${rounded}` : ''}`]:
-							rounded || rounded === 0,
+						[`rounded${rounded !== 'default' ? `-${rounded}` : ''}`]: rounded || rounded === 0,
 						[`shadow-3d-${color}`]: shadow === '3d',
 					},
 					className,

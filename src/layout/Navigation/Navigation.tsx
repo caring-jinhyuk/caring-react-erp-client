@@ -41,9 +41,7 @@ export const List = forwardRef<HTMLUListElement, IListProps>(
 				className={classNames('navigation', { 'navigation-menu': horizontal }, className)}
 				aria-labelledby={ariaLabelledby}
 				data-bs-parent={
-					parentId === `${rootId}__${rootId}`
-						? `#${rootId}`
-						: (parentId && `#${parentId}`) || null
+					parentId === `${rootId}__${rootId}` ? `#${rootId}` : (parentId && `#${parentId}`) || null
 				}
 				// eslint-disable-next-line react/jsx-props-no-spreading
 				{...props}>
@@ -438,13 +436,7 @@ const Navigation = forwardRef<HTMLElement, INavigationProps>(
 						notification={data[item].notification}
 						hide={data[item].hide}>
 						{!!data[item].subMenu &&
-							fillMenu(
-								data[item].subMenu,
-								data[item].id,
-								rootId,
-								isHorizontal,
-								undefined,
-							)}
+							fillMenu(data[item].subMenu, data[item].id, rootId, isHorizontal, undefined)}
 					</Item>
 				) : (
 					!isMore &&
@@ -462,12 +454,7 @@ const Navigation = forwardRef<HTMLElement, INavigationProps>(
 				<List id={id} horizontal={horizontal}>
 					{fillMenu(menu, id, id, horizontal, undefined)}
 					{horizontal && (
-						<Item
-							rootId={`other-${id}`}
-							title={t('More')}
-							icon='MoreHoriz'
-							isHorizontal
-							isMore>
+						<Item rootId={`other-${id}`} title={t('More')} icon='MoreHoriz' isHorizontal isMore>
 							{fillMenu(menu, `other-${id}`, `other-${id}`, false, true)}
 						</Item>
 					)}

@@ -139,8 +139,7 @@ const Button = forwardRef<HTMLAnchorElement, IButtonProps>(
 					(color && !isLight) || (color && isLink),
 				'border-transparent': isLink,
 				[`btn-${size}`]: size,
-				[`btn-hover-shadow${hoverShadow !== 'default' ? `-${hoverShadow}` : ''}`]:
-					hoverShadow,
+				[`btn-hover-shadow${hoverShadow !== 'default' ? `-${hoverShadow}` : ''}`]: hoverShadow,
 				[`btn-light-${color}`]: isLight,
 				[`shadow${shadow !== 'default' ? `-${shadow}` : ''}`]: !!shadow,
 				[`rounded${rounded !== 'default' ? `-${rounded}` : ''}`]: rounded,
@@ -160,11 +159,7 @@ const Button = forwardRef<HTMLAnchorElement, IButtonProps>(
 		const INNER = (
 			<>
 				{icon && <Icon icon={icon} className='btn-icon' />}
-				{isVisuallyHidden ? (
-					<span className='visually-hidden'>Toggle Dropdown</span>
-				) : (
-					children
-				)}
+				{isVisuallyHidden ? <span className='visually-hidden'>Toggle Dropdown</span> : children}
 			</>
 		);
 

@@ -71,11 +71,7 @@ const App = () => {
 	return (
 		<ThemeProvider theme={theme}>
 			<ToastProvider components={{ ToastContainer, Toast }}>
-				<TourProvider
-					steps={steps}
-					styles={styles}
-					showNavigation={false}
-					showBadge={false}>
+				<TourProvider steps={steps} styles={styles} showNavigation={false} showBadge={false}>
 					<div
 						ref={ref}
 						className='app'

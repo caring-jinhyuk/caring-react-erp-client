@@ -13,17 +13,13 @@ const Footer = () => {
 			<div className='container-fluid'>
 				<div className='row'>
 					<div className='col'>
-						<Popovers
-							title='Footer.tsx'
-							desc={<code>src/layout/Footer/Footer.tsx</code>}>
+						<Popovers title='Footer.tsx' desc={<code>src/layout/Footer/Footer.tsx</code>}>
 							Footer
 						</Popovers>
 						<code className='ps-3'>Footer.tsx</code>
 					</div>
 					<div className='col-auto'>
-						<Popovers
-							title='Footer.tsx'
-							desc={<code>src/layout/Footer/Footer.tsx</code>}>
+						<Popovers title='Footer.tsx' desc={<code>src/layout/Footer/Footer.tsx</code>}>
 							Footer
 						</Popovers>
 						<code className='ps-3'>Footer.tsx</code>

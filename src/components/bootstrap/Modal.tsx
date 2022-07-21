@@ -248,9 +248,7 @@ const Modal: FC<IModalProps> = ({
 								<div className='modal-content'>{children}</div>
 							</div>
 						</motion.div>
-						<div
-							className={classNames('modal-backdrop', { fade: isAnimation }, 'show')}
-						/>
+						<div className={classNames('modal-backdrop', { fade: isAnimation }, 'show')} />
 					</>
 				)}
 			</AnimatePresence>

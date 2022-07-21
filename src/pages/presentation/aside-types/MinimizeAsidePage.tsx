@@ -26,9 +26,7 @@ const MinimizeAsidePage = () => {
 				<SubHeaderRight>
 					<Popovers
 						title='MinimizeAsidePage.tsx'
-						desc={
-							<code>src/pages/presentation/aside-types/MinimizeAsidePage.tsx</code>
-						}>
+						desc={<code>src/pages/presentation/aside-types/MinimizeAsidePage.tsx</code>}>
 						SubHeaderRight
 					</Popovers>
 					<code>MinimizeAsidePage.tsx</code>
@@ -41,11 +39,7 @@ const MinimizeAsidePage = () => {
 						style={{ fontSize: 'calc(1rem + 1vw)' }}>
 						<Popovers
 							title='MinimizeAsidePage.tsx'
-							desc={
-								<code>
-									src/pages/presentation/aside-types/MinimizeAsidePage.tsx
-								</code>
-							}>
+							desc={<code>src/pages/presentation/aside-types/MinimizeAsidePage.tsx</code>}>
 							Page
 						</Popovers>
 						<code className='ps-3'>MinimizeAsidePage.tsx</code>

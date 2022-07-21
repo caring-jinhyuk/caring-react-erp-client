@@ -62,24 +62,18 @@ Chart.propTypes = {
 					PropTypes.oneOfType([
 						PropTypes.string,
 						PropTypes.number,
-						PropTypes.arrayOf(
-							PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-						),
+						PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
 						PropTypes.shape({
 							x: PropTypes.oneOfType([
 								PropTypes.string,
 								PropTypes.number,
-								PropTypes.arrayOf(
-									PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-								),
+								PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
 								PropTypes.object,
 							]),
 							y: PropTypes.oneOfType([
 								PropTypes.string,
 								PropTypes.number,
-								PropTypes.arrayOf(
-									PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-								),
+								PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
 								PropTypes.object,
 							]),
 						}),

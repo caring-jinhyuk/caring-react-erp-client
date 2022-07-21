@@ -247,11 +247,7 @@ export const CardBody = forwardRef<HTMLDivElement, ICardBodyProps>(
 			<TagWrapper
 				ref={ref}
 				tag={tag}
-				className={classNames(
-					'card-body',
-					{ 'card-body-scrollable': isScrollable },
-					className,
-				)}
+				className={classNames('card-body', { 'card-body-scrollable': isScrollable }, className)}
 				// eslint-disable-next-line react/jsx-props-no-spreading
 				{...props}>
 				{children}
@@ -510,8 +506,7 @@ const Card = forwardRef<HTMLDivElement, ICardProps>(
 					{
 						[`card-stretch-${stretch === 'semi' ? 'semi' : 'full'}`]: stretch,
 						'card-compact': isCompact,
-						[`shadow${shadow !== 'md' ? `-${shadow}` : ''}`]:
-							!!shadow && shadow !== '3d',
+						[`shadow${shadow !== 'md' ? `-${shadow}` : ''}`]: !!shadow && shadow !== '3d',
 						[`u-shadow-3d--primary-sm`]: shadow === '3d',
 						border: borderSize || borderSize === 0,
 						[`border-${borderSize}`]: borderSize || borderSize === 0,

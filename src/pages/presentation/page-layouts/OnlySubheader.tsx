@@ -37,9 +37,7 @@ const OnlySubheader = () => {
 						style={{ fontSize: 'calc(1rem + 1vw)' }}>
 						<Popovers
 							title='OnlySubheader.tsx'
-							desc={
-								<code>src/pages/presentation/page-layouts/OnlySubheader.tsx</code>
-							}>
+							desc={<code>src/pages/presentation/page-layouts/OnlySubheader.tsx</code>}>
 							Page
 						</Popovers>
 						<code className='ps-3'>OnlySubheader.tsx</code>
