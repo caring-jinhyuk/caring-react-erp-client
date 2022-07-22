@@ -5,15 +5,18 @@ import './styles/styles.scss';
 import App from './App/App';
 import reportWebVitals from './reportWebVitals';
 import { ThemeContextProvider } from './contexts/themeContext';
+import { RecoilRoot } from 'recoil';
 
 const children = (
-	<Router>
-		<React.StrictMode>
-			<ThemeContextProvider>
-				<App />
-			</ThemeContextProvider>
-		</React.StrictMode>
-	</Router>
+	<React.StrictMode>
+		<RecoilRoot>
+			<Router>
+				<ThemeContextProvider>
+					<App />
+				</ThemeContextProvider>
+			</Router>
+		</RecoilRoot>
+	</React.StrictMode>
 );
 
 const container = document.getElementById('root');
