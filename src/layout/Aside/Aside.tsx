@@ -1,7 +1,6 @@
 import React, { useContext, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { motion, MotionStyle } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
 import Brand from '../Brand/Brand';
 import Navigation, { NavigationLine } from '../Navigation/Navigation';
 import User from '../User/User';
@@ -23,8 +22,6 @@ const Aside = () => {
 	const constraintsRef = useRef(null);
 
 	const [doc, setDoc] = useState(false);
-
-	const { t } = useTranslation(['translation', 'menu']);
 
 	return (
 		<>
@@ -89,7 +86,7 @@ const Aside = () => {
 											color={doc ? 'success' : undefined}
 											className='navigation-icon'
 										/>
-										<span className='navigation-text'>{t('menu:Documentation')}</span>
+										<span className='navigation-text'>{'menu:Documentation'}</span>
 									</span>
 									<span className='navigation-link-extra'>
 										<Icon
