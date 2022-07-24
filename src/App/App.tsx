@@ -66,7 +66,7 @@ const App = () => {
 	});
 
 	//	Add paths to the array that you don't want to be "Aside".
-	const withOutAsidePages = [authPages.login.path, authPages.signUp.path, homepages.blank.path];
+	const withOutAsidePages = [authPages.signIn.path, authPages.signUp.path, homepages.blank.path];
 
 	return (
 		<ThemeProvider theme={theme}>

@@ -4,7 +4,7 @@ import { motion, MotionStyle } from 'framer-motion';
 import Brand from '../Brand/Brand';
 import Navigation, { NavigationLine } from '../Navigation/Navigation';
 import User from '../User/User';
-import { homepages } from '../../menus/menu';
+import { homepages, authPages } from '../../menus/menu';
 import ThemeContext from '../../contexts/themeContext';
 
 import Icon from '../../components/icon/Icon';
@@ -40,12 +40,12 @@ const Aside = () => {
 					<Brand asideStatus={asideStatus} setAsideStatus={setAsideStatus} />
 				</div>
 				<div className='aside-body'>
-					<Navigation menu={homepages} id='aside-dashboard' />
+					<Navigation menu={homepages} id='aside-homepage' />
 					<NavigationLine />
 					{!doc && (
 						<>
-							{/*<Navigation menu={homepages} id='aside-demo-pages' />*/}
-							{/*<NavigationLine />*/}
+							<Navigation menu={authPages} id='aside-auth-pages' />
+							<NavigationLine />
 							<nav>
 								<div className='navigation'>
 									<div className='navigation-item'>

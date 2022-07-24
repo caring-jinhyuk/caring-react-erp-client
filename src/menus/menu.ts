@@ -20,10 +20,10 @@ export const authPages = {
 		text: 'Auth Pages',
 		icon: 'Extension',
 	},
-	login: {
-		id: 'login',
-		text: 'Login',
-		path: 'auth-pages/login',
+	signIn: {
+		id: 'signIn',
+		text: 'Sign In',
+		path: 'auth-pages/sign-in',
 		icon: 'Login',
 	},
 	signUp: {
