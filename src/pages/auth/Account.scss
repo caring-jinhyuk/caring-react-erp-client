@@ -1,0 +1,14 @@
+.btn-no-focus {
+  background-color: inherit;
+  border: none;
+  color: black !important;
+  &:hover {
+    color: white !important;
+  }
+}
+
+.input-focus {
+  &:focus {
+    border: #D0B03E solid 2px;
+  }
+}

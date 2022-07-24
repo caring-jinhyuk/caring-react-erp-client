@@ -34,6 +34,7 @@ export interface IInputProps extends HTMLAttributes<HTMLInputElement>, Partial<I
 	title?: string;
 	list?: string[];
 	autoComplete?: string;
+	autoFocus?: boolean;
 	disabled?: boolean;
 	multiple?: boolean;
 	readOnly?: boolean | 'plaintext';
@@ -86,6 +87,7 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
 			required,
 			placeholder,
 			autoComplete,
+			autoFocus,
 			ariaDescribedby,
 			ariaLabelledby,
 			ariaLabel,
@@ -145,6 +147,7 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
 			readOnly: !!readOnly,
 			multiple,
 			autoComplete,
+			autoFocus,
 			'aria-describedby': ariaDescribedby,
 			'aria-label': ariaLabel,
 			'aria-labelledby': ariaLabelledby,
@@ -261,6 +264,7 @@ Input.propTypes = {
 	// @ts-ignore
 	list: PropTypes.arrayOf(PropTypes.string),
 	autoComplete: PropTypes.string,
+	autoFocus: PropTypes.bool,
 	/**
 	 * A *disabled* element isn't editable and isn't sent on submit.
 	 */
@@ -350,6 +354,7 @@ Input.defaultProps = {
 	title: undefined,
 	list: undefined,
 	autoComplete: undefined,
+	autoFocus: false,
 	disabled: false,
 	multiple: false,
 	readOnly: false,

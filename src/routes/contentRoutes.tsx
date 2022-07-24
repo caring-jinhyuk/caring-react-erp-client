@@ -5,7 +5,7 @@ const LANDING = {
 	HOMEPAGE: lazy(() => import('../pages/home/HomePage')),
 };
 const AUTH = {
-	LOGIN: lazy(() => import('../pages/auth/Login')),
+	ACCOUNT: lazy(() => import('../pages/auth/Account')),
 };
 const presentation = [
 	/**
@@ -17,13 +17,13 @@ const presentation = [
 		exact: true,
 	},
 	{
-		path: authPages.login.path,
-		element: <AUTH.LOGIN />,
+		path: authPages.signIn.path,
+		element: <AUTH.ACCOUNT />,
 		exact: true,
 	},
 	{
 		path: authPages.signUp.path,
-		element: <AUTH.LOGIN isSignUp />,
+		element: <AUTH.ACCOUNT isSignUp />,
 		exact: true,
 	},
 ];
