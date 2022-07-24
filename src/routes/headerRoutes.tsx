@@ -1,9 +1,11 @@
 import React from 'react';
 import DefaultHeader from '../pages/common/Headers/DefaultHeader';
-import { homepages } from '../menus/menu';
+import { authPages, homepages } from '../menus/menu';
 
 const headers = [
 	{ path: homepages.home.path, element: null, exact: true },
+	{ path: authPages.login.path, element: null, exact: true },
+	{ path: authPages.signUp.path, element: null, exact: true },
 	{
 		path: `*`,
 		element: <DefaultHeader />,

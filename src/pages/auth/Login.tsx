@@ -54,12 +54,12 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 							<CardBody>
 								<div className='text-center my-5'>
 									<Link
-										to='/'
+										to='/auth-pages/login'
 										className={classNames('text-decoration-none  fw-bold display-2', {
 											'text-dark': !darkModeStatus,
 											'text-light': darkModeStatus,
 										})}>
-										<Logo width={200} />
+										<Logo width={100} height={40} />
 									</Link>
 								</div>
 								<div
@@ -157,40 +157,6 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 											</div>
 										</>
 									)}
-
-									{/* BEGIN :: Social Login */}
-									{!usernameInput && (
-										<>
-											<div className='col-12 mt-3 text-center text-muted'>OR</div>
-											<div className='col-12 mt-3'>
-												<Button
-													isOutline
-													color={darkModeStatus ? 'light' : 'dark'}
-													className={classNames('w-100 py-3', {
-														'border-light': !darkModeStatus,
-														'border-dark': darkModeStatus,
-													})}
-													icon='CustomApple'
-													onClick={handleOnClick}>
-													Sign in with Apple
-												</Button>
-											</div>
-											<div className='col-12'>
-												<Button
-													isOutline
-													color={darkModeStatus ? 'light' : 'dark'}
-													className={classNames('w-100 py-3', {
-														'border-light': !darkModeStatus,
-														'border-dark': darkModeStatus,
-													})}
-													icon='CustomGoogle'
-													onClick={handleOnClick}>
-													Continue with Google
-												</Button>
-											</div>
-										</>
-									)}
-									{/* END :: Social Login */}
 								</form>
 							</CardBody>
 						</Card>
