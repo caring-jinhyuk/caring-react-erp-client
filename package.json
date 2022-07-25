@@ -65,6 +65,7 @@
 		"react-big-calendar": "^1.2.0",
 		"react-credit-cards": "^0.8.3",
 		"react-date-range": "^1.4.0",
+		"react-datepicker": "^4.8.0",
 		"react-dom": "^18.2.0",
 		"react-image-webp": "^0.8.0",
 		"react-input-mask": "^2.0.4",
