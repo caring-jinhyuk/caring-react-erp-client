@@ -30,30 +30,9 @@ export type InsuranceUpdateRequest = {
     requirementReason?: string;
     requirementReasonCategory?: string;
     summary?: string;
-    updateState?: InsuranceUpdateRequest.updateState;
-    updateType?: InsuranceUpdateRequest.updateType;
+    updateState?: 'PENDING' | 'DONE' | 'REJECT';
+    updateType?: 'GET' | 'WITHDRAW' | 'INSURANCE_CANCEL' | 'INSURANCE_MODIFY' | 'MOVE_CONFIRM' | 'CHANGE_AMOUNT' | 'ETC_CHANGE';
     workHours?: number;
     workType?: string;
 };
-
-export namespace InsuranceUpdateRequest {
-
-    export enum updateState {
-        PENDING = 'PENDING',
-        DONE = 'DONE',
-        REJECT = 'REJECT',
-    }
-
-    export enum updateType {
-        GET = 'GET',
-        WITHDRAW = 'WITHDRAW',
-        INSURANCE_CANCEL = 'INSURANCE_CANCEL',
-        INSURANCE_MODIFY = 'INSURANCE_MODIFY',
-        MOVE_CONFIRM = 'MOVE_CONFIRM',
-        CHANGE_AMOUNT = 'CHANGE_AMOUNT',
-        ETC_CHANGE = 'ETC_CHANGE',
-    }
-
-
-}
 

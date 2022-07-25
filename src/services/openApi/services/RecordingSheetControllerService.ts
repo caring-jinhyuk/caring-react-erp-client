@@ -12,17 +12,13 @@ export class RecordingSheetControllerService {
 
     /**
      * getRecordingSheet
+     * @param id id
      * @returns RecordingSheet OK
      * @throws ApiError
      */
-    public static getRecordingSheetUsingGet({
-        id,
-    }: {
-        /**
-         * id
-         */
+    public static getRecordingSheetUsingGet(
         id: number,
-    }): CancelablePromise<RecordingSheet> {
+    ): CancelablePromise<RecordingSheet> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/recordingSheet',
@@ -39,18 +35,14 @@ export class RecordingSheetControllerService {
 
     /**
      * saveRecordingSheet
+     * @param recordingSheet recordingSheet
      * @returns RecordingSheet OK
      * @returns any Created
      * @throws ApiError
      */
-    public static saveRecordingSheetUsingPost({
-        recordingSheet,
-    }: {
-        /**
-         * recordingSheet
-         */
+    public static saveRecordingSheetUsingPost(
         recordingSheet: RecordingSheet,
-    }): CancelablePromise<RecordingSheet | any> {
+    ): CancelablePromise<RecordingSheet | any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/recordingSheet',
@@ -65,17 +57,13 @@ export class RecordingSheetControllerService {
 
     /**
      * deleteRecordingSheet
+     * @param id id
      * @returns any OK
      * @throws ApiError
      */
-    public static deleteRecordingSheetUsingDelete({
-        id,
-    }: {
-        /**
-         * id
-         */
+    public static deleteRecordingSheetUsingDelete(
         id: number,
-    }): CancelablePromise<any> {
+    ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'DELETE',
             url: '/recordingSheet',
@@ -91,28 +79,18 @@ export class RecordingSheetControllerService {
 
     /**
      * getRecordingSheetList
+     * @param page page
+     * @param recipientId recipientId
+     * @param size size
      * @returns Page_RecordingSheet_ OK
      * @returns any Created
      * @throws ApiError
      */
-    public static getRecordingSheetListUsingPost({
-        page,
-        recipientId,
-        size = 10,
-    }: {
-        /**
-         * page
-         */
+    public static getRecordingSheetListUsingPost(
         page?: number,
-        /**
-         * recipientId
-         */
         recipientId?: number,
-        /**
-         * size
-         */
-        size?: number,
-    }): CancelablePromise<Page_RecordingSheet_ | any> {
+        size: number = 10,
+    ): CancelablePromise<Page_RecordingSheet_ | any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/recordingSheet/list',

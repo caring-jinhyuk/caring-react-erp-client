@@ -19,7 +19,7 @@ export type CaringProvider = {
     data?: ProviderData;
     dementiaEduComplete?: boolean;
     exitDate?: string;
-    gender?: CaringProvider.gender;
+    gender?: 'MALE' | 'FEMALE';
     hancareId?: string;
     id?: number;
     idNumber?: string;
@@ -29,12 +29,12 @@ export type CaringProvider = {
     name?: string;
     phone?: string;
     phone2?: string;
-    position?: CaringProvider.position;
+    position?: 'Caregiver' | 'SocialWorker' | 'Nurse' | 'CenterManager' | 'NurseAssi' | 'CaregiverMonthPay' | 'NurseMonthPay' | 'NurseAssiMonthPay';
     positionName?: string;
     providerLicenses?: Array<ProviderLicense>;
     relation?: string;
     salary?: number;
-    state?: CaringProvider.state;
+    state?: 'OnWork' | 'Waiting' | 'OnVacation' | 'Exit' | 'Etc';
     stateDate?: string;
     stateHistory?: Array<any>;
     stateReason?: string;
@@ -47,33 +47,4 @@ export type CaringProvider = {
     workCenter?: WorkCenter;
     workTypes?: Array<'Family' | 'Bath' | 'Nursing'>;
 };
-
-export namespace CaringProvider {
-
-    export enum gender {
-        MALE = 'MALE',
-        FEMALE = 'FEMALE',
-    }
-
-    export enum position {
-        CAREGIVER = 'Caregiver',
-        SOCIAL_WORKER = 'SocialWorker',
-        NURSE = 'Nurse',
-        CENTER_MANAGER = 'CenterManager',
-        NURSE_ASSI = 'NurseAssi',
-        CAREGIVER_MONTH_PAY = 'CaregiverMonthPay',
-        NURSE_MONTH_PAY = 'NurseMonthPay',
-        NURSE_ASSI_MONTH_PAY = 'NurseAssiMonthPay',
-    }
-
-    export enum state {
-        ON_WORK = 'OnWork',
-        WAITING = 'Waiting',
-        ON_VACATION = 'OnVacation',
-        EXIT = 'Exit',
-        ETC = 'Etc',
-    }
-
-
-}
 

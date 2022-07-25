@@ -12,17 +12,13 @@ export class CustomerCallControllerService {
 
     /**
      * getCallManage
+     * @param id id
      * @returns CustomerCall OK
      * @throws ApiError
      */
-    public static getCallManageUsingGet({
-        id,
-    }: {
-        /**
-         * id
-         */
+    public static getCallManageUsingGet(
         id: number,
-    }): CancelablePromise<CustomerCall> {
+    ): CancelablePromise<CustomerCall> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/callManage',
@@ -39,28 +35,18 @@ export class CustomerCallControllerService {
 
     /**
      * saveCallManage
+     * @param customerCall customerCall
+     * @param name name
+     * @param phone phone
      * @returns CustomerCall OK
      * @returns any Created
      * @throws ApiError
      */
-    public static saveCallManageUsingPost({
-        customerCall,
-        name,
-        phone,
-    }: {
-        /**
-         * customerCall
-         */
+    public static saveCallManageUsingPost(
         customerCall: CustomerCall,
-        /**
-         * name
-         */
         name?: string,
-        /**
-         * phone
-         */
         phone?: string,
-    }): CancelablePromise<CustomerCall | any> {
+    ): CancelablePromise<CustomerCall | any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/callManage',
@@ -79,17 +65,13 @@ export class CustomerCallControllerService {
 
     /**
      * deleteCallManage
+     * @param id id
      * @returns any OK
      * @throws ApiError
      */
-    public static deleteCallManageUsingDelete({
-        id,
-    }: {
-        /**
-         * id
-         */
+    public static deleteCallManageUsingDelete(
         id: number,
-    }): CancelablePromise<any> {
+    ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'DELETE',
             url: '/callManage',
@@ -105,22 +87,15 @@ export class CustomerCallControllerService {
 
     /**
      * getCallManageByNameAndPhone
+     * @param name name
+     * @param phone phone
      * @returns CustomerCall OK
      * @throws ApiError
      */
-    public static getCallManageByNameAndPhoneUsingGet({
-        name,
-        phone,
-    }: {
-        /**
-         * name
-         */
+    public static getCallManageByNameAndPhoneUsingGet(
         name: string,
-        /**
-         * phone
-         */
         phone: string,
-    }): CancelablePromise<Array<CustomerCall>> {
+    ): CancelablePromise<Array<CustomerCall>> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/callManage/byNameAndPhone',
@@ -138,22 +113,15 @@ export class CustomerCallControllerService {
 
     /**
      * getCallManageList
+     * @param page page
+     * @param size size
      * @returns Page_CustomerCall_ OK
      * @throws ApiError
      */
-    public static getCallManageListUsingGet({
-        page,
-        size = 10,
-    }: {
-        /**
-         * page
-         */
+    public static getCallManageListUsingGet(
         page?: number,
-        /**
-         * size
-         */
-        size?: number,
-    }): CancelablePromise<Page_CustomerCall_> {
+        size: number = 10,
+    ): CancelablePromise<Page_CustomerCall_> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/callManage/list',
