@@ -15,22 +15,7 @@ export type User = {
     phone?: string;
     properties?: Builder;
     provider?: CaringProvider;
-    role?: User.role;
+    role?: 'Admin' | 'Center' | 'ContactCenter' | 'CenterChief' | 'AccountingFirm' | 'FinancialManager' | 'Infra';
     sendNumber?: string;
 };
-
-export namespace User {
-
-    export enum role {
-        ADMIN = 'Admin',
-        CENTER = 'Center',
-        CONTACT_CENTER = 'ContactCenter',
-        CENTER_CHIEF = 'CenterChief',
-        ACCOUNTING_FIRM = 'AccountingFirm',
-        FINANCIAL_MANAGER = 'FinancialManager',
-        INFRA = 'Infra',
-    }
-
-
-}
 
