@@ -1,16 +1,14 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useRef } from 'react';
 import classNames from 'classnames';
 import { motion, MotionStyle } from 'framer-motion';
 import Brand from '../Brand/Brand';
-import Navigation, { NavigationLine } from '../Navigation/Navigation';
+import Navigation from '../Navigation/Navigation';
 import User from '../User/User';
-import { homepages } from '../../menus/menu';
+import { asideMenus } from '../../menus/asideMenus';
 import ThemeContext from '../../contexts/themeContext';
 
-import Icon from '../../components/icon/Icon';
 import Tooltips from '../../components/bootstrap/Tooltips';
 import useAsideTouch from '../../hooks/useAsideTouch';
-import Popovers from '../../components/bootstrap/Popovers';
 
 const Aside = () => {
 	const { asideStatus, setAsideStatus } = useContext(ThemeContext);
@@ -20,8 +18,6 @@ const Aside = () => {
 	const isModernDesign = process.env.REACT_APP_MODERN_DESGIN === 'true';
 
 	const constraintsRef = useRef(null);
-
-	const [doc, setDoc] = useState(false);
 
 	return (
 		<>
@@ -40,68 +36,11 @@ const Aside = () => {
 					<Brand asideStatus={asideStatus} setAsideStatus={setAsideStatus} />
 				</div>
 				<div className='aside-body'>
-					<Navigation menu={homepages} id='aside-dashboard' />
-					<NavigationLine />
-					{!doc && (
-						<>
-							{/*<Navigation menu={homepages} id='aside-demo-pages' />*/}
-							{/*<NavigationLine />*/}
-							<nav>
-								<div className='navigation'>
-									<div className='navigation-item'>
-										<span className='navigation-link navigation-link-pill'>
-											<span className='navigation-link-info'>
-												<span className='navigation-text'>
-													<Popovers
-														title='Aside.tsx'
-														desc={<code>src/layout/Aside/Aside.tsx</code>}>
-														Aside
-													</Popovers>
-													<code className='ps-3'>Aside.tsx</code>
-												</span>
-											</span>
-										</span>
-									</div>
-								</div>
-							</nav>
-						</>
-					)}
-
-					{asideStatus && doc && <div className='p-4'>Documentation</div>}
+					<>
+						<Navigation menu={asideMenus} id='aside-pages' />
+					</>
 				</div>
 				<div className='aside-foot'>
-					<nav aria-label='aside-bottom-menu'>
-						<div className='navigation'>
-							<div
-								role='presentation'
-								className='navigation-item cursor-pointer'
-								onClick={() => {
-									setDoc(!doc);
-								}}
-								data-tour='documentation'>
-								<span className='navigation-link navigation-link-pill'>
-									<span className='navigation-link-info'>
-										<Icon
-											icon={doc ? 'ToggleOn' : 'ToggleOff'}
-											color={doc ? 'success' : undefined}
-											className='navigation-icon'
-										/>
-										<span className='navigation-text'>{'menu:Documentation'}</span>
-									</span>
-									<span className='navigation-link-extra'>
-										<Icon
-											icon='Circle'
-											className={classNames(
-												'navigation-notification',
-												'text-success',
-												'animate__animated animate__heartBeat animate__infinite animate__slower',
-											)}
-										/>
-									</span>
-								</span>
-							</div>
-						</div>
-					</nav>
 					<User />
 				</div>
 			</motion.aside>

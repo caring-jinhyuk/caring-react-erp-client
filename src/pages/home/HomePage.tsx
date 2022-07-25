@@ -1,12 +1,12 @@
 import React from 'react';
 
-import PageWrapper from '../layout/PageWrapper/PageWrapper';
-import Page from '../layout/Page/Page';
-import Popovers from '../components/bootstrap/Popovers';
+import PageWrapper from '../../layout/PageWrapper/PageWrapper';
+import Page from '../../layout/Page/Page';
+import Popovers from '../../components/bootstrap/Popovers';
 
 const HomePage = () => {
 	return (
-		<PageWrapper title='HomePage Page'>
+		<PageWrapper title='Home Page'>
 			<Page>
 				<div className='row'>
 					<div className='col-12 mb-3'>
