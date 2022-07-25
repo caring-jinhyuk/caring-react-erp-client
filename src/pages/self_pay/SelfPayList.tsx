@@ -22,13 +22,13 @@ const SelfPayList = () => {
 
 	const handleOnChange = useCallback((e: any) => {
 		const requestSelfPayList = () => {
-			BurdenControllerService.centerAllBurdenListUsingPost({ center: 4, month: '2022-4' })
-				.then((value) => {
-					console.log('success');
-				})
-				.catch((error) => {
-					console.log('error');
-				});
+			// BurdenControllerService.centerAllBurdenListUsingPost({ center: 4, month: '2022-4' })
+			// 	.then((value) => {
+			// 		console.log('success');
+			// 	})
+			// 	.catch((error) => {
+			// 		console.log('error');
+			// 	});
 		};
 
 		switch (e.target.id) {
