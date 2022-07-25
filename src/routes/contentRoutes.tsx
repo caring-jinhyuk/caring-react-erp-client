@@ -1,8 +1,10 @@
 import React, { lazy } from 'react';
 import { authPages, homepages } from '../menus/menu';
+import { asideMenus } from '../menus/asideMenus';
 
 const LANDING = {
 	HOMEPAGE: lazy(() => import('../pages/home/HomePage')),
+	SELF_PAY: lazy(() => import('../pages/self_pay/SelfPay')),
 };
 const AUTH = {
 	ACCOUNT: lazy(() => import('../pages/auth/Account')),
@@ -25,6 +27,15 @@ const presentation = [
 		path: authPages.signUp.path,
 		element: <AUTH.ACCOUNT isSignUp />,
 		exact: true,
+	},
+	{
+		path: authPages.signUp.path,
+		element: <AUTH.ACCOUNT isSignUp />,
+		exact: true,
+	},
+	{
+		path: asideMenus.self_pay.path,
+		element: <LANDING.SELF_PAY />,
 	},
 ];
 const contents = [...presentation];
