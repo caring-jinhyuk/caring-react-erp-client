@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react';
 import FormGroup from '../../../components/bootstrap/forms/FormGroup';
 import Input from '../../../components/bootstrap/forms/Input';
 import Button from '../../../components/bootstrap/Button';
+import { OpenAPI, User, UserControllerService } from '../../../services/openApi';
 
 const SignInForm = () => {
 	const [email, setEmail] = useState<string>('');
@@ -20,7 +21,14 @@ const SignInForm = () => {
 
 	const handleOnSubmit = (event: any) => {
 		event.preventDefault();
-		console.log(event);
+		signInHandler();
+	};
+
+	const signInHandler = async () => {
+		let user: User = { email, password };
+		UserControllerService.loginUsingPost(user).then((a: any) => {
+			console.log(a);
+		});
 	};
 
 	return (
@@ -29,7 +37,7 @@ const SignInForm = () => {
 				<div className='col-12'>
 					<FormGroup id='signIn-email' className='mb-3' isFloating={true} label='이메일 주소 입력'>
 						<Input
-							type='email'
+							// type='email'
 							value={email}
 							onChange={handleOnChange}
 							className='input-focus'

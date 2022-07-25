@@ -11,18 +11,14 @@ export class FinanceControllerService {
 
     /**
      * saveFinance
+     * @param finance finance
      * @returns Finance OK
      * @returns any Created
      * @throws ApiError
      */
-    public static saveFinanceUsingPost({
-        finance,
-    }: {
-        /**
-         * finance
-         */
+    public static saveFinanceUsingPost(
         finance: Finance,
-    }): CancelablePromise<Finance | any> {
+    ): CancelablePromise<Finance | any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/finance',
@@ -37,22 +33,15 @@ export class FinanceControllerService {
 
     /**
      * getFinanceOptions
+     * @param providerId providerId
+     * @param recipientId recipientId
      * @returns Finance OK
      * @throws ApiError
      */
-    public static getFinanceOptionsUsingGet({
-        providerId,
-        recipientId,
-    }: {
-        /**
-         * providerId
-         */
+    public static getFinanceOptionsUsingGet(
         providerId?: number,
-        /**
-         * recipientId
-         */
         recipientId?: number,
-    }): CancelablePromise<Array<Finance>> {
+    ): CancelablePromise<Array<Finance>> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/finance/options',

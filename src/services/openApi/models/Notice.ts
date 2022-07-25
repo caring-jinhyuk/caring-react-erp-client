@@ -11,23 +11,8 @@ export type Notice = {
     fixed?: boolean;
     id?: number;
     lastEdit?: number;
-    noticeFor?: Notice.noticeFor;
+    noticeFor?: 'Admin' | 'Center' | 'ContactCenter' | 'CenterChief' | 'AccountingFirm' | 'FinancialManager' | 'Infra';
     title?: string;
     updatedAt?: string;
 };
-
-export namespace Notice {
-
-    export enum noticeFor {
-        ADMIN = 'Admin',
-        CENTER = 'Center',
-        CONTACT_CENTER = 'ContactCenter',
-        CENTER_CHIEF = 'CenterChief',
-        ACCOUNTING_FIRM = 'AccountingFirm',
-        FINANCIAL_MANAGER = 'FinancialManager',
-        INFRA = 'Infra',
-    }
-
-
-}
 

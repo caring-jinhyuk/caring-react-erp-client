@@ -18,7 +18,7 @@ export type CaringRecipient = {
     contractor?: Contractor;
     data?: RecipientData;
     externalServices?: Array<string>;
-    gender?: CaringRecipient.gender;
+    gender?: 'MALE' | 'FEMALE';
     hancareId?: string;
     health?: any;
     id?: number;
@@ -45,14 +45,4 @@ export type CaringRecipient = {
     tagAttached?: boolean;
     workCenter?: WorkCenter;
 };
-
-export namespace CaringRecipient {
-
-    export enum gender {
-        MALE = 'MALE',
-        FEMALE = 'FEMALE',
-    }
-
-
-}
 

@@ -11,17 +11,13 @@ export class RecordingSheetSentControllerService {
 
     /**
      * getSendRecord
+     * @param id id
      * @returns RecordingSheetSent OK
      * @throws ApiError
      */
-    public static getSendRecordUsingGet({
-        id,
-    }: {
-        /**
-         * id
-         */
+    public static getSendRecordUsingGet(
         id: number,
-    }): CancelablePromise<RecordingSheetSent> {
+    ): CancelablePromise<RecordingSheetSent> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/sendRecord',
@@ -38,18 +34,14 @@ export class RecordingSheetSentControllerService {
 
     /**
      * saveSendRecord
+     * @param key key
      * @returns RecordingSheetSent OK
      * @returns any Created
      * @throws ApiError
      */
-    public static saveSendRecordUsingPost({
-        key,
-    }: {
-        /**
-         * key
-         */
+    public static saveSendRecordUsingPost(
         key: string,
-    }): CancelablePromise<RecordingSheetSent | any> {
+    ): CancelablePromise<RecordingSheetSent | any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/sendRecord',
@@ -66,17 +58,13 @@ export class RecordingSheetSentControllerService {
 
     /**
      * deleteSendRecord
+     * @param id id
      * @returns any OK
      * @throws ApiError
      */
-    public static deleteSendRecordUsingDelete({
-        id,
-    }: {
-        /**
-         * id
-         */
+    public static deleteSendRecordUsingDelete(
         id: number,
-    }): CancelablePromise<any> {
+    ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'DELETE',
             url: '/sendRecord',
@@ -92,18 +80,14 @@ export class RecordingSheetSentControllerService {
 
     /**
      * getSendRecordList
+     * @param keys keys
      * @returns RecordingSheetSent OK
      * @returns any Created
      * @throws ApiError
      */
-    public static getSendRecordListUsingPost({
-        keys,
-    }: {
-        /**
-         * keys
-         */
+    public static getSendRecordListUsingPost(
         keys: Array<string>,
-    }): CancelablePromise<Array<RecordingSheetSent> | any> {
+    ): CancelablePromise<Array<RecordingSheetSent> | any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/sendRecord/list',
