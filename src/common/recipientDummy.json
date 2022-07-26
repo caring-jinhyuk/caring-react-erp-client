@@ -1,0 +1,1629 @@
+{
+  "content": [
+    {
+      "id": 3789408,
+      "health": {},
+      "name": "",
+      "birthDate": "",
+      "gender": "MALE",
+      "idNumber": "",
+      "longTermNumber": "L",
+      "longTermHistory": [],
+      "rateHistory": [],
+      "repPhone": "",
+      "manager": {
+        "id": 182,
+        "email": "lyeonk71@gmail.com",
+        "password": "$2a$10$gJsYZMfRxg1sbung7Z8i/.QVu2FptguucivPxrxjU2T6Gx.knFdUK",
+        "role": "Center",
+        "centerId": 12,
+        "phone": "010-5649-6585",
+        "name": "김리연",
+        "sendNumber": "010-5649-6585",
+        "permissions": [
+          "CenterGet"
+        ]
+      },
+      "externalServices": [],
+      "tagAttached": false,
+      "beaconAttached": false
+    },
+    {
+      "id": 3789431,
+      "health": {},
+      "contractUntilDate": -2177483272000,
+      "name": "",
+      "birthDate": "",
+      "gender": "MALE",
+      "idNumber": "",
+      "longTermNumber": "L",
+      "longTermHistory": [],
+      "rateHistory": [],
+      "repPhone": "",
+      "manager": {
+        "id": 71,
+        "email": "gpwls2995@gmail.com",
+        "password": "$2a$10$jZp4f6e1YT5llpxhGdQ5OufaHI34yGEylmGDNgRpgeUgwWB88iCii",
+        "role": "Center",
+        "centerId": 2,
+        "phone": "01024916586",
+        "name": "김혜진",
+        "sendNumber": "01024916586",
+        "permissions": [
+          "CenterGet"
+        ]
+      },
+      "externalServices": [],
+      "tagAttached": false,
+      "beaconAttached": false
+    },
+    {
+      "id": 3787267,
+      "health": {},
+      "status": "계약종료 - 사망",
+      "hancareId": "350223-18FjsDK2oxxk",
+      "name": "JIN MEIYU",
+      "birthDate": "19350223",
+      "gender": "FEMALE",
+      "idNumber": "",
+      "longTermNumber": "L2001025638",
+      "longTermGrade": "3등급",
+      "longTermDurationFrom": 1594738800000,
+      "longTermDurationUntil": 1657724400000,
+      "longTermHistory": [
+        {
+          "longTermGrade": "3등급",
+          "longTermDurationFrom": 1594738800000,
+          "longTermDurationUntil": 1657724400000
+        }
+      ],
+      "workCenter": {
+        "id": 2,
+        "loginCode": "E0372",
+        "loginId": "admin",
+        "loginPassword": "6808501345",
+        "centerNumber": "21165000178",
+        "name": "케어링 서초방문요양센터",
+        "serviceType": "방문요양, 방문목욕",
+        "chiefName": "김은정",
+        "phone": "010-9698-6585",
+        "address": {
+          "zipCode": "06619",
+          "address": "서울 서초구 서초대로 396",
+          "addressDetail": "402-3호",
+          "fullAddress": "(06619) 서울 서초구 서초대로 396 402-3호"
+        },
+        "account": "신한은행 140-013-141585 케어링 서초 방문요양",
+        "apiName": "SEOCHO",
+        "main": false,
+        "accounts": [
+          {
+            "bank": "신한은행",
+            "number": "140013141585",
+            "pw": "1638",
+            "idnumber": "680-85-01345",
+            "loginId": "caring1",
+            "loginPw": "zpdjfld139~!",
+            "name": "서초입출금통장"
+          }
+        ],
+        "shortName": " 서초방문요양"
+      },
+      "recipientRate": "일반 15%",
+      "rateHistory": [],
+      "illness": "",
+      "address": {
+        "zipCode": "34395",
+        "address": "대전광역시 대덕구 중리동로 17",
+        "addressDetail": "(중리동)  2층",
+        "x": 127.429600574946,
+        "y": 36.3606064549222,
+        "fullAddress": "(34395) 대전광역시 대덕구 중리동로 17 (중리동)  2층"
+      },
+      "memo": "요양병원 3개월 입원후 11/12일퇴원.  2019년 7월 고관절 수술 후 일어나지 못하며 현재는 와상상태.  기저귀착용. 치매. 췌장암으로 1년에 한두번 입원 반복되고 있음. \n3/15 요양병원 입원",
+      "repPhone": "010-5535-9704",
+      "contractor": {
+        "name": "이석화",
+        "birthDate": "19590724",
+        "memo": "딸(19-20)",
+        "relation": "자녀",
+        "address": " 3/15일요양병원입원"
+      },
+      "contractDate": 1605020400000,
+      "checkValidUntil": 1668092400000,
+      "externalServices": [],
+      "tagAttached": false,
+      "beaconAttached": false
+    },
+    {
+      "id": 3787268,
+      "health": {},
+      "status": "수급중",
+      "hancareId": "380323-1psM3YMMHmNQ",
+      "name": "JIN SHUNSHAN",
+      "birthDate": "19380323",
+      "gender": "FEMALE",
+      "idNumber": "",
+      "longTermNumber": "L2111053379",
+      "longTermGrade": "3등급",
+      "longTermDurationFrom": 1638802800000,
+      "longTermDurationUntil": 1701788400000,
+      "longTermHistory": [
+        {
+          "longTermGrade": "3등급",
+          "longTermDurationFrom": 1638802800000,
+          "longTermDurationUntil": 1701788400000
+        }
+      ],
+      "workCenter": {
+        "id": 2,
+        "loginCode": "E0372",
+        "loginId": "admin",
+        "loginPassword": "6808501345",
+        "centerNumber": "21165000178",
+        "name": "케어링 서초방문요양센터",
+        "serviceType": "방문요양, 방문목욕",
+        "chiefName": "김은정",
+        "phone": "010-9698-6585",
+        "address": {
+          "zipCode": "06619",
+          "address": "서울 서초구 서초대로 396",
+          "addressDetail": "402-3호",
+          "fullAddress": "(06619) 서울 서초구 서초대로 396 402-3호"
+        },
+        "account": "신한은행 140-013-141585 케어링 서초 방문요양",
+        "apiName": "SEOCHO",
+        "main": false,
+        "accounts": [
+          {
+            "bank": "신한은행",
+            "number": "140013141585",
+            "pw": "1638",
+            "idnumber": "680-85-01345",
+            "loginId": "caring1",
+            "loginPw": "zpdjfld139~!",
+            "name": "서초입출금통장"
+          }
+        ],
+        "shortName": " 서초방문요양"
+      },
+      "recipientRate": "일반 15%",
+      "rateHistory": [],
+      "illness": "",
+      "address": {
+        "zipCode": "10050",
+        "address": "경기도 김포시 대곶면 대곶남로 171",
+        "addressDetail": "(대벽리) 바이오엠제이팩",
+        "x": 126.581586483992,
+        "y": 37.6142913172558,
+        "fullAddress": "(10050) 경기도 김포시 대곶면 대곶남로 171 (대벽리) 바이오엠제이팩"
+      },
+      "memo": "",
+      "repPhone": "01046408237",
+      "contractor": {
+        "name": "김명희",
+        "birthDate": "19650107",
+        "memo": "자녀",
+        "relation": "자녀",
+        "address": " 상동"
+      },
+      "manager": {
+        "id": 70,
+        "email": "qlslqlstm@gmail.com",
+        "password": "$2a$10$8MLYezL2o6ENgvr.gD4dzeNoExNZtGujuFOJNsg6ISHN1AW4J3tp.",
+        "role": "Center",
+        "centerId": 2,
+        "phone": "010-7630-6585",
+        "name": "김한빈",
+        "sendNumber": "01076306585",
+        "permissions": [
+          "CenterGet"
+        ]
+      },
+      "contractDate": 1650898800000,
+      "checkValidUntil": 1682434800000,
+      "externalServices": [],
+      "tagAttached": false,
+      "beaconAttached": false
+    },
+    {
+      "id": 3789497,
+      "health": {
+        "기타": "아들 가족과 함께 거주하다, 최근 요보사가 모셔옴\n2년전 치매판정 / 기억력저하, 인지저하, 우울증\n뇌경색증상으로 거동이 불편함\n며칠을 변실수 하시다 지금은 괜찮아짐\n요실금증상이 있지만 화장실 이용 중\n과거부터 변비증상이 있음\n가족사랑복지센터 이용하다 이관희망 / 전센터가 연락을 받지않아 7월일정빨리등록 (가족사랑복지센터 032-612-9989)\n0630~0800시 근무희망",
+        "보행": [
+          "부축도움"
+        ],
+        "복약": "전적인 도움 필요",
+        "식사": [
+          "일반식"
+        ],
+        "식사량": [
+          "1일3식",
+          "반공기"
+        ],
+        "요실금": "있음",
+        "화장실": [
+          "부축도움"
+        ],
+        "개인위생": [
+          "부분적 도움으로 가능"
+        ],
+        "대변상태": [
+          "변비"
+        ],
+        "만성질환": [
+          "고혈압"
+        ],
+        "욕창여부": "없음",
+        "주요질병": [
+          "우울증",
+          "뇌경색"
+        ],
+        "치매정도": "중증치매",
+        "치매증상": [
+          "기억력저하",
+          "인지저하"
+        ],
+        "복용중인 약": "뇌경색약, 혈압약, 치매약"
+      },
+      "status": "수급중",
+      "name": "가병순",
+      "birthDate": "19250227",
+      "gender": "FEMALE",
+      "idNumber": "2502272471011",
+      "longTermNumber": "L0011449910",
+      "longTermGrade": "4등급",
+      "longTermDurationFrom": 1654182000000,
+      "longTermDurationUntil": 1717254000000,
+      "longTermHistory": [
+        {
+          "longTermGrade": "4등급",
+          "longTermDurationFrom": "2022-06-02T15:00:00.000Z",
+          "longTermDurationUntil": "2024-06-01T15:00:00.000Z"
+        }
+      ],
+      "workCenter": {
+        "id": 13,
+        "loginCode": "F0227",
+        "loginId": "admin",
+        "loginPassword": "7438501627",
+        "w4cCode": "",
+        "centerNumber": "21165000191",
+        "name": "케어링 라온센터",
+        "serviceType": "방문요양, 방문목욕",
+        "chiefName": "박세영",
+        "phone": "070-4337-4226",
+        "address": {
+          "zipCode": "06619",
+          "address": "서울 서초구 서초대로 396",
+          "addressDetail": "402-5호",
+          "fullAddress": "(06619) 서울 서초구 서초대로 396 402-5호"
+        },
+        "account": "140-013-501080 신한",
+        "apiName": "LAON",
+        "main": false,
+        "accounts": [
+          {
+            "bank": "신한은행",
+            "number": "140013501080",
+            "pw": "1638",
+            "idnumber": "743-85-01627",
+            "loginId": "caring4",
+            "loginPw": "zpdjfld139~!",
+            "name": "라온입출금통장"
+          }
+        ],
+        "shortName": " 라온"
+      },
+      "recipientRate": "감경 6%",
+      "rateHistory": [
+        {
+          "recipientRate": "감경 6%"
+        }
+      ],
+      "address": {
+        "zipCode": "18026",
+        "address": "경기 평택시 지제동삭1로 91",
+        "addressDetail": "101-404",
+        "x": 126.454881158983,
+        "y": 36.7700246701021,
+        "fullAddress": "(18026) 경기 평택시 지제동삭1로 91 101-404"
+      },
+      "repPhone": "01046055797",
+      "contractor": {
+        "name": "유정애",
+        "birthDate": "19580903",
+        "relation": "자녀",
+        "address": "평택시 지제동삭 1로 91 힐스테이트 지제역 101동 1404호"
+      },
+      "manager": {
+        "id": 196,
+        "email": "rkdxo1530@gmail.com",
+        "password": "$2a$10$5Q3WK79G6ukXbOzF8QPcQOJcLq5qvVdsJS.7RdZ1wbtCs4CsBN/LK",
+        "role": "Center",
+        "centerId": 13,
+        "phone": "01058946586",
+        "name": "김강태",
+        "sendNumber": "01058946586",
+        "permissions": [
+          "CenterGet"
+        ]
+      },
+      "externalServices": [],
+      "tagAttached": false,
+      "beaconAttached": false
+    },
+    {
+      "id": 3785012,
+      "health": {},
+      "status": "수급중",
+      "hancareId": "131225-13XK/eKBZPAs",
+      "name": "가정순",
+      "birthDate": "19131225",
+      "gender": "FEMALE",
+      "idNumber": "",
+      "longTermNumber": "L2006030602",
+      "longTermGrade": "2등급",
+      "longTermDurationFrom": 1592492400000,
+      "longTermDurationUntil": 1671289200000,
+      "longTermHistory": [
+        {
+          "longTermGrade": "2등급",
+          "longTermDurationFrom": 1592492400000,
+          "longTermDurationUntil": "2022-06-17T15:00:00.000Z"
+        },
+        {
+          "longTermGrade": "2등급",
+          "longTermDurationFrom": "2020-06-18T15:00:00.000Z",
+          "longTermDurationUntil": "2022-12-17T15:00:00.000Z"
+        }
+      ],
+      "workCenter": {
+        "id": 6,
+        "loginCode": "E0378",
+        "loginId": "admin",
+        "loginPassword": "1318557084",
+        "centerNumber": "21165000186",
+        "name": "케어링 가온센터",
+        "serviceType": "방문요양, 방문목욕",
+        "chiefName": "김다솔",
+        "phone": "02-541-3503",
+        "address": {
+          "zipCode": "06619",
+          "address": "서울 서초구 서초대로 396",
+          "addressDetail": "402-1호",
+          "fullAddress": "(06619) 서울 서초구 서초대로 396 402-1호"
+        },
+        "account": "140-013-285501 신한 케어링 가온센터",
+        "apiName": "GAON",
+        "main": false,
+        "accounts": [
+          {
+            "bank": "신한은행",
+            "number": "140013285501",
+            "pw": "1638",
+            "idnumber": "131-85-57084",
+            "loginId": "C1945975",
+            "loginPw": "zpdjfld139~!",
+            "name": "가온입출금통장"
+          }
+        ],
+        "shortName": " 가온"
+      },
+      "recipientRate": "일반 15%",
+      "rateHistory": [],
+      "illness": "",
+      "address": {
+        "zipCode": "05287",
+        "address": "서울특별시 강동구 상일로 74",
+        "addressDetail": "(상일동, 고덕리엔파크3단지아파트) 328동 103호",
+        "x": 127.174785524346,
+        "y": 37.5513683747695,
+        "fullAddress": "(05287) 서울특별시 강동구 상일로 74 (상일동, 고덕리엔파크3단지아파트) 328동 103호"
+      },
+      "memo": "131225-2026219\n복용중인 약은 없고 와병 중으로 전동침대 사용중. 욕창방지매트 사용\n대소변은 기저귀",
+      "repPhone": "010-3135-8267",
+      "contractor": {
+        "name": "권성국",
+        "birthDate": "19841012",
+        "memo": "06:00-07:00",
+        "relation": "손자녀",
+        "address": " 상동"
+      },
+      "manager": {
+        "id": 13,
+        "email": "lls0310@naver.com",
+        "password": "$2a$10$2Vw5aMDgM7EmUz763fiHHuOlAs8GQZY3AzWBapPrkHgW6Oa7RBi1G",
+        "role": "Center",
+        "centerId": 6,
+        "phone": "01084096585",
+        "name": "이인성",
+        "sendNumber": "01084096585",
+        "permissions": [
+          "CenterGet"
+        ]
+      },
+      "contractDate": 1617462000000,
+      "checkValidUntil": 1680534000000,
+      "externalServices": [],
+      "tagAttached": false,
+      "beaconAttached": false
+    },
+    {
+      "id": 3785935,
+      "health": {},
+      "status": "계약종료 - 사망",
+      "hancareId": "390121-1wh6bRLfht28",
+      "name": "감덕연",
+      "birthDate": "19390121",
+      "gender": "FEMALE",
+      "idNumber": "",
+      "longTermNumber": "L1802154080",
+      "longTermGrade": "3등급",
+      "longTermDurationFrom": 1554476400000,
+      "longTermDurationUntil": 1664895600000,
+      "longTermHistory": [],
+      "workCenter": {
+        "id": 5,
+        "loginCode": "E0379",
+        "loginId": "admin",
+        "loginPassword": "6668501785",
+        "centerNumber": "21165000187",
+        "name": "케어링 고은센터",
+        "serviceType": "방문요양, 방문목욕",
+        "chiefName": "선유정",
+        "phone": "02-541-3506",
+        "address": {
+          "zipCode": "06619",
+          "address": "서울 서초구 서초대로 396",
+          "addressDetail": "402-2호",
+          "fullAddress": "(06619) 서울 서초구 서초대로 396 402-2호"
+        },
+        "account": "140-013-287145 신한 케어링 고은센터",
+        "apiName": "GOEUN",
+        "main": false,
+        "accounts": [
+          {
+            "bank": "신한은행",
+            "number": "140013287145",
+            "pw": "1638",
+            "idnumber": "666-85-01785",
+            "loginId": "C1946394",
+            "loginPw": "zpdjfld139~!",
+            "name": "고은입출금통장"
+          }
+        ],
+        "shortName": " 고은"
+      },
+      "recipientRate": "일반 15%",
+      "rateHistory": [
+        {
+          "recipientRate": "일반 15%"
+        }
+      ],
+      "illness": "",
+      "address": {
+        "zipCode": "10217",
+        "address": "경기도 고양시 일산서구 대화2로 121",
+        "addressDetail": "(대화동, 대화마을6단지아파트) 602-1305   ← 우편물 여기로",
+        "x": 126.736184623881,
+        "y": 37.6736925816657,
+        "fullAddress": "(10217) 경기도 고양시 일산서구 대화2로 121 (대화동, 대화마을6단지아파트) 602-1305   ← 우편물 여기로"
+      },
+      "memo": "치매약 복용중\n환청이  심하셔서 힘드심\n배회증세 있어 혼자 계시지 못함\n따님께서 외출 못하시며 어르신 케어 해드림\n보호자 외출시 다른 가족들이 오셔서 어르신 보살펴 드려야함",
+      "repPhone": "010-2976-3323",
+      "contractor": {
+        "name": "성기정",
+        "birthDate": "19620414",
+        "memo": "18:30-20:00",
+        "relation": "자녀",
+        "address": "서울특별시 은평구 서오릉로17길 21 (구산동) 302호"
+      },
+      "contractDate": 1618326000000,
+      "checkValidUntil": 1681398000000,
+      "externalServices": [],
+      "tagAttached": false,
+      "beaconAttached": false
+    },
+    {
+      "id": 3782791,
+      "health": {},
+      "status": "수급중",
+      "hancareId": "200114-1BteLmy+my6g",
+      "name": "강갑녀",
+      "birthDate": "19200114",
+      "gender": "MALE",
+      "idNumber": "",
+      "longTermNumber": "L0010553919",
+      "longTermGrade": "",
+      "workCenter": {
+        "id": 14,
+        "loginCode": "E0386",
+        "loginId": "admin",
+        "loginPassword": "4878500882",
+        "w4cCode": "",
+        "centerNumber": "21168000295",
+        "name": "케어링 복지용구센터",
+        "serviceType": "복지용구",
+        "chiefName": "김영욱",
+        "phone": "",
+        "account": "",
+        "apiName": "",
+        "main": false,
+        "accounts": [
+          {
+            "bank": "신한은행",
+            "number": "140013329167",
+            "pw": "1638",
+            "idnumber": "4878500882",
+            "loginId": "caring12",
+            "loginPw": "zpdjfld139~!",
+            "name": ""
+          },
+          {
+            "bank": "신한은행",
+            "number": "140013015177",
+            "pw": "1638",
+            "idnumber": "4878500882",
+            "loginId": "caring12",
+            "loginPw": "zpdjfld139~!",
+            "name": "주거래계좌"
+          }
+        ],
+        "shortName": " 복지용구"
+      },
+      "recipientRate": "일반 15%",
+      "rateHistory": [],
+      "illness": "",
+      "address": {
+        "zipCode": "",
+        "address": "",
+        "addressDetail": "",
+        "fullAddress": "()  "
+      },
+      "memo": "",
+      "repPhone": "",
+      "contractor": {
+        "name": "",
+        "birthDate": "",
+        "memo": "",
+        "relation": "",
+        "address": " "
+      },
+      "contractDate": 1612364400000,
+      "checkValidUntil": 1675436400000,
+      "tagAttached": false,
+      "beaconAttached": false
+    },
+    {
+      "id": 3788294,
+      "health": {},
+      "status": "계약종료 - 사망",
+      "hancareId": "200114-14ZicPPiYeJ8",
+      "name": "강갑녀",
+      "birthDate": "19200114",
+      "gender": "FEMALE",
+      "idNumber": "",
+      "longTermNumber": "L0010553919",
+      "longTermGrade": "1등급",
+      "longTermDurationFrom": 1640185200000,
+      "longTermDurationUntil": 1703170800000,
+      "longTermHistory": [],
+      "workCenter": {
+        "id": 6,
+        "loginCode": "E0378",
+        "loginId": "admin",
+        "loginPassword": "1318557084",
+        "centerNumber": "21165000186",
+        "name": "케어링 가온센터",
+        "serviceType": "방문요양, 방문목욕",
+        "chiefName": "김다솔",
+        "phone": "02-541-3503",
+        "address": {
+          "zipCode": "06619",
+          "address": "서울 서초구 서초대로 396",
+          "addressDetail": "402-1호",
+          "fullAddress": "(06619) 서울 서초구 서초대로 396 402-1호"
+        },
+        "account": "140-013-285501 신한 케어링 가온센터",
+        "apiName": "GAON",
+        "main": false,
+        "accounts": [
+          {
+            "bank": "신한은행",
+            "number": "140013285501",
+            "pw": "1638",
+            "idnumber": "131-85-57084",
+            "loginId": "C1945975",
+            "loginPw": "zpdjfld139~!",
+            "name": "가온입출금통장"
+          }
+        ],
+        "shortName": " 가온"
+      },
+      "recipientRate": "일반 15%",
+      "rateHistory": [],
+      "illness": "",
+      "address": {
+        "zipCode": "21094",
+        "address": "인천광역시 계양구 길마로 83",
+        "addressDetail": "(효성동, 현대2차아파트) 202동 1703호",
+        "x": 126.713674629193,
+        "y": 37.5341811210652,
+        "fullAddress": "(21094) 인천광역시 계양구 길마로 83 (효성동, 현대2차아파트) 202동 1703호"
+      },
+      "memo": "* 사랑마을주간보호센터 032-555-1112 (08:00-16:50) ->010-8955-7453 담당자로 연락.\n* 치매 . 스스로 일상생활 불가능 (뇌병변 5급.반신불수)\n* 휠체어 이동 / 부축 필수\n* 변비가 심하셔서 비닐장갑이용해서 빼내드려야함\n* 기저귀착용\n* 혈전용해제 / 신경안정제1/2 / 치매약 복용\n* 죽(150g) 한끼 / 간식(요플레.과일) 규칙적으로 관리중\n* 멍 잘드심 /공격적이신 성향",
+      "repPhone": "010-8026-1407",
+      "contractor": {
+        "name": "김명순",
+        "birthDate": "19510305",
+        "memo": "19:30-21:00(주간보호이용자)",
+        "relation": "며느리",
+        "address": " 상동"
+      },
+      "manager": {
+        "id": 13,
+        "email": "lls0310@naver.com",
+        "password": "$2a$10$2Vw5aMDgM7EmUz763fiHHuOlAs8GQZY3AzWBapPrkHgW6Oa7RBi1G",
+        "role": "Center",
+        "centerId": 6,
+        "phone": "01084096585",
+        "name": "이인성",
+        "sendNumber": "01084096585",
+        "permissions": [
+          "CenterGet"
+        ]
+      },
+      "contractDate": 1611500400000,
+      "checkValidUntil": 1674572400000,
+      "externalServices": [],
+      "tagAttached": false,
+      "beaconAttached": false
+    },
+    {
+      "id": 3785936,
+      "health": {},
+      "status": "계약종료 - 사망",
+      "hancareId": "361210-1ATeC8PMMslo",
+      "name": "강경석",
+      "birthDate": "19361210",
+      "gender": "FEMALE",
+      "idNumber": "",
+      "longTermNumber": "L1804010376",
+      "longTermGrade": "4등급",
+      "longTermDurationFrom": 1555081200000,
+      "longTermDurationUntil": 1649689200000,
+      "workCenter": {
+        "id": 5,
+        "loginCode": "E0379",
+        "loginId": "admin",
+        "loginPassword": "6668501785",
+        "centerNumber": "21165000187",
+        "name": "케어링 고은센터",
+        "serviceType": "방문요양, 방문목욕",
+        "chiefName": "선유정",
+        "phone": "02-541-3506",
+        "address": {
+          "zipCode": "06619",
+          "address": "서울 서초구 서초대로 396",
+          "addressDetail": "402-2호",
+          "fullAddress": "(06619) 서울 서초구 서초대로 396 402-2호"
+        },
+        "account": "140-013-287145 신한 케어링 고은센터",
+        "apiName": "GOEUN",
+        "main": false,
+        "accounts": [
+          {
+            "bank": "신한은행",
+            "number": "140013287145",
+            "pw": "1638",
+            "idnumber": "666-85-01785",
+            "loginId": "C1946394",
+            "loginPw": "zpdjfld139~!",
+            "name": "고은입출금통장"
+          }
+        ],
+        "shortName": " 고은"
+      },
+      "recipientRate": "일반 15%",
+      "rateHistory": [],
+      "illness": "",
+      "address": {
+        "zipCode": "55747",
+        "address": "전라북도 남원시 서문1길 50",
+        "addressDetail": "(왕정동)",
+        "x": 127.374226004824,
+        "y": 35.409450286713,
+        "fullAddress": "(55747) 전라북도 남원시 서문1길 50 (왕정동)"
+      },
+      "memo": "주민번호: 361210-1530311\n파킨슨, 혈압약, 전립선약, 관절염약, 뇌영양제 등 6개 이상 복용 중. 보행기 가끔 휠체어 이용함. 이동변기, 기저귀착용. 요실금, 변실금 있음. 틀니착용. 일반식 식사함. 식사, 세수하기 가능하며 옷갈아입기 불편함.시설로 보내라고 하는데 어르신이 거부함. 6개월 이후부터 전혀 걷지 못하지고 휠체어 이용함. 보행이 불안정해서 운동을 전혀 못하셔서 몸이 굳어짐...팔다리 마비증세.. 4~5년전부터 파킨슨.. 요양보호사 선생님 2년정도 쓰셨는데 그만두고 주간보호센터 가셨는데 그 이후부터 몸이 안좋아짐...눈동자 시선을 제대로 못마치심. 발음이 어눌도 귀가 잘 안들리심....주간보호센터에서 움직이지 못하게 보행기 사용을 못하게 함. 키는 175, 몸무게 75정도 나가심. 다리에 근육이 없고 마르셨음. TV도 잘 못보심. 자식은 알아보심. 인지력은 전혀없음. 자주보는 사람은 기억하심.  단답형으로 대답하거나 몸짓. 손짓으로 표현, 대부분 주무심. 전체틀니 소식...남원 신경과 대리 처방 받고 있음.",
+      "repPhone": "01066523799",
+      "contractor": {
+        "name": "강현숙",
+        "birthDate": "19630719",
+        "memo": "17:00~18:00",
+        "relation": "자녀",
+        "address": "전라북도 남원시 주천면 용담1길 5-42 (용담리, 해조가든)"
+      },
+      "contractDate": 1627916400000,
+      "checkValidUntil": 1659452400000,
+      "externalServices": [
+        "주야간보호",
+        "주야간보호"
+      ],
+      "tagAttached": false,
+      "beaconAttached": false
+    },
+    {
+      "id": 3789249,
+      "health": {
+        "기타": "허리 굽어 거동 불편, 외출 싫어하심, 시각장애 6급 판정",
+        "보행": [
+          "지팡이",
+          "휠체어",
+          "부축도움"
+        ],
+        "복약": "전적인 도움 필요",
+        "식사": [
+          "일반식"
+        ],
+        "식사량": [
+          "1일2식"
+        ],
+        "요실금": "있음",
+        "화장실": [
+          "부축도움"
+        ],
+        "개인위생": [
+          "세면, 양치만 가능"
+        ],
+        "만성질환": [
+          "당뇨"
+        ],
+        "욕창여부": "없음",
+        "주요질병": [
+          "치매",
+          "우울증"
+        ],
+        "치매정도": "초기치매",
+        "치매증상": [
+          "기억력저하",
+          "인지저하",
+          "폭력성"
+        ],
+        "복용중인 약": "전립선, 신경과(치매, 우울증), 복부 대동맥 혈관 질환(희귀질환)"
+      },
+      "status": "수급중",
+      "name": "강경순",
+      "birthDate": "19330507",
+      "gender": "MALE",
+      "idNumber": "3305071542911",
+      "longTermNumber": "L2204083396",
+      "longTermGrade": "4등급",
+      "longTermDurationFrom": 1650985200000,
+      "longTermDurationUntil": 1714057200000,
+      "longTermHistory": [
+        {
+          "longTermGrade": "4등급",
+          "longTermDurationFrom": "2022-04-26T15:00:00.000Z",
+          "longTermDurationUntil": "2024-04-25T15:00:00.000Z"
+        }
+      ],
+      "workCenter": {
+        "id": 12,
+        "loginCode": "F0226",
+        "loginId": "admin",
+        "loginPassword": "1048532683",
+        "centerNumber": "21165000190",
+        "name": "케어링 다솜센터",
+        "serviceType": "방문요양, 방문목욕",
+        "chiefName": "김무량",
+        "phone": "070-4337-4029",
+        "address": {
+          "zipCode": "06619",
+          "address": "서울 서초구 서초대로 396",
+          "addressDetail": "402-4호",
+          "fullAddress": "(06619) 서울 서초구 서초대로 396 402-4호"
+        },
+        "account": "신한은행 140-013-501275",
+        "apiName": "DASOM",
+        "main": false,
+        "accounts": [
+          {
+            "bank": "신한은행",
+            "number": "140013501275",
+            "pw": "1638",
+            "idnumber": "1048532683",
+            "loginId": "caring3",
+            "loginPw": "zpdjfld139~!",
+            "name": "다솜입출금통장"
+          }
+        ],
+        "shortName": " 다솜"
+      },
+      "recipientRate": "감경 9%",
+      "rateHistory": [
+        {
+          "recipientRate": "감경 9%"
+        }
+      ],
+      "address": {
+        "zipCode": "07811",
+        "address": "서울 강서구 마곡중앙로 36",
+        "addressDetail": "(마곡동, 마곡엠밸리15단지)1513동 903호",
+        "x": 126.827029271898,
+        "y": 37.5574187175366,
+        "fullAddress": "(07811) 서울 강서구 마곡중앙로 36 (마곡동, 마곡엠밸리15단지)1513동 903호"
+      },
+      "repPhone": "01094480447",
+      "contractor": {
+        "name": "강은희",
+        "birthDate": "19720907",
+        "memo": "고귀순 수급자 딸/강옥숙 요보사와 자매",
+        "relation": "자녀",
+        "address": "상동",
+        "gender": "여"
+      },
+      "manager": {
+        "id": 153,
+        "email": "cotton.kk29@gmail.com",
+        "password": "$2a$10$XF0cELN0NfpG2sUP75G8heXy3GEB4gri0g6M5XNSW02ZggoK3nP5y",
+        "role": "Center",
+        "centerId": 12,
+        "phone": "010-8379-6586",
+        "name": "김다솜",
+        "sendNumber": "010-8379-6586",
+        "permissions": [
+          "CenterGet"
+        ]
+      },
+      "externalServices": [],
+      "tagAttached": true,
+      "beaconAttached": false
+    },
+    {
+      "id": 3783318,
+      "health": {},
+      "status": "수급중",
+      "hancareId": "410925-101x4l5iA9Tg",
+      "name": "강경열",
+      "birthDate": "19410925",
+      "gender": "MALE",
+      "idNumber": "4109251009011",
+      "longTermNumber": "L2112045344",
+      "longTermGrade": "4등급",
+      "longTermDurationFrom": 1641481200000,
+      "longTermDurationUntil": 1704466800000,
+      "longTermHistory": [
+        {
+          "longTermGrade": "4등급",
+          "longTermDurationFrom": 1641481200000,
+          "longTermDurationUntil": 1704466800000
+        }
+      ],
+      "workCenter": {
+        "id": 13,
+        "loginCode": "F0227",
+        "loginId": "admin",
+        "loginPassword": "7438501627",
+        "w4cCode": "",
+        "centerNumber": "21165000191",
+        "name": "케어링 라온센터",
+        "serviceType": "방문요양, 방문목욕",
+        "chiefName": "박세영",
+        "phone": "070-4337-4226",
+        "address": {
+          "zipCode": "06619",
+          "address": "서울 서초구 서초대로 396",
+          "addressDetail": "402-5호",
+          "fullAddress": "(06619) 서울 서초구 서초대로 396 402-5호"
+        },
+        "account": "140-013-501080 신한",
+        "apiName": "LAON",
+        "main": false,
+        "accounts": [
+          {
+            "bank": "신한은행",
+            "number": "140013501080",
+            "pw": "1638",
+            "idnumber": "743-85-01627",
+            "loginId": "caring4",
+            "loginPw": "zpdjfld139~!",
+            "name": "라온입출금통장"
+          }
+        ],
+        "shortName": " 라온"
+      },
+      "recipientRate": "일반 15%",
+      "rateHistory": [],
+      "illness": "",
+      "address": {
+        "zipCode": "12911",
+        "address": "경기도 하남시 미사강변한강로220번길 32",
+        "addressDetail": "(망월동) 302호",
+        "x": 127.192931051323,
+        "y": 37.5694024683991,
+        "fullAddress": "(12911) 경기도 하남시 미사강변한강로220번길 32 (망월동) 302호"
+      },
+      "memo": "주민번호: 410925-1009011  담당 : 김다해\n복용약 : 혈압약, 전립선약, 혈액순환제, 콜레스테롤약\n거동 : 지팡이, 보행기 사용, 무릎연골 거의 없음, 단독보행어려움\n화장실 : 화장실 이동시 도움필요(뒤처리가능)\n식사 : 전체틀니, 부드러운 일반식 식사(소식), 손에 관절염이 심해서 식사보조필요, 소화기능저하있음\n개인위생 : 모두 도움필요\n치매인지 : 치매x 대화가능, 기억력저하있음(깜빡깜빡, 건망증정도), 청력양호, 시력양호(침침한정도), 분노있음, 고집있음",
+      "repPhone": "01022092624",
+      "contractor": {
+        "name": "김혜련",
+        "birthDate": "19800901",
+        "memo": "13:00~14:00",
+        "relation": "며느리",
+        "address": "경기도 하남시 미사강변한강로220번길 32 (망월동) 401호",
+        "gender": "여"
+      },
+      "manager": {
+        "id": 177,
+        "email": "rlaekgo630@gmail.com",
+        "password": "$2a$10$D17X6amgW6jlFC7R0aUROOr6iIabv4oIwKXPIvPvQVlA.qgHa420q",
+        "role": "Center",
+        "centerId": 13,
+        "phone": "01056796585",
+        "name": "김다해",
+        "sendNumber": "01056796585",
+        "permissions": [
+          "CenterGet"
+        ]
+      },
+      "contractDate": 1646233200000,
+      "checkValidUntil": 1677769200000,
+      "externalServices": [],
+      "tagAttached": false,
+      "beaconAttached": false
+    },
+    {
+      "id": 3789688,
+      "health": {},
+      "status": "수급중",
+      "name": "강경자",
+      "birthDate": "19400509",
+      "gender": "FEMALE",
+      "idNumber": "4005092919410",
+      "longTermNumber": "L1705127172",
+      "longTermGrade": "4등급",
+      "longTermDurationFrom": 1654700400000,
+      "longTermDurationUntil": 1717772400000,
+      "longTermHistory": [
+        {
+          "longTermGrade": "4등급",
+          "longTermDurationFrom": "2022-06-08T15:00:00.000Z",
+          "longTermDurationUntil": "2024-06-07T15:00:00.000Z"
+        }
+      ],
+      "workCenter": {
+        "id": 12,
+        "loginCode": "F0226",
+        "loginId": "admin",
+        "loginPassword": "1048532683",
+        "centerNumber": "21165000190",
+        "name": "케어링 다솜센터",
+        "serviceType": "방문요양, 방문목욕",
+        "chiefName": "김무량",
+        "phone": "070-4337-4029",
+        "address": {
+          "zipCode": "06619",
+          "address": "서울 서초구 서초대로 396",
+          "addressDetail": "402-4호",
+          "fullAddress": "(06619) 서울 서초구 서초대로 396 402-4호"
+        },
+        "account": "신한은행 140-013-501275",
+        "apiName": "DASOM",
+        "main": false,
+        "accounts": [
+          {
+            "bank": "신한은행",
+            "number": "140013501275",
+            "pw": "1638",
+            "idnumber": "1048532683",
+            "loginId": "caring3",
+            "loginPw": "zpdjfld139~!",
+            "name": "다솜입출금통장"
+          }
+        ],
+        "shortName": " 다솜"
+      },
+      "recipientRate": "감경 6%",
+      "rateHistory": [
+        {
+          "recipientRate": "감경 6%"
+        }
+      ],
+      "address": {
+        "zipCode": "46507",
+        "address": "부산 북구 금곡대로616번길 10-5",
+        "addressDetail": "금곡2단지주공아파트  208동 208호",
+        "x": 129.015228739886,
+        "y": 35.2617540348964,
+        "fullAddress": "(46507) 부산 북구 금곡대로616번길 10-5 금곡2단지주공아파트  208동 208호"
+      },
+      "repPhone": "01068547801",
+      "contractor": {
+        "name": "이미숙",
+        "birthDate": "19640306",
+        "relation": "자녀",
+        "address": "부산 북구 양달로9번길 21 벽산강변타운 107동 204호"
+      },
+      "manager": {
+        "id": 198,
+        "email": "onlyjum3940@gmail.com",
+        "password": "$2a$10$9hE8xuCLK4jtKntrivZtReQfS3qfCBrI5uPsigRRrqUZ9lGcNP.lS",
+        "role": "Center",
+        "centerId": 12,
+        "phone": "01075426586",
+        "name": "이수창",
+        "sendNumber": "01075426586",
+        "permissions": [
+          "CenterGet"
+        ]
+      },
+      "externalServices": [],
+      "tagAttached": true,
+      "beaconAttached": false
+    },
+    {
+      "id": 3784195,
+      "health": {},
+      "status": "수급중",
+      "hancareId": "621227-1Vro3helhzqA",
+      "name": "강경희",
+      "birthDate": "19621227",
+      "gender": "MALE",
+      "idNumber": "",
+      "longTermNumber": "L2111197349",
+      "longTermGrade": "3등급",
+      "longTermDurationFrom": 1640790000000,
+      "longTermDurationUntil": 1703775600000,
+      "longTermHistory": [],
+      "workCenter": {
+        "id": 12,
+        "loginCode": "F0226",
+        "loginId": "admin",
+        "loginPassword": "1048532683",
+        "centerNumber": "21165000190",
+        "name": "케어링 다솜센터",
+        "serviceType": "방문요양, 방문목욕",
+        "chiefName": "김무량",
+        "phone": "070-4337-4029",
+        "address": {
+          "zipCode": "06619",
+          "address": "서울 서초구 서초대로 396",
+          "addressDetail": "402-4호",
+          "fullAddress": "(06619) 서울 서초구 서초대로 396 402-4호"
+        },
+        "account": "신한은행 140-013-501275",
+        "apiName": "DASOM",
+        "main": false,
+        "accounts": [
+          {
+            "bank": "신한은행",
+            "number": "140013501275",
+            "pw": "1638",
+            "idnumber": "1048532683",
+            "loginId": "caring3",
+            "loginPw": "zpdjfld139~!",
+            "name": "다솜입출금통장"
+          }
+        ],
+        "shortName": " 다솜"
+      },
+      "recipientRate": "일반 15%",
+      "rateHistory": [],
+      "illness": "",
+      "address": {
+        "zipCode": "63584",
+        "address": "제주특별자치도 서귀포시 홍중동로 19",
+        "addressDetail": "(서홍동, 일호지오빌) B동 301호",
+        "x": 126.558154078397,
+        "y": 33.25693149532,
+        "fullAddress": "(63584) 제주특별자치도 서귀포시 홍중동로 19 (서홍동, 일호지오빌) B동 301호"
+      },
+      "memo": "강경희님 주민번호 : 621227-2953118\n'-복용약(질병) : 영양제, 고지혈증약, 파킨슨약, 혈압약, 언어장애\n-거동상태 : 휠체어 사용하심, 위축증 이후 거동이 안되심. 욕창 없으심, 침상생활\n-배변상태 : 화장실 직접 모셔드림, 요실금 \n-식사상태 : 떠먹여드림, 일반식, 잔존기능사용\n-수행기능 : 전적으로 도와주심. 목욕   머리감기 전적인 도움\n-치매여부/인지기능 : 전혀없으심",
+      "repPhone": "01091206791",
+      "contractor": {
+        "name": "고수완",
+        "birthDate": "19870120",
+        "memo": "09:00~10:00",
+        "relation": "자녀",
+        "address": " 상동"
+      },
+      "manager": {
+        "id": 100,
+        "email": "dbsfkqls777@naver.com",
+        "password": "$2a$10$Nui5I5OUCN4UphQzeiCeSucHw/g5mmEcsmfKq/Y2HEphmzYEIs0oy",
+        "role": "Center",
+        "centerId": 12,
+        "phone": "010-7925-6586",
+        "name": "윤라빈",
+        "sendNumber": "010-7925-6586",
+        "permissions": [
+          "CenterGet"
+        ]
+      },
+      "contractDate": 1641222000000,
+      "checkValidUntil": 1672758000000,
+      "externalServices": [],
+      "tagAttached": false,
+      "beaconAttached": false
+    },
+    {
+      "id": 3780388,
+      "health": {},
+      "status": "계약종료 - 사망",
+      "hancareId": "340917-18q9G/O/N2a8",
+      "name": "강계출",
+      "birthDate": "19340917",
+      "gender": "FEMALE",
+      "idNumber": "",
+      "longTermNumber": "L0010450748",
+      "longTermGrade": "3등급",
+      "longTermDurationFrom": 1616857200000,
+      "longTermDurationUntil": 1727362800000,
+      "workCenter": {
+        "id": 10,
+        "loginCode": "E0394",
+        "loginId": "admin",
+        "loginPassword": "2788501628",
+        "centerNumber": "21168000306",
+        "name": "케어링 나래센터",
+        "serviceType": "방문요양, 방문목욕",
+        "chiefName": "박광준",
+        "phone": "070-4299-4405",
+        "address": {
+          "zipCode": "06114",
+          "address": "서울 강남구 강남대로 526",
+          "addressDetail": "901호",
+          "fullAddress": "(06114) 서울 강남구 강남대로 526 901호"
+        },
+        "account": "신한 140-013-389972",
+        "apiName": "NARAE",
+        "main": false,
+        "shortName": " 나래"
+      },
+      "recipientRate": "일반 15%",
+      "rateHistory": [],
+      "illness": "",
+      "address": {
+        "zipCode": "16819",
+        "address": "경기도 용인시 수지구 수풍로 38",
+        "addressDetail": "(풍덕천동, 수지2차삼성래미안) 204동303호",
+        "x": 127.091844384411,
+        "y": 37.326731637609,
+        "fullAddress": "(16819) 경기도 용인시 수지구 수풍로 38 (풍덕천동, 수지2차삼성래미안) 204동303호"
+      },
+      "memo": "주민번호 뒷자리  여쭤보시면 됩니다. 계약시 모르고 계셔서 알려주시기로 하였습니다.\n\n340917-2821611",
+      "repPhone": "01045820926",
+      "contractor": {
+        "name": "김경숙",
+        "birthDate": "19730415",
+        "memo": "07:00-08:30",
+        "relation": "자녀",
+        "address": " 상동"
+      },
+      "contractDate": 1622386800000,
+      "checkValidUntil": 1685458800000,
+      "tagAttached": false,
+      "beaconAttached": false
+    },
+    {
+      "id": 3782792,
+      "health": {},
+      "status": "수급중",
+      "hancareId": "340917-1P9c4YjdT5dY",
+      "name": "강계출",
+      "birthDate": "19340917",
+      "gender": "MALE",
+      "idNumber": "",
+      "longTermNumber": "L0010450748",
+      "longTermGrade": "",
+      "workCenter": {
+        "id": 14,
+        "loginCode": "E0386",
+        "loginId": "admin",
+        "loginPassword": "4878500882",
+        "w4cCode": "",
+        "centerNumber": "21168000295",
+        "name": "케어링 복지용구센터",
+        "serviceType": "복지용구",
+        "chiefName": "김영욱",
+        "phone": "",
+        "account": "",
+        "apiName": "",
+        "main": false,
+        "accounts": [
+          {
+            "bank": "신한은행",
+            "number": "140013329167",
+            "pw": "1638",
+            "idnumber": "4878500882",
+            "loginId": "caring12",
+            "loginPw": "zpdjfld139~!",
+            "name": ""
+          },
+          {
+            "bank": "신한은행",
+            "number": "140013015177",
+            "pw": "1638",
+            "idnumber": "4878500882",
+            "loginId": "caring12",
+            "loginPw": "zpdjfld139~!",
+            "name": "주거래계좌"
+          }
+        ],
+        "shortName": " 복지용구"
+      },
+      "recipientRate": "일반 15%",
+      "rateHistory": [],
+      "illness": "",
+      "address": {
+        "zipCode": "",
+        "address": "",
+        "addressDetail": "",
+        "fullAddress": "()  "
+      },
+      "memo": "",
+      "repPhone": "",
+      "contractor": {
+        "name": "",
+        "birthDate": "",
+        "memo": "",
+        "relation": "",
+        "address": " "
+      },
+      "contractDate": 1616857200000,
+      "checkValidUntil": 1679929200000,
+      "tagAttached": false,
+      "beaconAttached": false
+    },
+    {
+      "id": 3782793,
+      "health": {},
+      "status": "수급중",
+      "hancareId": "621012-11k5VE6zqd28",
+      "name": "강금선",
+      "birthDate": "19621012",
+      "gender": "MALE",
+      "idNumber": "",
+      "longTermNumber": "L0011432377",
+      "longTermGrade": "",
+      "workCenter": {
+        "id": 14,
+        "loginCode": "E0386",
+        "loginId": "admin",
+        "loginPassword": "4878500882",
+        "w4cCode": "",
+        "centerNumber": "21168000295",
+        "name": "케어링 복지용구센터",
+        "serviceType": "복지용구",
+        "chiefName": "김영욱",
+        "phone": "",
+        "account": "",
+        "apiName": "",
+        "main": false,
+        "accounts": [
+          {
+            "bank": "신한은행",
+            "number": "140013329167",
+            "pw": "1638",
+            "idnumber": "4878500882",
+            "loginId": "caring12",
+            "loginPw": "zpdjfld139~!",
+            "name": ""
+          },
+          {
+            "bank": "신한은행",
+            "number": "140013015177",
+            "pw": "1638",
+            "idnumber": "4878500882",
+            "loginId": "caring12",
+            "loginPw": "zpdjfld139~!",
+            "name": "주거래계좌"
+          }
+        ],
+        "shortName": " 복지용구"
+      },
+      "recipientRate": "국민기초 0%",
+      "rateHistory": [],
+      "illness": "",
+      "address": {
+        "zipCode": "",
+        "address": "",
+        "addressDetail": "",
+        "fullAddress": "()  "
+      },
+      "memo": "",
+      "repPhone": "",
+      "contractor": {
+        "name": "",
+        "birthDate": "",
+        "memo": "",
+        "relation": "",
+        "address": " "
+      },
+      "contractDate": 1616684400000,
+      "checkValidUntil": 1679756400000,
+      "tagAttached": false,
+      "beaconAttached": false
+    },
+    {
+      "id": 3785937,
+      "health": {},
+      "status": "수급중",
+      "hancareId": "360829-1HU10aOvRH44",
+      "name": "강금선",
+      "birthDate": "19360829",
+      "gender": "FEMALE",
+      "idNumber": "",
+      "longTermNumber": "L1908171489",
+      "longTermGrade": "4등급",
+      "longTermDurationFrom": 1608217200000,
+      "longTermDurationUntil": 1671202800000,
+      "longTermHistory": [],
+      "workCenter": {
+        "id": 5,
+        "loginCode": "E0379",
+        "loginId": "admin",
+        "loginPassword": "6668501785",
+        "centerNumber": "21165000187",
+        "name": "케어링 고은센터",
+        "serviceType": "방문요양, 방문목욕",
+        "chiefName": "선유정",
+        "phone": "02-541-3506",
+        "address": {
+          "zipCode": "06619",
+          "address": "서울 서초구 서초대로 396",
+          "addressDetail": "402-2호",
+          "fullAddress": "(06619) 서울 서초구 서초대로 396 402-2호"
+        },
+        "account": "140-013-287145 신한 케어링 고은센터",
+        "apiName": "GOEUN",
+        "main": false,
+        "accounts": [
+          {
+            "bank": "신한은행",
+            "number": "140013287145",
+            "pw": "1638",
+            "idnumber": "666-85-01785",
+            "loginId": "C1946394",
+            "loginPw": "zpdjfld139~!",
+            "name": "고은입출금통장"
+          }
+        ],
+        "shortName": " 고은"
+      },
+      "recipientRate": "일반 15%",
+      "rateHistory": [],
+      "illness": "",
+      "address": {
+        "zipCode": "16312",
+        "address": "경기도 수원시 장안구 송정로46번길 20",
+        "addressDetail": "(정자동) 1층",
+        "x": 127.002470948398,
+        "y": 37.2952190482294,
+        "fullAddress": "(16312) 경기도 수원시 장안구 송정로46번길 20 (정자동) 1층"
+      },
+      "memo": "관절염, 골다공증으로 통증 매우 심하셔서 일상생활이 힘드심\n서해순님(강금선어르신) 고용보험 타사가입자로 산재만 가입해놓음 / 본인부담금 직접 이체해주시기로 함.",
+      "repPhone": "010-2714-7605",
+      "contractor": {
+        "name": "서해순",
+        "birthDate": "19611210",
+        "memo": "딸 14:00~15:00",
+        "relation": "자녀",
+        "address": "경기도 수원시 장안구 영화로85번길 12-16 401호 (정자동)    <등기발송>"
+      },
+      "manager": {
+        "id": 24,
+        "email": "lovely970522",
+        "password": "$2a$10$PGVPCLZMX7dg9z2EfyBMS.IRd1zfN9FPUvNZB.Bh/l3lQB9H9lRni",
+        "role": "Center",
+        "centerId": 5,
+        "phone": "01075496585",
+        "name": "장윤경",
+        "sendNumber": "01075496585",
+        "permissions": [
+          "CenterGet"
+        ]
+      },
+      "contractDate": 1609772400000,
+      "checkValidUntil": 1672844400000,
+      "externalServices": [],
+      "tagAttached": false,
+      "beaconAttached": false
+    },
+    {
+      "id": 3788295,
+      "health": {},
+      "status": "수급중",
+      "hancareId": "621012-1GvOc4RfD9ug",
+      "name": "강금선",
+      "birthDate": "19621012",
+      "gender": "FEMALE",
+      "idNumber": "",
+      "longTermNumber": "L0011432377",
+      "longTermGrade": "4등급",
+      "longTermDurationFrom": 1616684400000,
+      "longTermDurationUntil": 1679670000000,
+      "longTermHistory": [],
+      "workCenter": {
+        "id": 6,
+        "loginCode": "E0378",
+        "loginId": "admin",
+        "loginPassword": "1318557084",
+        "centerNumber": "21165000186",
+        "name": "케어링 가온센터",
+        "serviceType": "방문요양, 방문목욕",
+        "chiefName": "김다솔",
+        "phone": "02-541-3503",
+        "address": {
+          "zipCode": "06619",
+          "address": "서울 서초구 서초대로 396",
+          "addressDetail": "402-1호",
+          "fullAddress": "(06619) 서울 서초구 서초대로 396 402-1호"
+        },
+        "account": "140-013-285501 신한 케어링 가온센터",
+        "apiName": "GAON",
+        "main": false,
+        "accounts": [
+          {
+            "bank": "신한은행",
+            "number": "140013285501",
+            "pw": "1638",
+            "idnumber": "131-85-57084",
+            "loginId": "C1945975",
+            "loginPw": "zpdjfld139~!",
+            "name": "가온입출금통장"
+          }
+        ],
+        "shortName": " 가온"
+      },
+      "recipientRate": "국민기초 0%",
+      "rateHistory": [],
+      "illness": "",
+      "address": {
+        "zipCode": "49505",
+        "address": "부산광역시 사하구 다대낙조2길 5",
+        "addressDetail": "(다대동) 308호",
+        "x": 128.964854678162,
+        "y": 35.0501245701524,
+        "fullAddress": "(49505) 부산광역시 사하구 다대낙조2길 5 (다대동) 308호"
+      },
+      "memo": "621012-2109918\n뇌졸증, 오른쪽으로 부축해야 이동가능\n혼자거주함",
+      "repPhone": "010-2612-8311",
+      "contractor": {
+        "name": "강치석",
+        "birthDate": "19591019",
+        "memo": "11:00-12:00(월~토)",
+        "relation": "형제자매",
+        "address": "부산광역시 사하구 윤공단로 130 <우편> (다대동) 3층"
+      },
+      "manager": {
+        "id": 13,
+        "email": "lls0310@naver.com",
+        "password": "$2a$10$2Vw5aMDgM7EmUz763fiHHuOlAs8GQZY3AzWBapPrkHgW6Oa7RBi1G",
+        "role": "Center",
+        "centerId": 6,
+        "phone": "01084096585",
+        "name": "이인성",
+        "sendNumber": "01084096585",
+        "permissions": [
+          "CenterGet"
+        ]
+      },
+      "externalServices": [],
+      "tagAttached": false,
+      "beaconAttached": false
+    },
+    {
+      "id": 3788296,
+      "health": {},
+      "status": "수급중",
+      "hancareId": "240625-1z6bDAUdahhU",
+      "name": "강금순",
+      "birthDate": "19240625",
+      "gender": "FEMALE",
+      "idNumber": "",
+      "longTermNumber": "L0010847727",
+      "longTermGrade": "3등급",
+      "longTermDurationFrom": 1598972400000,
+      "longTermDurationUntil": 1693494000000,
+      "longTermHistory": [],
+      "workCenter": {
+        "id": 6,
+        "loginCode": "E0378",
+        "loginId": "admin",
+        "loginPassword": "1318557084",
+        "centerNumber": "21165000186",
+        "name": "케어링 가온센터",
+        "serviceType": "방문요양, 방문목욕",
+        "chiefName": "김다솔",
+        "phone": "02-541-3503",
+        "address": {
+          "zipCode": "06619",
+          "address": "서울 서초구 서초대로 396",
+          "addressDetail": "402-1호",
+          "fullAddress": "(06619) 서울 서초구 서초대로 396 402-1호"
+        },
+        "account": "140-013-285501 신한 케어링 가온센터",
+        "apiName": "GAON",
+        "main": false,
+        "accounts": [
+          {
+            "bank": "신한은행",
+            "number": "140013285501",
+            "pw": "1638",
+            "idnumber": "131-85-57084",
+            "loginId": "C1945975",
+            "loginPw": "zpdjfld139~!",
+            "name": "가온입출금통장"
+          }
+        ],
+        "shortName": " 가온"
+      },
+      "recipientRate": "일반 15%",
+      "rateHistory": [],
+      "illness": "",
+      "address": {
+        "zipCode": "25249",
+        "address": "강원도 횡성군 우천면 법주서로 57",
+        "addressDetail": "(법주리)",
+        "x": 128.041741712748,
+        "y": 37.4499081493429,
+        "fullAddress": "(25249) 강원도 횡성군 우천면 법주서로 57 (법주리)"
+      },
+      "memo": "주민번호 : 240625-2268413\n\"복용약 : 당뇨약, 혈압약, 관절약, 뇌경색(2011년)약, 치매약 \n거동 : 침상생활, 휠체어(병원진료시)\n화장실 : 기저귀착용  \n식사 : 차려드리면 본인 스스로 가능, 틀니, 죽식(잘게 다져서), 뉴케어\n개인위생 : 귀가 잘 안들려, 엉뚱한 소리\n치매인지 : 치매진단(6~7년정도), 기억력 저하, 소리지르시고\n\n※ 고관절골절로 장애등급받으셔서 장애인차량이용하심\"",
+      "repPhone": "01054089341",
+      "contractor": {
+        "name": "김기화",
+        "birthDate": "19570110",
+        "memo": "07:00-08:00",
+        "relation": "자녀",
+        "address": " 상동"
+      },
+      "manager": {
+        "id": 101,
+        "email": "duswl@gmail.com",
+        "password": "$2a$10$PQC1ug6913W6tXbYOrPvq./mDaHDLbqfgotclgAwH..OgHLaBpZHi",
+        "role": "Center",
+        "centerId": 6,
+        "phone": "01056976585",
+        "name": "이연지",
+        "sendNumber": "01056976585",
+        "permissions": [
+          "CenterGet"
+        ]
+      },
+      "contractDate": 1646319600000,
+      "checkValidUntil": 1677855600000,
+      "externalServices": [],
+      "tagAttached": false,
+      "beaconAttached": false
+    }
+  ],
+  "pageable": {
+    "sort": {
+      "sorted": false,
+      "unsorted": true,
+      "empty": true
+    },
+    "pageNumber": 0,
+    "pageSize": 20,
+    "offset": 0,
+    "paged": true,
+    "unpaged": false
+  },
+  "last": false,
+  "totalElements": 6655,
+  "totalPages": 333,
+  "first": true,
+  "sort": {
+    "sorted": false,
+    "unsorted": true,
+    "empty": true
+  },
+  "numberOfElements": 20,
+  "size": 20,
+  "number": 0,
+  "empty": false
+}
