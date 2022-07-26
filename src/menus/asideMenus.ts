@@ -90,4 +90,11 @@ export const asideMenus = {
 		icon: 'AttachMoney',
 		subMenu: null,
 	},
+	job_search_caregiver: {
+		id: 'job_search_caregiver',
+		text: '구직 요양보호사',
+		path: 'pages/job_search_caregiver',
+		icon: 'People',
+		subMenu: null,
+	},
 };
