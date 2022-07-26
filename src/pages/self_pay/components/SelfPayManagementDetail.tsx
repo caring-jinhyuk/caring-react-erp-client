@@ -14,7 +14,7 @@ interface ISelfPayManagementDetail {
 const SelfPayManagementDetail: FC<ISelfPayManagementDetail> = ({ open, setOpen }) => {
 	return (
 		<>
-			<OffCanvas isOpen={open} setOpen={setOpen}>
+			<OffCanvas isOpen={open} setOpen={setOpen} isModalStyle={true}>
 				<OffCanvasBody>
 					<Card>
 						<CardHeader>청구내역</CardHeader>

@@ -18,9 +18,19 @@ const SelfPay = () => {
 					<div className='col-12 mb-3'>
 						<SubHeader>
 							<SubHeaderLeft>
-								<ButtonGroup>
-									<Button onClick={() => setTabName('default')}>본인 부담금 조회</Button>
-									<Button onClick={() => setTabName('management')}>본인 부담금 납부 관리</Button>
+								<ButtonGroup isToolbar={true}>
+									<Button
+										color={'dark'}
+										isActive={'default' === tabName}
+										onClick={() => setTabName('default')}>
+										본인 부담금 조회
+									</Button>
+									<Button
+										color={'dark'}
+										isActive={'management' === tabName}
+										onClick={() => setTabName('management')}>
+										본인 부담금 납부 관리
+									</Button>
 								</ButtonGroup>
 							</SubHeaderLeft>
 						</SubHeader>
