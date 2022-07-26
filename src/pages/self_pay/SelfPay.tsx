@@ -1,19 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import PageWrapper from '../../layout/PageWrapper/PageWrapper';
 import Page from '../../layout/Page/Page';
 import Popovers from '../../components/bootstrap/Popovers';
+import SubHeader, { SubHeaderLeft } from '../../layout/SubHeader/SubHeader';
+import Button, { ButtonGroup } from '../../components/bootstrap/Button';
+import SelfPayList from './SelfPayList';
+import SelfPayManagement from './SelfPayManagement';
 
 const SelfPay = () => {
+	const [tabName, setTabName] = useState<string>('default');
+
 	return (
 		<PageWrapper title='SelfPay Page'>
 			<Page>
 				<div className='row'>
 					<div className='col-12 mb-3'>
-						<Popovers title='SelfPay.tsx' desc={<code>src/pages/SelfPay.tsx</code>}>
-							Page
-						</Popovers>
-						<code className='ps-3'>SelfPay.tsx</code>
+						<SubHeader>
+							<SubHeaderLeft>
+								<ButtonGroup>
+									<Button onClick={() => setTabName('default')}>본인 부담금 조회</Button>
+									<Button onClick={() => setTabName('management')}>본인 부담금 납부 관리</Button>
+								</ButtonGroup>
+							</SubHeaderLeft>
+						</SubHeader>
+						{tabName === 'default' ? <SelfPayList /> : <SelfPayManagement />}
 					</div>
 				</div>
 			</Page>
