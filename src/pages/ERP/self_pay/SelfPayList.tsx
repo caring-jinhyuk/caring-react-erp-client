@@ -1,12 +1,12 @@
 import React, { useCallback, useState } from 'react';
-import Card, { CardBody, CardHeader } from '../../components/bootstrap/Card';
-import Input from '../../components/bootstrap/forms/Input';
-import FormGroup from '../../components/bootstrap/forms/FormGroup';
-import { Burden, BurdenControllerService } from '../../services/openApi';
-import Button from '../../components/bootstrap/Button';
-import MonthPicker from '../../components/MonthPicker';
-import burdenData from '../../common/burdenDummy.json';
-import Page from '../../layout/Page/Page';
+import Card, { CardBody, CardHeader } from '../../../components/bootstrap/Card';
+import Input from '../../../components/bootstrap/forms/Input';
+import FormGroup from '../../../components/bootstrap/forms/FormGroup';
+import { Burden, BurdenControllerService } from '../../../services/openApi';
+import Button from '../../../components/bootstrap/Button';
+import MonthPicker from '../../../components/MonthPicker';
+import burdenData from '../../../common/burdenDummy.json';
+import Page from '../../../layout/Page/Page';
 import SelfPayDetail from './components/SelfPayDetail';
 
 const SelfPayList = () => {

@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 import FormGroup from '../../../components/bootstrap/forms/FormGroup';
 import Input from '../../../components/bootstrap/forms/Input';
 import Button from '../../../components/bootstrap/Button';
-import { OpenAPI, User, UserControllerService } from '../../../services/openApi';
+import { User, UserControllerService } from '../../../services/openApi';
 
 const SignInForm = () => {
 	const [email, setEmail] = useState<string>('');

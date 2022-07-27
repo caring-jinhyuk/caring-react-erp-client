@@ -3,12 +3,12 @@ import OffCanvas, {
 	OffCanvasHeader,
 	OffCanvasTitle,
 	OffCanvasBody,
-} from '../../../components/bootstrap/OffCanvas';
-import { Burden } from '../../../services/openApi';
+} from '../../../../components/bootstrap/OffCanvas';
+import { Burden } from '../../../../services/openApi';
 import PropTypes from 'prop-types';
-import Card, { CardBody, CardHeader } from '../../../components/bootstrap/Card';
-import Input from '../../../components/bootstrap/forms/Input';
-import FormGroup from '../../../components/bootstrap/forms/FormGroup';
+import Card, { CardBody, CardHeader } from '../../../../components/bootstrap/Card';
+import Input from '../../../../components/bootstrap/forms/Input';
+import FormGroup from '../../../../components/bootstrap/forms/FormGroup';
 
 interface ISelfPayDetail {
 	burden: Burden;

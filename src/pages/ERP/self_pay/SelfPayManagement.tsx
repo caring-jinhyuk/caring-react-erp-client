@@ -1,12 +1,12 @@
 import React, { useCallback, useState } from 'react';
-import Card, { CardBody, CardHeader } from '../../components/bootstrap/Card';
-import Input from '../../components/bootstrap/forms/Input';
-import FormGroup from '../../components/bootstrap/forms/FormGroup';
-import Page from '../../layout/Page/Page';
-import Select from '../../components/bootstrap/forms/Select';
-import Option from '../../components/bootstrap/Option';
-import recipientData from '../../common/recipientDummy.json';
-import { Burden } from '../../services/openApi';
+import Card, { CardBody, CardHeader } from '../../../components/bootstrap/Card';
+import Input from '../../../components/bootstrap/forms/Input';
+import FormGroup from '../../../components/bootstrap/forms/FormGroup';
+import Page from '../../../layout/Page/Page';
+import Select from '../../../components/bootstrap/forms/Select';
+import Option from '../../../components/bootstrap/Option';
+import recipientData from '../../../common/recipientDummy.json';
+import { Burden } from '../../../services/openApi';
 import SelfPayDetail from './components/SelfPayDetail';
 import SelfPayManagementDetail from './components/SelfPayManagementDetail';
 

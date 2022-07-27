@@ -3,8 +3,8 @@ import OffCanvas, {
 	OffCanvasHeader,
 	OffCanvasTitle,
 	OffCanvasBody,
-} from '../../../components/bootstrap/OffCanvas';
-import Card, { CardBody, CardHeader } from '../../../components/bootstrap/Card';
+} from '../../../../components/bootstrap/OffCanvas';
+import Card, { CardBody, CardHeader } from '../../../../components/bootstrap/Card';
 
 interface ISelfPayManagementDetail {
 	open: boolean;
