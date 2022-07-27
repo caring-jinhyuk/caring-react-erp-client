@@ -82,9 +82,7 @@ const CaregiverDetail: FC<ICaregiverDetail> = ({ caregiver, open, setOpen }) => 
 											type='radio'
 											name='caregiver.gender'
 											label='남'
-											value='ture'
 											onChange={formik.handleChange}
-											checked={formik.values.caregiver.gender}
 										/>
 									</div>
 									<div className='col-6'>
@@ -92,9 +90,7 @@ const CaregiverDetail: FC<ICaregiverDetail> = ({ caregiver, open, setOpen }) => 
 											type='radio'
 											name='caregiver.gender'
 											label='여'
-											value='false'
 											onChange={formik.handleChange}
-											checked={true}
 										/>
 									</div>
 								</div>
@@ -127,11 +123,17 @@ const CaregiverDetail: FC<ICaregiverDetail> = ({ caregiver, open, setOpen }) => 
 					<Card>
 						<CardHeader>희망지역</CardHeader>
 						<CardBody>
-							<FormGroup id='information' label='요양보호사의 정보'>
-								<Textarea value={caregiver.information} />
+							<FormGroup id='caregiver.information' label='요양보호사의 정보'>
+								<Textarea
+									value={formik.values.caregiver.information}
+									onChange={formik.handleChange}
+								/>
 							</FormGroup>
-							<FormGroup id='takerProgress' label='수급자별 진행상황'>
-								<Textarea value={caregiver.takerProgress} />
+							<FormGroup id='caregiver.takerProgress' label='수급자별 진행상황'>
+								<Textarea
+									value={formik.values.caregiver.takerProgress}
+									onChange={formik.handleChange}
+								/>
 							</FormGroup>
 						</CardBody>
 					</Card>
@@ -157,8 +159,12 @@ const CaregiverDetail: FC<ICaregiverDetail> = ({ caregiver, open, setOpen }) => 
 									</div>
 								</div>
 							</FormGroup>
-							<FormGroup id='career' isFloating={true} label='경력'>
-								<Input type='text' value={caregiver.career} />
+							<FormGroup id='caregiver.career' isFloating={true} label='경력'>
+								<Input
+									type='text'
+									value={formik.values.caregiver.career}
+									onChange={formik.handleChange}
+								/>
 							</FormGroup>
 							<FormGroup id='prefer_gender' label='선호하는 어르신 성별'>
 								<div className='row'>
