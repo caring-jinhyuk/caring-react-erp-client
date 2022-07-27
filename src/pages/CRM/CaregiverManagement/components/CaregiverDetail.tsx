@@ -4,7 +4,7 @@ import OffCanvas, {
 	OffCanvasTitle,
 	OffCanvasBody,
 } from '../../../../components/bootstrap/OffCanvas';
-import { Burden } from '../../../../services/openApi';
+import { Burden, Caregiver, CaregiverControllerService } from '../../../../services/openApi';
 import PropTypes, { object } from 'prop-types';
 import { Field, Form, useFormik } from 'formik';
 import Card, { CardBody, CardHeader } from '../../../../components/bootstrap/Card';
@@ -25,10 +25,16 @@ const CaregiverDetail: FC<ICaregiverDetail> = ({ caregiver, open, setOpen }) => 
 		enableReinitialize: true,
 		initialValues: caregiver,
 		// eslint-disable-next-line no-unused-vars
-		onSubmit: (values) => {
-			alert(JSON.stringify(values, null, 2));
+		onSubmit: async (values) => {
+			//alert(JSON.stringify(values, null, 2));
+			await saveCaregiver(values);
 		},
 	});
+
+	const saveCaregiver = async (value: Caregiver) => {
+		const response = await CaregiverControllerService.saveCaregiverUsingPost(value);
+		console.log(response);
+	};
 
 	return (
 		<>
