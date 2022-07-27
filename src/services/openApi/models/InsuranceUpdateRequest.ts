@@ -10,6 +10,7 @@ export type InsuranceUpdateRequest = {
     accidentPrice?: number;
     approvedAt?: string;
     changeUser?: number;
+    createdAt?: string;
     dependents?: Array<Dependent>;
     employDate?: string;
     employPrice?: number;
@@ -32,6 +33,7 @@ export type InsuranceUpdateRequest = {
     summary?: string;
     updateState?: 'PENDING' | 'DONE' | 'REJECT';
     updateType?: 'GET' | 'WITHDRAW' | 'INSURANCE_CANCEL' | 'INSURANCE_MODIFY' | 'MOVE_CONFIRM' | 'CHANGE_AMOUNT' | 'ETC_CHANGE';
+    updatedAt?: string;
     workHours?: number;
     workType?: string;
 };

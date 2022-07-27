@@ -34,6 +34,7 @@ export class CalculateControllerService {
      * @param userProviderBankNumber
      * @param userProviderBirthDate
      * @param userProviderConnectUserId
+     * @param userProviderCreatedAt
      * @param userProviderDataBurdenDeduction
      * @param userProviderDataContractDate
      * @param userProviderDataWorkDay1
@@ -94,6 +95,7 @@ export class CalculateControllerService {
      * @param userProviderTagCall
      * @param userProviderTagCallDays
      * @param userProviderTagPhone
+     * @param userProviderUpdatedAt
      * @param userProviderWorkCenterAccount
      * @param userProviderWorkCenterAccounts0Bank
      * @param userProviderWorkCenterAccounts0Idnumber
@@ -151,6 +153,7 @@ export class CalculateControllerService {
         userProviderBankNumber?: string,
         userProviderBirthDate?: string,
         userProviderConnectUserId?: number,
+        userProviderCreatedAt?: string,
         userProviderDataBurdenDeduction?: boolean,
         userProviderDataContractDate?: string,
         userProviderDataWorkDay1?: string,
@@ -211,6 +214,7 @@ export class CalculateControllerService {
         userProviderTagCall?: boolean,
         userProviderTagCallDays?: string,
         userProviderTagPhone?: string,
+        userProviderUpdatedAt?: string,
         userProviderWorkCenterAccount?: string,
         userProviderWorkCenterAccounts0Bank?: string,
         userProviderWorkCenterAccounts0Idnumber?: string,
@@ -268,6 +272,7 @@ export class CalculateControllerService {
                 'user.provider.bankNumber': userProviderBankNumber,
                 'user.provider.birthDate': userProviderBirthDate,
                 'user.provider.connectUserId': userProviderConnectUserId,
+                'user.provider.createdAt': userProviderCreatedAt,
                 'user.provider.data.burdenDeduction': userProviderDataBurdenDeduction,
                 'user.provider.data.contractDate': userProviderDataContractDate,
                 'user.provider.data.workDay1': userProviderDataWorkDay1,
@@ -328,6 +333,7 @@ export class CalculateControllerService {
                 'user.provider.tagCall': userProviderTagCall,
                 'user.provider.tagCallDays': userProviderTagCallDays,
                 'user.provider.tagPhone': userProviderTagPhone,
+                'user.provider.updatedAt': userProviderUpdatedAt,
                 'user.provider.workCenter.account': userProviderWorkCenterAccount,
                 'user.provider.workCenter.accounts[0].bank': userProviderWorkCenterAccounts0Bank,
                 'user.provider.workCenter.accounts[0].idnumber': userProviderWorkCenterAccounts0Idnumber,

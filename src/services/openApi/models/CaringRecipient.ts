@@ -16,6 +16,7 @@ export type CaringRecipient = {
     contractDate?: string;
     contractUntilDate?: string;
     contractor?: Contractor;
+    createdAt?: string;
     data?: RecipientData;
     externalServices?: Array<string>;
     gender?: 'MALE' | 'FEMALE';
@@ -43,6 +44,7 @@ export type CaringRecipient = {
     summary?: string;
     tag?: string;
     tagAttached?: boolean;
+    updatedAt?: string;
     workCenter?: WorkCenter;
 };
 

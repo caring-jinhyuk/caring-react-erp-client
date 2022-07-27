@@ -2,12 +2,12 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { CustomerCall } from './CustomerCall';
+import type { Caregiver } from './Caregiver';
 import type { Pageable } from './Pageable';
 import type { Sort } from './Sort';
 
-export type Page_CustomerCall_ = {
-    content?: Array<CustomerCall>;
+export type Page_Caregiver_ = {
+    content?: Array<Caregiver>;
     empty?: boolean;
     first?: boolean;
     last?: boolean;

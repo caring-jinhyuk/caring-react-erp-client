@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
 import Page from '../../../layout/Page/Page';
 import Popovers from '../../../components/bootstrap/Popovers';
+import { NoticeControllerService } from '../../../services/openApi';
 
 const HomePage = () => {
+	useEffect(() => {
+		const getNoticeList = async () => {
+			const data = await NoticeControllerService.getNoticeListUsingGet();
+		};
+		getNoticeList();
+	}, []);
+
 	return (
 		<PageWrapper title='Home Page'>
 			<Page>

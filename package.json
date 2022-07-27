@@ -16,7 +16,7 @@
 		"lint:scss": "stylelint **/*.scss",
 		"lint:fix-scss": "stylelint --fix **/*.scss",
 		"icon": "svgr SvgIcons -d src/components/icon/svg-icons",
-		"type:openapi": "openapi -i https://dev-erp.caring.co.kr/api/v2/api-docs -o src/services/openApi --useUnionTypes --client axios",
+		"type:openapi": "openapi -i https://erp.caring.co.kr/api/v2/api-docs -o src/services/openApi --useUnionTypes --client axios",
 		"prepare": "husky install"
 	},
 	"eslintConfig": {

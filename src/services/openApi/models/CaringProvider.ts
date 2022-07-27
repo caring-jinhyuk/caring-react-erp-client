@@ -16,6 +16,7 @@ export type CaringProvider = {
     bankNumber?: string;
     birthDate?: string;
     connectUserId?: number;
+    createdAt?: string;
     data?: ProviderData;
     dementiaEduComplete?: boolean;
     exitDate?: string;
@@ -43,6 +44,7 @@ export type CaringProvider = {
     tagCall?: boolean;
     tagCallDays?: string;
     tagPhone?: string;
+    updatedAt?: string;
     user?: User;
     workCenter?: WorkCenter;
     workTypes?: Array<'Family' | 'Bath' | 'Nursing'>;
