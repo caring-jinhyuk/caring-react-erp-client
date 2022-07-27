@@ -17,9 +17,6 @@ const ERP = {};
 const AUTH = {
 	ACCOUNT: lazy(() => import('../pages/auth/Account')),
 };
-const CRM = {
-	JOB_SEARCH_CAREGIVER: lazy(() => import('../pages/job_search_caregiver/JobSearchCaregiver')),
-};
 const presentation = [
 	/**
 	 * Landing
@@ -47,10 +44,6 @@ const presentation = [
 	{
 		path: asideMenus.consult.path,
 		element: <CRM.CONSULT />,
-	},
-	{
-		path: asideMenus.job_search_caregiver.path,
-		element: <CRM.JOB_SEARCH_CAREGIVER />,
 	},
 ];
 const contents = [...presentation];
