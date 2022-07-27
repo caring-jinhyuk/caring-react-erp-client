@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Card, { CardBody, CardHeader } from '../../../components/bootstrap/Card';
+import Card, { CardActions, CardBody, CardHeader } from '../../../components/bootstrap/Card';
 import Select from '../../../components/bootstrap/forms/Select';
 import Input from '../../../components/bootstrap/forms/Input';
 import dummy from '../dummy/caregiverListData.json';
@@ -21,19 +21,27 @@ const CaregiverDashboard = () => {
 	return (
 		<>
 			<Card>
-				<CardHeader>
-					<Select ariaLabel={'caregiver-search-type'}>
-						<option>통합</option>
-						<option>번호</option>
-						<option>지역</option>
-						<option>이름</option>
-					</Select>
-					<Input type={'text'} placeholder={'검색어를 입력해세요'} />
-					<Button icon={'Add'} onClick={() => openDetail(Object())}>
-						요양보호사 추가
-					</Button>
-					<Button icon={'Download'}>데이터 받기</Button>
-				</CardHeader>
+				<div className='row'>
+					<div className='col-1'>
+						<Select ariaLabel={'caregiver-search-type'}>
+							<option>통합</option>
+							<option>번호</option>
+							<option>지역</option>
+							<option>이름</option>
+						</Select>
+					</div>
+					<div className='col-5'>
+						<Input type={'text'} placeholder={'검색어를 입력해세요'} />
+					</div>
+
+					<div className='col-6'>
+						<Button icon={'Add'} onClick={() => openDetail(Object())}>
+							요양 보호사 추가
+						</Button>
+						<Button icon={'Download'}>데이터 추가</Button>
+					</div>
+				</div>
+
 				<CardBody>
 					<table className='table table-modern table-hover'>
 						<thead>
