@@ -3,9 +3,17 @@ import { authPages, homepages } from '../menus/menu';
 import { asideMenus } from '../menus/asideMenus';
 
 const LANDING = {
-	HOMEPAGE: lazy(() => import('../pages/home/HomePage')),
-	SELF_PAY: lazy(() => import('../pages/self_pay/SelfPay')),
+	HOMEPAGE: lazy(() => import('../pages/common/Home/HomePage')),
 };
+const CRM = {
+	CONSULT: lazy(() => import('../pages/CRM/Consult/Consult')),
+	STATISTICS: lazy(() => import('../pages/common/Home/HomePage')),
+	SMILE: lazy(() => import('../pages/common/Home/HomePage')),
+	BENEFICIARY: lazy(() => import('../pages/common/Home/HomePage')),
+	CAREGIVER: lazy(() => import('../pages/common/Home/HomePage')),
+};
+const ERP = {};
+
 const AUTH = {
 	ACCOUNT: lazy(() => import('../pages/auth/Account')),
 };
@@ -37,8 +45,8 @@ const presentation = [
 		exact: true,
 	},
 	{
-		path: asideMenus.self_pay.path,
-		element: <LANDING.SELF_PAY />,
+		path: asideMenus.consult.path,
+		element: <CRM.CONSULT />,
 	},
 	{
 		path: asideMenus.job_search_caregiver.path,

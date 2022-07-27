@@ -1,18 +1,13 @@
 import React, { useCallback, useState } from 'react';
-import Card, { CardBody, CardHeader } from '../../components/bootstrap/Card';
-import Input from '../../components/bootstrap/forms/Input';
-import FormGroup from '../../components/bootstrap/forms/FormGroup';
-import {
-	Burden,
-	BurdenControllerService,
-	CaringContractControllerService,
-} from '../../services/openApi';
-import Button from '../../components/bootstrap/Button';
-import MonthPicker from '../../components/MonthPicker';
-import burdenData from '../../common/burdenDummy.json';
-import Page from '../../layout/Page/Page';
+import Card, { CardBody, CardHeader } from '../../../components/bootstrap/Card';
+import Input from '../../../components/bootstrap/forms/Input';
+import FormGroup from '../../../components/bootstrap/forms/FormGroup';
+import { Burden, BurdenControllerService } from '../../../services/openApi';
+import Button from '../../../components/bootstrap/Button';
+import MonthPicker from '../../../components/MonthPicker';
+import burdenData from '../../../common/burdenDummy.json';
+import Page from '../../../layout/Page/Page';
 import SelfPayDetail from './components/SelfPayDetail';
-import page from '../../layout/Page/Page';
 
 const SelfPayList = () => {
 	const [month, setMonth] = useState<Date>(new Date());
@@ -20,7 +15,6 @@ const SelfPayList = () => {
 	const [keyword, setKeyword] = useState<string>('');
 	const [manager, setManager] = useState<string>('');
 
-	const [burdens, setBurdens] = useState<Burden[]>();
 	const [selectBurden, setSelectBurden] = useState<Burden>();
 	const [openSelfPayDetail, setOpenSelfPayDetail] = useState(false);
 
@@ -28,9 +22,9 @@ const SelfPayList = () => {
 
 	const handleOnChange = useCallback((e: any) => {
 		const requestSelfPayList = () => {
-			// BurdenControllerService.centerAllBurdenListUsingPost(4, '2022-4')
-			// 	.then((value: Burden[]) => {
-			// 		setBurdens(value);
+			// BurdenControllerService.centerAllBurdenListUsingPost({ center: 4, month: '2022-4' })
+			// 	.then((value) => {
+			// 		console.log('success');
 			// 	})
 			// 	.catch((error) => {
 			// 		console.log('error');
@@ -40,7 +34,6 @@ const SelfPayList = () => {
 		switch (e.target.id) {
 			case 'search-center':
 				setCenterId(e.target.value);
-				requestSelfPayList();
 				break;
 			case 'search-manager':
 				setManager(e.target.value);

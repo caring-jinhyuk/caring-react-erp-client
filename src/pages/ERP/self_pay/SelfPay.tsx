@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-import PageWrapper from '../../layout/PageWrapper/PageWrapper';
-import Page from '../../layout/Page/Page';
-import Popovers from '../../components/bootstrap/Popovers';
-import SubHeader, { SubHeaderLeft } from '../../layout/SubHeader/SubHeader';
-import Button, { ButtonGroup } from '../../components/bootstrap/Button';
+import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
+import Page from '../../../layout/Page/Page';
+import Popovers from '../../../components/bootstrap/Popovers';
+import SubHeader, { SubHeaderLeft } from '../../../layout/SubHeader/SubHeader';
+import Button, { ButtonGroup } from '../../../components/bootstrap/Button';
 import SelfPayList from './SelfPayList';
 import SelfPayManagement from './SelfPayManagement';
 
