@@ -45,6 +45,22 @@ const presentation = [
 		path: asideMenus.consult.path,
 		element: <CRM.CONSULT />,
 	},
+	{
+		path: asideMenus.statistics.path,
+		element: <CRM.STATISTICS />,
+	},
+	{
+		path: asideMenus.smile.path,
+		element: <CRM.SMILE />,
+	},
+	{
+		path: asideMenus.beneficiary_management.path,
+		element: <CRM.BENEFICIARY />,
+	},
+	{
+		path: asideMenus.caregiver_management.path,
+		element: <CRM.CAREGIVER />,
+	},
 ];
 const contents = [...presentation];
 
