@@ -21,7 +21,7 @@ export class FinanceControllerService {
     ): CancelablePromise<Finance | any> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/finance',
+            url: '/api/finance',
             body: finance,
             errors: {
                 401: `Unauthorized`,
@@ -44,7 +44,7 @@ export class FinanceControllerService {
     ): CancelablePromise<Array<Finance>> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/finance/options',
+            url: '/api/finance/options',
             query: {
                 'providerId': providerId,
                 'recipientId': recipientId,

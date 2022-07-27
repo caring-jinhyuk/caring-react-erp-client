@@ -2,4 +2,6 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type Map_string_object_ = Record<string, any>;
+export type Iterable_Caregiver_ = {
+};
+

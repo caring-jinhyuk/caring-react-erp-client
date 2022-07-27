@@ -1,7 +1,8 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { Burden } from '../models/Burden';
+import type { BurdenReq } from '../models/BurdenReq';
+import type { BurdenRes } from '../models/BurdenRes';
 import type { Iterable_Burden_ } from '../models/Iterable_Burden_';
 import type { ProviderOrRecipientId } from '../models/ProviderOrRecipientId';
 
@@ -14,16 +15,16 @@ export class BurdenControllerService {
     /**
      * saveBurden
      * @param burden burden
-     * @returns Burden OK
+     * @returns BurdenRes OK
      * @returns any Created
      * @throws ApiError
      */
     public static saveBurdenUsingPost(
-        burden: Burden,
-    ): CancelablePromise<Burden | any> {
+        burden: BurdenReq,
+    ): CancelablePromise<BurdenRes | any> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/burden',
+            url: '/api/burden',
             body: burden,
             errors: {
                 401: `Unauthorized`,
@@ -41,11 +42,11 @@ export class BurdenControllerService {
      * @throws ApiError
      */
     public static saveBurdenAllUsingPost(
-        burden: Array<Burden>,
+        burden: Array<BurdenReq>,
     ): CancelablePromise<Iterable_Burden_ | any> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/burden/all',
+            url: '/api/burden/all',
             body: burden,
             errors: {
                 401: `Unauthorized`,
@@ -68,7 +69,7 @@ export class BurdenControllerService {
     ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/burden/cancelAll',
+            url: '/api/burden/cancelAll',
             query: {
                 'centerId': centerId,
                 'month': month,
@@ -86,7 +87,7 @@ export class BurdenControllerService {
      * @param center center
      * @param month month
      * @param managerId managerId
-     * @returns Burden OK
+     * @returns BurdenRes OK
      * @returns any Created
      * @throws ApiError
      */
@@ -94,10 +95,10 @@ export class BurdenControllerService {
         center: number,
         month: string,
         managerId?: Array<number>,
-    ): CancelablePromise<Array<Burden> | any> {
+    ): CancelablePromise<Array<BurdenRes> | any> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/burden/centerAllBurdenList',
+            url: '/api/burden/centerAllBurdenList',
             query: {
                 'center': center,
                 'month': month,
@@ -113,23 +114,23 @@ export class BurdenControllerService {
 
     /**
      * centerBurdenList
-     * @param center center
      * @param month month
+     * @param centerId centerId
      * @param managerId managerId
-     * @returns Burden OK
+     * @returns BurdenRes OK
      * @returns any Created
      * @throws ApiError
      */
     public static centerBurdenListUsingPost(
-        center: number,
         month: string,
+        centerId?: Array<number>,
         managerId?: Array<number>,
-    ): CancelablePromise<Array<Burden> | any> {
+    ): CancelablePromise<Array<BurdenRes> | any> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/burden/centerBurdenList',
+            url: '/api/burden/centerBurdenList',
             query: {
-                'center': center,
+                'centerId': centerId,
                 'month': month,
             },
             body: managerId,
@@ -143,18 +144,18 @@ export class BurdenControllerService {
 
     /**
      * centerBurdenMonthList
-     * @param center center
+     * @param centerId centerId
      * @returns string OK
      * @throws ApiError
      */
     public static centerBurdenMonthListUsingGet(
-        center: number,
+        centerId?: Array<number>,
     ): CancelablePromise<Array<string>> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/burden/centerBurdenMonthList',
+            url: '/api/burden/centerBurdenMonthList',
             query: {
-                'center': center,
+                'centerId': centerId,
             },
             errors: {
                 401: `Unauthorized`,
@@ -167,16 +168,16 @@ export class BurdenControllerService {
     /**
      * completeBurden
      * @param burdens burdens
-     * @returns Burden OK
+     * @returns BurdenRes OK
      * @returns any Created
      * @throws ApiError
      */
     public static completeBurdenUsingPost(
-        burdens: Array<Burden>,
-    ): CancelablePromise<Array<Burden> | any> {
+        burdens: Array<BurdenReq>,
+    ): CancelablePromise<Array<BurdenRes> | any> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/burden/completeAll',
+            url: '/api/burden/completeAll',
             body: burdens,
             errors: {
                 401: `Unauthorized`,
@@ -190,17 +191,17 @@ export class BurdenControllerService {
      * getBurden
      * @param month month
      * @param recipientId recipientId
-     * @returns Burden OK
+     * @returns BurdenRes OK
      * @returns any Created
      * @throws ApiError
      */
     public static getBurdenUsingPost(
         month: string,
         recipientId: number,
-    ): CancelablePromise<Burden | any> {
+    ): CancelablePromise<BurdenRes | any> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/burden/get',
+            url: '/api/burden/get',
             query: {
                 'month': month,
             },
@@ -218,7 +219,7 @@ export class BurdenControllerService {
      * @param data data
      * @param month month
      * @param workCenterId workCenterId
-     * @returns Burden OK
+     * @returns BurdenRes OK
      * @returns any Created
      * @throws ApiError
      */
@@ -226,10 +227,10 @@ export class BurdenControllerService {
         data: ProviderOrRecipientId,
         month: string,
         workCenterId: number,
-    ): CancelablePromise<Burden | any> {
+    ): CancelablePromise<BurdenRes | any> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/burden/month',
+            url: '/api/burden/month',
             query: {
                 'month': month,
                 'workCenterId': workCenterId,
@@ -255,7 +256,7 @@ export class BurdenControllerService {
     ): CancelablePromise<Array<string> | any> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/burden/monthList/recipientId',
+            url: '/api/burden/monthList/recipientId',
             body: recipientId,
             errors: {
                 401: `Unauthorized`,

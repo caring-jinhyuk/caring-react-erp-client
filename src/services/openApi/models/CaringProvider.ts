@@ -16,10 +16,11 @@ export type CaringProvider = {
     bankNumber?: string;
     birthDate?: string;
     connectUserId?: number;
+    createdAt?: string;
     data?: ProviderData;
     dementiaEduComplete?: boolean;
     exitDate?: string;
-    gender?: 'MALE' | 'FEMALE';
+    gender?: 'FEMALE' | 'MALE';
     hancareId?: string;
     id?: number;
     idNumber?: string;
@@ -29,12 +30,12 @@ export type CaringProvider = {
     name?: string;
     phone?: string;
     phone2?: string;
-    position?: 'Caregiver' | 'SocialWorker' | 'Nurse' | 'CenterManager' | 'NurseAssi' | 'CaregiverMonthPay' | 'NurseMonthPay' | 'NurseAssiMonthPay';
+    position?: 'Caregiver' | 'CaregiverMonthPay' | 'CenterManager' | 'Nurse' | 'NurseAssi' | 'NurseAssiMonthPay' | 'NurseMonthPay' | 'SocialWorker';
     positionName?: string;
     providerLicenses?: Array<ProviderLicense>;
     relation?: string;
     salary?: number;
-    state?: 'OnWork' | 'Waiting' | 'OnVacation' | 'Exit' | 'Etc';
+    state?: 'Etc' | 'Exit' | 'OnVacation' | 'OnWork' | 'Waiting';
     stateDate?: string;
     stateHistory?: Array<any>;
     stateReason?: string;
@@ -43,8 +44,9 @@ export type CaringProvider = {
     tagCall?: boolean;
     tagCallDays?: string;
     tagPhone?: string;
+    updatedAt?: string;
     user?: User;
     workCenter?: WorkCenter;
-    workTypes?: Array<'Family' | 'Bath' | 'Nursing'>;
+    workTypes?: Array<'Bath' | 'Family' | 'Nursing'>;
 };
 

@@ -2,12 +2,12 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { CaringContract } from './CaringContract';
+import type { CaringContractRes } from './CaringContractRes';
 import type { Pageable } from './Pageable';
 import type { Sort } from './Sort';
 
 export type Page_CaringContract_ = {
-    content?: Array<CaringContract>;
+    content?: Array<CaringContractRes>;
     empty?: boolean;
     first?: boolean;
     last?: boolean;

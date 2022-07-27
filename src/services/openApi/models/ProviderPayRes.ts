@@ -2,16 +2,15 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { CaringProvider } from './CaringProvider';
+import type { CaringProviderRes } from './CaringProviderRes';
 import type { Finance } from './Finance';
-import type { ProviderMatchedRecipient } from './ProviderMatchedRecipient';
+import type { ProviderMatchedRecipientRes } from './ProviderMatchedRecipientRes';
 import type { ProviderPaySubtract } from './ProviderPaySubtract';
-import type { ServiceSchedule } from './ServiceSchedule';
+import type { ServiceScheduleRes } from './ServiceScheduleRes';
 
-export type ProviderPay = {
+export type ProviderPayRes = {
     accident?: number;
     base?: number;
-    byCount?: number;
     'c'?: any;
     calculateLoss?: number;
     calculated?: boolean;
@@ -52,9 +51,9 @@ export type ProviderPay = {
     operation?: number;
     pension?: number;
     pensionCompany?: number;
-    provider?: CaringProvider;
+    provider?: CaringProviderRes;
     providerId?: number;
-    providerMatchedRecipients?: Array<ProviderMatchedRecipient>;
+    providerMatchedRecipients?: Array<ProviderMatchedRecipientRes>;
     providerPaySubtractList?: Array<ProviderPaySubtract>;
     provinceIncomeTax?: number;
     realPay?: number;
@@ -62,7 +61,7 @@ export type ProviderPay = {
     rest?: number;
     salary?: number;
     salarySum?: number;
-    schedules?: Array<ServiceSchedule>;
+    schedules?: Array<ServiceScheduleRes>;
     senior?: number;
     seniorCompany?: number;
     severePay?: number;

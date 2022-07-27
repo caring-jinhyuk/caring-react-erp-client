@@ -2,7 +2,8 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { Page_Paper_ } from '../models/Page_Paper_';
-import type { Paper } from '../models/Paper';
+import type { PaperReq } from '../models/PaperReq';
+import type { PaperRes } from '../models/PaperRes';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
@@ -13,15 +14,15 @@ export class PaperControllerService {
     /**
      * getPaper
      * @param id id
-     * @returns Paper OK
+     * @returns PaperRes OK
      * @throws ApiError
      */
     public static getPaperUsingGet(
         id: number,
-    ): CancelablePromise<Paper> {
+    ): CancelablePromise<PaperRes> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/paper',
+            url: '/api/paper',
             query: {
                 'id': id,
             },
@@ -36,16 +37,16 @@ export class PaperControllerService {
     /**
      * savePaper
      * @param paper paper
-     * @returns Paper OK
+     * @returns PaperRes OK
      * @returns any Created
      * @throws ApiError
      */
     public static savePaperUsingPost(
-        paper: Paper,
-    ): CancelablePromise<Paper | any> {
+        paper: PaperReq,
+    ): CancelablePromise<PaperRes | any> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/paper',
+            url: '/api/paper',
             body: paper,
             errors: {
                 401: `Unauthorized`,
@@ -66,7 +67,7 @@ export class PaperControllerService {
     ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'DELETE',
-            url: '/paper',
+            url: '/api/paper',
             query: {
                 'id': id,
             },
@@ -92,11 +93,11 @@ export class PaperControllerService {
         providerId?: number,
         recipientId?: number,
         size: number = 10,
-        type?: '수급자욕구평가' | '낙상위험도' | '욕창위험도' | 'KMMSE' | 'KMMSE2',
+        type?: 'KMMSE' | 'KMMSE2' | '낙상위험도' | '수급자욕구평가' | '욕창위험도',
     ): CancelablePromise<Page_Paper_> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/paper/list',
+            url: '/api/paper/list',
             query: {
                 'page': page,
                 'providerId': providerId,
@@ -115,16 +116,16 @@ export class PaperControllerService {
     /**
      * getRecipientPaperList
      * @param recipientIdList recipientIdList
-     * @returns Paper OK
+     * @returns PaperRes OK
      * @returns any Created
      * @throws ApiError
      */
     public static getRecipientPaperListUsingPost(
         recipientIdList: Array<number>,
-    ): CancelablePromise<Array<Paper> | any> {
+    ): CancelablePromise<Array<PaperRes> | any> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/paper/list/all',
+            url: '/api/paper/list/all',
             body: recipientIdList,
             errors: {
                 401: `Unauthorized`,

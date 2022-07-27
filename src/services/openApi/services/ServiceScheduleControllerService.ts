@@ -1,10 +1,10 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { Map_string_long_ } from '../models/Map_string_long_';
 import type { Page_ServiceSchedule_ } from '../models/Page_ServiceSchedule_';
 import type { ProviderOrRecipientId } from '../models/ProviderOrRecipientId';
-import type { ServiceSchedule } from '../models/ServiceSchedule';
+import type { ServiceScheduleReq } from '../models/ServiceScheduleReq';
+import type { ServiceScheduleRes } from '../models/ServiceScheduleRes';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
@@ -15,16 +15,16 @@ export class ServiceScheduleControllerService {
     /**
      * saveSchedule
      * @param schedule schedule
-     * @returns ServiceSchedule OK
+     * @returns ServiceScheduleRes OK
      * @returns any Created
      * @throws ApiError
      */
     public static saveScheduleUsingPost(
-        schedule: ServiceSchedule,
-    ): CancelablePromise<ServiceSchedule | any> {
+        schedule: ServiceScheduleReq,
+    ): CancelablePromise<ServiceScheduleRes | any> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/serviceSchedule',
+            url: '/api/serviceSchedule',
             body: schedule,
             errors: {
                 401: `Unauthorized`,
@@ -45,7 +45,7 @@ export class ServiceScheduleControllerService {
     ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'DELETE',
-            url: '/serviceSchedule',
+            url: '/api/serviceSchedule',
             query: {
                 'id': id,
             },
@@ -68,7 +68,7 @@ export class ServiceScheduleControllerService {
     ): CancelablePromise<number | any> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/serviceSchedule/count',
+            url: '/api/serviceSchedule/count',
             body: data,
             errors: {
                 401: `Unauthorized`,
@@ -98,7 +98,7 @@ export class ServiceScheduleControllerService {
     ): CancelablePromise<Page_ServiceSchedule_ | any> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/serviceSchedule/list',
+            url: '/api/serviceSchedule/list',
             query: {
                 'from': from,
                 'page': page,
@@ -119,7 +119,7 @@ export class ServiceScheduleControllerService {
      * @param data data
      * @param month month
      * @param workCenterId workCenterId
-     * @returns ServiceSchedule OK
+     * @returns ServiceScheduleRes OK
      * @returns any Created
      * @throws ApiError
      */
@@ -127,10 +127,10 @@ export class ServiceScheduleControllerService {
         data: ProviderOrRecipientId,
         month: string,
         workCenterId: number,
-    ): CancelablePromise<Array<ServiceSchedule> | any> {
+    ): CancelablePromise<Array<ServiceScheduleRes> | any> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/serviceSchedule/list/month',
+            url: '/api/serviceSchedule/list/month',
             query: {
                 'month': month,
                 'workCenterId': workCenterId,
@@ -149,7 +149,7 @@ export class ServiceScheduleControllerService {
      * @param centerId centerId
      * @param from from
      * @param to to
-     * @returns Map_string_long_ OK
+     * @returns number OK
      * @returns any Created
      * @throws ApiError
      */
@@ -157,10 +157,10 @@ export class ServiceScheduleControllerService {
         centerId?: number,
         from?: string,
         to?: string,
-    ): CancelablePromise<Array<Map_string_long_> | any> {
+    ): CancelablePromise<Array<Record<string, number>> | any> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/serviceSchedule/list/rate',
+            url: '/api/serviceSchedule/list/rate',
             query: {
                 'centerId': centerId,
                 'from': from,
@@ -183,12 +183,12 @@ export class ServiceScheduleControllerService {
      * @throws ApiError
      */
     public static getScheduleMonthListUsingPost(
-        centerId: number,
+        centerId?: Array<number>,
         providerId?: number,
     ): CancelablePromise<Array<string> | any> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/serviceSchedule/monthList',
+            url: '/api/serviceSchedule/monthList',
             query: {
                 'centerId': centerId,
                 'providerId': providerId,
@@ -213,7 +213,7 @@ export class ServiceScheduleControllerService {
     ): CancelablePromise<Array<string> | any> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/serviceSchedule/monthList/recipient',
+            url: '/api/serviceSchedule/monthList/recipient',
             query: {
                 'recipientId': recipientId,
             },
@@ -239,7 +239,7 @@ export class ServiceScheduleControllerService {
     ): CancelablePromise<number | any> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/serviceSchedule/removeByList',
+            url: '/api/serviceSchedule/removeByList',
             query: {
                 'centerId': centerId,
             },
@@ -265,7 +265,7 @@ export class ServiceScheduleControllerService {
     ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/serviceSchedule/updateByList',
+            url: '/api/serviceSchedule/updateByList',
             query: {
                 'centerId': centerId,
             },

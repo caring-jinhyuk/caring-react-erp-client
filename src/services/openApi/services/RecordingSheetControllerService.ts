@@ -21,7 +21,7 @@ export class RecordingSheetControllerService {
     ): CancelablePromise<RecordingSheet> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/recordingSheet',
+            url: '/api/recordingSheet',
             query: {
                 'id': id,
             },
@@ -45,7 +45,7 @@ export class RecordingSheetControllerService {
     ): CancelablePromise<RecordingSheet | any> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/recordingSheet',
+            url: '/api/recordingSheet',
             body: recordingSheet,
             errors: {
                 401: `Unauthorized`,
@@ -66,7 +66,7 @@ export class RecordingSheetControllerService {
     ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'DELETE',
-            url: '/recordingSheet',
+            url: '/api/recordingSheet',
             query: {
                 'id': id,
             },
@@ -93,7 +93,7 @@ export class RecordingSheetControllerService {
     ): CancelablePromise<Page_RecordingSheet_ | any> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/recordingSheet/list',
+            url: '/api/recordingSheet/list',
             query: {
                 'page': page,
                 'size': size,

@@ -2,23 +2,24 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { AddressInfo } from './AddressInfo';
+import type { AddressInfoReq } from './AddressInfoReq';
 import type { Contractor } from './Contractor';
 import type { RecipientData } from './RecipientData';
-import type { User } from './User';
-import type { WorkCenter } from './WorkCenter';
+import type { UserReq } from './UserReq';
+import type { WorkCenterReq } from './WorkCenterReq';
 
-export type CaringRecipient = {
-    address?: AddressInfo;
+export type CaringRecipientReq = {
+    address?: AddressInfoReq;
     beaconAttached?: boolean;
     birthDate?: string;
     checkValidUntil?: string;
     contractDate?: string;
     contractUntilDate?: string;
     contractor?: Contractor;
+    createdAt?: string;
     data?: RecipientData;
     externalServices?: Array<string>;
-    gender?: 'MALE' | 'FEMALE';
+    gender?: 'FEMALE' | 'MALE';
     hancareId?: string;
     health?: any;
     id?: number;
@@ -29,7 +30,7 @@ export type CaringRecipient = {
     longTermGrade?: string;
     longTermHistory?: Array<any>;
     longTermNumber?: string;
-    manager?: User;
+    manager?: UserReq;
     memo?: string;
     name?: string;
     rateHistory?: Array<any>;
@@ -43,6 +44,7 @@ export type CaringRecipient = {
     summary?: string;
     tag?: string;
     tagAttached?: boolean;
-    workCenter?: WorkCenter;
+    updatedAt?: string;
+    workCenter?: WorkCenterReq;
 };
 

@@ -2,8 +2,8 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type PlanData = {
-    data?: PlanData;
+export type PlanDataReq = {
+    data?: PlanDataReq;
     dateString?: string;
     id?: number;
     longtermNumber?: string;
