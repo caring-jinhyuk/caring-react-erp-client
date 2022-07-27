@@ -6,14 +6,14 @@ import Popovers from '../../../components/bootstrap/Popovers';
 
 const Consult = () => {
 	return (
-		<PageWrapper title='Home Page'>
+		<PageWrapper title='Consult Page'>
 			<Page>
 				<div className='row'>
 					<div className='col-12 mb-3'>
-						<Popovers title='HomePage.tsx' desc={<code>src/pages/HomePage.tsx</code>}>
+						<Popovers title='Consult.tsx' desc={<code>src/pages/CRM/Consult.tsx</code>}>
 							Page
 						</Popovers>
-						<code className='ps-3'>HomePage.tsx</code>
+						<code className='ps-3'>Consult.tsx</code>
 					</div>
 				</div>
 			</Page>
