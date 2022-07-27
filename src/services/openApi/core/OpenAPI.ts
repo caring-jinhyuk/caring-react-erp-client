@@ -2,11 +2,10 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { ApiRequestOptions } from './ApiRequestOptions';
+import { getToken } from '../../authService';
 
 type Resolver<T> = (options: ApiRequestOptions) => Promise<T>;
 type Headers = Record<string, string>;
-
-console.log(process.env.REACT_APP_BASE_URL);
 
 export type OpenAPIConfig = {
 	BASE: string | undefined;
@@ -25,7 +24,7 @@ export const OpenAPI: OpenAPIConfig = {
 	VERSION: '1.0',
 	WITH_CREDENTIALS: false,
 	CREDENTIALS: 'include',
-	TOKEN: undefined,
+	TOKEN: getToken('caringerpauthtoken') ?? undefined,
 	USERNAME: undefined,
 	PASSWORD: undefined,
 	HEADERS: undefined,

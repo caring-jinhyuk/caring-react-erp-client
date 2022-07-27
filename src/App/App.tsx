@@ -16,6 +16,7 @@ import useDarkMode from '../hooks/useDarkMode';
 import COLORS from '../common/data/enumColors';
 import { getOS } from '../helpers/helpers';
 import steps, { styles } from '../steps';
+import SpinnerContainer from '../components/SpinnerContainer';
 
 const App = () => {
 	getOS();
@@ -91,6 +92,7 @@ const App = () => {
 					<Portal id='portal-notification'>
 						<ReactNotifications />
 					</Portal>
+					<SpinnerContainer />
 				</TourProvider>
 			</ToastProvider>
 		</ThemeProvider>
