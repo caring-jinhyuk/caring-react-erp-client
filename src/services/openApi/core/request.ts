@@ -11,6 +11,7 @@ import type { ApiResult } from './ApiResult';
 import { CancelablePromise } from './CancelablePromise';
 import type { OnCancel } from './CancelablePromise';
 import type { OpenAPIConfig } from './OpenAPI';
+import { setToken } from '../../authService';
 
 const isDefined = <T>(value: T | null | undefined): value is Exclude<T, null | undefined> => {
 	return value !== undefined && value !== null;
@@ -173,12 +174,7 @@ const getHeaders = async (
 		);
 
 	if (isStringWithValue(token)) {
-		headers['Authorization'] = `Bearer ${token}`;
-	}
-
-	if (isStringWithValue(username) && isStringWithValue(password)) {
-		const credentials = base64(`${username}:${password}`);
-		headers['Authorization'] = `Basic ${credentials}`;
+		headers['caringerpauthtoken'] = token;
 	}
 
 	if (options.body) {
@@ -236,17 +232,15 @@ const sendRequest = async <T>(
 	}
 };
 
-const getResponseHeader = (
-	response: AxiosResponse<any>,
-	responseHeader?: string,
-): string | undefined => {
+const getResponseHeader = (response: AxiosResponse<any>, responseHeader?: string) => {
 	if (responseHeader) {
-		const content = response.headers[responseHeader];
+		const content = response.headers;
+
 		if (isString(content)) {
 			return content;
 		}
 	}
-	return undefined;
+	return response.headers;
 };
 
 const getResponseBody = (response: AxiosResponse<any>): any => {
@@ -290,24 +284,11 @@ export const request = <T>(
 	options: ApiRequestOptions,
 ): CancelablePromise<T> => {
 	return new CancelablePromise(async (resolve, reject, onCancel) => {
-		console.log(1234512356);
 		try {
 			const url = getUrl(config, options);
 			const formData = getFormData(options);
 			const body = getRequestBody(options);
 			const headers = await getHeaders(config, options, formData);
-
-			const response = await sendRequest<T>(
-				config,
-				options,
-				url,
-				body,
-				formData,
-				headers,
-				onCancel,
-			);
-			const responseHeader = await getResponseHeader(response, options.responseHeader);
-			console.log(responseHeader);
 
 			if (!onCancel.isCancelled) {
 				const response = await sendRequest<T>(
@@ -319,17 +300,23 @@ export const request = <T>(
 					headers,
 					onCancel,
 				);
+
 				const responseBody = getResponseBody(response);
 				const responseHeader = getResponseHeader(response, options.responseHeader);
+
+				if (responseHeader['caringerpauthtoken']) {
+					setToken(responseHeader['caringerpauthtoken']);
+				}
+
 				const result: ApiResult = {
 					url,
 					ok: isSuccess(response.status),
 					status: response.status,
 					statusText: response.statusText,
-					body: responseHeader ?? responseBody,
+					body: responseBody,
 				};
 
-				catchErrorCodes(options, result);
+				// catchErrorCodes(options, result);
 
 				resolve(result.body);
 			}
