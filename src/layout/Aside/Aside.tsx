@@ -2,13 +2,14 @@ import React, { useContext, useRef } from 'react';
 import classNames from 'classnames';
 import { motion, MotionStyle } from 'framer-motion';
 import Brand from '../Brand/Brand';
-import Navigation from '../Navigation/Navigation';
+import Navigation, { NavigationLine } from '../Navigation/Navigation';
 import User from '../User/User';
 import { asideMenus } from '../../menus/asideMenus';
 import ThemeContext from '../../contexts/themeContext';
 
 import Tooltips from '../../components/bootstrap/Tooltips';
 import useAsideTouch from '../../hooks/useAsideTouch';
+import { homepages } from '../../menus/menu';
 
 const Aside = () => {
 	const { asideStatus, setAsideStatus } = useContext(ThemeContext);
@@ -37,6 +38,8 @@ const Aside = () => {
 				</div>
 				<div className='aside-body'>
 					<>
+						<Navigation menu={homepages} id='aside-demo-pages' />
+						<NavigationLine />
 						<Navigation menu={asideMenus} id='aside-pages' />
 					</>
 				</div>
