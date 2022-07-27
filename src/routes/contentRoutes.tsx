@@ -7,10 +7,10 @@ const LANDING = {
 };
 const CRM = {
 	CONSULT: lazy(() => import('../pages/CRM/Consult/Consult')),
-	STATISTICS: lazy(() => import('../pages/common/Home/HomePage')),
-	SMILE: lazy(() => import('../pages/common/Home/HomePage')),
-	BENEFICIARY: lazy(() => import('../pages/common/Home/HomePage')),
-	CAREGIVER: lazy(() => import('../pages/common/Home/HomePage')),
+	STATISTICS: lazy(() => import('../pages/CRM/Statistics/Statistics')),
+	SMILE: lazy(() => import('../pages/CRM/SmileCall/SmailCall')),
+	BENEFICIARY: lazy(() => import('../pages/CRM/BeneficiaryManagement/BeneficiaryManagement')),
+	CAREGIVER: lazy(() => import('../pages/CRM/CaregiverManagement/CaregiverManagement')),
 };
 const ERP = {};
 
@@ -44,6 +44,22 @@ const presentation = [
 	{
 		path: asideMenus.consult.path,
 		element: <CRM.CONSULT />,
+	},
+	{
+		path: asideMenus.statistics.path,
+		element: <CRM.STATISTICS />,
+	},
+	{
+		path: asideMenus.smile.path,
+		element: <CRM.SMILE />,
+	},
+	{
+		path: asideMenus.beneficiary_management.path,
+		element: <CRM.BENEFICIARY />,
+	},
+	{
+		path: asideMenus.caregiver_management.path,
+		element: <CRM.CAREGIVER />,
 	},
 ];
 const contents = [...presentation];
