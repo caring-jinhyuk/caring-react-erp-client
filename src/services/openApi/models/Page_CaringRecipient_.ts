@@ -2,12 +2,12 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { CaringRecipient } from './CaringRecipient';
+import type { CaringRecipientRes } from './CaringRecipientRes';
 import type { Pageable } from './Pageable';
 import type { Sort } from './Sort';
 
 export type Page_CaringRecipient_ = {
-    content?: Array<CaringRecipient>;
+    content?: Array<CaringRecipientRes>;
     empty?: boolean;
     first?: boolean;
     last?: boolean;

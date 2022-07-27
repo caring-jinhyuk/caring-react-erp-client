@@ -2,11 +2,11 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { CaringRecipient } from './CaringRecipient';
+import type { CaringRecipientReq } from './CaringRecipientReq';
 import type { Finance } from './Finance';
-import type { ServiceSchedule } from './ServiceSchedule';
+import type { ServiceScheduleReq } from './ServiceScheduleReq';
 
-export type Burden = {
+export type BurdenReq = {
     burdenSum?: number;
     'c'?: any;
     calculated?: boolean;
@@ -16,10 +16,10 @@ export type Burden = {
     id?: number;
     month?: string;
     priceSum?: number;
-    recipient?: CaringRecipient;
+    recipient?: CaringRecipientReq;
     recipientId?: number;
     requestSum?: number;
-    schedules?: Array<ServiceSchedule>;
+    schedules?: Array<ServiceScheduleReq>;
     updatedAt?: string;
     workCenterId?: number;
 };

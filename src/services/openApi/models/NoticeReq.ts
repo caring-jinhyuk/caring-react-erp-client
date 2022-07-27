@@ -2,7 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type Notice = {
+export type NoticeReq = {
     body?: string;
     centerIdList?: Array<number>;
     createdAt?: string;
@@ -11,7 +11,7 @@ export type Notice = {
     fixed?: boolean;
     id?: number;
     lastEdit?: number;
-    noticeFor?: 'Admin' | 'Center' | 'ContactCenter' | 'CenterChief' | 'AccountingFirm' | 'FinancialManager' | 'Infra';
+    noticeFor?: 'AccountingFirm' | 'Admin' | 'Center' | 'CenterChief' | 'ContactCenter' | 'FinancialManager' | 'Infra';
     title?: string;
     updatedAt?: string;
 };

@@ -2,14 +2,15 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { CaringProvider } from './CaringProvider';
+import type { CaringProviderReq } from './CaringProviderReq';
 import type { Dependent } from './Dependent';
 
-export type InsuranceUpdateRequest = {
+export type InsuranceUpdateRequestReq = {
     accidentDate?: string;
     accidentPrice?: number;
     approvedAt?: string;
     changeUser?: number;
+    createdAt?: string;
     dependents?: Array<Dependent>;
     employDate?: string;
     employPrice?: number;
@@ -22,7 +23,7 @@ export type InsuranceUpdateRequest = {
     moveConfirmRequest?: string;
     pensionDate?: string;
     pensionPrice?: number;
-    provider?: CaringProvider;
+    provider?: CaringProviderReq;
     providerId?: number;
     reqDetail?: string;
     requestedAt?: string;
@@ -30,8 +31,9 @@ export type InsuranceUpdateRequest = {
     requirementReason?: string;
     requirementReasonCategory?: string;
     summary?: string;
-    updateState?: 'PENDING' | 'DONE' | 'REJECT';
-    updateType?: 'GET' | 'WITHDRAW' | 'INSURANCE_CANCEL' | 'INSURANCE_MODIFY' | 'MOVE_CONFIRM' | 'CHANGE_AMOUNT' | 'ETC_CHANGE';
+    updateState?: 'DONE' | 'PENDING' | 'REJECT';
+    updateType?: 'CHANGE_AMOUNT' | 'ETC_CHANGE' | 'GET' | 'INSURANCE_CANCEL' | 'INSURANCE_MODIFY' | 'MOVE_CONFIRM' | 'WITHDRAW';
+    updatedAt?: string;
     workHours?: number;
     workType?: string;
 };

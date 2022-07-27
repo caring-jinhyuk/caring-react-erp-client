@@ -2,12 +2,12 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { Notice } from './Notice';
+import type { NoticeRes } from './NoticeRes';
 import type { Pageable } from './Pageable';
 import type { Sort } from './Sort';
 
 export type Page_Notice_ = {
-    content?: Array<Notice>;
+    content?: Array<NoticeRes>;
     empty?: boolean;
     first?: boolean;
     last?: boolean;

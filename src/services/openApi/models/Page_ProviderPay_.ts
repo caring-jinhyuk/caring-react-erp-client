@@ -3,11 +3,11 @@
 /* eslint-disable */
 
 import type { Pageable } from './Pageable';
-import type { ProviderPay } from './ProviderPay';
+import type { ProviderPayRes } from './ProviderPayRes';
 import type { Sort } from './Sort';
 
 export type Page_ProviderPay_ = {
-    content?: Array<ProviderPay>;
+    content?: Array<ProviderPayRes>;
     empty?: boolean;
     first?: boolean;
     last?: boolean;

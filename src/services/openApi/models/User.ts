@@ -2,7 +2,6 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { Builder } from './Builder';
 import type { CaringProvider } from './CaringProvider';
 
 export type User = {
@@ -11,11 +10,10 @@ export type User = {
     id?: number;
     name?: string;
     password?: string;
-    permissions?: Array<'Admin' | 'CenterGet' | 'ApproveInsuranceUpdate' | 'UserUpdate' | 'LoadConnectedUser'>;
+    permissions?: Array<'Admin' | 'ApproveInsuranceUpdate' | 'CenterGet' | 'LoadConnectedUser' | 'UserUpdate'>;
     phone?: string;
-    properties?: Builder;
     provider?: CaringProvider;
-    role?: 'Admin' | 'Center' | 'ContactCenter' | 'CenterChief' | 'AccountingFirm' | 'FinancialManager' | 'Infra';
+    role?: 'AccountingFirm' | 'Admin' | 'Center' | 'CenterChief' | 'ContactCenter' | 'FinancialManager' | 'Infra';
     sendNumber?: string;
 };
 

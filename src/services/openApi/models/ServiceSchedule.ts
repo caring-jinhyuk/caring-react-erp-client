@@ -2,7 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { WorkCenter } from './WorkCenter';
+import type { WorkCenterRes } from './WorkCenterRes';
 
 export type ServiceSchedule = {
     etc?: any;
@@ -20,7 +20,7 @@ export type ServiceSchedule = {
     serviceType?: string;
     serviceUntil?: string;
     type?: string;
-    workCenter?: WorkCenter;
+    workCenter?: WorkCenterRes;
     yyyyMM?: string;
 };
 

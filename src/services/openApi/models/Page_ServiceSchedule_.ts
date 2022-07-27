@@ -3,11 +3,11 @@
 /* eslint-disable */
 
 import type { Pageable } from './Pageable';
-import type { ServiceSchedule } from './ServiceSchedule';
+import type { ServiceScheduleRes } from './ServiceScheduleRes';
 import type { Sort } from './Sort';
 
 export type Page_ServiceSchedule_ = {
-    content?: Array<ServiceSchedule>;
+    content?: Array<ServiceScheduleRes>;
     empty?: boolean;
     first?: boolean;
     last?: boolean;

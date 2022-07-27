@@ -2,26 +2,26 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { AddressInfo } from './AddressInfo';
-import type { CaringProvider } from './CaringProvider';
-import type { CaringRecipient } from './CaringRecipient';
+import type { AddressInfoRes } from './AddressInfoRes';
+import type { CaringProviderRes } from './CaringProviderRes';
+import type { CaringRecipientRes } from './CaringRecipientRes';
 import type { Contractor } from './Contractor';
 import type { ProviderLicense } from './ProviderLicense';
-import type { User } from './User';
-import type { WorkCenter } from './WorkCenter';
+import type { UserRes } from './UserRes';
+import type { WorkCenterRes } from './WorkCenterRes';
 
-export type CaringContract = {
-    caringProvider?: CaringProvider;
-    caringProvider2?: CaringProvider;
-    caringProviderJson?: CaringProvider;
-    caringProviderJson2?: CaringProvider;
-    caringProviderModel?: CaringProvider;
-    caringProviderModel2?: CaringProvider;
+export type CaringContractRes = {
+    caringProvider?: CaringProviderRes;
+    caringProvider2?: CaringProviderRes;
+    caringProviderJson?: CaringProviderRes;
+    caringProviderJson2?: CaringProviderRes;
+    caringProviderModel?: CaringProviderRes;
+    caringProviderModel2?: CaringProviderRes;
     caringProviderSelected?: boolean;
     caringProviderSelected2?: boolean;
-    caringRecipient?: CaringRecipient;
-    caringRecipientJson?: CaringRecipient;
-    caringRecipientModel?: CaringRecipient;
+    caringRecipient?: CaringRecipientRes;
+    caringRecipientJson?: CaringRecipientRes;
+    caringRecipientModel?: CaringRecipientRes;
     caringRecipientSelected?: boolean;
     centerSelfContract?: boolean;
     checks?: any;
@@ -29,7 +29,7 @@ export type CaringContract = {
     contractDateHistory?: Array<any>;
     createdAt?: string;
     csManager?: string;
-    csUser?: User;
+    csUser?: UserRes;
     deleted?: boolean;
     editable?: boolean;
     files?: string;
@@ -38,13 +38,13 @@ export type CaringContract = {
     id?: number;
     manager?: string;
     managerSocial?: string;
-    managerSocialUser?: User;
-    managerUser?: User;
+    managerSocialUser?: UserRes;
+    managerUser?: UserRes;
     memo?: string;
     name?: string;
     name2?: string;
     phone?: string;
-    providerAddress?: AddressInfo;
+    providerAddress?: AddressInfoRes;
     providerBirthDate?: string;
     providerContractDate?: string;
     providerContractHistory?: Array<any>;
@@ -52,9 +52,9 @@ export type CaringContract = {
     providerIdNumber?: string;
     providerLicenses?: Array<ProviderLicense>;
     providerPhone?: string;
-    providerPosition?: 'Caregiver' | 'SocialWorker' | 'Nurse' | 'CenterManager' | 'NurseAssi' | 'CaregiverMonthPay' | 'NurseMonthPay' | 'NurseAssiMonthPay';
+    providerPosition?: 'Caregiver' | 'CaregiverMonthPay' | 'CenterManager' | 'Nurse' | 'NurseAssi' | 'NurseAssiMonthPay' | 'NurseMonthPay' | 'SocialWorker';
     providerPositionName?: string;
-    recipientAddress?: AddressInfo;
+    recipientAddress?: AddressInfoRes;
     recipientBirthDate?: string;
     recipientContractor?: Contractor;
     recipientIdNumber?: string;
@@ -65,15 +65,15 @@ export type CaringContract = {
     relation?: string;
     relationProviderRecipient?: string;
     requestDate?: string;
-    serviceType?: 'FAMILY' | 'NORMAL' | 'FAMILY60' | 'FAMILY90' | 'VISITBATH' | 'VISITCARE';
+    serviceType?: 'FAMILY' | 'FAMILY60' | 'FAMILY90' | 'NORMAL' | 'VISITBATH' | 'VISITCARE';
     signDate?: string;
-    state?: 'CONTRACT_PENDING' | 'CONTRACT_PROCESSING' | 'CONTRACT_DONE' | 'CONTRACT_PRE_PROCESSING' | 'CONTRACT_LICENSE' | 'CONTRACT_CANCEL';
+    state?: 'CONTRACT_CANCEL' | 'CONTRACT_DONE' | 'CONTRACT_LICENSE' | 'CONTRACT_PENDING' | 'CONTRACT_PRE_PROCESSING' | 'CONTRACT_PROCESSING';
     summary?: string;
     text?: string;
     time60?: boolean;
     time90?: boolean;
     timeDayAndNight?: boolean;
-    type?: 'FAMILY' | 'NORMAL' | 'FAMILY60' | 'FAMILY90' | 'VISITBATH' | 'VISITCARE';
-    workCenter?: WorkCenter;
+    type?: 'FAMILY' | 'FAMILY60' | 'FAMILY90' | 'NORMAL' | 'VISITBATH' | 'VISITCARE';
+    workCenter?: WorkCenterRes;
 };
 

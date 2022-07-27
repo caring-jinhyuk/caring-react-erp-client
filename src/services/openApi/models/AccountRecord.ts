@@ -2,7 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { WorkCenter } from './WorkCenter';
+import type { WorkCenterRes } from './WorkCenterRes';
 
 export type AccountRecord = {
     balance?: string;
@@ -21,6 +21,6 @@ export type AccountRecord = {
     type?: string;
     verify?: string;
     withdraw?: string;
-    workCenter?: WorkCenter;
+    workCenter?: WorkCenterRes;
 };
 

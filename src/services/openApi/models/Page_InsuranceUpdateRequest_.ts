@@ -2,12 +2,12 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { InsuranceUpdateRequest } from './InsuranceUpdateRequest';
+import type { InsuranceUpdateRequestRes } from './InsuranceUpdateRequestRes';
 import type { Pageable } from './Pageable';
 import type { Sort } from './Sort';
 
 export type Page_InsuranceUpdateRequest_ = {
-    content?: Array<InsuranceUpdateRequest>;
+    content?: Array<InsuranceUpdateRequestRes>;
     empty?: boolean;
     first?: boolean;
     last?: boolean;
