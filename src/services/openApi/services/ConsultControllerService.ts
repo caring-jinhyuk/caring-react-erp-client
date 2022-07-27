@@ -22,7 +22,7 @@ export class ConsultControllerService {
     ): CancelablePromise<Consult | any> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/api/consult',
+            url: '/consult',
             body: consult,
             errors: {
                 401: `Unauthorized`,
@@ -43,7 +43,7 @@ export class ConsultControllerService {
     ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'DELETE',
-            url: '/api/consult',
+            url: '/consult',
             query: {
                 'id': id,
             },
@@ -65,7 +65,7 @@ export class ConsultControllerService {
     ): CancelablePromise<number> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/consult/HRCount',
+            url: '/consult/HRCount',
             query: {
                 'state': state,
             },
@@ -94,7 +94,7 @@ export class ConsultControllerService {
     ): CancelablePromise<Array<Consult>> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/consult/Longtime',
+            url: '/consult/Longtime',
             query: {
                 'end_date': endDate,
                 'manager': manager,
@@ -132,7 +132,7 @@ export class ConsultControllerService {
     ): CancelablePromise<Array<Consult>> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/consult/LongtimeMessage',
+            url: '/consult/LongtimeMessage',
             query: {
                 'end_date': endDate,
                 'manager': manager,
@@ -161,7 +161,7 @@ export class ConsultControllerService {
     ): CancelablePromise<Array<Consult>> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/consult/MyPick',
+            url: '/consult/MyPick',
             query: {
                 'managerName': managerName,
             },
@@ -184,7 +184,7 @@ export class ConsultControllerService {
     ): CancelablePromise<Consult> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/consult/Phone',
+            url: '/consult/Phone',
             query: {
                 'phone': phone,
             },
@@ -213,7 +213,7 @@ export class ConsultControllerService {
     ): CancelablePromise<Array<Consult>> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/consult/RecallList',
+            url: '/consult/RecallList',
             query: {
                 'end_date': endDate,
                 'manager': manager,
@@ -243,7 +243,7 @@ export class ConsultControllerService {
     ): CancelablePromise<Page_Consult_> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/consult/Reservation',
+            url: '/consult/Reservation',
             query: {
                 'manager': manager,
                 'page': page,
@@ -268,7 +268,7 @@ export class ConsultControllerService {
     ): CancelablePromise<boolean> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/consult/SamePhone',
+            url: '/consult/SamePhone',
             query: {
                 'phone': phone,
             },
@@ -293,7 +293,7 @@ export class ConsultControllerService {
     ): CancelablePromise<Page_Consult_> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/consult/goodbye',
+            url: '/consult/goodbye',
             query: {
                 'page': page,
                 'size': size,
@@ -331,7 +331,7 @@ export class ConsultControllerService {
     ): CancelablePromise<Page_Consult_> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/consult/list',
+            url: '/consult/list',
             query: {
                 'from': from,
                 'keyword': keyword,
@@ -363,7 +363,7 @@ export class ConsultControllerService {
     ): CancelablePromise<Array<Consult>> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/consult/list/all',
+            url: '/consult/list/all',
             query: {
                 'from': from,
                 'to': to,
@@ -387,7 +387,7 @@ export class ConsultControllerService {
     ): CancelablePromise<Array<Consult>> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/consult/list/target',
+            url: '/consult/list/target',
             query: {
                 'managerName': managerName,
             },
@@ -414,7 +414,7 @@ export class ConsultControllerService {
     ): CancelablePromise<Page_Consult_> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/consult/progress',
+            url: '/consult/progress',
             query: {
                 'page': page,
                 'progress': progress,
@@ -441,7 +441,7 @@ export class ConsultControllerService {
     ): CancelablePromise<Page_Consult_> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/consult/reason',
+            url: '/consult/reason',
             query: {
                 'page': page,
                 'size': size,

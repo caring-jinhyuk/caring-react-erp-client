@@ -15,7 +15,7 @@ export class BasicErrorControllerService {
     public static errorUsingGet(): CancelablePromise<Record<string, any>> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/error',
+            url: '/error',
             errors: {
                 401: `Unauthorized`,
                 403: `Forbidden`,
@@ -32,7 +32,7 @@ export class BasicErrorControllerService {
     public static errorUsingHead(): CancelablePromise<Record<string, any>> {
         return __request(OpenAPI, {
             method: 'HEAD',
-            url: '/api/error',
+            url: '/error',
             errors: {
                 401: `Unauthorized`,
                 403: `Forbidden`,
@@ -48,7 +48,7 @@ export class BasicErrorControllerService {
     public static errorUsingPost(): CancelablePromise<Record<string, any>> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/api/error',
+            url: '/error',
             errors: {
                 401: `Unauthorized`,
                 403: `Forbidden`,
@@ -65,7 +65,7 @@ export class BasicErrorControllerService {
     public static errorUsingPut(): CancelablePromise<Record<string, any>> {
         return __request(OpenAPI, {
             method: 'PUT',
-            url: '/api/error',
+            url: '/error',
             errors: {
                 401: `Unauthorized`,
                 403: `Forbidden`,
@@ -82,7 +82,7 @@ export class BasicErrorControllerService {
     public static errorUsingDelete(): CancelablePromise<Record<string, any>> {
         return __request(OpenAPI, {
             method: 'DELETE',
-            url: '/api/error',
+            url: '/error',
             errors: {
                 401: `Unauthorized`,
                 403: `Forbidden`,
@@ -98,7 +98,7 @@ export class BasicErrorControllerService {
     public static errorUsingOptions(): CancelablePromise<Record<string, any>> {
         return __request(OpenAPI, {
             method: 'OPTIONS',
-            url: '/api/error',
+            url: '/error',
             errors: {
                 401: `Unauthorized`,
                 403: `Forbidden`,
@@ -114,7 +114,7 @@ export class BasicErrorControllerService {
     public static errorUsingPatch(): CancelablePromise<Record<string, any>> {
         return __request(OpenAPI, {
             method: 'PATCH',
-            url: '/api/error',
+            url: '/error',
             errors: {
                 401: `Unauthorized`,
                 403: `Forbidden`,

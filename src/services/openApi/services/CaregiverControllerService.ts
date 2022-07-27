@@ -22,7 +22,7 @@ export class CaregiverControllerService {
     ): CancelablePromise<Caregiver> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/caregiver',
+            url: '/caregiver',
             query: {
                 'phone': phone,
             },
@@ -46,7 +46,7 @@ export class CaregiverControllerService {
     ): CancelablePromise<Caregiver | any> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/api/caregiver',
+            url: '/caregiver',
             body: caregiver,
             errors: {
                 401: `Unauthorized`,
@@ -67,7 +67,7 @@ export class CaregiverControllerService {
     ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'DELETE',
-            url: '/api/caregiver',
+            url: '/caregiver',
             query: {
                 'id': id,
             },
@@ -79,14 +79,14 @@ export class CaregiverControllerService {
     }
 
     /**
-     * getCount
+     * getCityCount
      * @returns number OK
      * @throws ApiError
      */
-    public static getCountUsingGet(): CancelablePromise<number> {
+    public static getCityCountUsingGet(): CancelablePromise<number> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/caregiver/Count',
+            url: '/caregiver/Count',
             errors: {
                 401: `Unauthorized`,
                 403: `Forbidden`,
@@ -114,7 +114,7 @@ export class CaregiverControllerService {
     ): CancelablePromise<Array<Caregiver>> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/caregiver/MatchingAllList',
+            url: '/caregiver/MatchingAllList',
             query: {
                 'dementia': dementia,
                 'gender': gender,
@@ -153,7 +153,7 @@ export class CaregiverControllerService {
     ): CancelablePromise<Page_Caregiver_> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/caregiver/MatchingList',
+            url: '/caregiver/MatchingList',
             query: {
                 'dementia': dementia,
                 'gender': gender,
@@ -184,7 +184,7 @@ export class CaregiverControllerService {
     ): CancelablePromise<Array<Caregiver>> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/caregiver/allList',
+            url: '/caregiver/allList',
             query: {
                 'keyword': keyword,
                 'search': search,
@@ -203,12 +203,12 @@ export class CaregiverControllerService {
      * @returns number OK
      * @throws ApiError
      */
-    public static getCityCountUsingGet(
+    public static getCityCountUsingGet1(
         city: string,
     ): CancelablePromise<number> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/caregiver/cityCount',
+            url: '/caregiver/cityCount',
             query: {
                 'city': city,
             },
@@ -231,7 +231,7 @@ export class CaregiverControllerService {
     ): CancelablePromise<Caregiver> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/caregiver/id',
+            url: '/caregiver/id',
             query: {
                 'id': id,
             },
@@ -260,7 +260,7 @@ export class CaregiverControllerService {
     ): CancelablePromise<Page_Caregiver_> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/caregiver/list',
+            url: '/caregiver/list',
             query: {
                 'keyword': keyword,
                 'page': page,
@@ -283,7 +283,7 @@ export class CaregiverControllerService {
     public static getStatisticsListUsingGet(): CancelablePromise<Iterable_Caregiver_> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/caregiver/statistics',
+            url: '/caregiver/statistics',
             errors: {
                 401: `Unauthorized`,
                 403: `Forbidden`,
@@ -304,7 +304,7 @@ export class CaregiverControllerService {
     ): CancelablePromise<Caregiver | any> {
         return __request(OpenAPI, {
             method: 'PUT',
-            url: '/api/caregiver/update',
+            url: '/caregiver/update',
             body: id,
             errors: {
                 401: `Unauthorized`,
@@ -327,7 +327,7 @@ export class CaregiverControllerService {
     ): CancelablePromise<number> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/caregiver/wardCount',
+            url: '/caregiver/wardCount',
             query: {
                 'city': city,
                 'ward': ward,

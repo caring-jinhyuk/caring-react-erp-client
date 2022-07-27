@@ -20,7 +20,7 @@ export type CaringProvider = {
     data?: ProviderData;
     dementiaEduComplete?: boolean;
     exitDate?: string;
-    gender?: 'FEMALE' | 'MALE';
+    gender?: 'MALE' | 'FEMALE';
     hancareId?: string;
     id?: number;
     idNumber?: string;
@@ -30,12 +30,12 @@ export type CaringProvider = {
     name?: string;
     phone?: string;
     phone2?: string;
-    position?: 'Caregiver' | 'CaregiverMonthPay' | 'CenterManager' | 'Nurse' | 'NurseAssi' | 'NurseAssiMonthPay' | 'NurseMonthPay' | 'SocialWorker';
+    position?: 'Caregiver' | 'SocialWorker' | 'Nurse' | 'CenterManager' | 'NurseAssi' | 'CaregiverMonthPay' | 'NurseMonthPay' | 'NurseAssiMonthPay';
     positionName?: string;
     providerLicenses?: Array<ProviderLicense>;
     relation?: string;
     salary?: number;
-    state?: 'Etc' | 'Exit' | 'OnVacation' | 'OnWork' | 'Waiting';
+    state?: 'OnWork' | 'Waiting' | 'OnVacation' | 'Exit' | 'Etc';
     stateDate?: string;
     stateHistory?: Array<any>;
     stateReason?: string;
@@ -47,6 +47,6 @@ export type CaringProvider = {
     updatedAt?: string;
     user?: User;
     workCenter?: WorkCenter;
-    workTypes?: Array<'Bath' | 'Family' | 'Nursing'>;
+    workTypes?: Array<'Family' | 'Bath' | 'Nursing'>;
 };
 

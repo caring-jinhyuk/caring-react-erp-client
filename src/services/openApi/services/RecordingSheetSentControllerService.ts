@@ -20,7 +20,7 @@ export class RecordingSheetSentControllerService {
     ): CancelablePromise<RecordingSheetSent> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/sendRecord',
+            url: '/sendRecord',
             query: {
                 'id': id,
             },
@@ -44,7 +44,7 @@ export class RecordingSheetSentControllerService {
     ): CancelablePromise<RecordingSheetSent | any> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/api/sendRecord',
+            url: '/sendRecord',
             query: {
                 'key': key,
             },
@@ -67,7 +67,7 @@ export class RecordingSheetSentControllerService {
     ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'DELETE',
-            url: '/api/sendRecord',
+            url: '/sendRecord',
             query: {
                 'id': id,
             },
@@ -90,7 +90,7 @@ export class RecordingSheetSentControllerService {
     ): CancelablePromise<Array<RecordingSheetSent> | any> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/api/sendRecord/list',
+            url: '/sendRecord/list',
             body: keys,
             errors: {
                 401: `Unauthorized`,

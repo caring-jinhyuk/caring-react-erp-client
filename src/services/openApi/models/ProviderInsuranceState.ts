@@ -8,20 +8,20 @@ export type ProviderInsuranceState = {
     accidentDate?: string;
     accidentLossDate?: string;
     accidentPrice?: number;
-    accidentState?: 'CHANGE_AMOUNT' | 'ETC_CHANGE' | 'GET' | 'INSURANCE_CANCEL' | 'INSURANCE_MODIFY' | 'MOVE_CONFIRM' | 'WITHDRAW';
+    accidentState?: 'GET' | 'WITHDRAW' | 'INSURANCE_CANCEL' | 'INSURANCE_MODIFY' | 'MOVE_CONFIRM' | 'CHANGE_AMOUNT' | 'ETC_CHANGE';
     dependents?: Array<Dependent>;
     employDate?: string;
     employLossDate?: string;
     employPrice?: number;
-    employState?: 'CHANGE_AMOUNT' | 'ETC_CHANGE' | 'GET' | 'INSURANCE_CANCEL' | 'INSURANCE_MODIFY' | 'MOVE_CONFIRM' | 'WITHDRAW';
+    employState?: 'GET' | 'WITHDRAW' | 'INSURANCE_CANCEL' | 'INSURANCE_MODIFY' | 'MOVE_CONFIRM' | 'CHANGE_AMOUNT' | 'ETC_CHANGE';
     healthDate?: string;
     healthLossDate?: string;
     healthPrice?: number;
-    healthState?: 'CHANGE_AMOUNT' | 'ETC_CHANGE' | 'GET' | 'INSURANCE_CANCEL' | 'INSURANCE_MODIFY' | 'MOVE_CONFIRM' | 'WITHDRAW';
+    healthState?: 'GET' | 'WITHDRAW' | 'INSURANCE_CANCEL' | 'INSURANCE_MODIFY' | 'MOVE_CONFIRM' | 'CHANGE_AMOUNT' | 'ETC_CHANGE';
     pensionDate?: string;
     pensionLossDate?: string;
     pensionPrice?: number;
-    pensionState?: 'CHANGE_AMOUNT' | 'ETC_CHANGE' | 'GET' | 'INSURANCE_CANCEL' | 'INSURANCE_MODIFY' | 'MOVE_CONFIRM' | 'WITHDRAW';
+    pensionState?: 'GET' | 'WITHDRAW' | 'INSURANCE_CANCEL' | 'INSURANCE_MODIFY' | 'MOVE_CONFIRM' | 'CHANGE_AMOUNT' | 'ETC_CHANGE';
     workHours?: number;
 };
 

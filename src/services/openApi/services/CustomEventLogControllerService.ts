@@ -21,7 +21,7 @@ export class CustomEventLogControllerService {
     ): CancelablePromise<CustomEventLog> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/dLog',
+            url: '/dLog',
             query: {
                 'id': id,
             },
@@ -45,7 +45,7 @@ export class CustomEventLogControllerService {
     ): CancelablePromise<CustomEventLog | any> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/api/dLog',
+            url: '/dLog',
             body: customEventLog,
             errors: {
                 401: `Unauthorized`,
@@ -66,7 +66,7 @@ export class CustomEventLogControllerService {
     ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'DELETE',
-            url: '/api/dLog',
+            url: '/dLog',
             query: {
                 'id': id,
             },
@@ -90,7 +90,7 @@ export class CustomEventLogControllerService {
     ): CancelablePromise<Page_CustomEventLog_> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/dLog/list',
+            url: '/dLog/list',
             query: {
                 'page': page,
                 'size': size,

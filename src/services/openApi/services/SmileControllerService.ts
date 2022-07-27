@@ -22,7 +22,7 @@ export class SmileControllerService {
     ): CancelablePromise<Smile | any> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/api/smile',
+            url: '/smile',
             body: smile,
             errors: {
                 401: `Unauthorized`,
@@ -43,7 +43,7 @@ export class SmileControllerService {
     ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'DELETE',
-            url: '/api/smile',
+            url: '/smile',
             query: {
                 'id': id,
             },
@@ -62,7 +62,7 @@ export class SmileControllerService {
     public static getSmileAllListUsingGet(): CancelablePromise<Array<Smile>> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/smile/AllList',
+            url: '/smile/AllList',
             errors: {
                 401: `Unauthorized`,
                 403: `Forbidden`,
@@ -82,7 +82,7 @@ export class SmileControllerService {
     ): CancelablePromise<number> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/smile/count',
+            url: '/smile/count',
             query: {
                 'managerName': managerName,
             },
@@ -113,7 +113,7 @@ export class SmileControllerService {
     ): CancelablePromise<Page_Smile_> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/smile/list',
+            url: '/smile/list',
             query: {
                 'complete': complete,
                 'manager': manager,
@@ -141,7 +141,7 @@ export class SmileControllerService {
     ): CancelablePromise<Smile | any> {
         return __request(OpenAPI, {
             method: 'PUT',
-            url: '/api/smile/update',
+            url: '/smile/update',
             body: id,
             errors: {
                 401: `Unauthorized`,

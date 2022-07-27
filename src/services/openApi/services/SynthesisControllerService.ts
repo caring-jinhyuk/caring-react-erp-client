@@ -22,7 +22,7 @@ export class SynthesisControllerService {
     ): CancelablePromise<Synthesis | any> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/api/synthesis',
+            url: '/synthesis',
             body: synthesis,
             errors: {
                 401: `Unauthorized`,
@@ -43,7 +43,7 @@ export class SynthesisControllerService {
     ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'DELETE',
-            url: '/api/synthesis',
+            url: '/synthesis',
             query: {
                 'id': id,
             },
@@ -62,7 +62,7 @@ export class SynthesisControllerService {
     public static getSynthesisListUsingGet(): CancelablePromise<Iterable_Synthesis_> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/synthesis/list',
+            url: '/synthesis/list',
             errors: {
                 401: `Unauthorized`,
                 403: `Forbidden`,
@@ -84,7 +84,7 @@ export class SynthesisControllerService {
     ): CancelablePromise<Array<Synthesis>> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/synthesis/searchList',
+            url: '/synthesis/searchList',
             query: {
                 'end_date': endDate,
                 'start_date': startDate,
@@ -109,7 +109,7 @@ export class SynthesisControllerService {
     ): CancelablePromise<Synthesis | any> {
         return __request(OpenAPI, {
             method: 'PUT',
-            url: '/api/synthesis/update',
+            url: '/synthesis/update',
             body: id,
             errors: {
                 401: `Unauthorized`,

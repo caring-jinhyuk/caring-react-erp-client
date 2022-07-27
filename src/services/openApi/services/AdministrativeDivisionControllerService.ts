@@ -22,7 +22,7 @@ export class AdministrativeDivisionControllerService {
     ): CancelablePromise<Array<AdministrativeDivision>> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/administrativeDivision',
+            url: '/administrativeDivision',
             query: {
                 'city': city,
                 'ward': ward,
@@ -47,7 +47,7 @@ export class AdministrativeDivisionControllerService {
     ): CancelablePromise<AdministrativeDivision | any> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/api/administrativeDivision',
+            url: '/administrativeDivision',
             body: administrativeDivision,
             errors: {
                 401: `Unauthorized`,
@@ -68,7 +68,7 @@ export class AdministrativeDivisionControllerService {
     ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'DELETE',
-            url: '/api/administrativeDivision',
+            url: '/administrativeDivision',
             query: {
                 'id': id,
             },
@@ -91,7 +91,7 @@ export class AdministrativeDivisionControllerService {
     ): CancelablePromise<AdministrativeDivision | any> {
         return __request(OpenAPI, {
             method: 'PUT',
-            url: '/api/administrativeDivision/update',
+            url: '/administrativeDivision/update',
             body: id,
             errors: {
                 401: `Unauthorized`,

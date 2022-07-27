@@ -4,10 +4,10 @@
 
 import type { Pageable } from './Pageable';
 import type { Sort } from './Sort';
-import type { UserRes } from './UserRes';
+import type { User } from './User';
 
 export type Page_User_ = {
-    content?: Array<UserRes>;
+    content?: Array<User>;
     empty?: boolean;
     first?: boolean;
     last?: boolean;

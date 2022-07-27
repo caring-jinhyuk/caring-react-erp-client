@@ -20,7 +20,7 @@ export class HolidayControllerService {
     ): CancelablePromise<Holiday> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/holiday',
+            url: '/holiday',
             query: {
                 'id': id,
             },
@@ -44,7 +44,7 @@ export class HolidayControllerService {
     ): CancelablePromise<Holiday | any> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/api/holiday',
+            url: '/holiday',
             body: holiday,
             errors: {
                 401: `Unauthorized`,
@@ -65,7 +65,7 @@ export class HolidayControllerService {
     ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'DELETE',
-            url: '/api/holiday',
+            url: '/holiday',
             query: {
                 'id': id,
             },
@@ -87,7 +87,7 @@ export class HolidayControllerService {
     ): CancelablePromise<Array<Holiday>> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/holiday/list',
+            url: '/holiday/list',
             query: {
                 'yyyyMM': yyyyMm,
             },

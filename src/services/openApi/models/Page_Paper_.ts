@@ -3,11 +3,11 @@
 /* eslint-disable */
 
 import type { Pageable } from './Pageable';
-import type { PaperRes } from './PaperRes';
+import type { Paper } from './Paper';
 import type { Sort } from './Sort';
 
 export type Page_Paper_ = {
-    content?: Array<PaperRes>;
+    content?: Array<Paper>;
     empty?: boolean;
     first?: boolean;
     last?: boolean;

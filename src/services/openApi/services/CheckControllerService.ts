@@ -15,7 +15,7 @@ export class CheckControllerService {
     public static healthCheckUsingGet(): CancelablePromise<string> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/',
+            url: '/',
             errors: {
                 401: `Unauthorized`,
                 403: `Forbidden`,
@@ -32,7 +32,7 @@ export class CheckControllerService {
     public static healthCheckUsingHead(): CancelablePromise<string> {
         return __request(OpenAPI, {
             method: 'HEAD',
-            url: '/api/',
+            url: '/',
             errors: {
                 401: `Unauthorized`,
                 403: `Forbidden`,
@@ -49,7 +49,7 @@ export class CheckControllerService {
     public static healthCheckUsingPost(): CancelablePromise<string | any> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/api/',
+            url: '/',
             errors: {
                 401: `Unauthorized`,
                 403: `Forbidden`,
@@ -67,7 +67,7 @@ export class CheckControllerService {
     public static healthCheckUsingPut(): CancelablePromise<string | any> {
         return __request(OpenAPI, {
             method: 'PUT',
-            url: '/api/',
+            url: '/',
             errors: {
                 401: `Unauthorized`,
                 403: `Forbidden`,
@@ -84,7 +84,7 @@ export class CheckControllerService {
     public static healthCheckUsingDelete(): CancelablePromise<string> {
         return __request(OpenAPI, {
             method: 'DELETE',
-            url: '/api/',
+            url: '/',
             errors: {
                 401: `Unauthorized`,
                 403: `Forbidden`,
@@ -100,7 +100,7 @@ export class CheckControllerService {
     public static healthCheckUsingOptions(): CancelablePromise<string> {
         return __request(OpenAPI, {
             method: 'OPTIONS',
-            url: '/api/',
+            url: '/',
             errors: {
                 401: `Unauthorized`,
                 403: `Forbidden`,
@@ -116,7 +116,7 @@ export class CheckControllerService {
     public static healthCheckUsingPatch(): CancelablePromise<string> {
         return __request(OpenAPI, {
             method: 'PATCH',
-            url: '/api/',
+            url: '/',
             errors: {
                 401: `Unauthorized`,
                 403: `Forbidden`,
@@ -132,7 +132,7 @@ export class CheckControllerService {
     public static healthCheckUsingGet1(): CancelablePromise<string> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/health',
+            url: '/health',
             errors: {
                 401: `Unauthorized`,
                 403: `Forbidden`,
@@ -149,7 +149,7 @@ export class CheckControllerService {
     public static healthCheckUsingHead1(): CancelablePromise<string> {
         return __request(OpenAPI, {
             method: 'HEAD',
-            url: '/api/health',
+            url: '/health',
             errors: {
                 401: `Unauthorized`,
                 403: `Forbidden`,
@@ -166,7 +166,7 @@ export class CheckControllerService {
     public static healthCheckUsingPost1(): CancelablePromise<string | any> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/api/health',
+            url: '/health',
             errors: {
                 401: `Unauthorized`,
                 403: `Forbidden`,
@@ -184,7 +184,7 @@ export class CheckControllerService {
     public static healthCheckUsingPut1(): CancelablePromise<string | any> {
         return __request(OpenAPI, {
             method: 'PUT',
-            url: '/api/health',
+            url: '/health',
             errors: {
                 401: `Unauthorized`,
                 403: `Forbidden`,
@@ -201,7 +201,7 @@ export class CheckControllerService {
     public static healthCheckUsingDelete1(): CancelablePromise<string> {
         return __request(OpenAPI, {
             method: 'DELETE',
-            url: '/api/health',
+            url: '/health',
             errors: {
                 401: `Unauthorized`,
                 403: `Forbidden`,
@@ -217,7 +217,7 @@ export class CheckControllerService {
     public static healthCheckUsingOptions1(): CancelablePromise<string> {
         return __request(OpenAPI, {
             method: 'OPTIONS',
-            url: '/api/health',
+            url: '/health',
             errors: {
                 401: `Unauthorized`,
                 403: `Forbidden`,
@@ -233,7 +233,7 @@ export class CheckControllerService {
     public static healthCheckUsingPatch1(): CancelablePromise<string> {
         return __request(OpenAPI, {
             method: 'PATCH',
-            url: '/api/health',
+            url: '/health',
             errors: {
                 401: `Unauthorized`,
                 403: `Forbidden`,
