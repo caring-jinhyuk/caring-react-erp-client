@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import Card, { CardActions, CardBody, CardHeader } from '../../../components/bootstrap/Card';
-import Select from '../../../components/bootstrap/forms/Select';
-import Input from '../../../components/bootstrap/forms/Input';
+import Card, { CardActions, CardBody, CardHeader } from '../../../../components/bootstrap/Card';
+import Select from '../../../../components/bootstrap/forms/Select';
+import Input from '../../../../components/bootstrap/forms/Input';
 import dummy from '../dummy/caregiverListData.json';
 import CaregiverDetail from './CaregiverDetail';
-import { Burden } from '../../../services/openApi';
-import Button from '../../../components/bootstrap/Button';
+import { Burden } from '../../../../services/openApi';
+import Button from '../../../../components/bootstrap/Button';
 
 const CaregiverDashboard = () => {
 	const [selectCaregiver, setSelectCaregiver] = useState<any>();

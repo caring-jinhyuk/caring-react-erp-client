@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Card, { CardBody } from '../../../components/bootstrap/Card';
-import Chart from '../../../components/extras/Chart';
+import Card, { CardBody } from '../../../../components/bootstrap/Card';
+import Chart from '../../../../components/extras/Chart';
 
 const CaregiverDashboard = () => {
 	return (

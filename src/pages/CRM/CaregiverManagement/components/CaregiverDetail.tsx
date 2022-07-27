@@ -3,16 +3,16 @@ import OffCanvas, {
 	OffCanvasHeader,
 	OffCanvasTitle,
 	OffCanvasBody,
-} from '../../../components/bootstrap/OffCanvas';
-import { Burden } from '../../../services/openApi';
+} from '../../../../components/bootstrap/OffCanvas';
+import { Burden } from '../../../../services/openApi';
 import PropTypes, { object } from 'prop-types';
 import { useFormik } from 'formik';
-import Card, { CardBody, CardHeader } from '../../../components/bootstrap/Card';
-import Input from '../../../components/bootstrap/forms/Input';
-import FormGroup from '../../../components/bootstrap/forms/FormGroup';
-import Button from '../../../components/bootstrap/Button';
-import Checks, { ChecksGroup } from '../../../components/bootstrap/forms/Checks';
-import Textarea from '../../../components/bootstrap/forms/Textarea';
+import Card, { CardBody, CardHeader } from '../../../../components/bootstrap/Card';
+import Input from '../../../../components/bootstrap/forms/Input';
+import FormGroup from '../../../../components/bootstrap/forms/FormGroup';
+import Button from '../../../../components/bootstrap/Button';
+import Checks, { ChecksGroup } from '../../../../components/bootstrap/forms/Checks';
+import Textarea from '../../../../components/bootstrap/forms/Textarea';
 
 interface ICaregiverDetail {
 	caregiver?: any;
