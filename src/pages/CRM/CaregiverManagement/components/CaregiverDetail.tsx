@@ -6,7 +6,7 @@ import OffCanvas, {
 } from '../../../../components/bootstrap/OffCanvas';
 import { Burden } from '../../../../services/openApi';
 import PropTypes, { object } from 'prop-types';
-import { useFormik } from 'formik';
+import { Field, Form, useFormik } from 'formik';
 import Card, { CardBody, CardHeader } from '../../../../components/bootstrap/Card';
 import Input from '../../../../components/bootstrap/forms/Input';
 import FormGroup from '../../../../components/bootstrap/forms/FormGroup';
@@ -22,12 +22,11 @@ interface ICaregiverDetail {
 
 const CaregiverDetail: FC<ICaregiverDetail> = ({ caregiver, open, setOpen }) => {
 	const formik = useFormik({
-		initialValues: {
-			caregiver: caregiver,
-		},
+		enableReinitialize: true,
+		initialValues: caregiver,
 		// eslint-disable-next-line no-unused-vars
 		onSubmit: (values) => {
-			// alert(JSON.stringify(values, null, 2));
+			alert(JSON.stringify(values, null, 2));
 		},
 	});
 
@@ -39,7 +38,7 @@ const CaregiverDetail: FC<ICaregiverDetail> = ({ caregiver, open, setOpen }) => 
 						<div className='row'>
 							<div className='col-4'>상세정보</div>
 							<div className='col-8'>
-								<Button icon={'Calculate'} color={'success'}>
+								<Button onClick={() => formik.submitForm()} icon={'Calculate'} color={'success'}>
 									저장하기
 								</Button>
 								<Button icon={'Save'} color={'primary'}>
@@ -54,44 +53,22 @@ const CaregiverDetail: FC<ICaregiverDetail> = ({ caregiver, open, setOpen }) => 
 					<Card>
 						<CardHeader>개인정보</CardHeader>
 						<CardBody>
-							<FormGroup id='caregiver.name' className='mb-3' isFloating={true} label='이름'>
-								<Input
-									type='text'
-									value={formik.values.caregiver.name}
-									onChange={formik.handleChange}
-								/>
+							<FormGroup id='name' className='mb-3' isFloating={true} label='이름'>
+								<Input type='text' value={formik.values.name} onChange={formik.handleChange} />
 							</FormGroup>
-							<FormGroup id='caregiver.year' className='mb-3' isFloating={true} label='출생년도'>
-								<Input
-									type='text'
-									value={formik.values.caregiver.year}
-									onChange={formik.handleChange}
-								/>
+							<FormGroup id='year' className='mb-3' isFloating={true} label='출생년도'>
+								<Input type='text' value={formik.values.year} onChange={formik.handleChange} />
 							</FormGroup>
-							<FormGroup id='caregiver.phone' className='mb-3' isFloating={true} label='번호'>
-								<Input
-									type='text'
-									value={formik.values.caregiver.phone}
-									onChange={formik.handleChange}
-								/>
+							<FormGroup id='phone' className='mb-3' isFloating={true} label='번호'>
+								<Input type='text' value={formik.values.phone} onChange={formik.handleChange} />
 							</FormGroup>
-							<FormGroup id='caregiver.gender' label='성별'>
+							<FormGroup id='gender' label='성별'>
 								<div className='row'>
 									<div className='col-6'>
-										<Checks
-											type='radio'
-											name='caregiver.gender'
-											label='남'
-											onChange={formik.handleChange}
-										/>
+										<Checks type='radio' name='gender' label='남' onChange={formik.handleChange} />
 									</div>
 									<div className='col-6'>
-										<Checks
-											type='radio'
-											name='caregiver.gender'
-											label='여'
-											onChange={formik.handleChange}
-										/>
+										<Checks type='radio' name='gender' label='여' onChange={formik.handleChange} />
 									</div>
 								</div>
 							</FormGroup>
@@ -102,8 +79,8 @@ const CaregiverDetail: FC<ICaregiverDetail> = ({ caregiver, open, setOpen }) => 
 											type='radio'
 											name='caregiver.certificate'
 											label='유'
-											value='true'
-											checked={formik.values.caregiver.certificate}
+											value='certificateYess'
+											onChange={formik.handleChange}
 										/>
 									</div>
 									<div className='col-6'>
@@ -111,8 +88,8 @@ const CaregiverDetail: FC<ICaregiverDetail> = ({ caregiver, open, setOpen }) => 
 											type='radio'
 											name='caregiver.certificate'
 											label='무'
-											value='false'
-											checked={formik.values.caregiver.certificate}
+											value='certificateNo'
+											onChange={formik.handleChange}
 										/>
 									</div>
 								</div>
@@ -123,17 +100,11 @@ const CaregiverDetail: FC<ICaregiverDetail> = ({ caregiver, open, setOpen }) => 
 					<Card>
 						<CardHeader>희망지역</CardHeader>
 						<CardBody>
-							<FormGroup id='caregiver.information' label='요양보호사의 정보'>
-								<Textarea
-									value={formik.values.caregiver.information}
-									onChange={formik.handleChange}
-								/>
+							<FormGroup id='information' label='요양보호사의 정보'>
+								<Textarea value={formik.values.information} onChange={formik.handleChange} />
 							</FormGroup>
-							<FormGroup id='caregiver.takerProgress' label='수급자별 진행상황'>
-								<Textarea
-									value={formik.values.caregiver.takerProgress}
-									onChange={formik.handleChange}
-								/>
+							<FormGroup id='takerProgress' label='수급자별 진행상황'>
+								<Textarea value={formik.values.takerProgress} onChange={formik.handleChange} />
 							</FormGroup>
 						</CardBody>
 					</Card>
@@ -160,11 +131,7 @@ const CaregiverDetail: FC<ICaregiverDetail> = ({ caregiver, open, setOpen }) => 
 								</div>
 							</FormGroup>
 							<FormGroup id='caregiver.career' isFloating={true} label='경력'>
-								<Input
-									type='text'
-									value={formik.values.caregiver.career}
-									onChange={formik.handleChange}
-								/>
+								<Input type='text' value={formik.values.career} onChange={formik.handleChange} />
 							</FormGroup>
 							<FormGroup id='prefer_gender' label='선호하는 어르신 성별'>
 								<div className='row'>
@@ -199,10 +166,13 @@ const CaregiverDetail: FC<ICaregiverDetail> = ({ caregiver, open, setOpen }) => 
 							<FormGroup id='privacy' label='개인정보 활용동의'>
 								<div className='row'>
 									<div className='col-6'>
-										<Checks type='radio' name='privacy' label='동의' value='true' />
-									</div>
-									<div className='col-6'>
-										<Checks type='radio' name='privacy' label='미동의' value='false' />
+										<Checks
+											type='switch'
+											name='privacy'
+											label='동의'
+											onChange={formik.handleChange}
+											value={formik.values.privacy}
+										/>
 									</div>
 								</div>
 							</FormGroup>
