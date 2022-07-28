@@ -14,6 +14,7 @@ import Button from '../../../../components/bootstrap/Button';
 import Checks, { ChecksGroup } from '../../../../components/bootstrap/forms/Checks';
 import Textarea from '../../../../components/bootstrap/forms/Textarea';
 import showNotification from '../../../../components/extras/showNotification';
+import AddressPicker from '../../../../components/AddressPicker';
 
 interface ICaregiverDetail {
 	caregiver?: any;
@@ -121,6 +122,7 @@ const CaregiverDetail: FC<ICaregiverDetail> = ({ caregiver, open, setOpen }) => 
 					<Card>
 						<CardHeader>희망지역</CardHeader>
 						<CardBody>
+							<AddressPicker />
 							<FormGroup id='information' label='요양보호사의 정보'>
 								<Textarea value={formik.values.information} onChange={formik.handleChange} />
 							</FormGroup>
