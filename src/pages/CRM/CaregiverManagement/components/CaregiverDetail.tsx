@@ -122,7 +122,13 @@ const CaregiverDetail: FC<ICaregiverDetail> = ({ caregiver, open, setOpen }) => 
 					<Card>
 						<CardHeader>희망지역</CardHeader>
 						<CardBody>
-							<AddressPicker />
+							<AddressPicker
+								cityId={'city'}
+								cityValue={formik.values.city}
+								wardId={'ward'}
+								wardValue={formik.values.ward}
+								onChange={formik.handleChange}
+							/>
 							<FormGroup id='information' label='요양보호사의 정보'>
 								<Textarea value={formik.values.information} onChange={formik.handleChange} />
 							</FormGroup>
