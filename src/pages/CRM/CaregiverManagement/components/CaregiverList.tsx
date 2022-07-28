@@ -47,7 +47,7 @@ const CaregiverList = () => {
 			<Card>
 				<CardBody>
 					<div className='row pb-3'>
-						<div className='col-1'>
+						<div className='col-2'>
 							<Select
 								id='caregiver-keyword'
 								onChange={handleOnChange}
@@ -58,7 +58,7 @@ const CaregiverList = () => {
 								<option value={'이름'}>이름</option>
 							</Select>
 						</div>
-						<div className='col-5'>
+						<div className='col-4'>
 							<Input
 								id='caregiver-keyword'
 								value={search}

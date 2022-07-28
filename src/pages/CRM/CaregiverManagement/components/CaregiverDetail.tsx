@@ -13,6 +13,7 @@ import FormGroup from '../../../../components/bootstrap/forms/FormGroup';
 import Button from '../../../../components/bootstrap/Button';
 import Checks, { ChecksGroup } from '../../../../components/bootstrap/forms/Checks';
 import Textarea from '../../../../components/bootstrap/forms/Textarea';
+import showNotification from '../../../../components/extras/showNotification';
 
 interface ICaregiverDetail {
 	caregiver?: any;
@@ -32,8 +33,19 @@ const CaregiverDetail: FC<ICaregiverDetail> = ({ caregiver, open, setOpen }) => 
 	});
 
 	const saveCaregiver = async (value: Caregiver) => {
-		const response = await CaregiverControllerService.saveCaregiverUsingPost(value);
-		console.log(response);
+		try {
+			const response = await CaregiverControllerService.saveCaregiverUsingPost(value);
+			showNotification('등록 성공', value.name + '님의 정보가 등록되었습니다.');
+			setOpen(false);
+		} catch (e) {}
+	};
+
+	const deleteCaregiver = async (id: number) => {
+		CaregiverControllerService.deleteCaregiverUsingDelete(id)
+			.then((value) => {})
+			.catch((error) => {
+				showNotification('삭제 실패', '');
+			});
 	};
 
 	return (
@@ -47,10 +59,13 @@ const CaregiverDetail: FC<ICaregiverDetail> = ({ caregiver, open, setOpen }) => 
 								<Button onClick={() => formik.submitForm()} icon={'Calculate'} color={'success'}>
 									저장하기
 								</Button>
-								<Button icon={'Save'} color={'primary'}>
+								<Button
+									onClick={() => deleteCaregiver(caregiver.id)}
+									icon={'Save'}
+									color={'primary'}>
 									삭제하기
 								</Button>
-								<Button icon={'Close'} />
+								<Button onClick={() => setOpen(false)} icon={'Close'} />
 							</div>
 						</div>
 					</OffCanvasTitle>
@@ -136,7 +151,7 @@ const CaregiverDetail: FC<ICaregiverDetail> = ({ caregiver, open, setOpen }) => 
 									</div>
 								</div>
 							</FormGroup>
-							<FormGroup id='caregiver.career' isFloating={true} label='경력'>
+							<FormGroup id='career' isFloating={true} label='경력'>
 								<Input type='text' value={formik.values.career} onChange={formik.handleChange} />
 							</FormGroup>
 							<FormGroup id='prefer_gender' label='선호하는 어르신 성별'>
@@ -152,20 +167,26 @@ const CaregiverDetail: FC<ICaregiverDetail> = ({ caregiver, open, setOpen }) => 
 							<FormGroup id='dementia' label='치매교육 이수'>
 								<div className='row'>
 									<div className='col-6'>
-										<Checks type='radio' name='dementia' label='O' value='true' />
-									</div>
-									<div className='col-6'>
-										<Checks type='radio' name='dementia' label='X' value='false' />
+										<Checks
+											type='switch'
+											name='dementia'
+											label='치매교육 이수함'
+											onChange={formik.handleChange}
+											checked={formik.values.dementia!}
+										/>
 									</div>
 								</div>
 							</FormGroup>
 							<FormGroup id='covid' label='코로나 백신 접종 여부'>
 								<div className='row'>
 									<div className='col-6'>
-										<Checks type='radio' name='covid' label='접종' value='true' />
-									</div>
-									<div className='col-6'>
-										<Checks type='radio' name='covid' label='미접종' value='false' />
+										<Checks
+											type='switch'
+											name='covid'
+											label='접종함'
+											onChange={formik.handleChange}
+											checked={formik.values.covid!}
+										/>
 									</div>
 								</div>
 							</FormGroup>
@@ -175,9 +196,9 @@ const CaregiverDetail: FC<ICaregiverDetail> = ({ caregiver, open, setOpen }) => 
 										<Checks
 											type='switch'
 											name='privacy'
-											label='동의'
+											label='동의함'
 											onChange={formik.handleChange}
-											value={formik.values.privacy}
+											checked={formik.values.privacy!}
 										/>
 									</div>
 								</div>
