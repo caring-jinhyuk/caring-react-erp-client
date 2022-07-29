@@ -16,3 +16,17 @@ export function excelDownload(fileName: string, data: any[][]) {
 	XLSX.writeFile(wb, fileName + '.xlsx');
 	return;
 }
+
+export function downloadCsv(rows: string[][], name: string) {
+	let csvContent = '';
+	rows.forEach(function (rowArray) {
+		let row = rowArray.join(',');
+		csvContent += row + '\r\n';
+	});
+	const pom = document.createElement('a');
+	const blob = new Blob(['\ufeff' + csvContent], { type: 'text/csv;charset=utf-8;' });
+	const url = URL.createObjectURL(blob);
+	pom.href = url;
+	pom.setAttribute('download', name);
+	pom.click();
+}
