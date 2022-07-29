@@ -6,17 +6,32 @@ import CaregiverDetail from './CaregiverDetail';
 import { Caregiver, CaregiverControllerService } from '../../../../services/openApi';
 import Button from '../../../../components/bootstrap/Button';
 import { downloadCsv } from '../../../../utils/XlsxUtils';
+import { atom, selector, selectorFamily, useRecoilState, useRecoilValue } from 'recoil';
+import { v1 } from 'uuid';
+import key from '../../../../components/icon/bootstrap/Key';
+
+type NoticeQueryParam = {
+	keyword: string;
+	search: string;
+};
+
+const getCaregiverList = selector<Caregiver[]>({
+	key: `${v1()}`,
+	get: async () => {
+		const response = await CaregiverControllerService.getCaregiverListUsingGet();
+		return response.content!;
+	},
+});
 
 const CaregiverList = () => {
 	const [keyword, setKeyword] = useState<string>('');
 	const [search, setSearch] = useState<string>('');
-	const [caregivers, setCaregivers] = useState<Caregiver[]>();
 
 	const [selectCaregiver, setSelectCaregiver] = useState<any>();
 	const [openCaregiverDetail, setOpenCaregiverDetail] = useState(false);
 
 	useEffect(() => {
-		requestCaregiverListHandler();
+		//requestCaregiverListHandler();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
@@ -33,19 +48,21 @@ const CaregiverList = () => {
 
 	const handleOnKeyPress = async (e: any) => {
 		if (e.key === 'Enter') {
-			await requestCaregiverListHandler();
+			//await requestCaregiverListHandler();
 		}
 	};
 
-	const requestCaregiverListHandler = async () => {
-		const response = await CaregiverControllerService.getCaregiverListUsingGet(
-			keyword,
-			0,
-			search,
-			10,
-		);
-		setCaregivers(response.content);
-	};
+	// const requestCaregiverListHandler = async () => {
+	// 	const response = await CaregiverControllerService.getCaregiverListUsingGet(
+	// 		keyword,
+	// 		0,
+	// 		search,
+	// 		10,
+	// 	);
+	// 	setCaregivers(response.content);
+	// };
+
+	const caregivers: Caregiver[] = useRecoilValue(getCaregiverList);
 
 	const openDetail = (item: any) => {
 		setSelectCaregiver(item);
