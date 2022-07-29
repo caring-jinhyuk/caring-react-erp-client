@@ -19,6 +19,7 @@ import footers from '../routes/footerRoutes';
 import PropTypes, { array } from 'prop-types';
 import { FormikProps, FormikValues } from 'formik';
 import functions from './icon/material-icons/Functions';
+import FormGroup from './bootstrap/forms/FormGroup';
 /**
  * 연도/월 정보를 가져오는 피커
  */
@@ -407,6 +408,30 @@ const AddressPicker: FC<IAddressPicker> = ({
 	const [ward, setWard] = useState<string[]>();
 	const [town, setTown] = useState<AdministrativeDivision[]>();
 
+	const init = useCallback(() => {
+		if (cityValue != null) {
+			console.log('-------호출 cityValue------');
+			setWard(selectWardFromCity(cityValue));
+		}
+		if (wardValue != null) {
+			console.log('-------호출 wardValue------');
+			AdministrativeDivisionControllerService.getAdministrativeDivisionUsingGet(
+				cityRef.current!.value,
+				wardRef.current!.value,
+			)
+				.then((divisions) => {
+					setTown(divisions);
+				})
+				.catch((error) => {});
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	useEffect(() => {
+		init();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
 	const handleOnChange = useCallback(
 		(e: any) => {
 			switch (e.target.id) {
@@ -430,63 +455,69 @@ const AddressPicker: FC<IAddressPicker> = ({
 
 	return (
 		<>
-			<Select
-				id={cityId}
-				ref={cityRef}
-				onChange={(e) => {
-					handleOnChange(e);
-					if (onChange) {
-						onChange(e);
-					}
-				}}
-				ariaLabel={'city'}
-				value={cityValue}>
-				{city.map((item) => (
-					<option key={item} value={item}>
-						{item}
-					</option>
-				))}
-			</Select>
-
-			{wardId && (
+			<FormGroup label={'시/도'}>
 				<Select
-					id={wardId}
-					ref={wardRef}
+					id={cityId}
+					ref={cityRef}
 					onChange={(e) => {
 						handleOnChange(e);
 						if (onChange) {
 							onChange(e);
 						}
 					}}
-					ariaLabel={'ward'}
-					value={wardValue}>
-					{ward &&
-						ward.map((item) => (
-							<option key={item} value={item}>
-								{item}
-							</option>
-						))}
+					ariaLabel={'city'}
+					value={cityValue}>
+					{city.map((item) => (
+						<option key={item} value={item}>
+							{item}
+						</option>
+					))}
 				</Select>
+			</FormGroup>
+
+			{wardId && (
+				<FormGroup label={'시/군/구'}>
+					<Select
+						id={wardId}
+						ref={wardRef}
+						onChange={(e) => {
+							handleOnChange(e);
+							if (onChange) {
+								onChange(e);
+							}
+						}}
+						ariaLabel={'ward'}
+						value={wardValue}>
+						{ward &&
+							ward.map((item) => (
+								<option key={item} value={item}>
+									{item}
+								</option>
+							))}
+					</Select>
+				</FormGroup>
 			)}
 
 			{townId && (
-				<Select
-					id={townId}
-					onChange={(e) => {
-						handleOnChange(e);
-						if (onChange) {
-							onChange(e);
-						}
-					}}
-					ariaLabel={'town'}
-					value={townValue}>
-					{town &&
-						town.map((item) => (
-							<option key={item.town} value={item.town}>
-								{item.town}
-							</option>
-						))}
-				</Select>
+				<FormGroup label={'읍/면/동'}>
+					<Select
+						id={townId}
+						onChange={(e) => {
+							handleOnChange(e);
+							if (onChange) {
+								onChange(e);
+							}
+						}}
+						ariaLabel={'town'}
+						value={townValue}>
+						{town &&
+							town.map((item) => (
+								<option key={item.id} value={item.town}>
+									{item.town}
+								</option>
+							))}
+					</Select>
+				</FormGroup>
 			)}
 		</>
 	);

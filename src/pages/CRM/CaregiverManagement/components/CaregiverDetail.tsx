@@ -27,6 +27,7 @@ const CaregiverDetail: FC<ICaregiverDetail> = ({ caregiver, open, setOpen }) => 
 		enableReinitialize: true,
 		initialValues: caregiver,
 		// eslint-disable-next-line no-unused-vars
+
 		onSubmit: async (values) => {
 			//alert(JSON.stringify(values, null, 2));
 			await saveCaregiver(values);
@@ -116,12 +117,38 @@ const CaregiverDetail: FC<ICaregiverDetail> = ({ caregiver, open, setOpen }) => 
 									</div>
 								</div>
 							</FormGroup>
+							<AddressPicker
+								cityId={'city'}
+								cityValue={formik.values.city}
+								wardId={'ward'}
+								wardValue={formik.values.ward}
+								townId={'town'}
+								townValue={formik.values.town}
+								onChange={formik.handleChange}
+							/>
+							<FormGroup id={formik.values.address} label={'상세주소'}>
+								<Input type='text' value={formik.values.address} onChange={formik.handleChange} />
+							</FormGroup>
 						</CardBody>
 					</Card>
 
 					<Card>
 						<CardHeader>희망지역</CardHeader>
 						<CardBody>
+							<AddressPicker
+								cityId={'city'}
+								cityValue={formik.values.city}
+								wardId={'ward'}
+								wardValue={formik.values.ward}
+								onChange={formik.handleChange}
+							/>
+							<AddressPicker
+								cityId={'city'}
+								cityValue={formik.values.city}
+								wardId={'ward'}
+								wardValue={formik.values.ward}
+								onChange={formik.handleChange}
+							/>
 							<AddressPicker
 								cityId={'city'}
 								cityValue={formik.values.city}
