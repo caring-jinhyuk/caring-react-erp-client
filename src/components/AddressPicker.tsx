@@ -25,7 +25,7 @@ import FormGroup from './bootstrap/forms/FormGroup';
  */
 interface IAddressPicker {
 	cityId: string;
-	cityValue: string;
+	cityValue?: string;
 	wardId?: string;
 	wardValue?: string;
 	townId?: string;

@@ -15,14 +15,16 @@ import Checks, { ChecksGroup } from '../../../../components/bootstrap/forms/Chec
 import Textarea from '../../../../components/bootstrap/forms/Textarea';
 import showNotification from '../../../../components/extras/showNotification';
 import AddressPicker from '../../../../components/AddressPicker';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+// eslint-disable-next-line import/named
+import { caregiverModal, selectCaregiver } from '../CaregiverContainer';
+import { caregiverSearchParam } from '../CaregiverListHeader';
 
-interface ICaregiverDetail {
-	caregiver?: any;
-	open: boolean;
-	setOpen: Dispatch<SetStateAction<boolean>>;
-}
+const CaregiverDetail: FC = () => {
+	const [caregiver, setCaregiver] = useRecoilState(selectCaregiver);
+	const [open, setOpen] = useRecoilState(caregiverModal);
+	const setSearchParam = useSetRecoilState(caregiverSearchParam);
 
-const CaregiverDetail: FC<ICaregiverDetail> = ({ caregiver, open, setOpen }) => {
 	const formik = useFormik({
 		enableReinitialize: true,
 		initialValues: caregiver,
@@ -39,11 +41,12 @@ const CaregiverDetail: FC<ICaregiverDetail> = ({ caregiver, open, setOpen }) => 
 			const response = await CaregiverControllerService.saveCaregiverUsingPost(value);
 			showNotification('등록 성공', value.name + '님의 정보가 등록되었습니다.');
 			setOpen(false);
+			setSearchParam({ keyword: '', search: '' });
 		} catch (e) {}
 	};
 
-	const deleteCaregiver = async (id: number) => {
-		CaregiverControllerService.deleteCaregiverUsingDelete(id)
+	const deleteCaregiver = async (id: number | undefined) => {
+		CaregiverControllerService.deleteCaregiverUsingDelete(id!)
 			.then((value) => {})
 			.catch((error) => {
 				showNotification('삭제 실패', '');
