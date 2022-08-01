@@ -4,6 +4,10 @@
 
 @use 'sass:map';
 
+a {
+	color: inherit;
+}
+
 .scroll-margin {
 	scroll-margin-top: map.get($header, height) + map.get($subheader, height) +
 		map.get($page, padding-y);
@@ -36,4 +40,23 @@
 
 .spinner_no_display {
 	display: none;
+}
+
+.offcanvas_transparency {
+	border-radius: 2rem;
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+.btn-unset {
+	&:hover {
+		background-color: unset;
+	}
+}
+
+.scroll-auto {
+	overflow-y: auto;
+	-ms-overflow-style: none;
+	&::-webkit-scrollbar {
+		display: none;
+	}
 }
