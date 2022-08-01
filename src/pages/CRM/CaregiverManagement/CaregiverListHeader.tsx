@@ -15,8 +15,14 @@ export const caregiverSearchParam = atom({
 	},
 });
 
+export const caregiverRefresh = atom({
+	key: 'caregiverRefresh',
+	default: 0,
+});
+
 const CaregiverListHeader = () => {
-	const [searchParam, setSearchParam] = useRecoilState(caregiverSearchParam);
+	const setSearchParam = useSetRecoilState(caregiverSearchParam);
+	const [refresh, setRefresh] = useRecoilState(caregiverRefresh);
 	const [keyword, setKeyword] = useState<string>('');
 	const [search, setSearch] = useState<string>('');
 	const setCaregiver = useSetRecoilState(selectCaregiver);
@@ -36,7 +42,9 @@ const CaregiverListHeader = () => {
 	};
 
 	const handleOnKeyPress = async (e: any) => {
+		e.preventDefault();
 		if (e.key === 'Enter') {
+			setRefresh(refresh + 1);
 			setSearchParam({
 				keyword: keyword,
 				search: e.target.value,
