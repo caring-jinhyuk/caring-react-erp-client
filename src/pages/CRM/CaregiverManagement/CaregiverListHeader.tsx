@@ -6,6 +6,7 @@ import { Caregiver, CaregiverControllerService } from '../../../services/openApi
 import { downloadCsv } from '../../../utils/XlsxUtils';
 import { atom, useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { caregiverModal, selectCaregiver } from './CaregiverContainer';
+import { QueryClient, useQueryClient } from '@tanstack/react-query';
 
 export const caregiverSearchParam = atom({
 	key: 'caregiverSearch',
@@ -15,20 +16,15 @@ export const caregiverSearchParam = atom({
 	},
 });
 
-export const caregiverRefresh = atom({
-	key: 'caregiverRefresh',
-	default: 0,
-});
-
 const CaregiverListHeader = () => {
 	const setSearchParam = useSetRecoilState(caregiverSearchParam);
-	const [refresh, setRefresh] = useRecoilState(caregiverRefresh);
 	const [keyword, setKeyword] = useState<string>('');
 	const [search, setSearch] = useState<string>('');
 	const setCaregiver = useSetRecoilState(selectCaregiver);
 	const setOpen = useSetRecoilState(caregiverModal);
 	//const [selectCaregiver, setSelectCaregiver] = useState<any>();
 	//const [openCaregiverDetail, setOpenCaregiverDetail] = useState(false);
+	const queryClient = useQueryClient();
 
 	const handleOnChange = (e: any) => {
 		switch (e.target.id) {
@@ -42,9 +38,7 @@ const CaregiverListHeader = () => {
 	};
 
 	const handleOnKeyPress = async (e: any) => {
-		e.preventDefault();
 		if (e.key === 'Enter') {
-			setRefresh(refresh + 1);
 			setSearchParam({
 				keyword: keyword,
 				search: e.target.value,

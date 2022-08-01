@@ -1,6 +1,6 @@
 import React from 'react';
 import CaregiverList from './components/CaregiverList';
-import CaregiverListHeader, { caregiverRefresh, caregiverSearchParam } from './CaregiverListHeader';
+import CaregiverListHeader, { caregiverSearchParam } from './CaregiverListHeader';
 import Card, { CardBody } from '../../../components/bootstrap/Card';
 import CaregiverDetail from './components/CaregiverDetail';
 import { atom, selector, useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
@@ -33,13 +33,12 @@ export const getCaregiverList = selector<Caregiver[]>({
 });
 
 const CaregiverContainer = () => {
-	const refresh = useRecoilValue(caregiverRefresh);
 	return (
 		<>
 			<Card>
 				<CardBody>
 					<CaregiverListHeader />
-					{refresh >= 0 && <CaregiverList refresh={refresh} />}
+					<CaregiverList />
 				</CardBody>
 			</Card>
 			<CaregiverDetail />

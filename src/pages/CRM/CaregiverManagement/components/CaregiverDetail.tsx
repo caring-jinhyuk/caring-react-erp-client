@@ -19,11 +19,13 @@ import { useRecoilState, useSetRecoilState } from 'recoil';
 // eslint-disable-next-line import/named
 import { caregiverModal, selectCaregiver } from '../CaregiverContainer';
 import { caregiverSearchParam } from '../CaregiverListHeader';
+import { useQueryClient } from '@tanstack/react-query';
 
 const CaregiverDetail: FC = () => {
 	const [caregiver, setCaregiver] = useRecoilState(selectCaregiver);
 	const [open, setOpen] = useRecoilState(caregiverModal);
 	const setSearchParam = useSetRecoilState(caregiverSearchParam);
+	const queryClient = useQueryClient();
 
 	const formik = useFormik({
 		enableReinitialize: true,
@@ -41,7 +43,8 @@ const CaregiverDetail: FC = () => {
 			const response = await CaregiverControllerService.saveCaregiverUsingPost(value);
 			showNotification('등록 성공', value.name + '님의 정보가 등록되었습니다.');
 			setOpen(false);
-			setSearchParam({ keyword: '', search: '' });
+			await queryClient.invalidateQueries(['caregiverList', { keyword: '', search: '' }]);
+			//setSearchParam({ keyword: '', search: '' });
 		} catch (e) {}
 	};
 
