@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { Notice } from '../../../../services/openApi';
 import moment from 'moment';
 import NoticeDetail from './NoticeDetail';
@@ -20,7 +20,7 @@ const NoticeTableRow: FC<NoticeTableRowProps> = ({ notice }) => {
 				<td className='text-center'>{notice.title}</td>
 				<td className='text-center'>{moment(notice.createdAt).format('YYYY-MM-DD')}</td>
 			</tr>
-			<NoticeDetail isOpen={isOpen} setOpen={setOpen} noticeBody={notice.body} />
+			<NoticeDetail isOpen={isOpen} setOpen={setOpen} notice={notice} />
 		</>
 	);
 };

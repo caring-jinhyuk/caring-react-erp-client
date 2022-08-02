@@ -8,24 +8,41 @@ import Card, { CardBody } from '../../../../components/bootstrap/Card';
 import Button from '../../../../components/bootstrap/Button';
 
 import TextEditor from '../../../../components/TextEditor';
+import { Notice, NoticeControllerService } from '../../../../services/openApi';
+import { useRecoilRefresher_UNSTABLE, useResetRecoilState } from 'recoil';
+import { noticesState } from './Notices';
 
 type NoticeDetailProps = {
 	isOpen: boolean;
 	setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-	noticeBody: string | undefined;
+	notice: Notice;
 };
 
-const NoticeDetail: FC<NoticeDetailProps> = ({ isOpen, setOpen, noticeBody }) => {
-	const [noticeValue, setNoticeValue] = useState(noticeBody);
+const NoticeDetail: FC<NoticeDetailProps> = ({ isOpen, setOpen, notice }) => {
+	const [currentNotice, setNotice] = useState(notice);
 	const [isModify, setIsModify] = useState(false);
+	const refreshNotices = useRecoilRefresher_UNSTABLE(noticesState);
 
 	const stringToHtml = () => {
-		return <div dangerouslySetInnerHTML={{ __html: noticeValue ?? '' }}></div>;
+		return <div dangerouslySetInnerHTML={{ __html: currentNotice.body ?? '' }}></div>;
 	};
 
-	const modifyHandler = () => {};
+	const modifyHandler = async (e: any) => {
+		setIsModify(!isModify);
+		if (isModify) {
+			await saveNotice();
+		}
+	};
 
-	const saveNotice = {};
+	const saveNotice = async () => {
+		await NoticeControllerService.saveNoticeUsingPost(currentNotice);
+		await refreshNotices();
+	};
+
+	const setNoticeBody = (newValue: any) => {
+		const newNotice = { ...currentNotice, body: newValue };
+		setNotice(newNotice);
+	};
 
 	return (
 		<OffCanvas isOpen={isOpen} setOpen={setOpen} isBackdrop={false}>
@@ -48,7 +65,7 @@ const NoticeDetail: FC<NoticeDetailProps> = ({ isOpen, setOpen, noticeBody }) =>
 				<Card stretch={true}>
 					<CardBody isScrollable={true} className='scroll-auto'>
 						{isModify ? (
-							<TextEditor value={noticeValue} onChange={setNoticeValue} />
+							<TextEditor value={currentNotice.body} onChange={setNoticeBody} />
 						) : (
 							stringToHtml()
 						)}

@@ -7,12 +7,12 @@ import Card, {
 	CardLabel,
 	CardTitle,
 } from '../../../../components/bootstrap/Card';
-import { selector, useRecoilValue, useSetRecoilState } from 'recoil';
+import { selector, useRecoilValue } from 'recoil';
 import NoticeTableRow from './NoticeTableRow';
 import { v1 } from 'uuid';
 import PaginationButtons from '../../../../components/PaginationButtons';
 
-export const NoticesState = selector<Notice[]>({
+export const noticesState = selector<Notice[]>({
 	key: 'notices',
 	get: async () => {
 		const notices: Page_Notice_ = await NoticeControllerService.getNoticeListUsingGet();
@@ -21,7 +21,7 @@ export const NoticesState = selector<Notice[]>({
 });
 
 const Notices = () => {
-	const notices = useRecoilValue(NoticesState);
+	const notices = useRecoilValue(noticesState);
 
 	return (
 		<>
