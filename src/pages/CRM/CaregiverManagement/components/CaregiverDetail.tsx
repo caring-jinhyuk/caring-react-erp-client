@@ -1,11 +1,11 @@
-import React, { Dispatch, FC, SetStateAction, useState } from 'react';
+import React, { Dispatch, FC, SetStateAction, useState, useEffect } from 'react';
 import OffCanvas, {
 	OffCanvasHeader,
 	OffCanvasTitle,
 	OffCanvasBody,
 } from '../../../../components/bootstrap/OffCanvas';
 import { Caregiver, CaregiverControllerService } from '../../../../services/openApi';
-import { useFormik } from 'formik';
+import { useFormik, useFormikContext } from 'formik';
 import Card, { CardBody, CardHeader } from '../../../../components/bootstrap/Card';
 import Input from '../../../../components/bootstrap/forms/Input';
 import FormGroup from '../../../../components/bootstrap/forms/FormGroup';
@@ -20,20 +20,76 @@ import { caregiverModal, selectCaregiver } from '../CaregiverContainer';
 import { caregiverSearchParam } from '../CaregiverListHeader';
 import { useQueryClient } from '@tanstack/react-query';
 
+export type CaregiverForm = {
+	address?: string;
+	black?: boolean;
+	blackReason?: string;
+	career?: number;
+	certificate?: boolean;
+	city?: string;
+	covid?: boolean;
+	createdAt?: string;
+	dementia?: boolean;
+	gender?: boolean;
+	hopeArea?: string;
+	id?: number;
+	information?: string;
+	lastModifiedDate?: string;
+	modifier?: string;
+	msgLastSendTime1?: string;
+	msgLastSendTime2?: string;
+	msgLastSendTime3?: string;
+	name?: string;
+	phone?: string;
+	prefer_gender: string[];
+	privacy?: boolean;
+	sendNumber1?: string;
+	sendNumber2?: string;
+	sendNumber3?: string;
+	takerProgress?: string;
+	town?: string;
+	ward?: string;
+	work_kinds: boolean[];
+	writer?: string;
+	year?: number;
+};
+
 const CaregiverDetail: FC = () => {
 	const caregiver = useRecoilValue(selectCaregiver);
+	const formCaregiver: CaregiverForm = {
+		id: caregiver.id,
+		address: caregiver.address,
+		career: caregiver.career,
+		certificate: caregiver.certificate,
+		city: caregiver.city,
+		covid: caregiver.covid,
+		dementia: caregiver.dementia,
+		gender: caregiver.gender,
+		hopeArea: caregiver.hopeArea,
+		information:
+			caregiver.information ||
+			"'이력/경력사항 : \\n' + '요보사가 원하는 사항 : \\n' + '면접 특이사항 : '",
+		takerProgress:
+			caregiver.takerProgress ||
+			'1. 수급자 지역 : \n' + '2. 수급자 전화번호: \n' + '3. 수급자 날짜별 진행 상황 : ',
+		name: caregiver.name,
+		phone: caregiver.phone,
+		prefer_gender: convertPreferGender(caregiver.prefer_gender),
+		work_kinds: convertWorkKind(caregiver.work_kinds),
+		town: caregiver.town,
+		ward: caregiver.ward,
+	};
 	const [open, setOpen] = useRecoilState(caregiverModal);
 	const setSearchParam = useSetRecoilState(caregiverSearchParam);
 	const queryClient = useQueryClient();
 
 	const formik = useFormik({
 		enableReinitialize: true,
-		initialValues: caregiver,
+		initialValues: formCaregiver,
 		// eslint-disable-next-line no-unused-vars
-
 		onSubmit: async (values) => {
-			//alert(JSON.stringify(values, null, 2));
-			await saveCaregiver(values);
+			alert(JSON.stringify(values, null, 2));
+			//await saveCaregiver(values);
 		},
 	});
 
@@ -54,6 +110,33 @@ const CaregiverDetail: FC = () => {
 				showNotification('삭제 실패', '');
 			});
 	};
+
+	function convertPreferGender(value?: string) {
+		if (value === null) {
+			return [];
+		} else {
+			const arrGender = [];
+			if (value?.includes('남자')) {
+				arrGender.push('남자');
+			} else if (value?.includes('여자')) {
+				arrGender.push('여자');
+			}
+			return arrGender;
+		}
+	}
+
+	function convertWorkKind(value?: string) {
+		if (value === null) {
+			return [false, false, false, false];
+		} else {
+			return [
+				value!.includes('방문요양'),
+				value!.includes('방문목욕'),
+				value!.includes('입주요양'),
+				value!.includes('요양시설'),
+			];
+		}
+	}
 
 	return (
 		<>
@@ -90,7 +173,7 @@ const CaregiverDetail: FC = () => {
 							<FormGroup id='phone' className='mb-3' isFloating={true} label='번호'>
 								<Input type='text' value={formik.values.phone} onChange={formik.handleChange} />
 							</FormGroup>
-							<FormGroup id='gender' label='성별'>
+							<FormGroup id='gender' className='mb-3' label='성별'>
 								<div className='row'>
 									<div className='col-6'>
 										<Checks type='radio' name='gender' label='남' onChange={formik.handleChange} />
@@ -100,38 +183,31 @@ const CaregiverDetail: FC = () => {
 									</div>
 								</div>
 							</FormGroup>
-							<FormGroup id='caregiver.certificate' label='자격증유무'>
+							<FormGroup id='certificate' className='mb-3' label='자격증유무'>
 								<div className='row'>
 									<div className='col-6'>
 										<Checks
-											type='radio'
-											name='caregiver.certificate'
-											label='유'
-											value='certificateYess'
+											type='switch'
+											name='certificate'
+											label='자격증 있음'
 											onChange={formik.handleChange}
-										/>
-									</div>
-									<div className='col-6'>
-										<Checks
-											type='radio'
-											name='caregiver.certificate'
-											label='무'
-											value='certificateNo'
-											onChange={formik.handleChange}
+											checked={formik.values.certificate!}
 										/>
 									</div>
 								</div>
 							</FormGroup>
-							<AddressPicker
-								cityId={'city'}
-								cityValue={formik.values.city}
-								wardId={'ward'}
-								wardValue={formik.values.ward}
-								townId={'town'}
-								townValue={formik.values.town}
-								onChange={formik.handleChange}
-							/>
-							<FormGroup id={formik.values.address} label={'상세주소'}>
+							<div className='mb-3'>
+								<AddressPicker
+									cityId={'city'}
+									cityValue={formik.values.city}
+									wardId={'ward'}
+									wardValue={formik.values.ward}
+									townId={'town'}
+									townValue={formik.values.town}
+									onChange={formik.handleChange}
+								/>
+							</div>
+							<FormGroup id='address' isFloating={true} label='상세주소'>
 								<Input type='text' value={formik.values.address} onChange={formik.handleChange} />
 							</FormGroup>
 						</CardBody>
@@ -197,10 +273,22 @@ const CaregiverDetail: FC = () => {
 							<FormGroup id='prefer_gender' label='선호하는 어르신 성별'>
 								<div className='row'>
 									<div className='col-6'>
-										<Checks name='prefer_gender' label='남' />
+										<Checks
+											name='prefer_gender'
+											value={'남자'}
+											checked={formik.values.prefer_gender?.includes('남자')}
+											label='남'
+											onChange={formik.handleChange}
+										/>
 									</div>
 									<div className='col-6'>
-										<Checks name='prefer_gender' label='녀' />
+										<Checks
+											name='prefer_gender'
+											value={'여자'}
+											checked={formik.values.prefer_gender?.includes('여자')}
+											label='녀'
+											onChange={formik.handleChange}
+										/>
 									</div>
 								</div>
 							</FormGroup>
