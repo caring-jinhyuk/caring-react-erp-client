@@ -3,7 +3,7 @@ import { v1 } from 'uuid';
 
 const userState = atom({
 	key: `${v1()}`,
-	default: {},
+	default: null,
 });
 
 export { userState };
