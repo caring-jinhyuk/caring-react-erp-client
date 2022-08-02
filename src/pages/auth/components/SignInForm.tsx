@@ -4,7 +4,7 @@ import Input from '../../../components/bootstrap/forms/Input';
 import Button from '../../../components/bootstrap/Button';
 import { UserControllerService } from '../../../services/openApi';
 import { useNavigate } from 'react-router-dom';
-import { selector, useSetRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { userState } from '../../../atoms/user';
 import { signInState, SignInValidates } from '../../../atoms/signIn';
 import { Progress, progressState } from '../../../atoms/progress';
