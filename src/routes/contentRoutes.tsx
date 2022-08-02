@@ -37,11 +37,6 @@ const presentation = [
 		exact: true,
 	},
 	{
-		path: authPages.signUp.path,
-		element: <AUTH.ACCOUNT isSignUp />,
-		exact: true,
-	},
-	{
 		path: asideMenus.consult.path,
 		element: <CRM.CONSULT />,
 	},

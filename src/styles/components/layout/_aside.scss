@@ -13,8 +13,8 @@
 	display: flex;
 	flex-direction: column;
 	border-right: map.get($aside, border-size) solid map.get($aside, border-color);
-	background-color: map.get($aside, background-color);
-	color: color-contrast(map.get($aside, background-color));
+	background-color: $caring-pink;
+	color: black;
 	transition: $transition-base;
 
 	// Mobile Status
@@ -47,10 +47,7 @@
 	&:not(.open):hover {
 		@include backdrop-filter-blur(map-deep-get($aside, hover, blur));
 		// stylelint-disable declaration-colon-newline-after
-		background-color: rgba(
-			map.get($aside, background-color),
-			map-deep-get($aside, hover, opacity)
-		);
+		background-color: $caring-pink;
 		// stylelint-enable declaration-colon-newline-after
 	}
 

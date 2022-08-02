@@ -210,13 +210,18 @@ const OffCanvas: FC<IOffCanvasProps> = ({
 							exit={{ opacity: 0, ...PLACEMENT_ANIMATION }}
 							transition={{ ease: 'easeInOut', duration: 0.3 }}
 							id={id}
-							className={classNames('offcanvas', `offcanvas-${initialProps.placement}`, {
-								show: isOpen,
-								'offcanvas-modal-style': isModalStyle,
-								'offcanvas-right-panel':
-									// @ts-ignore
-									isRightPanel && deviceScreen?.width > 1200,
-							})}
+							className={classNames(
+								'offcanvas',
+								'offcanvas_transparency',
+								`offcanvas-${initialProps.placement}`,
+								{
+									show: isOpen,
+									'offcanvas-modal-style': isModalStyle,
+									'offcanvas-right-panel':
+										// @ts-ignore
+										isRightPanel && deviceScreen?.width > 1200,
+								},
+							)}
 							tabIndex='-1'
 							aria-labelledby={titleId}
 							data-bs-scroll={initialProps.isBodyScroll}

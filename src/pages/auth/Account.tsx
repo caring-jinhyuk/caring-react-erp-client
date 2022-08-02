@@ -28,14 +28,14 @@ const Account: FC<IAccountProps> = ({ isSignUp }) => {
 					<div className='col-xl-4 col-lg-6 col-md-5 shadow-3d-container'>
 						<Card className='shadow-3d-dark' data-tour='signIn-page'>
 							<CardBody>
-								<div className='text-center mb-4 align-items-center justify-content-center'>
+								<div className='text-center mb-5 d-flex align-items-center justify-content-center'>
 									<Link
 										to='/auth-pages/sign-in'
 										className={classNames('text-decoration-none  fw-bold display-2', {
 											'text-dark': !darkModeStatus,
 											'text-light': darkModeStatus,
 										})}>
-										<Logo width={60} height={30} />
+										<Logo width={130} height={35} />
 									</Link>
 								</div>
 								<div

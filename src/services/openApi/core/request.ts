@@ -316,7 +316,7 @@ export const request = <T>(
 					body: responseBody,
 				};
 
-				// catchErrorCodes(options, result);
+				catchErrorCodes(options, result);
 
 				resolve(result.body);
 			}
