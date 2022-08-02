@@ -9,7 +9,7 @@ import Button from '../../../../components/bootstrap/Button';
 
 import TextEditor from '../../../../components/TextEditor';
 import { Notice, NoticeControllerService } from '../../../../services/openApi';
-import { useRecoilRefresher_UNSTABLE, useResetRecoilState } from 'recoil';
+import { useRecoilRefresher_UNSTABLE } from 'recoil';
 import { noticesState } from './Notices';
 
 type NoticeDetailProps = {

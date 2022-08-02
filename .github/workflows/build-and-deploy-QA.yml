@@ -50,11 +50,11 @@ jobs:
         run: |
           node --version
           npm install -g yarn
-          yarn install
+          yarn install --frozen-lockfile
 
       - name: Build Static WebSite
         run: |
-          yarn build
+          yarn run build
 
       - name: Upload product to S3 bucket
         run: |
