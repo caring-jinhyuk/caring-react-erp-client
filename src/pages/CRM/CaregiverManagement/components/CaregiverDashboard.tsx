@@ -7,6 +7,8 @@ import Spinner from '../../../../components/bootstrap/Spinner';
 import { selector, useRecoilValue } from 'recoil';
 import { v1 } from 'uuid';
 import { useGetCaregiverAllList } from '../../../../quries/useCaregiverAllList';
+import { useQueryClient } from '@tanstack/react-query';
+import Button from '../../../../components/bootstrap/Button';
 
 interface DashboardData {
 	todayGiverCount: number;
@@ -75,6 +77,7 @@ interface DashboardData {
 const CaregiverDashboard = () => {
 	//const dashboardData: DashboardData = useRecoilValue(getCaregiverDashboard);
 	const dashboardData = useGetCaregiverAllList();
+	const queryClient = useQueryClient();
 	const cityList: string[] = [
 		'경기',
 		'서울',
@@ -94,6 +97,10 @@ const CaregiverDashboard = () => {
 		'제주',
 		'세종',
 	];
+
+	const refresh = async () => {
+		await queryClient.invalidateQueries(['caregiverAllList']);
+	};
 	return (
 		<>
 			<Card>
@@ -135,6 +142,7 @@ const CaregiverDashboard = () => {
 									{dashboardData.contents.yesterdayGiverCount})
 								</div>
 							</div>
+							<Button onClick={refresh}>리프레쉬</Button>
 						</div>
 					) : (
 						<Spinner color={'secondary'} size={100} className='spinner' />

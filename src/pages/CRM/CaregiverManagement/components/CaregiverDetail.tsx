@@ -4,9 +4,8 @@ import OffCanvas, {
 	OffCanvasTitle,
 	OffCanvasBody,
 } from '../../../../components/bootstrap/OffCanvas';
-import { Burden, Caregiver, CaregiverControllerService } from '../../../../services/openApi';
-import PropTypes, { object } from 'prop-types';
-import { Field, Form, useFormik } from 'formik';
+import { Caregiver, CaregiverControllerService } from '../../../../services/openApi';
+import { useFormik } from 'formik';
 import Card, { CardBody, CardHeader } from '../../../../components/bootstrap/Card';
 import Input from '../../../../components/bootstrap/forms/Input';
 import FormGroup from '../../../../components/bootstrap/forms/FormGroup';
@@ -15,14 +14,14 @@ import Checks, { ChecksGroup } from '../../../../components/bootstrap/forms/Chec
 import Textarea from '../../../../components/bootstrap/forms/Textarea';
 import showNotification from '../../../../components/extras/showNotification';
 import AddressPicker from '../../../../components/AddressPicker';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 // eslint-disable-next-line import/named
 import { caregiverModal, selectCaregiver } from '../CaregiverContainer';
 import { caregiverSearchParam } from '../CaregiverListHeader';
 import { useQueryClient } from '@tanstack/react-query';
 
 const CaregiverDetail: FC = () => {
-	const [caregiver, setCaregiver] = useRecoilState(selectCaregiver);
+	const caregiver = useRecoilValue(selectCaregiver);
 	const [open, setOpen] = useRecoilState(caregiverModal);
 	const setSearchParam = useSetRecoilState(caregiverSearchParam);
 	const queryClient = useQueryClient();

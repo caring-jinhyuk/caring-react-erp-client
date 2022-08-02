@@ -1,45 +1,15 @@
 import React, { FC } from 'react';
-import { Caregiver, CaregiverControllerService } from '../../../../services/openApi';
-import { selector, useRecoilValue, useSetRecoilState } from 'recoil';
-import { v1 } from 'uuid';
-// eslint-disable-next-line import/named
+import { Caregiver } from '../../../../services/openApi';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { caregiverModal, selectCaregiver } from '../CaregiverContainer';
 import { useGetCaregiverList } from '../../../../quries/useCaregiverList';
-import { Interface } from 'readline';
 import { caregiverSearchParam } from '../CaregiverListHeader';
 
-type NoticeQueryParam = {
-	keyword: string;
-	search: string;
-};
-
-// const getCaregiverList = selector<Caregiver[]>({
-// 	key: `${v1()}`,
-// 	get: async ({ get }) => {
-// 		const param = get(caregiverSearchParam);
-// 		const response = await CaregiverControllerService.getCaregiverListUsingGet(
-// 			param.keyword,
-// 			0,
-// 			param.search,
-// 			10,
-// 		);
-// 		return response.content!;
-// 	},
-// });
-
-type CaregiverListProps = {
-	refresh?: number;
-};
-
-const CaregiverList: FC<CaregiverListProps> = ({ refresh }) => {
+const CaregiverList: FC = () => {
 	const setCaregiver = useSetRecoilState(selectCaregiver);
 	const setOpen = useSetRecoilState(caregiverModal);
 	const param = useRecoilValue(caregiverSearchParam);
 	const caregivers = useGetCaregiverList(param.keyword, param.search);
-	//const caregivers = useGetCaregiverList(keyword, search);
-
-	//const caregivers: Caregiver[] = useRecoilValue(getCaregiverList);
-	//const caregivers = useGetCaregiverList(param.keyword, param.search);
 
 	const openDetail = (item: Caregiver) => {
 		setCaregiver(item);

@@ -3,10 +3,9 @@ import CaregiverList from './components/CaregiverList';
 import CaregiverListHeader, { caregiverSearchParam } from './CaregiverListHeader';
 import Card, { CardBody } from '../../../components/bootstrap/Card';
 import CaregiverDetail from './components/CaregiverDetail';
-import { atom, selector, useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
+import { atom, selector } from 'recoil';
 import { Caregiver, CaregiverControllerService } from '../../../services/openApi';
 import { v1 } from 'uuid';
-import { useGetCaregiverList } from '../../../quries/useCaregiverList';
 
 export const selectCaregiver = atom({
 	key: 'selectCaregiver',

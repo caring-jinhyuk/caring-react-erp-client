@@ -4,7 +4,10 @@ import { useRecoilValue } from 'recoil';
 import moment from 'moment';
 
 export const useGetCaregiverAllList = () => {
-	const result = useQuery(['caregiverAllList'], async () => getCaregiverAllList());
+	const result = useQuery(['caregiverAllList'], async () => getCaregiverAllList(), {
+		cacheTime: 50000,
+		staleTime: 50000,
+	});
 	return {
 		...result,
 		contents: result.data,
