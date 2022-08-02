@@ -6,7 +6,7 @@ import { v1 } from 'uuid';
 import { caregiverModal, selectCaregiver } from '../CaregiverContainer';
 import { useGetCaregiverList } from '../../../../quries/useCaregiverList';
 import { Interface } from 'readline';
-import { caregiverRefresh, caregiverSearchParam } from '../CaregiverListHeader';
+import { caregiverSearchParam } from '../CaregiverListHeader';
 
 type NoticeQueryParam = {
 	keyword: string;
@@ -28,7 +28,7 @@ type NoticeQueryParam = {
 // });
 
 type CaregiverListProps = {
-	refresh: number;
+	refresh?: number;
 };
 
 const CaregiverList: FC<CaregiverListProps> = ({ refresh }) => {
