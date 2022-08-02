@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useLayoutEffect, useRef } from 'react';
+import React, { Suspense, useContext, useEffect, useLayoutEffect, useRef } from 'react';
 import { ThemeProvider } from 'react-jss';
 import { ReactNotifications } from 'react-notifications-component';
 import { useFullscreen } from 'react-use';
@@ -16,7 +16,6 @@ import useDarkMode from '../hooks/useDarkMode';
 import COLORS from '../common/data/enumColors';
 import { getOS } from '../helpers/helpers';
 import steps, { styles } from '../steps';
-import SpinnerContainer from '../components/SpinnerContainer';
 
 const App = () => {
 	getOS();
@@ -92,7 +91,6 @@ const App = () => {
 					<Portal id='portal-notification'>
 						<ReactNotifications />
 					</Portal>
-					<SpinnerContainer />
 				</TourProvider>
 			</ToastProvider>
 		</ThemeProvider>
