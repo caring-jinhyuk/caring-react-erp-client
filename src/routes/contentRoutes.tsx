@@ -8,7 +8,7 @@ const LANDING = {
 const CRM = {
 	CONSULT: lazy(() => import('../pages/CRM/Consult/Consult')),
 	STATISTICS: lazy(() => import('../pages/CRM/Statistics/Statistics')),
-	SMILE: lazy(() => import('../pages/CRM/SmileCall/SmailCall')),
+	SMILE: lazy(() => import('../pages/CRM/SmileCall/SmileCall')),
 	BENEFICIARY: lazy(() => import('../pages/CRM/BeneficiaryManagement/BeneficiaryManagement')),
 	CAREGIVER: lazy(() => import('../pages/CRM/CaregiverManagement/CaregiverManagement')),
 };
