@@ -6,15 +6,28 @@ import App from './App/App';
 import reportWebVitals from './reportWebVitals';
 import { ThemeContextProvider } from './contexts/themeContext';
 import { RecoilRoot } from 'recoil';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+
+const queryClient = new QueryClient({
+	defaultOptions: {
+		queries: {
+			refetchOnWindowFocus: false,
+		},
+	},
+});
 
 const children = (
 	<React.StrictMode>
 		<RecoilRoot>
-			<Router>
-				<ThemeContextProvider>
-					<App />
-				</ThemeContextProvider>
-			</Router>
+			<QueryClientProvider client={queryClient}>
+				<Router>
+					<ThemeContextProvider>
+						<ReactQueryDevtools initialIsOpen={false} />
+						<App />
+					</ThemeContextProvider>
+				</Router>
+			</QueryClientProvider>
 		</RecoilRoot>
 	</React.StrictMode>
 );
