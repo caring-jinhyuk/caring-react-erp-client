@@ -2,13 +2,13 @@ import React from 'react';
 
 import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
 import Page from '../../../layout/Page/Page';
-import NoticeList from './components/NoticeList';
+import Notices from './components/Notices';
 
 const HomePage = () => {
 	return (
 		<PageWrapper title='Home Page'>
 			<Page>
-				<NoticeList />
+				<Notices />
 			</Page>
 		</PageWrapper>
 	);

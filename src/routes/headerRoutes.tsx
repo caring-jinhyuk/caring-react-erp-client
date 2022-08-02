@@ -1,6 +1,6 @@
 import React from 'react';
 import DefaultHeader from '../pages/common/Headers/DefaultHeader';
-import { authPages, homepages } from '../menus/menu';
+import { authPages } from '../menus/menu';
 
 const headers = [
 	{ path: authPages.signIn.path, element: null, exact: true },
