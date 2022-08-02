@@ -8,65 +8,20 @@ export type ProviderInsuranceState = {
     accidentDate?: string;
     accidentLossDate?: string;
     accidentPrice?: number;
-    accidentState?: ProviderInsuranceState.accidentState;
+    accidentState?: 'GET' | 'WITHDRAW' | 'INSURANCE_CANCEL' | 'INSURANCE_MODIFY' | 'MOVE_CONFIRM' | 'CHANGE_AMOUNT' | 'ETC_CHANGE';
     dependents?: Array<Dependent>;
     employDate?: string;
     employLossDate?: string;
     employPrice?: number;
-    employState?: ProviderInsuranceState.employState;
+    employState?: 'GET' | 'WITHDRAW' | 'INSURANCE_CANCEL' | 'INSURANCE_MODIFY' | 'MOVE_CONFIRM' | 'CHANGE_AMOUNT' | 'ETC_CHANGE';
     healthDate?: string;
     healthLossDate?: string;
     healthPrice?: number;
-    healthState?: ProviderInsuranceState.healthState;
+    healthState?: 'GET' | 'WITHDRAW' | 'INSURANCE_CANCEL' | 'INSURANCE_MODIFY' | 'MOVE_CONFIRM' | 'CHANGE_AMOUNT' | 'ETC_CHANGE';
     pensionDate?: string;
     pensionLossDate?: string;
     pensionPrice?: number;
-    pensionState?: ProviderInsuranceState.pensionState;
+    pensionState?: 'GET' | 'WITHDRAW' | 'INSURANCE_CANCEL' | 'INSURANCE_MODIFY' | 'MOVE_CONFIRM' | 'CHANGE_AMOUNT' | 'ETC_CHANGE';
     workHours?: number;
 };
-
-export namespace ProviderInsuranceState {
-
-    export enum accidentState {
-        GET = 'GET',
-        WITHDRAW = 'WITHDRAW',
-        INSURANCE_CANCEL = 'INSURANCE_CANCEL',
-        INSURANCE_MODIFY = 'INSURANCE_MODIFY',
-        MOVE_CONFIRM = 'MOVE_CONFIRM',
-        CHANGE_AMOUNT = 'CHANGE_AMOUNT',
-        ETC_CHANGE = 'ETC_CHANGE',
-    }
-
-    export enum employState {
-        GET = 'GET',
-        WITHDRAW = 'WITHDRAW',
-        INSURANCE_CANCEL = 'INSURANCE_CANCEL',
-        INSURANCE_MODIFY = 'INSURANCE_MODIFY',
-        MOVE_CONFIRM = 'MOVE_CONFIRM',
-        CHANGE_AMOUNT = 'CHANGE_AMOUNT',
-        ETC_CHANGE = 'ETC_CHANGE',
-    }
-
-    export enum healthState {
-        GET = 'GET',
-        WITHDRAW = 'WITHDRAW',
-        INSURANCE_CANCEL = 'INSURANCE_CANCEL',
-        INSURANCE_MODIFY = 'INSURANCE_MODIFY',
-        MOVE_CONFIRM = 'MOVE_CONFIRM',
-        CHANGE_AMOUNT = 'CHANGE_AMOUNT',
-        ETC_CHANGE = 'ETC_CHANGE',
-    }
-
-    export enum pensionState {
-        GET = 'GET',
-        WITHDRAW = 'WITHDRAW',
-        INSURANCE_CANCEL = 'INSURANCE_CANCEL',
-        INSURANCE_MODIFY = 'INSURANCE_MODIFY',
-        MOVE_CONFIRM = 'MOVE_CONFIRM',
-        CHANGE_AMOUNT = 'CHANGE_AMOUNT',
-        ETC_CHANGE = 'ETC_CHANGE',
-    }
-
-
-}
 

@@ -12,17 +12,13 @@ export class CustomEventLogControllerService {
 
     /**
      * getDLog
+     * @param id id
      * @returns CustomEventLog OK
      * @throws ApiError
      */
-    public static getDLogUsingGet({
-        id,
-    }: {
-        /**
-         * id
-         */
+    public static getDLogUsingGet(
         id: number,
-    }): CancelablePromise<CustomEventLog> {
+    ): CancelablePromise<CustomEventLog> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/dLog',
@@ -39,18 +35,14 @@ export class CustomEventLogControllerService {
 
     /**
      * saveDLog
+     * @param customEventLog customEventLog
      * @returns CustomEventLog OK
      * @returns any Created
      * @throws ApiError
      */
-    public static saveDLogUsingPost({
-        customEventLog,
-    }: {
-        /**
-         * customEventLog
-         */
+    public static saveDLogUsingPost(
         customEventLog: CustomEventLog,
-    }): CancelablePromise<CustomEventLog | any> {
+    ): CancelablePromise<CustomEventLog | any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/dLog',
@@ -65,17 +57,13 @@ export class CustomEventLogControllerService {
 
     /**
      * deleteDLog
+     * @param id id
      * @returns any OK
      * @throws ApiError
      */
-    public static deleteDLogUsingDelete({
-        id,
-    }: {
-        /**
-         * id
-         */
+    public static deleteDLogUsingDelete(
         id: number,
-    }): CancelablePromise<any> {
+    ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'DELETE',
             url: '/dLog',
@@ -91,22 +79,15 @@ export class CustomEventLogControllerService {
 
     /**
      * getDLogList
+     * @param page page
+     * @param size size
      * @returns Page_CustomEventLog_ OK
      * @throws ApiError
      */
-    public static getDLogListUsingGet({
-        page,
-        size = 10,
-    }: {
-        /**
-         * page
-         */
+    public static getDLogListUsingGet(
         page?: number,
-        /**
-         * size
-         */
-        size?: number,
-    }): CancelablePromise<Page_CustomEventLog_> {
+        size: number = 10,
+    ): CancelablePromise<Page_CustomEventLog_> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/dLog/list',

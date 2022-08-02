@@ -13,124 +13,122 @@ export class FileControllerService {
 
     /**
      * s3Signature
+     * @param params params
+     * @param userCenterId
+     * @param userEmail
+     * @param userId
+     * @param userName
+     * @param userPassword
+     * @param userPermissions
+     * @param userPhone
+     * @param userProviderAddressAddress
+     * @param userProviderAddressAddressDetail
+     * @param userProviderAddressFullAddress
+     * @param userProviderAddressX
+     * @param userProviderAddressY
+     * @param userProviderAddressZipCode
+     * @param userProviderBankCode
+     * @param userProviderBankName
+     * @param userProviderBankNumber
+     * @param userProviderBirthDate
+     * @param userProviderConnectUserId
+     * @param userProviderCreatedAt
+     * @param userProviderDataBurdenDeduction
+     * @param userProviderDataContractDate
+     * @param userProviderDataWorkDay1
+     * @param userProviderDataWorkTime1
+     * @param userProviderDataWorkTime1End
+     * @param userProviderDataWorkingAddress
+     * @param userProviderDataWorkingMinute
+     * @param userProviderDataWorkingType
+     * @param userProviderDementiaEduComplete
+     * @param userProviderExitDate
+     * @param userProviderGender
+     * @param userProviderHancareId
+     * @param userProviderId
+     * @param userProviderIdNumber
+     * @param userProviderInsuranceStateAccidentDate
+     * @param userProviderInsuranceStateAccidentLossDate
+     * @param userProviderInsuranceStateAccidentPrice
+     * @param userProviderInsuranceStateAccidentState
+     * @param userProviderInsuranceStateDependents0Date
+     * @param userProviderInsuranceStateDependents0IdNumber
+     * @param userProviderInsuranceStateDependents0Name
+     * @param userProviderInsuranceStateDependents0Nation
+     * @param userProviderInsuranceStateDependents0Permission
+     * @param userProviderInsuranceStateDependents0PermissionEndAt
+     * @param userProviderInsuranceStateDependents0PermissionStartAt
+     * @param userProviderInsuranceStateDependents0Relation
+     * @param userProviderInsuranceStateEmployDate
+     * @param userProviderInsuranceStateEmployLossDate
+     * @param userProviderInsuranceStateEmployPrice
+     * @param userProviderInsuranceStateEmployState
+     * @param userProviderInsuranceStateHealthDate
+     * @param userProviderInsuranceStateHealthLossDate
+     * @param userProviderInsuranceStateHealthPrice
+     * @param userProviderInsuranceStateHealthState
+     * @param userProviderInsuranceStatePensionDate
+     * @param userProviderInsuranceStatePensionLossDate
+     * @param userProviderInsuranceStatePensionPrice
+     * @param userProviderInsuranceStatePensionState
+     * @param userProviderInsuranceStateWorkHours
+     * @param userProviderJoinDate
+     * @param userProviderMemo
+     * @param userProviderName
+     * @param userProviderPhone
+     * @param userProviderPhone2
+     * @param userProviderPosition
+     * @param userProviderPositionName
+     * @param userProviderProviderLicenses0IdNumber
+     * @param userProviderProviderLicenses0PublishedAt
+     * @param userProviderProviderLicenses0Type
+     * @param userProviderRelation
+     * @param userProviderSalary
+     * @param userProviderState
+     * @param userProviderStateDate
+     * @param userProviderStateHistory
+     * @param userProviderStateReason
+     * @param userProviderSummary
+     * @param userProviderTag
+     * @param userProviderTagCall
+     * @param userProviderTagCallDays
+     * @param userProviderTagPhone
+     * @param userProviderUpdatedAt
+     * @param userProviderWorkCenterAccount
+     * @param userProviderWorkCenterAccounts0Bank
+     * @param userProviderWorkCenterAccounts0Idnumber
+     * @param userProviderWorkCenterAccounts0LoginId
+     * @param userProviderWorkCenterAccounts0LoginPw
+     * @param userProviderWorkCenterAccounts0Name
+     * @param userProviderWorkCenterAccounts0Number
+     * @param userProviderWorkCenterAccounts0Pw
+     * @param userProviderWorkCenterAddressAddress
+     * @param userProviderWorkCenterAddressAddressDetail
+     * @param userProviderWorkCenterAddressFullAddress
+     * @param userProviderWorkCenterAddressX
+     * @param userProviderWorkCenterAddressY
+     * @param userProviderWorkCenterAddressZipCode
+     * @param userProviderWorkCenterApiName
+     * @param userProviderWorkCenterCenterNumber
+     * @param userProviderWorkCenterChiefName
+     * @param userProviderWorkCenterId
+     * @param userProviderWorkCenterLoginCode
+     * @param userProviderWorkCenterLoginId
+     * @param userProviderWorkCenterLoginPassword
+     * @param userProviderWorkCenterMain
+     * @param userProviderWorkCenterName
+     * @param userProviderWorkCenterPhone
+     * @param userProviderWorkCenterServiceType
+     * @param userProviderWorkCenterShortName
+     * @param userProviderWorkCenterW4CCode
+     * @param userProviderWorkTypes
+     * @param userRole
+     * @param userSendNumber
      * @returns S3Signature OK
      * @returns any Created
      * @throws ApiError
      */
-    public static s3SignatureUsingPost({
-        params,
-        userCenterId,
-        userEmail,
-        userId,
-        userName,
-        userPassword,
-        userPermissions,
-        userPhone,
-        userProviderAddressAddress,
-        userProviderAddressAddressDetail,
-        userProviderAddressFullAddress,
-        userProviderAddressX,
-        userProviderAddressY,
-        userProviderAddressZipCode,
-        userProviderBankCode,
-        userProviderBankName,
-        userProviderBankNumber,
-        userProviderBirthDate,
-        userProviderConnectUserId,
-        userProviderDataBurdenDeduction,
-        userProviderDataContractDate,
-        userProviderDataWorkDay1,
-        userProviderDataWorkTime1,
-        userProviderDataWorkTime1End,
-        userProviderDataWorkingAddress,
-        userProviderDataWorkingMinute,
-        userProviderDataWorkingType,
-        userProviderDementiaEduComplete,
-        userProviderExitDate,
-        userProviderGender,
-        userProviderHancareId,
-        userProviderId,
-        userProviderIdNumber,
-        userProviderInsuranceStateAccidentDate,
-        userProviderInsuranceStateAccidentLossDate,
-        userProviderInsuranceStateAccidentPrice,
-        userProviderInsuranceStateAccidentState,
-        userProviderInsuranceStateDependents0Date,
-        userProviderInsuranceStateDependents0IdNumber,
-        userProviderInsuranceStateDependents0Name,
-        userProviderInsuranceStateDependents0Nation,
-        userProviderInsuranceStateDependents0Permission,
-        userProviderInsuranceStateDependents0PermissionEndAt,
-        userProviderInsuranceStateDependents0PermissionStartAt,
-        userProviderInsuranceStateDependents0Relation,
-        userProviderInsuranceStateEmployDate,
-        userProviderInsuranceStateEmployLossDate,
-        userProviderInsuranceStateEmployPrice,
-        userProviderInsuranceStateEmployState,
-        userProviderInsuranceStateHealthDate,
-        userProviderInsuranceStateHealthLossDate,
-        userProviderInsuranceStateHealthPrice,
-        userProviderInsuranceStateHealthState,
-        userProviderInsuranceStatePensionDate,
-        userProviderInsuranceStatePensionLossDate,
-        userProviderInsuranceStatePensionPrice,
-        userProviderInsuranceStatePensionState,
-        userProviderInsuranceStateWorkHours,
-        userProviderJoinDate,
-        userProviderMemo,
-        userProviderName,
-        userProviderPhone,
-        userProviderPhone2,
-        userProviderPosition,
-        userProviderPositionName,
-        userProviderProviderLicenses0IdNumber,
-        userProviderProviderLicenses0PublishedAt,
-        userProviderProviderLicenses0Type,
-        userProviderRelation,
-        userProviderSalary,
-        userProviderState,
-        userProviderStateDate,
-        userProviderStateHistory,
-        userProviderStateReason,
-        userProviderSummary,
-        userProviderTag,
-        userProviderTagCall,
-        userProviderTagCallDays,
-        userProviderTagPhone,
-        userProviderWorkCenterAccount,
-        userProviderWorkCenterAccounts0Bank,
-        userProviderWorkCenterAccounts0Idnumber,
-        userProviderWorkCenterAccounts0LoginId,
-        userProviderWorkCenterAccounts0LoginPw,
-        userProviderWorkCenterAccounts0Name,
-        userProviderWorkCenterAccounts0Number,
-        userProviderWorkCenterAccounts0Pw,
-        userProviderWorkCenterAddressAddress,
-        userProviderWorkCenterAddressAddressDetail,
-        userProviderWorkCenterAddressFullAddress,
-        userProviderWorkCenterAddressX,
-        userProviderWorkCenterAddressY,
-        userProviderWorkCenterAddressZipCode,
-        userProviderWorkCenterApiName,
-        userProviderWorkCenterCenterNumber,
-        userProviderWorkCenterChiefName,
-        userProviderWorkCenterId,
-        userProviderWorkCenterLoginCode,
-        userProviderWorkCenterLoginId,
-        userProviderWorkCenterLoginPassword,
-        userProviderWorkCenterMain,
-        userProviderWorkCenterName,
-        userProviderWorkCenterPhone,
-        userProviderWorkCenterServiceType,
-        userProviderWorkCenterShortName,
-        userProviderWorkCenterW4CCode,
-        userProviderWorkTypes,
-        userRole,
-        userSendNumber,
-    }: {
-        /**
-         * params
-         */
+    public static s3SignatureUsingPost(
         params: UploadParams,
         userCenterId?: number,
         userEmail?: string,
@@ -150,6 +148,7 @@ export class FileControllerService {
         userProviderBankNumber?: string,
         userProviderBirthDate?: string,
         userProviderConnectUserId?: number,
+        userProviderCreatedAt?: string,
         userProviderDataBurdenDeduction?: boolean,
         userProviderDataContractDate?: string,
         userProviderDataWorkDay1?: string,
@@ -210,6 +209,7 @@ export class FileControllerService {
         userProviderTagCall?: boolean,
         userProviderTagCallDays?: string,
         userProviderTagPhone?: string,
+        userProviderUpdatedAt?: string,
         userProviderWorkCenterAccount?: string,
         userProviderWorkCenterAccounts0Bank?: string,
         userProviderWorkCenterAccounts0Idnumber?: string,
@@ -240,7 +240,7 @@ export class FileControllerService {
         userProviderWorkTypes?: 'Family' | 'Bath' | 'Nursing',
         userRole?: 'Admin' | 'Center' | 'ContactCenter' | 'CenterChief' | 'AccountingFirm' | 'FinancialManager' | 'Infra',
         userSendNumber?: string,
-    }): CancelablePromise<S3Signature | any> {
+    ): CancelablePromise<S3Signature | any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/file',
@@ -263,6 +263,7 @@ export class FileControllerService {
                 'user.provider.bankNumber': userProviderBankNumber,
                 'user.provider.birthDate': userProviderBirthDate,
                 'user.provider.connectUserId': userProviderConnectUserId,
+                'user.provider.createdAt': userProviderCreatedAt,
                 'user.provider.data.burdenDeduction': userProviderDataBurdenDeduction,
                 'user.provider.data.contractDate': userProviderDataContractDate,
                 'user.provider.data.workDay1': userProviderDataWorkDay1,
@@ -323,6 +324,7 @@ export class FileControllerService {
                 'user.provider.tagCall': userProviderTagCall,
                 'user.provider.tagCallDays': userProviderTagCallDays,
                 'user.provider.tagPhone': userProviderTagPhone,
+                'user.provider.updatedAt': userProviderUpdatedAt,
                 'user.provider.workCenter.account': userProviderWorkCenterAccount,
                 'user.provider.workCenter.accounts[0].bank': userProviderWorkCenterAccounts0Bank,
                 'user.provider.workCenter.accounts[0].idnumber': userProviderWorkCenterAccounts0Idnumber,
@@ -365,17 +367,13 @@ export class FileControllerService {
 
     /**
      * download
+     * @param key key
      * @returns StreamingResponseBody OK
      * @throws ApiError
      */
-    public static downloadUsingGet({
-        key,
-    }: {
-        /**
-         * key
-         */
+    public static downloadUsingGet(
         key: string,
-    }): CancelablePromise<StreamingResponseBody> {
+    ): CancelablePromise<StreamingResponseBody> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/file/{key}',

@@ -1,11 +1,23 @@
-import React, { useCallback, useState } from 'react';
+import React, { FC, useCallback, useState } from 'react';
 import FormGroup from '../../../components/bootstrap/forms/FormGroup';
 import Input from '../../../components/bootstrap/forms/Input';
 import Button from '../../../components/bootstrap/Button';
+import { UserControllerService } from '../../../services/openApi';
+import { useNavigate } from 'react-router-dom';
+import { selector, useSetRecoilState } from 'recoil';
+import { userState } from '../../../atoms/user';
+import { signInState, SignInValidates } from '../../../atoms/signIn';
+import { Progress, progressState } from '../../../atoms/progress';
 
-const SignInForm = () => {
+const SignInForm: FC = () => {
 	const [email, setEmail] = useState<string>('');
 	const [password, setPassword] = useState<string>('');
+
+	const setUser = useSetRecoilState(userState);
+	const setCurrent = useSetRecoilState(signInState);
+	const setProgress = useSetRecoilState(progressState);
+
+	const navigate = useNavigate();
 
 	const handleOnChange = useCallback((e: any) => {
 		switch (e.target.id) {
@@ -18,9 +30,28 @@ const SignInForm = () => {
 		}
 	}, []);
 
-	const handleOnSubmit = (event: any) => {
+	const handleOnSubmit = async (event: any) => {
 		event.preventDefault();
-		console.log(event);
+
+		setProgress(Progress.PROCEEDING);
+		await signInHandler();
+		setProgress(Progress.DONE);
+	};
+
+	const signInHandler = async () => {
+		const response = await UserControllerService.loginUsingPost({ email, password });
+		switch (response) {
+			case '패스워드가 다릅니다.':
+				setCurrent(SignInValidates.PASSWORD);
+				break;
+			case '가입하지 않은 이메일입니다.':
+				setCurrent(SignInValidates.NON_ACCOUNT);
+				break;
+			default:
+				setUser(response);
+				navigate('/');
+				break;
+		}
 	};
 
 	return (
@@ -29,12 +60,12 @@ const SignInForm = () => {
 				<div className='col-12'>
 					<FormGroup id='signIn-email' className='mb-3' isFloating={true} label='이메일 주소 입력'>
 						<Input
-							type='email'
+							// type='email'
 							value={email}
 							onChange={handleOnChange}
 							className='input-focus'
 							autoFocus={true}
-							autoComplete='email'
+							autoComplete='username'
 							required={true}
 						/>
 					</FormGroup>
@@ -44,7 +75,7 @@ const SignInForm = () => {
 							value={password}
 							onChange={handleOnChange}
 							className='input-focus'
-							autoComplete='password'
+							autoComplete='current-password'
 							required={true}
 						/>
 					</FormGroup>

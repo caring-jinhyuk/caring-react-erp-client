@@ -14,18 +14,14 @@ export class ProviderPayControllerService {
 
     /**
      * saveProviderPay
+     * @param providerPay providerPay
      * @returns ProviderPay OK
      * @returns any Created
      * @throws ApiError
      */
-    public static saveProviderPayUsingPost({
-        providerPay,
-    }: {
-        /**
-         * providerPay
-         */
+    public static saveProviderPayUsingPost(
         providerPay: ProviderPay,
-    }): CancelablePromise<ProviderPay | any> {
+    ): CancelablePromise<ProviderPay | any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/providerPay',
@@ -40,18 +36,14 @@ export class ProviderPayControllerService {
 
     /**
      * saveProviderPayAll
+     * @param providerPay providerPay
      * @returns Iterable_ProviderPay_ OK
      * @returns any Created
      * @throws ApiError
      */
-    public static saveProviderPayAllUsingPost({
-        providerPay,
-    }: {
-        /**
-         * providerPay
-         */
+    public static saveProviderPayAllUsingPost(
         providerPay: Array<ProviderPay>,
-    }): CancelablePromise<Iterable_ProviderPay_ | any> {
+    ): CancelablePromise<Iterable_ProviderPay_ | any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/providerPay/all',
@@ -66,22 +58,15 @@ export class ProviderPayControllerService {
 
     /**
      * cancelAll
+     * @param centerId centerId
+     * @param month month
      * @returns any OK
      * @throws ApiError
      */
-    public static cancelAllUsingPost1({
-        centerId,
-        month,
-    }: {
-        /**
-         * centerId
-         */
+    public static cancelAllUsingPost1(
         centerId: number,
-        /**
-         * month
-         */
         month: string,
-    }): CancelablePromise<any> {
+    ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/providerPay/cancelAll',
@@ -99,141 +84,130 @@ export class ProviderPayControllerService {
 
     /**
      * centerPayList
+     * @param center center
+     * @param month month
+     * @param providerId providerId
+     * @param scheduleReset scheduleReset
+     * @param userCenterId
+     * @param userEmail
+     * @param userId
+     * @param userName
+     * @param userPassword
+     * @param userPermissions
+     * @param userPhone
+     * @param userProviderAddressAddress
+     * @param userProviderAddressAddressDetail
+     * @param userProviderAddressFullAddress
+     * @param userProviderAddressX
+     * @param userProviderAddressY
+     * @param userProviderAddressZipCode
+     * @param userProviderBankCode
+     * @param userProviderBankName
+     * @param userProviderBankNumber
+     * @param userProviderBirthDate
+     * @param userProviderConnectUserId
+     * @param userProviderCreatedAt
+     * @param userProviderDataBurdenDeduction
+     * @param userProviderDataContractDate
+     * @param userProviderDataWorkDay1
+     * @param userProviderDataWorkTime1
+     * @param userProviderDataWorkTime1End
+     * @param userProviderDataWorkingAddress
+     * @param userProviderDataWorkingMinute
+     * @param userProviderDataWorkingType
+     * @param userProviderDementiaEduComplete
+     * @param userProviderExitDate
+     * @param userProviderGender
+     * @param userProviderHancareId
+     * @param userProviderId
+     * @param userProviderIdNumber
+     * @param userProviderInsuranceStateAccidentDate
+     * @param userProviderInsuranceStateAccidentLossDate
+     * @param userProviderInsuranceStateAccidentPrice
+     * @param userProviderInsuranceStateAccidentState
+     * @param userProviderInsuranceStateDependents0Date
+     * @param userProviderInsuranceStateDependents0IdNumber
+     * @param userProviderInsuranceStateDependents0Name
+     * @param userProviderInsuranceStateDependents0Nation
+     * @param userProviderInsuranceStateDependents0Permission
+     * @param userProviderInsuranceStateDependents0PermissionEndAt
+     * @param userProviderInsuranceStateDependents0PermissionStartAt
+     * @param userProviderInsuranceStateDependents0Relation
+     * @param userProviderInsuranceStateEmployDate
+     * @param userProviderInsuranceStateEmployLossDate
+     * @param userProviderInsuranceStateEmployPrice
+     * @param userProviderInsuranceStateEmployState
+     * @param userProviderInsuranceStateHealthDate
+     * @param userProviderInsuranceStateHealthLossDate
+     * @param userProviderInsuranceStateHealthPrice
+     * @param userProviderInsuranceStateHealthState
+     * @param userProviderInsuranceStatePensionDate
+     * @param userProviderInsuranceStatePensionLossDate
+     * @param userProviderInsuranceStatePensionPrice
+     * @param userProviderInsuranceStatePensionState
+     * @param userProviderInsuranceStateWorkHours
+     * @param userProviderJoinDate
+     * @param userProviderMemo
+     * @param userProviderName
+     * @param userProviderPhone
+     * @param userProviderPhone2
+     * @param userProviderPosition
+     * @param userProviderPositionName
+     * @param userProviderProviderLicenses0IdNumber
+     * @param userProviderProviderLicenses0PublishedAt
+     * @param userProviderProviderLicenses0Type
+     * @param userProviderRelation
+     * @param userProviderSalary
+     * @param userProviderState
+     * @param userProviderStateDate
+     * @param userProviderStateHistory
+     * @param userProviderStateReason
+     * @param userProviderSummary
+     * @param userProviderTag
+     * @param userProviderTagCall
+     * @param userProviderTagCallDays
+     * @param userProviderTagPhone
+     * @param userProviderUpdatedAt
+     * @param userProviderWorkCenterAccount
+     * @param userProviderWorkCenterAccounts0Bank
+     * @param userProviderWorkCenterAccounts0Idnumber
+     * @param userProviderWorkCenterAccounts0LoginId
+     * @param userProviderWorkCenterAccounts0LoginPw
+     * @param userProviderWorkCenterAccounts0Name
+     * @param userProviderWorkCenterAccounts0Number
+     * @param userProviderWorkCenterAccounts0Pw
+     * @param userProviderWorkCenterAddressAddress
+     * @param userProviderWorkCenterAddressAddressDetail
+     * @param userProviderWorkCenterAddressFullAddress
+     * @param userProviderWorkCenterAddressX
+     * @param userProviderWorkCenterAddressY
+     * @param userProviderWorkCenterAddressZipCode
+     * @param userProviderWorkCenterApiName
+     * @param userProviderWorkCenterCenterNumber
+     * @param userProviderWorkCenterChiefName
+     * @param userProviderWorkCenterId
+     * @param userProviderWorkCenterLoginCode
+     * @param userProviderWorkCenterLoginId
+     * @param userProviderWorkCenterLoginPassword
+     * @param userProviderWorkCenterMain
+     * @param userProviderWorkCenterName
+     * @param userProviderWorkCenterPhone
+     * @param userProviderWorkCenterServiceType
+     * @param userProviderWorkCenterShortName
+     * @param userProviderWorkCenterW4CCode
+     * @param userProviderWorkTypes
+     * @param userRole
+     * @param userSendNumber
+     * @param userIdList userIdList
      * @returns ProviderPay OK
      * @returns any Created
      * @throws ApiError
      */
-    public static centerPayListUsingPost({
-        center,
-        month,
-        providerId,
-        scheduleReset = false,
-        userCenterId,
-        userEmail,
-        userId,
-        userName,
-        userPassword,
-        userPermissions,
-        userPhone,
-        userProviderAddressAddress,
-        userProviderAddressAddressDetail,
-        userProviderAddressFullAddress,
-        userProviderAddressX,
-        userProviderAddressY,
-        userProviderAddressZipCode,
-        userProviderBankCode,
-        userProviderBankName,
-        userProviderBankNumber,
-        userProviderBirthDate,
-        userProviderConnectUserId,
-        userProviderDataBurdenDeduction,
-        userProviderDataContractDate,
-        userProviderDataWorkDay1,
-        userProviderDataWorkTime1,
-        userProviderDataWorkTime1End,
-        userProviderDataWorkingAddress,
-        userProviderDataWorkingMinute,
-        userProviderDataWorkingType,
-        userProviderDementiaEduComplete,
-        userProviderExitDate,
-        userProviderGender,
-        userProviderHancareId,
-        userProviderId,
-        userProviderIdNumber,
-        userProviderInsuranceStateAccidentDate,
-        userProviderInsuranceStateAccidentLossDate,
-        userProviderInsuranceStateAccidentPrice,
-        userProviderInsuranceStateAccidentState,
-        userProviderInsuranceStateDependents0Date,
-        userProviderInsuranceStateDependents0IdNumber,
-        userProviderInsuranceStateDependents0Name,
-        userProviderInsuranceStateDependents0Nation,
-        userProviderInsuranceStateDependents0Permission,
-        userProviderInsuranceStateDependents0PermissionEndAt,
-        userProviderInsuranceStateDependents0PermissionStartAt,
-        userProviderInsuranceStateDependents0Relation,
-        userProviderInsuranceStateEmployDate,
-        userProviderInsuranceStateEmployLossDate,
-        userProviderInsuranceStateEmployPrice,
-        userProviderInsuranceStateEmployState,
-        userProviderInsuranceStateHealthDate,
-        userProviderInsuranceStateHealthLossDate,
-        userProviderInsuranceStateHealthPrice,
-        userProviderInsuranceStateHealthState,
-        userProviderInsuranceStatePensionDate,
-        userProviderInsuranceStatePensionLossDate,
-        userProviderInsuranceStatePensionPrice,
-        userProviderInsuranceStatePensionState,
-        userProviderInsuranceStateWorkHours,
-        userProviderJoinDate,
-        userProviderMemo,
-        userProviderName,
-        userProviderPhone,
-        userProviderPhone2,
-        userProviderPosition,
-        userProviderPositionName,
-        userProviderProviderLicenses0IdNumber,
-        userProviderProviderLicenses0PublishedAt,
-        userProviderProviderLicenses0Type,
-        userProviderRelation,
-        userProviderSalary,
-        userProviderState,
-        userProviderStateDate,
-        userProviderStateHistory,
-        userProviderStateReason,
-        userProviderSummary,
-        userProviderTag,
-        userProviderTagCall,
-        userProviderTagCallDays,
-        userProviderTagPhone,
-        userProviderWorkCenterAccount,
-        userProviderWorkCenterAccounts0Bank,
-        userProviderWorkCenterAccounts0Idnumber,
-        userProviderWorkCenterAccounts0LoginId,
-        userProviderWorkCenterAccounts0LoginPw,
-        userProviderWorkCenterAccounts0Name,
-        userProviderWorkCenterAccounts0Number,
-        userProviderWorkCenterAccounts0Pw,
-        userProviderWorkCenterAddressAddress,
-        userProviderWorkCenterAddressAddressDetail,
-        userProviderWorkCenterAddressFullAddress,
-        userProviderWorkCenterAddressX,
-        userProviderWorkCenterAddressY,
-        userProviderWorkCenterAddressZipCode,
-        userProviderWorkCenterApiName,
-        userProviderWorkCenterCenterNumber,
-        userProviderWorkCenterChiefName,
-        userProviderWorkCenterId,
-        userProviderWorkCenterLoginCode,
-        userProviderWorkCenterLoginId,
-        userProviderWorkCenterLoginPassword,
-        userProviderWorkCenterMain,
-        userProviderWorkCenterName,
-        userProviderWorkCenterPhone,
-        userProviderWorkCenterServiceType,
-        userProviderWorkCenterShortName,
-        userProviderWorkCenterW4CCode,
-        userProviderWorkTypes,
-        userRole,
-        userSendNumber,
-        userIdList,
-    }: {
-        /**
-         * center
-         */
+    public static centerPayListUsingPost(
         center: number,
-        /**
-         * month
-         */
         month: string,
-        /**
-         * providerId
-         */
         providerId?: number,
-        /**
-         * scheduleReset
-         */
-        scheduleReset?: boolean,
+        scheduleReset: boolean = false,
         userCenterId?: number,
         userEmail?: string,
         userId?: number,
@@ -252,6 +226,7 @@ export class ProviderPayControllerService {
         userProviderBankNumber?: string,
         userProviderBirthDate?: string,
         userProviderConnectUserId?: number,
+        userProviderCreatedAt?: string,
         userProviderDataBurdenDeduction?: boolean,
         userProviderDataContractDate?: string,
         userProviderDataWorkDay1?: string,
@@ -312,6 +287,7 @@ export class ProviderPayControllerService {
         userProviderTagCall?: boolean,
         userProviderTagCallDays?: string,
         userProviderTagPhone?: string,
+        userProviderUpdatedAt?: string,
         userProviderWorkCenterAccount?: string,
         userProviderWorkCenterAccounts0Bank?: string,
         userProviderWorkCenterAccounts0Idnumber?: string,
@@ -342,11 +318,8 @@ export class ProviderPayControllerService {
         userProviderWorkTypes?: 'Family' | 'Bath' | 'Nursing',
         userRole?: 'Admin' | 'Center' | 'ContactCenter' | 'CenterChief' | 'AccountingFirm' | 'FinancialManager' | 'Infra',
         userSendNumber?: string,
-        /**
-         * userIdList
-         */
         userIdList?: Array<number>,
-    }): CancelablePromise<Array<ProviderPay> | any> {
+    ): CancelablePromise<Array<ProviderPay> | any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/providerPay/centerPayList',
@@ -373,6 +346,7 @@ export class ProviderPayControllerService {
                 'user.provider.bankNumber': userProviderBankNumber,
                 'user.provider.birthDate': userProviderBirthDate,
                 'user.provider.connectUserId': userProviderConnectUserId,
+                'user.provider.createdAt': userProviderCreatedAt,
                 'user.provider.data.burdenDeduction': userProviderDataBurdenDeduction,
                 'user.provider.data.contractDate': userProviderDataContractDate,
                 'user.provider.data.workDay1': userProviderDataWorkDay1,
@@ -433,6 +407,7 @@ export class ProviderPayControllerService {
                 'user.provider.tagCall': userProviderTagCall,
                 'user.provider.tagCallDays': userProviderTagCallDays,
                 'user.provider.tagPhone': userProviderTagPhone,
+                'user.provider.updatedAt': userProviderUpdatedAt,
                 'user.provider.workCenter.account': userProviderWorkCenterAccount,
                 'user.provider.workCenter.accounts[0].bank': userProviderWorkCenterAccounts0Bank,
                 'user.provider.workCenter.accounts[0].idnumber': userProviderWorkCenterAccounts0Idnumber,
@@ -475,18 +450,14 @@ export class ProviderPayControllerService {
 
     /**
      * completeProviderPay
+     * @param providerPay providerPay
      * @returns ProviderPay OK
      * @returns any Created
      * @throws ApiError
      */
-    public static completeProviderPayUsingPost({
-        providerPay,
-    }: {
-        /**
-         * providerPay
-         */
+    public static completeProviderPayUsingPost(
         providerPay: Array<ProviderPay>,
-    }): CancelablePromise<Array<ProviderPay> | any> {
+    ): CancelablePromise<Array<ProviderPay> | any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/providerPay/completeAll',
@@ -501,17 +472,13 @@ export class ProviderPayControllerService {
 
     /**
      * delete
+     * @param id id
      * @returns any OK
      * @throws ApiError
      */
-    public static deleteUsingDelete({
-        id,
-    }: {
-        /**
-         * id
-         */
+    public static deleteUsingDelete(
         id: number,
-    }): CancelablePromise<any> {
+    ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'DELETE',
             url: '/providerPay/each',
@@ -527,22 +494,15 @@ export class ProviderPayControllerService {
 
     /**
      * getProviderPayList
+     * @param page page
+     * @param size size
      * @returns Page_ProviderPay_ OK
      * @throws ApiError
      */
-    public static getProviderPayListUsingGet({
-        page,
-        size = 10,
-    }: {
-        /**
-         * page
-         */
+    public static getProviderPayListUsingGet(
         page?: number,
-        /**
-         * size
-         */
-        size?: number,
-    }): CancelablePromise<Page_ProviderPay_> {
+        size: number = 10,
+    ): CancelablePromise<Page_ProviderPay_> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/providerPay/list',
@@ -560,128 +520,123 @@ export class ProviderPayControllerService {
 
     /**
      * getTargetCaringProviderList
+     * @param month month
+     * @param centerId centerId
+     * @param userCenterId
+     * @param userEmail
+     * @param userId
+     * @param userName
+     * @param userPassword
+     * @param userPermissions
+     * @param userPhone
+     * @param userProviderAddressAddress
+     * @param userProviderAddressAddressDetail
+     * @param userProviderAddressFullAddress
+     * @param userProviderAddressX
+     * @param userProviderAddressY
+     * @param userProviderAddressZipCode
+     * @param userProviderBankCode
+     * @param userProviderBankName
+     * @param userProviderBankNumber
+     * @param userProviderBirthDate
+     * @param userProviderConnectUserId
+     * @param userProviderCreatedAt
+     * @param userProviderDataBurdenDeduction
+     * @param userProviderDataContractDate
+     * @param userProviderDataWorkDay1
+     * @param userProviderDataWorkTime1
+     * @param userProviderDataWorkTime1End
+     * @param userProviderDataWorkingAddress
+     * @param userProviderDataWorkingMinute
+     * @param userProviderDataWorkingType
+     * @param userProviderDementiaEduComplete
+     * @param userProviderExitDate
+     * @param userProviderGender
+     * @param userProviderHancareId
+     * @param userProviderId
+     * @param userProviderIdNumber
+     * @param userProviderInsuranceStateAccidentDate
+     * @param userProviderInsuranceStateAccidentLossDate
+     * @param userProviderInsuranceStateAccidentPrice
+     * @param userProviderInsuranceStateAccidentState
+     * @param userProviderInsuranceStateDependents0Date
+     * @param userProviderInsuranceStateDependents0IdNumber
+     * @param userProviderInsuranceStateDependents0Name
+     * @param userProviderInsuranceStateDependents0Nation
+     * @param userProviderInsuranceStateDependents0Permission
+     * @param userProviderInsuranceStateDependents0PermissionEndAt
+     * @param userProviderInsuranceStateDependents0PermissionStartAt
+     * @param userProviderInsuranceStateDependents0Relation
+     * @param userProviderInsuranceStateEmployDate
+     * @param userProviderInsuranceStateEmployLossDate
+     * @param userProviderInsuranceStateEmployPrice
+     * @param userProviderInsuranceStateEmployState
+     * @param userProviderInsuranceStateHealthDate
+     * @param userProviderInsuranceStateHealthLossDate
+     * @param userProviderInsuranceStateHealthPrice
+     * @param userProviderInsuranceStateHealthState
+     * @param userProviderInsuranceStatePensionDate
+     * @param userProviderInsuranceStatePensionLossDate
+     * @param userProviderInsuranceStatePensionPrice
+     * @param userProviderInsuranceStatePensionState
+     * @param userProviderInsuranceStateWorkHours
+     * @param userProviderJoinDate
+     * @param userProviderMemo
+     * @param userProviderName
+     * @param userProviderPhone
+     * @param userProviderPhone2
+     * @param userProviderPosition
+     * @param userProviderPositionName
+     * @param userProviderProviderLicenses0IdNumber
+     * @param userProviderProviderLicenses0PublishedAt
+     * @param userProviderProviderLicenses0Type
+     * @param userProviderRelation
+     * @param userProviderSalary
+     * @param userProviderState
+     * @param userProviderStateDate
+     * @param userProviderStateHistory
+     * @param userProviderStateReason
+     * @param userProviderSummary
+     * @param userProviderTag
+     * @param userProviderTagCall
+     * @param userProviderTagCallDays
+     * @param userProviderTagPhone
+     * @param userProviderUpdatedAt
+     * @param userProviderWorkCenterAccount
+     * @param userProviderWorkCenterAccounts0Bank
+     * @param userProviderWorkCenterAccounts0Idnumber
+     * @param userProviderWorkCenterAccounts0LoginId
+     * @param userProviderWorkCenterAccounts0LoginPw
+     * @param userProviderWorkCenterAccounts0Name
+     * @param userProviderWorkCenterAccounts0Number
+     * @param userProviderWorkCenterAccounts0Pw
+     * @param userProviderWorkCenterAddressAddress
+     * @param userProviderWorkCenterAddressAddressDetail
+     * @param userProviderWorkCenterAddressFullAddress
+     * @param userProviderWorkCenterAddressX
+     * @param userProviderWorkCenterAddressY
+     * @param userProviderWorkCenterAddressZipCode
+     * @param userProviderWorkCenterApiName
+     * @param userProviderWorkCenterCenterNumber
+     * @param userProviderWorkCenterChiefName
+     * @param userProviderWorkCenterId
+     * @param userProviderWorkCenterLoginCode
+     * @param userProviderWorkCenterLoginId
+     * @param userProviderWorkCenterLoginPassword
+     * @param userProviderWorkCenterMain
+     * @param userProviderWorkCenterName
+     * @param userProviderWorkCenterPhone
+     * @param userProviderWorkCenterServiceType
+     * @param userProviderWorkCenterShortName
+     * @param userProviderWorkCenterW4CCode
+     * @param userProviderWorkTypes
+     * @param userRole
+     * @param userSendNumber
      * @returns CaringProvider OK
      * @throws ApiError
      */
-    public static getTargetCaringProviderListUsingGet({
-        month,
-        centerId,
-        userCenterId,
-        userEmail,
-        userId,
-        userName,
-        userPassword,
-        userPermissions,
-        userPhone,
-        userProviderAddressAddress,
-        userProviderAddressAddressDetail,
-        userProviderAddressFullAddress,
-        userProviderAddressX,
-        userProviderAddressY,
-        userProviderAddressZipCode,
-        userProviderBankCode,
-        userProviderBankName,
-        userProviderBankNumber,
-        userProviderBirthDate,
-        userProviderConnectUserId,
-        userProviderDataBurdenDeduction,
-        userProviderDataContractDate,
-        userProviderDataWorkDay1,
-        userProviderDataWorkTime1,
-        userProviderDataWorkTime1End,
-        userProviderDataWorkingAddress,
-        userProviderDataWorkingMinute,
-        userProviderDataWorkingType,
-        userProviderDementiaEduComplete,
-        userProviderExitDate,
-        userProviderGender,
-        userProviderHancareId,
-        userProviderId,
-        userProviderIdNumber,
-        userProviderInsuranceStateAccidentDate,
-        userProviderInsuranceStateAccidentLossDate,
-        userProviderInsuranceStateAccidentPrice,
-        userProviderInsuranceStateAccidentState,
-        userProviderInsuranceStateDependents0Date,
-        userProviderInsuranceStateDependents0IdNumber,
-        userProviderInsuranceStateDependents0Name,
-        userProviderInsuranceStateDependents0Nation,
-        userProviderInsuranceStateDependents0Permission,
-        userProviderInsuranceStateDependents0PermissionEndAt,
-        userProviderInsuranceStateDependents0PermissionStartAt,
-        userProviderInsuranceStateDependents0Relation,
-        userProviderInsuranceStateEmployDate,
-        userProviderInsuranceStateEmployLossDate,
-        userProviderInsuranceStateEmployPrice,
-        userProviderInsuranceStateEmployState,
-        userProviderInsuranceStateHealthDate,
-        userProviderInsuranceStateHealthLossDate,
-        userProviderInsuranceStateHealthPrice,
-        userProviderInsuranceStateHealthState,
-        userProviderInsuranceStatePensionDate,
-        userProviderInsuranceStatePensionLossDate,
-        userProviderInsuranceStatePensionPrice,
-        userProviderInsuranceStatePensionState,
-        userProviderInsuranceStateWorkHours,
-        userProviderJoinDate,
-        userProviderMemo,
-        userProviderName,
-        userProviderPhone,
-        userProviderPhone2,
-        userProviderPosition,
-        userProviderPositionName,
-        userProviderProviderLicenses0IdNumber,
-        userProviderProviderLicenses0PublishedAt,
-        userProviderProviderLicenses0Type,
-        userProviderRelation,
-        userProviderSalary,
-        userProviderState,
-        userProviderStateDate,
-        userProviderStateHistory,
-        userProviderStateReason,
-        userProviderSummary,
-        userProviderTag,
-        userProviderTagCall,
-        userProviderTagCallDays,
-        userProviderTagPhone,
-        userProviderWorkCenterAccount,
-        userProviderWorkCenterAccounts0Bank,
-        userProviderWorkCenterAccounts0Idnumber,
-        userProviderWorkCenterAccounts0LoginId,
-        userProviderWorkCenterAccounts0LoginPw,
-        userProviderWorkCenterAccounts0Name,
-        userProviderWorkCenterAccounts0Number,
-        userProviderWorkCenterAccounts0Pw,
-        userProviderWorkCenterAddressAddress,
-        userProviderWorkCenterAddressAddressDetail,
-        userProviderWorkCenterAddressFullAddress,
-        userProviderWorkCenterAddressX,
-        userProviderWorkCenterAddressY,
-        userProviderWorkCenterAddressZipCode,
-        userProviderWorkCenterApiName,
-        userProviderWorkCenterCenterNumber,
-        userProviderWorkCenterChiefName,
-        userProviderWorkCenterId,
-        userProviderWorkCenterLoginCode,
-        userProviderWorkCenterLoginId,
-        userProviderWorkCenterLoginPassword,
-        userProviderWorkCenterMain,
-        userProviderWorkCenterName,
-        userProviderWorkCenterPhone,
-        userProviderWorkCenterServiceType,
-        userProviderWorkCenterShortName,
-        userProviderWorkCenterW4CCode,
-        userProviderWorkTypes,
-        userRole,
-        userSendNumber,
-    }: {
-        /**
-         * month
-         */
+    public static getTargetCaringProviderListUsingGet(
         month: string,
-        /**
-         * centerId
-         */
         centerId?: Array<number>,
         userCenterId?: number,
         userEmail?: string,
@@ -701,6 +656,7 @@ export class ProviderPayControllerService {
         userProviderBankNumber?: string,
         userProviderBirthDate?: string,
         userProviderConnectUserId?: number,
+        userProviderCreatedAt?: string,
         userProviderDataBurdenDeduction?: boolean,
         userProviderDataContractDate?: string,
         userProviderDataWorkDay1?: string,
@@ -761,6 +717,7 @@ export class ProviderPayControllerService {
         userProviderTagCall?: boolean,
         userProviderTagCallDays?: string,
         userProviderTagPhone?: string,
+        userProviderUpdatedAt?: string,
         userProviderWorkCenterAccount?: string,
         userProviderWorkCenterAccounts0Bank?: string,
         userProviderWorkCenterAccounts0Idnumber?: string,
@@ -791,7 +748,7 @@ export class ProviderPayControllerService {
         userProviderWorkTypes?: 'Family' | 'Bath' | 'Nursing',
         userRole?: 'Admin' | 'Center' | 'ContactCenter' | 'CenterChief' | 'AccountingFirm' | 'FinancialManager' | 'Infra',
         userSendNumber?: string,
-    }): CancelablePromise<Array<CaringProvider>> {
+    ): CancelablePromise<Array<CaringProvider>> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/providerPay/list/target',
@@ -816,6 +773,7 @@ export class ProviderPayControllerService {
                 'user.provider.bankNumber': userProviderBankNumber,
                 'user.provider.birthDate': userProviderBirthDate,
                 'user.provider.connectUserId': userProviderConnectUserId,
+                'user.provider.createdAt': userProviderCreatedAt,
                 'user.provider.data.burdenDeduction': userProviderDataBurdenDeduction,
                 'user.provider.data.contractDate': userProviderDataContractDate,
                 'user.provider.data.workDay1': userProviderDataWorkDay1,
@@ -876,6 +834,7 @@ export class ProviderPayControllerService {
                 'user.provider.tagCall': userProviderTagCall,
                 'user.provider.tagCallDays': userProviderTagCallDays,
                 'user.provider.tagPhone': userProviderTagPhone,
+                'user.provider.updatedAt': userProviderUpdatedAt,
                 'user.provider.workCenter.account': userProviderWorkCenterAccount,
                 'user.provider.workCenter.accounts[0].bank': userProviderWorkCenterAccounts0Bank,
                 'user.provider.workCenter.accounts[0].idnumber': userProviderWorkCenterAccounts0Idnumber,
@@ -917,23 +876,16 @@ export class ProviderPayControllerService {
 
     /**
      * getProviderPayByMonth
+     * @param month month
+     * @param providerId providerId
      * @returns ProviderPay OK
      * @returns any Created
      * @throws ApiError
      */
-    public static getProviderPayByMonthUsingPost({
-        month,
-        providerId,
-    }: {
-        /**
-         * month
-         */
+    public static getProviderPayByMonthUsingPost(
         month: string,
-        /**
-         * providerId
-         */
         providerId: number,
-    }): CancelablePromise<ProviderPay | any> {
+    ): CancelablePromise<ProviderPay | any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/providerPay/month',
@@ -951,123 +903,121 @@ export class ProviderPayControllerService {
 
     /**
      * getProviderPayMonthList
+     * @param centerId centerId
+     * @param userCenterId
+     * @param userEmail
+     * @param userId
+     * @param userName
+     * @param userPassword
+     * @param userPermissions
+     * @param userPhone
+     * @param userProviderAddressAddress
+     * @param userProviderAddressAddressDetail
+     * @param userProviderAddressFullAddress
+     * @param userProviderAddressX
+     * @param userProviderAddressY
+     * @param userProviderAddressZipCode
+     * @param userProviderBankCode
+     * @param userProviderBankName
+     * @param userProviderBankNumber
+     * @param userProviderBirthDate
+     * @param userProviderConnectUserId
+     * @param userProviderCreatedAt
+     * @param userProviderDataBurdenDeduction
+     * @param userProviderDataContractDate
+     * @param userProviderDataWorkDay1
+     * @param userProviderDataWorkTime1
+     * @param userProviderDataWorkTime1End
+     * @param userProviderDataWorkingAddress
+     * @param userProviderDataWorkingMinute
+     * @param userProviderDataWorkingType
+     * @param userProviderDementiaEduComplete
+     * @param userProviderExitDate
+     * @param userProviderGender
+     * @param userProviderHancareId
+     * @param userProviderId
+     * @param userProviderIdNumber
+     * @param userProviderInsuranceStateAccidentDate
+     * @param userProviderInsuranceStateAccidentLossDate
+     * @param userProviderInsuranceStateAccidentPrice
+     * @param userProviderInsuranceStateAccidentState
+     * @param userProviderInsuranceStateDependents0Date
+     * @param userProviderInsuranceStateDependents0IdNumber
+     * @param userProviderInsuranceStateDependents0Name
+     * @param userProviderInsuranceStateDependents0Nation
+     * @param userProviderInsuranceStateDependents0Permission
+     * @param userProviderInsuranceStateDependents0PermissionEndAt
+     * @param userProviderInsuranceStateDependents0PermissionStartAt
+     * @param userProviderInsuranceStateDependents0Relation
+     * @param userProviderInsuranceStateEmployDate
+     * @param userProviderInsuranceStateEmployLossDate
+     * @param userProviderInsuranceStateEmployPrice
+     * @param userProviderInsuranceStateEmployState
+     * @param userProviderInsuranceStateHealthDate
+     * @param userProviderInsuranceStateHealthLossDate
+     * @param userProviderInsuranceStateHealthPrice
+     * @param userProviderInsuranceStateHealthState
+     * @param userProviderInsuranceStatePensionDate
+     * @param userProviderInsuranceStatePensionLossDate
+     * @param userProviderInsuranceStatePensionPrice
+     * @param userProviderInsuranceStatePensionState
+     * @param userProviderInsuranceStateWorkHours
+     * @param userProviderJoinDate
+     * @param userProviderMemo
+     * @param userProviderName
+     * @param userProviderPhone
+     * @param userProviderPhone2
+     * @param userProviderPosition
+     * @param userProviderPositionName
+     * @param userProviderProviderLicenses0IdNumber
+     * @param userProviderProviderLicenses0PublishedAt
+     * @param userProviderProviderLicenses0Type
+     * @param userProviderRelation
+     * @param userProviderSalary
+     * @param userProviderState
+     * @param userProviderStateDate
+     * @param userProviderStateHistory
+     * @param userProviderStateReason
+     * @param userProviderSummary
+     * @param userProviderTag
+     * @param userProviderTagCall
+     * @param userProviderTagCallDays
+     * @param userProviderTagPhone
+     * @param userProviderUpdatedAt
+     * @param userProviderWorkCenterAccount
+     * @param userProviderWorkCenterAccounts0Bank
+     * @param userProviderWorkCenterAccounts0Idnumber
+     * @param userProviderWorkCenterAccounts0LoginId
+     * @param userProviderWorkCenterAccounts0LoginPw
+     * @param userProviderWorkCenterAccounts0Name
+     * @param userProviderWorkCenterAccounts0Number
+     * @param userProviderWorkCenterAccounts0Pw
+     * @param userProviderWorkCenterAddressAddress
+     * @param userProviderWorkCenterAddressAddressDetail
+     * @param userProviderWorkCenterAddressFullAddress
+     * @param userProviderWorkCenterAddressX
+     * @param userProviderWorkCenterAddressY
+     * @param userProviderWorkCenterAddressZipCode
+     * @param userProviderWorkCenterApiName
+     * @param userProviderWorkCenterCenterNumber
+     * @param userProviderWorkCenterChiefName
+     * @param userProviderWorkCenterId
+     * @param userProviderWorkCenterLoginCode
+     * @param userProviderWorkCenterLoginId
+     * @param userProviderWorkCenterLoginPassword
+     * @param userProviderWorkCenterMain
+     * @param userProviderWorkCenterName
+     * @param userProviderWorkCenterPhone
+     * @param userProviderWorkCenterServiceType
+     * @param userProviderWorkCenterShortName
+     * @param userProviderWorkCenterW4CCode
+     * @param userProviderWorkTypes
+     * @param userRole
+     * @param userSendNumber
      * @returns string OK
      * @throws ApiError
      */
-    public static getProviderPayMonthListUsingGet({
-        centerId,
-        userCenterId,
-        userEmail,
-        userId,
-        userName,
-        userPassword,
-        userPermissions,
-        userPhone,
-        userProviderAddressAddress,
-        userProviderAddressAddressDetail,
-        userProviderAddressFullAddress,
-        userProviderAddressX,
-        userProviderAddressY,
-        userProviderAddressZipCode,
-        userProviderBankCode,
-        userProviderBankName,
-        userProviderBankNumber,
-        userProviderBirthDate,
-        userProviderConnectUserId,
-        userProviderDataBurdenDeduction,
-        userProviderDataContractDate,
-        userProviderDataWorkDay1,
-        userProviderDataWorkTime1,
-        userProviderDataWorkTime1End,
-        userProviderDataWorkingAddress,
-        userProviderDataWorkingMinute,
-        userProviderDataWorkingType,
-        userProviderDementiaEduComplete,
-        userProviderExitDate,
-        userProviderGender,
-        userProviderHancareId,
-        userProviderId,
-        userProviderIdNumber,
-        userProviderInsuranceStateAccidentDate,
-        userProviderInsuranceStateAccidentLossDate,
-        userProviderInsuranceStateAccidentPrice,
-        userProviderInsuranceStateAccidentState,
-        userProviderInsuranceStateDependents0Date,
-        userProviderInsuranceStateDependents0IdNumber,
-        userProviderInsuranceStateDependents0Name,
-        userProviderInsuranceStateDependents0Nation,
-        userProviderInsuranceStateDependents0Permission,
-        userProviderInsuranceStateDependents0PermissionEndAt,
-        userProviderInsuranceStateDependents0PermissionStartAt,
-        userProviderInsuranceStateDependents0Relation,
-        userProviderInsuranceStateEmployDate,
-        userProviderInsuranceStateEmployLossDate,
-        userProviderInsuranceStateEmployPrice,
-        userProviderInsuranceStateEmployState,
-        userProviderInsuranceStateHealthDate,
-        userProviderInsuranceStateHealthLossDate,
-        userProviderInsuranceStateHealthPrice,
-        userProviderInsuranceStateHealthState,
-        userProviderInsuranceStatePensionDate,
-        userProviderInsuranceStatePensionLossDate,
-        userProviderInsuranceStatePensionPrice,
-        userProviderInsuranceStatePensionState,
-        userProviderInsuranceStateWorkHours,
-        userProviderJoinDate,
-        userProviderMemo,
-        userProviderName,
-        userProviderPhone,
-        userProviderPhone2,
-        userProviderPosition,
-        userProviderPositionName,
-        userProviderProviderLicenses0IdNumber,
-        userProviderProviderLicenses0PublishedAt,
-        userProviderProviderLicenses0Type,
-        userProviderRelation,
-        userProviderSalary,
-        userProviderState,
-        userProviderStateDate,
-        userProviderStateHistory,
-        userProviderStateReason,
-        userProviderSummary,
-        userProviderTag,
-        userProviderTagCall,
-        userProviderTagCallDays,
-        userProviderTagPhone,
-        userProviderWorkCenterAccount,
-        userProviderWorkCenterAccounts0Bank,
-        userProviderWorkCenterAccounts0Idnumber,
-        userProviderWorkCenterAccounts0LoginId,
-        userProviderWorkCenterAccounts0LoginPw,
-        userProviderWorkCenterAccounts0Name,
-        userProviderWorkCenterAccounts0Number,
-        userProviderWorkCenterAccounts0Pw,
-        userProviderWorkCenterAddressAddress,
-        userProviderWorkCenterAddressAddressDetail,
-        userProviderWorkCenterAddressFullAddress,
-        userProviderWorkCenterAddressX,
-        userProviderWorkCenterAddressY,
-        userProviderWorkCenterAddressZipCode,
-        userProviderWorkCenterApiName,
-        userProviderWorkCenterCenterNumber,
-        userProviderWorkCenterChiefName,
-        userProviderWorkCenterId,
-        userProviderWorkCenterLoginCode,
-        userProviderWorkCenterLoginId,
-        userProviderWorkCenterLoginPassword,
-        userProviderWorkCenterMain,
-        userProviderWorkCenterName,
-        userProviderWorkCenterPhone,
-        userProviderWorkCenterServiceType,
-        userProviderWorkCenterShortName,
-        userProviderWorkCenterW4CCode,
-        userProviderWorkTypes,
-        userRole,
-        userSendNumber,
-    }: {
-        /**
-         * centerId
-         */
+    public static getProviderPayMonthListUsingGet(
         centerId?: Array<number>,
         userCenterId?: number,
         userEmail?: string,
@@ -1087,6 +1037,7 @@ export class ProviderPayControllerService {
         userProviderBankNumber?: string,
         userProviderBirthDate?: string,
         userProviderConnectUserId?: number,
+        userProviderCreatedAt?: string,
         userProviderDataBurdenDeduction?: boolean,
         userProviderDataContractDate?: string,
         userProviderDataWorkDay1?: string,
@@ -1147,6 +1098,7 @@ export class ProviderPayControllerService {
         userProviderTagCall?: boolean,
         userProviderTagCallDays?: string,
         userProviderTagPhone?: string,
+        userProviderUpdatedAt?: string,
         userProviderWorkCenterAccount?: string,
         userProviderWorkCenterAccounts0Bank?: string,
         userProviderWorkCenterAccounts0Idnumber?: string,
@@ -1177,7 +1129,7 @@ export class ProviderPayControllerService {
         userProviderWorkTypes?: 'Family' | 'Bath' | 'Nursing',
         userRole?: 'Admin' | 'Center' | 'ContactCenter' | 'CenterChief' | 'AccountingFirm' | 'FinancialManager' | 'Infra',
         userSendNumber?: string,
-    }): CancelablePromise<Array<string>> {
+    ): CancelablePromise<Array<string>> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/providerPay/monthList',
@@ -1201,6 +1153,7 @@ export class ProviderPayControllerService {
                 'user.provider.bankNumber': userProviderBankNumber,
                 'user.provider.birthDate': userProviderBirthDate,
                 'user.provider.connectUserId': userProviderConnectUserId,
+                'user.provider.createdAt': userProviderCreatedAt,
                 'user.provider.data.burdenDeduction': userProviderDataBurdenDeduction,
                 'user.provider.data.contractDate': userProviderDataContractDate,
                 'user.provider.data.workDay1': userProviderDataWorkDay1,
@@ -1261,6 +1214,7 @@ export class ProviderPayControllerService {
                 'user.provider.tagCall': userProviderTagCall,
                 'user.provider.tagCallDays': userProviderTagCallDays,
                 'user.provider.tagPhone': userProviderTagPhone,
+                'user.provider.updatedAt': userProviderUpdatedAt,
                 'user.provider.workCenter.account': userProviderWorkCenterAccount,
                 'user.provider.workCenter.accounts[0].bank': userProviderWorkCenterAccounts0Bank,
                 'user.provider.workCenter.accounts[0].idnumber': userProviderWorkCenterAccounts0Idnumber,
@@ -1302,18 +1256,14 @@ export class ProviderPayControllerService {
 
     /**
      * getProviderPayMonthListByProviderId
+     * @param providerId providerId
      * @returns string OK
      * @returns any Created
      * @throws ApiError
      */
-    public static getProviderPayMonthListByProviderIdUsingPost({
-        providerId,
-    }: {
-        /**
-         * providerId
-         */
+    public static getProviderPayMonthListByProviderIdUsingPost(
         providerId: number,
-    }): CancelablePromise<Array<string> | any> {
+    ): CancelablePromise<Array<string> | any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/providerPay/monthList/providerId',
@@ -1328,17 +1278,13 @@ export class ProviderPayControllerService {
 
     /**
      * getProviderPayByProvider
+     * @param providerId providerId
      * @returns ProviderPay OK
      * @throws ApiError
      */
-    public static getProviderPayByProviderUsingGet({
-        providerId,
-    }: {
-        /**
-         * providerId
-         */
+    public static getProviderPayByProviderUsingGet(
         providerId: number,
-    }): CancelablePromise<Array<ProviderPay>> {
+    ): CancelablePromise<Array<ProviderPay>> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/providerPay/providerId',

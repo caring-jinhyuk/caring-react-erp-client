@@ -4,6 +4,10 @@
 
 @use 'sass:map';
 
+a {
+	color: inherit;
+}
+
 .scroll-margin {
 	scroll-margin-top: map.get($header, height) + map.get($subheader, height) +
 		map.get($page, padding-y);
@@ -15,4 +19,44 @@
 
 .border-transparent {
 	--#{$prefix}border-opacity: 0;
+}
+
+.spinner_container {
+	width: 100vw;
+	height: 100vh;
+	position: fixed !important;
+	top:0;
+	left:0;
+	background-color: rgba(251, 238, 237, 0.5);
+	z-index: 10;
+}
+
+.spinner {
+	position: absolute !important;
+	top:45%;
+	left:45%;
+	border-width: 5px;
+}
+
+.spinner_no_display {
+	display: none;
+}
+
+.offcanvas_transparency {
+	border-radius: 2rem;
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+.btn-unset {
+	&:hover {
+		background-color: unset;
+	}
+}
+
+.scroll-auto {
+	overflow-y: auto;
+	-ms-overflow-style: none;
+	&::-webkit-scrollbar {
+		display: none;
+	}
 }

@@ -1,29 +1,25 @@
 import React from 'react';
-import Header, { HeaderLeft, HeaderRight } from '../../../layout/Header/Header';
-import Navigation from '../../../layout/Navigation/Navigation';
-import { homepages } from '../../../menus/menu';
-import useDeviceScreen from '../../../hooks/useDeviceScreen';
-import Popovers from '../../../components/bootstrap/Popovers';
+import Header, { HeaderLeft } from '../../../layout/Header/Header';
+import Breadcrumb from '../../../components/bootstrap/Breadcrumb';
+import { useLocation } from 'react-router-dom';
+import Icon from '../../../components/icon/Icon';
+import Button from '../../../components/bootstrap/Button';
 
 const DefaultHeader = () => {
-	const { width } = useDeviceScreen();
+	const location = useLocation();
+	const name = location.pathname.split('/').pop();
+
 	return (
 		<Header>
 			<HeaderLeft>
-				<Navigation
-					menu={{ ...homepages }}
-					id='header-top-menu'
-					horizontal={!!width && width >= Number(process.env.REACT_APP_MOBILE_BREAKPOINT_SIZE)}
-				/>
+				{name === '' ? (
+					<Button icon='home' size='lg'>
+						Home
+					</Button>
+				) : (
+					<Breadcrumb list={[{ title: name ?? '', to: location.pathname }]} />
+				)}
 			</HeaderLeft>
-			<HeaderRight>
-				<Popovers
-					title='DefaultHeader.tsx'
-					desc={<code>src/pages/common/Headers/DefaultHeader.tsx</code>}>
-					Header Right
-				</Popovers>
-				<code>DefaultHeader.tsx</code>
-			</HeaderRight>
 		</Header>
 	);
 };

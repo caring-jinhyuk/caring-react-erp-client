@@ -11,17 +11,13 @@ export class HolidayControllerService {
 
     /**
      * getHoliday
+     * @param id id
      * @returns Holiday OK
      * @throws ApiError
      */
-    public static getHolidayUsingGet({
-        id,
-    }: {
-        /**
-         * id
-         */
+    public static getHolidayUsingGet(
         id: number,
-    }): CancelablePromise<Holiday> {
+    ): CancelablePromise<Holiday> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/holiday',
@@ -38,18 +34,14 @@ export class HolidayControllerService {
 
     /**
      * saveHoliday
+     * @param holiday holiday
      * @returns Holiday OK
      * @returns any Created
      * @throws ApiError
      */
-    public static saveHolidayUsingPost({
-        holiday,
-    }: {
-        /**
-         * holiday
-         */
+    public static saveHolidayUsingPost(
         holiday: Holiday,
-    }): CancelablePromise<Holiday | any> {
+    ): CancelablePromise<Holiday | any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/holiday',
@@ -64,17 +56,13 @@ export class HolidayControllerService {
 
     /**
      * deleteHoliday
+     * @param id id
      * @returns any OK
      * @throws ApiError
      */
-    public static deleteHolidayUsingDelete({
-        id,
-    }: {
-        /**
-         * id
-         */
+    public static deleteHolidayUsingDelete(
         id: number,
-    }): CancelablePromise<any> {
+    ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'DELETE',
             url: '/holiday',
@@ -90,17 +78,13 @@ export class HolidayControllerService {
 
     /**
      * getHolidayList
+     * @param yyyyMm yyyyMM
      * @returns Holiday OK
      * @throws ApiError
      */
-    public static getHolidayListUsingGet({
-        yyyyMm,
-    }: {
-        /**
-         * yyyyMM
-         */
+    public static getHolidayListUsingGet(
         yyyyMm: string,
-    }): CancelablePromise<Array<Holiday>> {
+    ): CancelablePromise<Array<Holiday>> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/holiday/list',

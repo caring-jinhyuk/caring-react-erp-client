@@ -13,18 +13,14 @@ export class BurdenControllerService {
 
     /**
      * saveBurden
+     * @param burden burden
      * @returns Burden OK
      * @returns any Created
      * @throws ApiError
      */
-    public static saveBurdenUsingPost({
-        burden,
-    }: {
-        /**
-         * burden
-         */
+    public static saveBurdenUsingPost(
         burden: Burden,
-    }): CancelablePromise<Burden | any> {
+    ): CancelablePromise<Burden | any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/burden',
@@ -39,18 +35,14 @@ export class BurdenControllerService {
 
     /**
      * saveBurdenAll
+     * @param burden burden
      * @returns Iterable_Burden_ OK
      * @returns any Created
      * @throws ApiError
      */
-    public static saveBurdenAllUsingPost({
-        burden,
-    }: {
-        /**
-         * burden
-         */
+    public static saveBurdenAllUsingPost(
         burden: Array<Burden>,
-    }): CancelablePromise<Iterable_Burden_ | any> {
+    ): CancelablePromise<Iterable_Burden_ | any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/burden/all',
@@ -65,22 +57,15 @@ export class BurdenControllerService {
 
     /**
      * cancelAll
+     * @param centerId centerId
+     * @param month month
      * @returns any OK
      * @throws ApiError
      */
-    public static cancelAllUsingPost({
-        centerId,
-        month,
-    }: {
-        /**
-         * centerId
-         */
+    public static cancelAllUsingPost(
         centerId: number,
-        /**
-         * month
-         */
         month: string,
-    }): CancelablePromise<any> {
+    ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/burden/cancelAll',
@@ -98,28 +83,18 @@ export class BurdenControllerService {
 
     /**
      * centerAllBurdenList
+     * @param center center
+     * @param month month
+     * @param managerId managerId
      * @returns Burden OK
      * @returns any Created
      * @throws ApiError
      */
-    public static centerAllBurdenListUsingPost({
-        center,
-        month,
-        managerId,
-    }: {
-        /**
-         * center
-         */
+    public static centerAllBurdenListUsingPost(
         center: number,
-        /**
-         * month
-         */
         month: string,
-        /**
-         * managerId
-         */
         managerId?: Array<number>,
-    }): CancelablePromise<Array<Burden> | any> {
+    ): CancelablePromise<Array<Burden> | any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/burden/centerAllBurdenList',
@@ -138,134 +113,126 @@ export class BurdenControllerService {
 
     /**
      * centerBurdenList
+     * @param month month
+     * @param centerId centerId
+     * @param managerId managerId
+     * @param userCenterId
+     * @param userEmail
+     * @param userId
+     * @param userName
+     * @param userPassword
+     * @param userPermissions
+     * @param userPhone
+     * @param userProviderAddressAddress
+     * @param userProviderAddressAddressDetail
+     * @param userProviderAddressFullAddress
+     * @param userProviderAddressX
+     * @param userProviderAddressY
+     * @param userProviderAddressZipCode
+     * @param userProviderBankCode
+     * @param userProviderBankName
+     * @param userProviderBankNumber
+     * @param userProviderBirthDate
+     * @param userProviderConnectUserId
+     * @param userProviderCreatedAt
+     * @param userProviderDataBurdenDeduction
+     * @param userProviderDataContractDate
+     * @param userProviderDataWorkDay1
+     * @param userProviderDataWorkTime1
+     * @param userProviderDataWorkTime1End
+     * @param userProviderDataWorkingAddress
+     * @param userProviderDataWorkingMinute
+     * @param userProviderDataWorkingType
+     * @param userProviderDementiaEduComplete
+     * @param userProviderExitDate
+     * @param userProviderGender
+     * @param userProviderHancareId
+     * @param userProviderId
+     * @param userProviderIdNumber
+     * @param userProviderInsuranceStateAccidentDate
+     * @param userProviderInsuranceStateAccidentLossDate
+     * @param userProviderInsuranceStateAccidentPrice
+     * @param userProviderInsuranceStateAccidentState
+     * @param userProviderInsuranceStateDependents0Date
+     * @param userProviderInsuranceStateDependents0IdNumber
+     * @param userProviderInsuranceStateDependents0Name
+     * @param userProviderInsuranceStateDependents0Nation
+     * @param userProviderInsuranceStateDependents0Permission
+     * @param userProviderInsuranceStateDependents0PermissionEndAt
+     * @param userProviderInsuranceStateDependents0PermissionStartAt
+     * @param userProviderInsuranceStateDependents0Relation
+     * @param userProviderInsuranceStateEmployDate
+     * @param userProviderInsuranceStateEmployLossDate
+     * @param userProviderInsuranceStateEmployPrice
+     * @param userProviderInsuranceStateEmployState
+     * @param userProviderInsuranceStateHealthDate
+     * @param userProviderInsuranceStateHealthLossDate
+     * @param userProviderInsuranceStateHealthPrice
+     * @param userProviderInsuranceStateHealthState
+     * @param userProviderInsuranceStatePensionDate
+     * @param userProviderInsuranceStatePensionLossDate
+     * @param userProviderInsuranceStatePensionPrice
+     * @param userProviderInsuranceStatePensionState
+     * @param userProviderInsuranceStateWorkHours
+     * @param userProviderJoinDate
+     * @param userProviderMemo
+     * @param userProviderName
+     * @param userProviderPhone
+     * @param userProviderPhone2
+     * @param userProviderPosition
+     * @param userProviderPositionName
+     * @param userProviderProviderLicenses0IdNumber
+     * @param userProviderProviderLicenses0PublishedAt
+     * @param userProviderProviderLicenses0Type
+     * @param userProviderRelation
+     * @param userProviderSalary
+     * @param userProviderState
+     * @param userProviderStateDate
+     * @param userProviderStateHistory
+     * @param userProviderStateReason
+     * @param userProviderSummary
+     * @param userProviderTag
+     * @param userProviderTagCall
+     * @param userProviderTagCallDays
+     * @param userProviderTagPhone
+     * @param userProviderUpdatedAt
+     * @param userProviderWorkCenterAccount
+     * @param userProviderWorkCenterAccounts0Bank
+     * @param userProviderWorkCenterAccounts0Idnumber
+     * @param userProviderWorkCenterAccounts0LoginId
+     * @param userProviderWorkCenterAccounts0LoginPw
+     * @param userProviderWorkCenterAccounts0Name
+     * @param userProviderWorkCenterAccounts0Number
+     * @param userProviderWorkCenterAccounts0Pw
+     * @param userProviderWorkCenterAddressAddress
+     * @param userProviderWorkCenterAddressAddressDetail
+     * @param userProviderWorkCenterAddressFullAddress
+     * @param userProviderWorkCenterAddressX
+     * @param userProviderWorkCenterAddressY
+     * @param userProviderWorkCenterAddressZipCode
+     * @param userProviderWorkCenterApiName
+     * @param userProviderWorkCenterCenterNumber
+     * @param userProviderWorkCenterChiefName
+     * @param userProviderWorkCenterId
+     * @param userProviderWorkCenterLoginCode
+     * @param userProviderWorkCenterLoginId
+     * @param userProviderWorkCenterLoginPassword
+     * @param userProviderWorkCenterMain
+     * @param userProviderWorkCenterName
+     * @param userProviderWorkCenterPhone
+     * @param userProviderWorkCenterServiceType
+     * @param userProviderWorkCenterShortName
+     * @param userProviderWorkCenterW4CCode
+     * @param userProviderWorkTypes
+     * @param userRole
+     * @param userSendNumber
      * @returns Burden OK
      * @returns any Created
      * @throws ApiError
      */
-    public static centerBurdenListUsingPost({
-        month,
-        centerId,
-        managerId,
-        userCenterId,
-        userEmail,
-        userId,
-        userName,
-        userPassword,
-        userPermissions,
-        userPhone,
-        userProviderAddressAddress,
-        userProviderAddressAddressDetail,
-        userProviderAddressFullAddress,
-        userProviderAddressX,
-        userProviderAddressY,
-        userProviderAddressZipCode,
-        userProviderBankCode,
-        userProviderBankName,
-        userProviderBankNumber,
-        userProviderBirthDate,
-        userProviderConnectUserId,
-        userProviderDataBurdenDeduction,
-        userProviderDataContractDate,
-        userProviderDataWorkDay1,
-        userProviderDataWorkTime1,
-        userProviderDataWorkTime1End,
-        userProviderDataWorkingAddress,
-        userProviderDataWorkingMinute,
-        userProviderDataWorkingType,
-        userProviderDementiaEduComplete,
-        userProviderExitDate,
-        userProviderGender,
-        userProviderHancareId,
-        userProviderId,
-        userProviderIdNumber,
-        userProviderInsuranceStateAccidentDate,
-        userProviderInsuranceStateAccidentLossDate,
-        userProviderInsuranceStateAccidentPrice,
-        userProviderInsuranceStateAccidentState,
-        userProviderInsuranceStateDependents0Date,
-        userProviderInsuranceStateDependents0IdNumber,
-        userProviderInsuranceStateDependents0Name,
-        userProviderInsuranceStateDependents0Nation,
-        userProviderInsuranceStateDependents0Permission,
-        userProviderInsuranceStateDependents0PermissionEndAt,
-        userProviderInsuranceStateDependents0PermissionStartAt,
-        userProviderInsuranceStateDependents0Relation,
-        userProviderInsuranceStateEmployDate,
-        userProviderInsuranceStateEmployLossDate,
-        userProviderInsuranceStateEmployPrice,
-        userProviderInsuranceStateEmployState,
-        userProviderInsuranceStateHealthDate,
-        userProviderInsuranceStateHealthLossDate,
-        userProviderInsuranceStateHealthPrice,
-        userProviderInsuranceStateHealthState,
-        userProviderInsuranceStatePensionDate,
-        userProviderInsuranceStatePensionLossDate,
-        userProviderInsuranceStatePensionPrice,
-        userProviderInsuranceStatePensionState,
-        userProviderInsuranceStateWorkHours,
-        userProviderJoinDate,
-        userProviderMemo,
-        userProviderName,
-        userProviderPhone,
-        userProviderPhone2,
-        userProviderPosition,
-        userProviderPositionName,
-        userProviderProviderLicenses0IdNumber,
-        userProviderProviderLicenses0PublishedAt,
-        userProviderProviderLicenses0Type,
-        userProviderRelation,
-        userProviderSalary,
-        userProviderState,
-        userProviderStateDate,
-        userProviderStateHistory,
-        userProviderStateReason,
-        userProviderSummary,
-        userProviderTag,
-        userProviderTagCall,
-        userProviderTagCallDays,
-        userProviderTagPhone,
-        userProviderWorkCenterAccount,
-        userProviderWorkCenterAccounts0Bank,
-        userProviderWorkCenterAccounts0Idnumber,
-        userProviderWorkCenterAccounts0LoginId,
-        userProviderWorkCenterAccounts0LoginPw,
-        userProviderWorkCenterAccounts0Name,
-        userProviderWorkCenterAccounts0Number,
-        userProviderWorkCenterAccounts0Pw,
-        userProviderWorkCenterAddressAddress,
-        userProviderWorkCenterAddressAddressDetail,
-        userProviderWorkCenterAddressFullAddress,
-        userProviderWorkCenterAddressX,
-        userProviderWorkCenterAddressY,
-        userProviderWorkCenterAddressZipCode,
-        userProviderWorkCenterApiName,
-        userProviderWorkCenterCenterNumber,
-        userProviderWorkCenterChiefName,
-        userProviderWorkCenterId,
-        userProviderWorkCenterLoginCode,
-        userProviderWorkCenterLoginId,
-        userProviderWorkCenterLoginPassword,
-        userProviderWorkCenterMain,
-        userProviderWorkCenterName,
-        userProviderWorkCenterPhone,
-        userProviderWorkCenterServiceType,
-        userProviderWorkCenterShortName,
-        userProviderWorkCenterW4CCode,
-        userProviderWorkTypes,
-        userRole,
-        userSendNumber,
-    }: {
-        /**
-         * month
-         */
+    public static centerBurdenListUsingPost(
         month: string,
-        /**
-         * centerId
-         */
         centerId?: Array<number>,
-        /**
-         * managerId
-         */
         managerId?: Array<number>,
         userCenterId?: number,
         userEmail?: string,
@@ -285,6 +252,7 @@ export class BurdenControllerService {
         userProviderBankNumber?: string,
         userProviderBirthDate?: string,
         userProviderConnectUserId?: number,
+        userProviderCreatedAt?: string,
         userProviderDataBurdenDeduction?: boolean,
         userProviderDataContractDate?: string,
         userProviderDataWorkDay1?: string,
@@ -345,6 +313,7 @@ export class BurdenControllerService {
         userProviderTagCall?: boolean,
         userProviderTagCallDays?: string,
         userProviderTagPhone?: string,
+        userProviderUpdatedAt?: string,
         userProviderWorkCenterAccount?: string,
         userProviderWorkCenterAccounts0Bank?: string,
         userProviderWorkCenterAccounts0Idnumber?: string,
@@ -375,7 +344,7 @@ export class BurdenControllerService {
         userProviderWorkTypes?: 'Family' | 'Bath' | 'Nursing',
         userRole?: 'Admin' | 'Center' | 'ContactCenter' | 'CenterChief' | 'AccountingFirm' | 'FinancialManager' | 'Infra',
         userSendNumber?: string,
-    }): CancelablePromise<Array<Burden> | any> {
+    ): CancelablePromise<Array<Burden> | any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/burden/centerBurdenList',
@@ -400,6 +369,7 @@ export class BurdenControllerService {
                 'user.provider.bankNumber': userProviderBankNumber,
                 'user.provider.birthDate': userProviderBirthDate,
                 'user.provider.connectUserId': userProviderConnectUserId,
+                'user.provider.createdAt': userProviderCreatedAt,
                 'user.provider.data.burdenDeduction': userProviderDataBurdenDeduction,
                 'user.provider.data.contractDate': userProviderDataContractDate,
                 'user.provider.data.workDay1': userProviderDataWorkDay1,
@@ -460,6 +430,7 @@ export class BurdenControllerService {
                 'user.provider.tagCall': userProviderTagCall,
                 'user.provider.tagCallDays': userProviderTagCallDays,
                 'user.provider.tagPhone': userProviderTagPhone,
+                'user.provider.updatedAt': userProviderUpdatedAt,
                 'user.provider.workCenter.account': userProviderWorkCenterAccount,
                 'user.provider.workCenter.accounts[0].bank': userProviderWorkCenterAccounts0Bank,
                 'user.provider.workCenter.accounts[0].idnumber': userProviderWorkCenterAccounts0Idnumber,
@@ -502,123 +473,121 @@ export class BurdenControllerService {
 
     /**
      * centerBurdenMonthList
+     * @param centerId centerId
+     * @param userCenterId
+     * @param userEmail
+     * @param userId
+     * @param userName
+     * @param userPassword
+     * @param userPermissions
+     * @param userPhone
+     * @param userProviderAddressAddress
+     * @param userProviderAddressAddressDetail
+     * @param userProviderAddressFullAddress
+     * @param userProviderAddressX
+     * @param userProviderAddressY
+     * @param userProviderAddressZipCode
+     * @param userProviderBankCode
+     * @param userProviderBankName
+     * @param userProviderBankNumber
+     * @param userProviderBirthDate
+     * @param userProviderConnectUserId
+     * @param userProviderCreatedAt
+     * @param userProviderDataBurdenDeduction
+     * @param userProviderDataContractDate
+     * @param userProviderDataWorkDay1
+     * @param userProviderDataWorkTime1
+     * @param userProviderDataWorkTime1End
+     * @param userProviderDataWorkingAddress
+     * @param userProviderDataWorkingMinute
+     * @param userProviderDataWorkingType
+     * @param userProviderDementiaEduComplete
+     * @param userProviderExitDate
+     * @param userProviderGender
+     * @param userProviderHancareId
+     * @param userProviderId
+     * @param userProviderIdNumber
+     * @param userProviderInsuranceStateAccidentDate
+     * @param userProviderInsuranceStateAccidentLossDate
+     * @param userProviderInsuranceStateAccidentPrice
+     * @param userProviderInsuranceStateAccidentState
+     * @param userProviderInsuranceStateDependents0Date
+     * @param userProviderInsuranceStateDependents0IdNumber
+     * @param userProviderInsuranceStateDependents0Name
+     * @param userProviderInsuranceStateDependents0Nation
+     * @param userProviderInsuranceStateDependents0Permission
+     * @param userProviderInsuranceStateDependents0PermissionEndAt
+     * @param userProviderInsuranceStateDependents0PermissionStartAt
+     * @param userProviderInsuranceStateDependents0Relation
+     * @param userProviderInsuranceStateEmployDate
+     * @param userProviderInsuranceStateEmployLossDate
+     * @param userProviderInsuranceStateEmployPrice
+     * @param userProviderInsuranceStateEmployState
+     * @param userProviderInsuranceStateHealthDate
+     * @param userProviderInsuranceStateHealthLossDate
+     * @param userProviderInsuranceStateHealthPrice
+     * @param userProviderInsuranceStateHealthState
+     * @param userProviderInsuranceStatePensionDate
+     * @param userProviderInsuranceStatePensionLossDate
+     * @param userProviderInsuranceStatePensionPrice
+     * @param userProviderInsuranceStatePensionState
+     * @param userProviderInsuranceStateWorkHours
+     * @param userProviderJoinDate
+     * @param userProviderMemo
+     * @param userProviderName
+     * @param userProviderPhone
+     * @param userProviderPhone2
+     * @param userProviderPosition
+     * @param userProviderPositionName
+     * @param userProviderProviderLicenses0IdNumber
+     * @param userProviderProviderLicenses0PublishedAt
+     * @param userProviderProviderLicenses0Type
+     * @param userProviderRelation
+     * @param userProviderSalary
+     * @param userProviderState
+     * @param userProviderStateDate
+     * @param userProviderStateHistory
+     * @param userProviderStateReason
+     * @param userProviderSummary
+     * @param userProviderTag
+     * @param userProviderTagCall
+     * @param userProviderTagCallDays
+     * @param userProviderTagPhone
+     * @param userProviderUpdatedAt
+     * @param userProviderWorkCenterAccount
+     * @param userProviderWorkCenterAccounts0Bank
+     * @param userProviderWorkCenterAccounts0Idnumber
+     * @param userProviderWorkCenterAccounts0LoginId
+     * @param userProviderWorkCenterAccounts0LoginPw
+     * @param userProviderWorkCenterAccounts0Name
+     * @param userProviderWorkCenterAccounts0Number
+     * @param userProviderWorkCenterAccounts0Pw
+     * @param userProviderWorkCenterAddressAddress
+     * @param userProviderWorkCenterAddressAddressDetail
+     * @param userProviderWorkCenterAddressFullAddress
+     * @param userProviderWorkCenterAddressX
+     * @param userProviderWorkCenterAddressY
+     * @param userProviderWorkCenterAddressZipCode
+     * @param userProviderWorkCenterApiName
+     * @param userProviderWorkCenterCenterNumber
+     * @param userProviderWorkCenterChiefName
+     * @param userProviderWorkCenterId
+     * @param userProviderWorkCenterLoginCode
+     * @param userProviderWorkCenterLoginId
+     * @param userProviderWorkCenterLoginPassword
+     * @param userProviderWorkCenterMain
+     * @param userProviderWorkCenterName
+     * @param userProviderWorkCenterPhone
+     * @param userProviderWorkCenterServiceType
+     * @param userProviderWorkCenterShortName
+     * @param userProviderWorkCenterW4CCode
+     * @param userProviderWorkTypes
+     * @param userRole
+     * @param userSendNumber
      * @returns string OK
      * @throws ApiError
      */
-    public static centerBurdenMonthListUsingGet({
-        centerId,
-        userCenterId,
-        userEmail,
-        userId,
-        userName,
-        userPassword,
-        userPermissions,
-        userPhone,
-        userProviderAddressAddress,
-        userProviderAddressAddressDetail,
-        userProviderAddressFullAddress,
-        userProviderAddressX,
-        userProviderAddressY,
-        userProviderAddressZipCode,
-        userProviderBankCode,
-        userProviderBankName,
-        userProviderBankNumber,
-        userProviderBirthDate,
-        userProviderConnectUserId,
-        userProviderDataBurdenDeduction,
-        userProviderDataContractDate,
-        userProviderDataWorkDay1,
-        userProviderDataWorkTime1,
-        userProviderDataWorkTime1End,
-        userProviderDataWorkingAddress,
-        userProviderDataWorkingMinute,
-        userProviderDataWorkingType,
-        userProviderDementiaEduComplete,
-        userProviderExitDate,
-        userProviderGender,
-        userProviderHancareId,
-        userProviderId,
-        userProviderIdNumber,
-        userProviderInsuranceStateAccidentDate,
-        userProviderInsuranceStateAccidentLossDate,
-        userProviderInsuranceStateAccidentPrice,
-        userProviderInsuranceStateAccidentState,
-        userProviderInsuranceStateDependents0Date,
-        userProviderInsuranceStateDependents0IdNumber,
-        userProviderInsuranceStateDependents0Name,
-        userProviderInsuranceStateDependents0Nation,
-        userProviderInsuranceStateDependents0Permission,
-        userProviderInsuranceStateDependents0PermissionEndAt,
-        userProviderInsuranceStateDependents0PermissionStartAt,
-        userProviderInsuranceStateDependents0Relation,
-        userProviderInsuranceStateEmployDate,
-        userProviderInsuranceStateEmployLossDate,
-        userProviderInsuranceStateEmployPrice,
-        userProviderInsuranceStateEmployState,
-        userProviderInsuranceStateHealthDate,
-        userProviderInsuranceStateHealthLossDate,
-        userProviderInsuranceStateHealthPrice,
-        userProviderInsuranceStateHealthState,
-        userProviderInsuranceStatePensionDate,
-        userProviderInsuranceStatePensionLossDate,
-        userProviderInsuranceStatePensionPrice,
-        userProviderInsuranceStatePensionState,
-        userProviderInsuranceStateWorkHours,
-        userProviderJoinDate,
-        userProviderMemo,
-        userProviderName,
-        userProviderPhone,
-        userProviderPhone2,
-        userProviderPosition,
-        userProviderPositionName,
-        userProviderProviderLicenses0IdNumber,
-        userProviderProviderLicenses0PublishedAt,
-        userProviderProviderLicenses0Type,
-        userProviderRelation,
-        userProviderSalary,
-        userProviderState,
-        userProviderStateDate,
-        userProviderStateHistory,
-        userProviderStateReason,
-        userProviderSummary,
-        userProviderTag,
-        userProviderTagCall,
-        userProviderTagCallDays,
-        userProviderTagPhone,
-        userProviderWorkCenterAccount,
-        userProviderWorkCenterAccounts0Bank,
-        userProviderWorkCenterAccounts0Idnumber,
-        userProviderWorkCenterAccounts0LoginId,
-        userProviderWorkCenterAccounts0LoginPw,
-        userProviderWorkCenterAccounts0Name,
-        userProviderWorkCenterAccounts0Number,
-        userProviderWorkCenterAccounts0Pw,
-        userProviderWorkCenterAddressAddress,
-        userProviderWorkCenterAddressAddressDetail,
-        userProviderWorkCenterAddressFullAddress,
-        userProviderWorkCenterAddressX,
-        userProviderWorkCenterAddressY,
-        userProviderWorkCenterAddressZipCode,
-        userProviderWorkCenterApiName,
-        userProviderWorkCenterCenterNumber,
-        userProviderWorkCenterChiefName,
-        userProviderWorkCenterId,
-        userProviderWorkCenterLoginCode,
-        userProviderWorkCenterLoginId,
-        userProviderWorkCenterLoginPassword,
-        userProviderWorkCenterMain,
-        userProviderWorkCenterName,
-        userProviderWorkCenterPhone,
-        userProviderWorkCenterServiceType,
-        userProviderWorkCenterShortName,
-        userProviderWorkCenterW4CCode,
-        userProviderWorkTypes,
-        userRole,
-        userSendNumber,
-    }: {
-        /**
-         * centerId
-         */
+    public static centerBurdenMonthListUsingGet(
         centerId?: Array<number>,
         userCenterId?: number,
         userEmail?: string,
@@ -638,6 +607,7 @@ export class BurdenControllerService {
         userProviderBankNumber?: string,
         userProviderBirthDate?: string,
         userProviderConnectUserId?: number,
+        userProviderCreatedAt?: string,
         userProviderDataBurdenDeduction?: boolean,
         userProviderDataContractDate?: string,
         userProviderDataWorkDay1?: string,
@@ -698,6 +668,7 @@ export class BurdenControllerService {
         userProviderTagCall?: boolean,
         userProviderTagCallDays?: string,
         userProviderTagPhone?: string,
+        userProviderUpdatedAt?: string,
         userProviderWorkCenterAccount?: string,
         userProviderWorkCenterAccounts0Bank?: string,
         userProviderWorkCenterAccounts0Idnumber?: string,
@@ -728,7 +699,7 @@ export class BurdenControllerService {
         userProviderWorkTypes?: 'Family' | 'Bath' | 'Nursing',
         userRole?: 'Admin' | 'Center' | 'ContactCenter' | 'CenterChief' | 'AccountingFirm' | 'FinancialManager' | 'Infra',
         userSendNumber?: string,
-    }): CancelablePromise<Array<string>> {
+    ): CancelablePromise<Array<string>> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/burden/centerBurdenMonthList',
@@ -752,6 +723,7 @@ export class BurdenControllerService {
                 'user.provider.bankNumber': userProviderBankNumber,
                 'user.provider.birthDate': userProviderBirthDate,
                 'user.provider.connectUserId': userProviderConnectUserId,
+                'user.provider.createdAt': userProviderCreatedAt,
                 'user.provider.data.burdenDeduction': userProviderDataBurdenDeduction,
                 'user.provider.data.contractDate': userProviderDataContractDate,
                 'user.provider.data.workDay1': userProviderDataWorkDay1,
@@ -812,6 +784,7 @@ export class BurdenControllerService {
                 'user.provider.tagCall': userProviderTagCall,
                 'user.provider.tagCallDays': userProviderTagCallDays,
                 'user.provider.tagPhone': userProviderTagPhone,
+                'user.provider.updatedAt': userProviderUpdatedAt,
                 'user.provider.workCenter.account': userProviderWorkCenterAccount,
                 'user.provider.workCenter.accounts[0].bank': userProviderWorkCenterAccounts0Bank,
                 'user.provider.workCenter.accounts[0].idnumber': userProviderWorkCenterAccounts0Idnumber,
@@ -853,18 +826,14 @@ export class BurdenControllerService {
 
     /**
      * completeBurden
+     * @param burdens burdens
      * @returns Burden OK
      * @returns any Created
      * @throws ApiError
      */
-    public static completeBurdenUsingPost({
-        burdens,
-    }: {
-        /**
-         * burdens
-         */
+    public static completeBurdenUsingPost(
         burdens: Array<Burden>,
-    }): CancelablePromise<Array<Burden> | any> {
+    ): CancelablePromise<Array<Burden> | any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/burden/completeAll',
@@ -879,23 +848,16 @@ export class BurdenControllerService {
 
     /**
      * getBurden
+     * @param month month
+     * @param recipientId recipientId
      * @returns Burden OK
      * @returns any Created
      * @throws ApiError
      */
-    public static getBurdenUsingPost({
-        month,
-        recipientId,
-    }: {
-        /**
-         * month
-         */
+    public static getBurdenUsingPost(
         month: string,
-        /**
-         * recipientId
-         */
         recipientId: number,
-    }): CancelablePromise<Burden | any> {
+    ): CancelablePromise<Burden | any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/burden/get',
@@ -913,28 +875,18 @@ export class BurdenControllerService {
 
     /**
      * getBurdenByMonth
+     * @param data data
+     * @param month month
+     * @param workCenterId workCenterId
      * @returns Burden OK
      * @returns any Created
      * @throws ApiError
      */
-    public static getBurdenByMonthUsingPost({
-        data,
-        month,
-        workCenterId,
-    }: {
-        /**
-         * data
-         */
+    public static getBurdenByMonthUsingPost(
         data: ProviderOrRecipientId,
-        /**
-         * month
-         */
         month: string,
-        /**
-         * workCenterId
-         */
         workCenterId: number,
-    }): CancelablePromise<Burden | any> {
+    ): CancelablePromise<Burden | any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/burden/month',
@@ -953,18 +905,14 @@ export class BurdenControllerService {
 
     /**
      * getBurdenMonthListByRecipientId
+     * @param recipientId recipientId
      * @returns string OK
      * @returns any Created
      * @throws ApiError
      */
-    public static getBurdenMonthListByRecipientIdUsingPost({
-        recipientId,
-    }: {
-        /**
-         * recipientId
-         */
+    public static getBurdenMonthListByRecipientIdUsingPost(
         recipientId: number,
-    }): CancelablePromise<Array<string> | any> {
+    ): CancelablePromise<Array<string> | any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/burden/monthList/recipientId',

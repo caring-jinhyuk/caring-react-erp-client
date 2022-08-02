@@ -12,17 +12,13 @@ export class PaperControllerService {
 
     /**
      * getPaper
+     * @param id id
      * @returns Paper OK
      * @throws ApiError
      */
-    public static getPaperUsingGet({
-        id,
-    }: {
-        /**
-         * id
-         */
+    public static getPaperUsingGet(
         id: number,
-    }): CancelablePromise<Paper> {
+    ): CancelablePromise<Paper> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/paper',
@@ -39,18 +35,14 @@ export class PaperControllerService {
 
     /**
      * savePaper
+     * @param paper paper
      * @returns Paper OK
      * @returns any Created
      * @throws ApiError
      */
-    public static savePaperUsingPost({
-        paper,
-    }: {
-        /**
-         * paper
-         */
+    public static savePaperUsingPost(
         paper: Paper,
-    }): CancelablePromise<Paper | any> {
+    ): CancelablePromise<Paper | any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/paper',
@@ -65,17 +57,13 @@ export class PaperControllerService {
 
     /**
      * deletePaper
+     * @param id id
      * @returns any OK
      * @throws ApiError
      */
-    public static deletePaperUsingDelete({
-        id,
-    }: {
-        /**
-         * id
-         */
+    public static deletePaperUsingDelete(
         id: number,
-    }): CancelablePromise<any> {
+    ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'DELETE',
             url: '/paper',
@@ -91,37 +79,21 @@ export class PaperControllerService {
 
     /**
      * getPaperList
+     * @param page page
+     * @param providerId providerId
+     * @param recipientId recipientId
+     * @param size size
+     * @param type type
      * @returns Page_Paper_ OK
      * @throws ApiError
      */
-    public static getPaperListUsingGet({
-        page,
-        providerId,
-        recipientId,
-        size = 10,
-        type,
-    }: {
-        /**
-         * page
-         */
+    public static getPaperListUsingGet(
         page?: number,
-        /**
-         * providerId
-         */
         providerId?: number,
-        /**
-         * recipientId
-         */
         recipientId?: number,
-        /**
-         * size
-         */
-        size?: number,
-        /**
-         * type
-         */
+        size: number = 10,
         type?: '수급자욕구평가' | '낙상위험도' | '욕창위험도' | 'KMMSE' | 'KMMSE2',
-    }): CancelablePromise<Page_Paper_> {
+    ): CancelablePromise<Page_Paper_> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/paper/list',
@@ -142,18 +114,14 @@ export class PaperControllerService {
 
     /**
      * getRecipientPaperList
+     * @param recipientIdList recipientIdList
      * @returns Paper OK
      * @returns any Created
      * @throws ApiError
      */
-    public static getRecipientPaperListUsingPost({
-        recipientIdList,
-    }: {
-        /**
-         * recipientIdList
-         */
+    public static getRecipientPaperListUsingPost(
         recipientIdList: Array<number>,
-    }): CancelablePromise<Array<Paper> | any> {
+    ): CancelablePromise<Array<Paper> | any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/paper/list/all',

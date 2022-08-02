@@ -14,18 +14,14 @@ export class ServiceScheduleControllerService {
 
     /**
      * saveSchedule
+     * @param schedule schedule
      * @returns ServiceSchedule OK
      * @returns any Created
      * @throws ApiError
      */
-    public static saveScheduleUsingPost({
-        schedule,
-    }: {
-        /**
-         * schedule
-         */
+    public static saveScheduleUsingPost(
         schedule: ServiceSchedule,
-    }): CancelablePromise<ServiceSchedule | any> {
+    ): CancelablePromise<ServiceSchedule | any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/serviceSchedule',
@@ -40,17 +36,13 @@ export class ServiceScheduleControllerService {
 
     /**
      * deleteSchedule
+     * @param id id
      * @returns any OK
      * @throws ApiError
      */
-    public static deleteScheduleUsingDelete({
-        id,
-    }: {
-        /**
-         * id
-         */
+    public static deleteScheduleUsingDelete(
         id: number,
-    }): CancelablePromise<any> {
+    ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'DELETE',
             url: '/serviceSchedule',
@@ -66,18 +58,14 @@ export class ServiceScheduleControllerService {
 
     /**
      * getServiceScheduleCount
+     * @param data data
      * @returns number OK
      * @returns any Created
      * @throws ApiError
      */
-    public static getServiceScheduleCountUsingPost({
-        data,
-    }: {
-        /**
-         * data
-         */
+    public static getServiceScheduleCountUsingPost(
         data: ProviderOrRecipientId,
-    }): CancelablePromise<number | any> {
+    ): CancelablePromise<number | any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/serviceSchedule/count',
@@ -92,38 +80,22 @@ export class ServiceScheduleControllerService {
 
     /**
      * getServiceScheduleList
+     * @param data data
+     * @param from from
+     * @param page page
+     * @param size size
+     * @param to to
      * @returns Page_ServiceSchedule_ OK
      * @returns any Created
      * @throws ApiError
      */
-    public static getServiceScheduleListUsingPost({
-        data,
-        from,
-        page,
-        size = 10,
-        to,
-    }: {
-        /**
-         * data
-         */
+    public static getServiceScheduleListUsingPost(
         data: ProviderOrRecipientId,
-        /**
-         * from
-         */
         from?: string,
-        /**
-         * page
-         */
         page?: number,
-        /**
-         * size
-         */
-        size?: number,
-        /**
-         * to
-         */
+        size: number = 10,
         to?: string,
-    }): CancelablePromise<Page_ServiceSchedule_ | any> {
+    ): CancelablePromise<Page_ServiceSchedule_ | any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/serviceSchedule/list',
@@ -144,28 +116,18 @@ export class ServiceScheduleControllerService {
 
     /**
      * getScheduleByMonth
+     * @param data data
+     * @param month month
+     * @param workCenterId workCenterId
      * @returns ServiceSchedule OK
      * @returns any Created
      * @throws ApiError
      */
-    public static getScheduleByMonthUsingPost({
-        data,
-        month,
-        workCenterId,
-    }: {
-        /**
-         * data
-         */
+    public static getScheduleByMonthUsingPost(
         data: ProviderOrRecipientId,
-        /**
-         * month
-         */
         month: string,
-        /**
-         * workCenterId
-         */
         workCenterId: number,
-    }): CancelablePromise<Array<ServiceSchedule> | any> {
+    ): CancelablePromise<Array<ServiceSchedule> | any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/serviceSchedule/list/month',
@@ -184,28 +146,18 @@ export class ServiceScheduleControllerService {
 
     /**
      * getServiceScheduleRate
+     * @param centerId centerId
+     * @param from from
+     * @param to to
      * @returns Map_string_long_ OK
      * @returns any Created
      * @throws ApiError
      */
-    public static getServiceScheduleRateUsingPost({
-        centerId,
-        from,
-        to,
-    }: {
-        /**
-         * centerId
-         */
+    public static getServiceScheduleRateUsingPost(
         centerId?: number,
-        /**
-         * from
-         */
         from?: string,
-        /**
-         * to
-         */
         to?: string,
-    }): CancelablePromise<Array<Map_string_long_> | any> {
+    ): CancelablePromise<Array<Map_string_long_> | any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/serviceSchedule/list/rate',
@@ -224,129 +176,124 @@ export class ServiceScheduleControllerService {
 
     /**
      * getScheduleMonthList
+     * @param centerId centerId
+     * @param providerId providerId
+     * @param userCenterId
+     * @param userEmail
+     * @param userId
+     * @param userName
+     * @param userPassword
+     * @param userPermissions
+     * @param userPhone
+     * @param userProviderAddressAddress
+     * @param userProviderAddressAddressDetail
+     * @param userProviderAddressFullAddress
+     * @param userProviderAddressX
+     * @param userProviderAddressY
+     * @param userProviderAddressZipCode
+     * @param userProviderBankCode
+     * @param userProviderBankName
+     * @param userProviderBankNumber
+     * @param userProviderBirthDate
+     * @param userProviderConnectUserId
+     * @param userProviderCreatedAt
+     * @param userProviderDataBurdenDeduction
+     * @param userProviderDataContractDate
+     * @param userProviderDataWorkDay1
+     * @param userProviderDataWorkTime1
+     * @param userProviderDataWorkTime1End
+     * @param userProviderDataWorkingAddress
+     * @param userProviderDataWorkingMinute
+     * @param userProviderDataWorkingType
+     * @param userProviderDementiaEduComplete
+     * @param userProviderExitDate
+     * @param userProviderGender
+     * @param userProviderHancareId
+     * @param userProviderId
+     * @param userProviderIdNumber
+     * @param userProviderInsuranceStateAccidentDate
+     * @param userProviderInsuranceStateAccidentLossDate
+     * @param userProviderInsuranceStateAccidentPrice
+     * @param userProviderInsuranceStateAccidentState
+     * @param userProviderInsuranceStateDependents0Date
+     * @param userProviderInsuranceStateDependents0IdNumber
+     * @param userProviderInsuranceStateDependents0Name
+     * @param userProviderInsuranceStateDependents0Nation
+     * @param userProviderInsuranceStateDependents0Permission
+     * @param userProviderInsuranceStateDependents0PermissionEndAt
+     * @param userProviderInsuranceStateDependents0PermissionStartAt
+     * @param userProviderInsuranceStateDependents0Relation
+     * @param userProviderInsuranceStateEmployDate
+     * @param userProviderInsuranceStateEmployLossDate
+     * @param userProviderInsuranceStateEmployPrice
+     * @param userProviderInsuranceStateEmployState
+     * @param userProviderInsuranceStateHealthDate
+     * @param userProviderInsuranceStateHealthLossDate
+     * @param userProviderInsuranceStateHealthPrice
+     * @param userProviderInsuranceStateHealthState
+     * @param userProviderInsuranceStatePensionDate
+     * @param userProviderInsuranceStatePensionLossDate
+     * @param userProviderInsuranceStatePensionPrice
+     * @param userProviderInsuranceStatePensionState
+     * @param userProviderInsuranceStateWorkHours
+     * @param userProviderJoinDate
+     * @param userProviderMemo
+     * @param userProviderName
+     * @param userProviderPhone
+     * @param userProviderPhone2
+     * @param userProviderPosition
+     * @param userProviderPositionName
+     * @param userProviderProviderLicenses0IdNumber
+     * @param userProviderProviderLicenses0PublishedAt
+     * @param userProviderProviderLicenses0Type
+     * @param userProviderRelation
+     * @param userProviderSalary
+     * @param userProviderState
+     * @param userProviderStateDate
+     * @param userProviderStateHistory
+     * @param userProviderStateReason
+     * @param userProviderSummary
+     * @param userProviderTag
+     * @param userProviderTagCall
+     * @param userProviderTagCallDays
+     * @param userProviderTagPhone
+     * @param userProviderUpdatedAt
+     * @param userProviderWorkCenterAccount
+     * @param userProviderWorkCenterAccounts0Bank
+     * @param userProviderWorkCenterAccounts0Idnumber
+     * @param userProviderWorkCenterAccounts0LoginId
+     * @param userProviderWorkCenterAccounts0LoginPw
+     * @param userProviderWorkCenterAccounts0Name
+     * @param userProviderWorkCenterAccounts0Number
+     * @param userProviderWorkCenterAccounts0Pw
+     * @param userProviderWorkCenterAddressAddress
+     * @param userProviderWorkCenterAddressAddressDetail
+     * @param userProviderWorkCenterAddressFullAddress
+     * @param userProviderWorkCenterAddressX
+     * @param userProviderWorkCenterAddressY
+     * @param userProviderWorkCenterAddressZipCode
+     * @param userProviderWorkCenterApiName
+     * @param userProviderWorkCenterCenterNumber
+     * @param userProviderWorkCenterChiefName
+     * @param userProviderWorkCenterId
+     * @param userProviderWorkCenterLoginCode
+     * @param userProviderWorkCenterLoginId
+     * @param userProviderWorkCenterLoginPassword
+     * @param userProviderWorkCenterMain
+     * @param userProviderWorkCenterName
+     * @param userProviderWorkCenterPhone
+     * @param userProviderWorkCenterServiceType
+     * @param userProviderWorkCenterShortName
+     * @param userProviderWorkCenterW4CCode
+     * @param userProviderWorkTypes
+     * @param userRole
+     * @param userSendNumber
      * @returns string OK
      * @returns any Created
      * @throws ApiError
      */
-    public static getScheduleMonthListUsingPost({
-        centerId,
-        providerId,
-        userCenterId,
-        userEmail,
-        userId,
-        userName,
-        userPassword,
-        userPermissions,
-        userPhone,
-        userProviderAddressAddress,
-        userProviderAddressAddressDetail,
-        userProviderAddressFullAddress,
-        userProviderAddressX,
-        userProviderAddressY,
-        userProviderAddressZipCode,
-        userProviderBankCode,
-        userProviderBankName,
-        userProviderBankNumber,
-        userProviderBirthDate,
-        userProviderConnectUserId,
-        userProviderDataBurdenDeduction,
-        userProviderDataContractDate,
-        userProviderDataWorkDay1,
-        userProviderDataWorkTime1,
-        userProviderDataWorkTime1End,
-        userProviderDataWorkingAddress,
-        userProviderDataWorkingMinute,
-        userProviderDataWorkingType,
-        userProviderDementiaEduComplete,
-        userProviderExitDate,
-        userProviderGender,
-        userProviderHancareId,
-        userProviderId,
-        userProviderIdNumber,
-        userProviderInsuranceStateAccidentDate,
-        userProviderInsuranceStateAccidentLossDate,
-        userProviderInsuranceStateAccidentPrice,
-        userProviderInsuranceStateAccidentState,
-        userProviderInsuranceStateDependents0Date,
-        userProviderInsuranceStateDependents0IdNumber,
-        userProviderInsuranceStateDependents0Name,
-        userProviderInsuranceStateDependents0Nation,
-        userProviderInsuranceStateDependents0Permission,
-        userProviderInsuranceStateDependents0PermissionEndAt,
-        userProviderInsuranceStateDependents0PermissionStartAt,
-        userProviderInsuranceStateDependents0Relation,
-        userProviderInsuranceStateEmployDate,
-        userProviderInsuranceStateEmployLossDate,
-        userProviderInsuranceStateEmployPrice,
-        userProviderInsuranceStateEmployState,
-        userProviderInsuranceStateHealthDate,
-        userProviderInsuranceStateHealthLossDate,
-        userProviderInsuranceStateHealthPrice,
-        userProviderInsuranceStateHealthState,
-        userProviderInsuranceStatePensionDate,
-        userProviderInsuranceStatePensionLossDate,
-        userProviderInsuranceStatePensionPrice,
-        userProviderInsuranceStatePensionState,
-        userProviderInsuranceStateWorkHours,
-        userProviderJoinDate,
-        userProviderMemo,
-        userProviderName,
-        userProviderPhone,
-        userProviderPhone2,
-        userProviderPosition,
-        userProviderPositionName,
-        userProviderProviderLicenses0IdNumber,
-        userProviderProviderLicenses0PublishedAt,
-        userProviderProviderLicenses0Type,
-        userProviderRelation,
-        userProviderSalary,
-        userProviderState,
-        userProviderStateDate,
-        userProviderStateHistory,
-        userProviderStateReason,
-        userProviderSummary,
-        userProviderTag,
-        userProviderTagCall,
-        userProviderTagCallDays,
-        userProviderTagPhone,
-        userProviderWorkCenterAccount,
-        userProviderWorkCenterAccounts0Bank,
-        userProviderWorkCenterAccounts0Idnumber,
-        userProviderWorkCenterAccounts0LoginId,
-        userProviderWorkCenterAccounts0LoginPw,
-        userProviderWorkCenterAccounts0Name,
-        userProviderWorkCenterAccounts0Number,
-        userProviderWorkCenterAccounts0Pw,
-        userProviderWorkCenterAddressAddress,
-        userProviderWorkCenterAddressAddressDetail,
-        userProviderWorkCenterAddressFullAddress,
-        userProviderWorkCenterAddressX,
-        userProviderWorkCenterAddressY,
-        userProviderWorkCenterAddressZipCode,
-        userProviderWorkCenterApiName,
-        userProviderWorkCenterCenterNumber,
-        userProviderWorkCenterChiefName,
-        userProviderWorkCenterId,
-        userProviderWorkCenterLoginCode,
-        userProviderWorkCenterLoginId,
-        userProviderWorkCenterLoginPassword,
-        userProviderWorkCenterMain,
-        userProviderWorkCenterName,
-        userProviderWorkCenterPhone,
-        userProviderWorkCenterServiceType,
-        userProviderWorkCenterShortName,
-        userProviderWorkCenterW4CCode,
-        userProviderWorkTypes,
-        userRole,
-        userSendNumber,
-    }: {
-        /**
-         * centerId
-         */
+    public static getScheduleMonthListUsingPost(
         centerId?: Array<number>,
-        /**
-         * providerId
-         */
         providerId?: number,
         userCenterId?: number,
         userEmail?: string,
@@ -366,6 +313,7 @@ export class ServiceScheduleControllerService {
         userProviderBankNumber?: string,
         userProviderBirthDate?: string,
         userProviderConnectUserId?: number,
+        userProviderCreatedAt?: string,
         userProviderDataBurdenDeduction?: boolean,
         userProviderDataContractDate?: string,
         userProviderDataWorkDay1?: string,
@@ -426,6 +374,7 @@ export class ServiceScheduleControllerService {
         userProviderTagCall?: boolean,
         userProviderTagCallDays?: string,
         userProviderTagPhone?: string,
+        userProviderUpdatedAt?: string,
         userProviderWorkCenterAccount?: string,
         userProviderWorkCenterAccounts0Bank?: string,
         userProviderWorkCenterAccounts0Idnumber?: string,
@@ -456,7 +405,7 @@ export class ServiceScheduleControllerService {
         userProviderWorkTypes?: 'Family' | 'Bath' | 'Nursing',
         userRole?: 'Admin' | 'Center' | 'ContactCenter' | 'CenterChief' | 'AccountingFirm' | 'FinancialManager' | 'Infra',
         userSendNumber?: string,
-    }): CancelablePromise<Array<string> | any> {
+    ): CancelablePromise<Array<string> | any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/serviceSchedule/monthList',
@@ -481,6 +430,7 @@ export class ServiceScheduleControllerService {
                 'user.provider.bankNumber': userProviderBankNumber,
                 'user.provider.birthDate': userProviderBirthDate,
                 'user.provider.connectUserId': userProviderConnectUserId,
+                'user.provider.createdAt': userProviderCreatedAt,
                 'user.provider.data.burdenDeduction': userProviderDataBurdenDeduction,
                 'user.provider.data.contractDate': userProviderDataContractDate,
                 'user.provider.data.workDay1': userProviderDataWorkDay1,
@@ -541,6 +491,7 @@ export class ServiceScheduleControllerService {
                 'user.provider.tagCall': userProviderTagCall,
                 'user.provider.tagCallDays': userProviderTagCallDays,
                 'user.provider.tagPhone': userProviderTagPhone,
+                'user.provider.updatedAt': userProviderUpdatedAt,
                 'user.provider.workCenter.account': userProviderWorkCenterAccount,
                 'user.provider.workCenter.accounts[0].bank': userProviderWorkCenterAccounts0Bank,
                 'user.provider.workCenter.accounts[0].idnumber': userProviderWorkCenterAccounts0Idnumber,
@@ -582,18 +533,14 @@ export class ServiceScheduleControllerService {
 
     /**
      * getScheduleMonthListForRecipient
+     * @param recipientId recipientId
      * @returns string OK
      * @returns any Created
      * @throws ApiError
      */
-    public static getScheduleMonthListForRecipientUsingPost({
-        recipientId,
-    }: {
-        /**
-         * recipientId
-         */
+    public static getScheduleMonthListForRecipientUsingPost(
         recipientId: number,
-    }): CancelablePromise<Array<string> | any> {
+    ): CancelablePromise<Array<string> | any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/serviceSchedule/monthList/recipient',
@@ -610,23 +557,16 @@ export class ServiceScheduleControllerService {
 
     /**
      * removeByList
+     * @param centerId centerId
+     * @param data data
      * @returns number OK
      * @returns any Created
      * @throws ApiError
      */
-    public static removeByListUsingPost({
-        centerId,
-        data,
-    }: {
-        /**
-         * centerId
-         */
+    public static removeByListUsingPost(
         centerId: number,
-        /**
-         * data
-         */
         data: Array<Array<string>>,
-    }): CancelablePromise<number | any> {
+    ): CancelablePromise<number | any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/serviceSchedule/removeByList',
@@ -644,22 +584,15 @@ export class ServiceScheduleControllerService {
 
     /**
      * updateByList
+     * @param centerId centerId
+     * @param data data
      * @returns any OK
      * @throws ApiError
      */
-    public static updateByListUsingPost({
-        centerId,
-        data,
-    }: {
-        /**
-         * centerId
-         */
+    public static updateByListUsingPost(
         centerId: number,
-        /**
-         * data
-         */
         data: Array<Array<string>>,
-    }): CancelablePromise<any> {
+    ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/serviceSchedule/updateByList',

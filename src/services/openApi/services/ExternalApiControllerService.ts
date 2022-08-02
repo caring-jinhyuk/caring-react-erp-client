@@ -11,18 +11,14 @@ export class ExternalApiControllerService {
 
     /**
      * classesByIdList
+     * @param idList idList
      * @returns Map_string_string_ OK
      * @returns any Created
      * @throws ApiError
      */
-    public static classesByIdListUsingPost({
-        idList,
-    }: {
-        /**
-         * idList
-         */
+    public static classesByIdListUsingPost(
         idList: Array<string>,
-    }): CancelablePromise<Array<Map_string_string_> | any> {
+    ): CancelablePromise<Array<Map_string_string_> | any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/externalApi/classesByIdList',

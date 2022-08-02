@@ -7,12 +7,23 @@ interface ILogoProps {
 	height?: number;
 }
 const Logo: FC<ILogoProps> = ({ width, height }) => {
+	const style = {
+		width: width + 'px',
+		height: height + 'px',
+	};
+
 	return (
-		<img
-			src={logo}
-			alt={'logo'}
-			width={height !== 854 && !!height ? height * (2155 / 854) : width}
-			height={width !== 2155 && !!width ? width * (854 / 2155) : height}></img>
+		<div style={style}>
+			<img
+				src={logo}
+				alt='logo'
+				style={{
+					maxWidth: 'max-content',
+					width: '100%',
+					height: '100%',
+					verticalAlign: 'unset',
+				}}></img>
+		</div>
 	);
 };
 Logo.propTypes = {
