@@ -22,7 +22,7 @@ const Account: FC<IAccountProps> = ({ isSignUp }) => {
 	const [isNewUser, setIsNewUser] = useState<boolean | undefined>(isSignUp);
 
 	return (
-		<PageWrapper title={isNewUser ? 'Sign Up' : 'Sign in'} className='bg-primary'>
+		<PageWrapper title={isNewUser ? 'Sign Up' : 'Sign in'} className='bg-secondary'>
 			<Page className='p-0'>
 				<div className='row h-100 align-items-center justify-content-center'>
 					<div className='col-xl-4 col-lg-6 col-md-5 shadow-3d-container'>
@@ -46,7 +46,7 @@ const Account: FC<IAccountProps> = ({ isSignUp }) => {
 									<div className='row row-cols-2 g-3 pb-3 px-3 mt-0'>
 										<div className='col'>
 											<Button
-												color={darkModeStatus ? 'light' : 'secondary'}
+												color={darkModeStatus ? 'light' : 'primary'}
 												className={classNames('rounded-1', 'w-100', {
 													'btn-no-focus': !!isNewUser,
 												})}
@@ -59,7 +59,7 @@ const Account: FC<IAccountProps> = ({ isSignUp }) => {
 										</div>
 										<div className='col'>
 											<Button
-												color={darkModeStatus ? 'light' : 'secondary'}
+												color={darkModeStatus ? 'light' : 'primary'}
 												isLight={!isNewUser}
 												className={classNames('rounded-1', 'w-100', {
 													'btn-no-focus': !isNewUser,

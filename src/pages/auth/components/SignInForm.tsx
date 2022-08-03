@@ -81,7 +81,7 @@ const SignInForm: FC = () => {
 					</FormGroup>
 				</div>
 				<div className='col-12'>
-					<Button className='w-100 py-3' color='secondary' type='submit'>
+					<Button className='w-100 py-3' color='primary' type='submit'>
 						로그인
 					</Button>
 				</div>

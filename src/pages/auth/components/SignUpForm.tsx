@@ -104,7 +104,7 @@ const SignUpForm: FC<ISignUpProps> = ({ setIsNewUser }) => {
 					</FormGroup>
 				</div>
 				<div className='col-12'>
-					<Button color='secondary' className='w-100 py-3' type='submit'>
+					<Button color='primary' className='w-100 py-3' type='submit'>
 						가입하기
 					</Button>
 				</div>
