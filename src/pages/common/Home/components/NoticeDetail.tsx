@@ -9,7 +9,7 @@ import Button from '../../../../components/bootstrap/Button';
 
 import TextEditor from '../../../../components/TextEditor';
 import { Notice, NoticeControllerService } from '../../../../services/openApi';
-import { useRecoilRefresher_UNSTABLE, useResetRecoilState } from 'recoil';
+import { useRecoilRefresher_UNSTABLE } from 'recoil';
 import { noticesState } from './Notices';
 
 type NoticeDetailProps = {
@@ -21,7 +21,7 @@ type NoticeDetailProps = {
 const NoticeDetail: FC<NoticeDetailProps> = ({ isOpen, setOpen, notice }) => {
 	const [currentNotice, setNotice] = useState(notice);
 	const [isModify, setIsModify] = useState(false);
-	const refreshNotices = useRecoilRefresher_UNSTABLE(noticesState);
+	const refreshNotices = useRecoilRefresher_UNSTABLE(noticesState(0));
 
 	const stringToHtml = () => {
 		return <div dangerouslySetInnerHTML={{ __html: currentNotice.body ?? '' }}></div>;
