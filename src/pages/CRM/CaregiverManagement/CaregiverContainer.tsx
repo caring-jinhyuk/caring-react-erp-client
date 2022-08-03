@@ -3,7 +3,7 @@ import CaregiverList from './components/CaregiverList';
 import CaregiverListHeader, { caregiverSearchParam } from './CaregiverListHeader';
 import Card, { CardBody } from '../../../components/bootstrap/Card';
 import CaregiverDetail from './components/CaregiverDetail';
-import { atom, selector } from 'recoil';
+import { atom, selector, useRecoilValue } from 'recoil';
 import { Caregiver, CaregiverControllerService } from '../../../services/openApi';
 import { v1 } from 'uuid';
 
@@ -32,6 +32,8 @@ export const getCaregiverList = selector<Caregiver[]>({
 });
 
 const CaregiverContainer = () => {
+	const caregiverModel = useRecoilValue(caregiverModal);
+
 	return (
 		<>
 			<Card>
@@ -40,7 +42,7 @@ const CaregiverContainer = () => {
 					<CaregiverList />
 				</CardBody>
 			</Card>
-			<CaregiverDetail />
+			{caregiverModel && <CaregiverDetail />}
 		</>
 	);
 };

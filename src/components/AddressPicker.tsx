@@ -415,14 +415,16 @@ const AddressPicker: FC<IAddressPicker> = ({
 		}
 		if (wardValue != null) {
 			console.log('-------호출 wardValue------');
-			AdministrativeDivisionControllerService.getAdministrativeDivisionUsingGet(
-				cityRef.current!.value,
-				wardRef.current!.value,
-			)
-				.then((divisions) => {
-					setTown(divisions);
-				})
-				.catch((error) => {});
+			if (townId != undefined) {
+				AdministrativeDivisionControllerService.getAdministrativeDivisionUsingGet(
+					cityRef.current!.value,
+					wardRef.current!.value,
+				)
+					.then((divisions) => {
+						setTown(divisions);
+					})
+					.catch((error) => {});
+			}
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
