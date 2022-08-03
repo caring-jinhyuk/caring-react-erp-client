@@ -1,5 +1,5 @@
-import React from 'react';
-import { Notice, NoticeControllerService, Page_Notice_ } from '../../../../services/openApi';
+import React, { useState } from 'react';
+import { NoticeControllerService, Page_Notice_ } from '../../../../services/openApi';
 
 import Card, {
 	CardBody,
@@ -7,21 +7,30 @@ import Card, {
 	CardLabel,
 	CardTitle,
 } from '../../../../components/bootstrap/Card';
-import { selector, useRecoilValue } from 'recoil';
+import { selectorFamily, useRecoilValue } from 'recoil';
 import NoticeTableRow from './NoticeTableRow';
 import { v1 } from 'uuid';
 import PaginationButtons from '../../../../components/PaginationButtons';
 
-export const noticesState = selector<Notice[]>({
+export const noticesState = selectorFamily({
 	key: 'notices',
-	get: async () => {
-		const notices: Page_Notice_ = await NoticeControllerService.getNoticeListUsingGet();
-		return notices.content ?? [];
-	},
+	get:
+		({ currentPage, perPage }: any) =>
+		async () => {
+			const notices: Page_Notice_ = await NoticeControllerService.getNoticeListUsingGet(
+				false,
+				currentPage - 1,
+				perPage,
+			);
+			return notices;
+		},
 });
 
 const Notices = () => {
-	const notices = useRecoilValue(noticesState);
+	const [currentPage, setCurrentPage] = useState(1);
+	const [perPage, setPerPage] = useState(10);
+
+	const { content, totalElements } = useRecoilValue(noticesState({ currentPage, perPage }));
 
 	return (
 		<>
@@ -44,20 +53,20 @@ const Notices = () => {
 							</tr>
 						</thead>
 						<tbody>
-							{notices.map((notice) => {
+							{content?.map((notice) => {
 								return <NoticeTableRow key={v1()} notice={notice} />;
 							})}
 						</tbody>
 					</table>
 				</CardBody>
-				{/*<PaginationButtons*/}
-				{/*	data={[]}*/}
-				{/*	label='items'*/}
-				{/*	setCurrentPage={setCurrentPage}*/}
-				{/*	currentPage={1}*/}
-				{/*	perPage={2}*/}
-				{/*	setPerPage={setPerPage}*/}
-				{/*/>*/}
+				<PaginationButtons
+					data={new Array(totalElements)}
+					label='notice'
+					setCurrentPage={setCurrentPage}
+					currentPage={currentPage}
+					perPage={perPage}
+					setPerPage={setPerPage}
+				/>
 			</Card>
 		</>
 	);
