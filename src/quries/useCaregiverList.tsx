@@ -26,12 +26,4 @@ export const getCaregiverList = async (
 	search: string,
 	page: number,
 	size: number,
-) => {
-	const response = await CaregiverControllerService.getCaregiverListUsingGet(
-		keyword,
-		page - 1,
-		search,
-		size,
-	);
-	return response;
-};
+) => CaregiverControllerService.getCaregiverListUsingGet(keyword, page - 1, search, size);
