@@ -83,7 +83,7 @@ const CaregiverDetail: FC = () => {
 		city: caregiver.city,
 		covid: caregiver.covid,
 		dementia: caregiver.dementia,
-		gender: caregiver.gender ? '여자' : '남자',
+		gender: caregiver.gender === undefined || false ? '여자' : '남자',
 		hopeArea: caregiver.hopeArea,
 		information:
 			caregiver.information ||
