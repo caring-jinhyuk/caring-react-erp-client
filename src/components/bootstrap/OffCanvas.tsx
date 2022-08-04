@@ -184,7 +184,7 @@ const OffCanvas: FC<IOffCanvasProps> = ({
 	const closeCanvas = (event: { target: any }) => {
 		// @ts-ignore
 		if (ref.current && !ref.current.contains(event.target) && !isRightPanel && isBackdrop) {
-			setOpen(false);
+			setOpen({ isOpen: false });
 		}
 	};
 	useEventListener('mousedown', closeCanvas);
