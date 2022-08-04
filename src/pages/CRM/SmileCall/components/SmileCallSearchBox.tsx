@@ -54,7 +54,7 @@ const SmileCallSearchBox = () => {
 	//스트링 파라메터 관련 debounce 고려
 	const handleOnKeyUp = (e: any) => {
 		if (e.keyCode === 13) {
-			alert(
+			console.log(
 				searchBoxParam.searchString +
 					'@@' +
 					searchBoxParam.manager +

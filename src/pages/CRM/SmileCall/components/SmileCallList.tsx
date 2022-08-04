@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { FC, useCallback, useEffect, useState } from 'react';
 import FormGroup from '../../../../components/bootstrap/forms/FormGroup';
 import {
 	Smile,
@@ -16,6 +16,8 @@ import PaginationButtons from '../../../../components/PaginationButtons';
 import Button from '../../../../components/bootstrap/Button';
 import { SearchBox, searchBoxState } from '../../../../atoms/smileCall';
 import { useQuery } from '@tanstack/react-query';
+import { string } from 'prop-types';
+import Page from '../../../../layout/Page/Page';
 
 export const smileCallState = selectorFamily({
 	key: 'smileCallList',
@@ -43,16 +45,9 @@ export const useSmileListUsingGet = (
 ) => {
 	const result = useQuery(
 		['smileCallList', { complete, manager, page, searchString, perPage }],
-		async () => {
-			SmileControllerService.getSmileListUsingGet(
-				complete,
-				manager,
-				page - 1,
-				searchString,
-				perPage,
-			);
-		},
+		() => getSmileList(complete, manager, page, searchString, perPage),
 		{
+			keepPreviousData: true, // keepPreviousData가 true일 때 isSuccess, isLoading 값이 처음 데이터를 불러오기 시작할 때, 불러온 후 바뀌고 그 후로는 바뀌지 않습니다. -페이징때는 true가 좋음
 			cacheTime: 0,
 		},
 	);
@@ -62,16 +57,28 @@ export const useSmileListUsingGet = (
 	};
 };
 
-const SmileCallList = () => {
+export const getSmileList = async (
+	complete: string,
+	manager: string,
+	page: number,
+	searchString: string,
+	perPage: number,
+) => SmileControllerService.getSmileListUsingGet(complete, manager, page, searchString, perPage);
+
+const SmileCallList: FC = () => {
+	//페이징 상태
 	const [currentPage, setCurrentPage] = useState(1);
 	const [perPage, setPerPage] = useState(10);
-	const searchBoxParam: SearchBox = useRecoilValue<SearchBox>(searchBoxState);
-
-	//const aaa = useSmileListUsingGet(searchBoxParam.complete, searchBoxParam.manager, currentPage, searchBoxParam.searchString, perPage);
-
-	const { content, totalElements } = useRecoilValue(smileCallState({ currentPage, perPage }));
-	//let sh = smileCallState({ '','manager',currentPage, 'searchString',perPage })
-
+	const searchBoxParam = useRecoilValue(searchBoxState);
+	const getSmileCallList = useSmileListUsingGet(
+		searchBoxParam.complete,
+		searchBoxParam.manager,
+		currentPage,
+		searchBoxParam.searchString,
+		perPage,
+	);
+	console.log(getSmileCallList);
+	//const { content, totalElements } = useRecoilValue(smileCallState({ currentPage, perPage }));
 	return (
 		<FormGroup id='listArea'>
 			<div className='table-responsive'>
@@ -105,15 +112,17 @@ const SmileCallList = () => {
 						</tr>
 					</thead>
 					<tbody>
-						{content?.map((smile) => {
-							return <SmileCallTableRow key={v1()} smile={smile} />;
-						})}
+						{getSmileCallList.contents?.content &&
+							getSmileCallList.contents.content.map((item) => (
+								// eslint-disable-next-line react/jsx-key
+								<SmileCallTableRow key={v1()} smile={item} />
+							))}
 					</tbody>
 				</table>
 			</div>
 			<PaginationButtons
-				data={new Array(totalElements)}
-				label='notice'
+				data={new Array(getSmileCallList.contents?.totalElements)}
+				label='smailCall'
 				setCurrentPage={setCurrentPage}
 				currentPage={currentPage}
 				perPage={perPage}
