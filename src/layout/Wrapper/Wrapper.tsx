@@ -6,6 +6,7 @@ import WrapperOverlay from './WrapperOverlay';
 import HeaderRoutes from '../Header/HeaderRoutes';
 import FooterRoutes from '../Footer/FooterRoutes';
 import ThemeContext from '../../contexts/themeContext';
+import OffCanvasContainer from '../../components/OffcanvasContainer';
 
 interface IWrapperContainerProps {
 	children: ReactNode;
@@ -38,6 +39,7 @@ const Wrapper = () => {
 				<Content />
 				<FooterRoutes />
 			</WrapperContainer>
+			<OffCanvasContainer />
 			<WrapperOverlay />
 		</>
 	);

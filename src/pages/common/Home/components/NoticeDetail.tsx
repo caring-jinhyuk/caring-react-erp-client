@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import OffCanvas, {
+import {
 	OffCanvasBody,
 	OffCanvasHeader,
 	OffCanvasTitle,
@@ -9,19 +9,17 @@ import Button from '../../../../components/bootstrap/Button';
 
 import TextEditor from '../../../../components/TextEditor';
 import { Notice, NoticeControllerService } from '../../../../services/openApi';
-import { useRecoilRefresher_UNSTABLE } from 'recoil';
-import { noticesState } from './Notices';
+import { useSetRecoilState } from 'recoil';
+import { offCanvasState } from '../../../../atoms/offCanvas';
 
-type NoticeDetailProps = {
-	isOpen: boolean;
-	setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+export interface NoticeDetailProps {
 	notice: Notice;
-};
+}
 
-const NoticeDetail: FC<NoticeDetailProps> = ({ isOpen, setOpen, notice }) => {
+const NoticeDetail: FC<NoticeDetailProps> = ({ notice }) => {
 	const [currentNotice, setNotice] = useState(notice);
 	const [isModify, setIsModify] = useState(false);
-	const refreshNotices = useRecoilRefresher_UNSTABLE(noticesState(0));
+	const setOffCanvas = useSetRecoilState(offCanvasState);
 
 	const stringToHtml = () => {
 		return <div dangerouslySetInnerHTML={{ __html: currentNotice.body ?? '' }}></div>;
@@ -36,7 +34,6 @@ const NoticeDetail: FC<NoticeDetailProps> = ({ isOpen, setOpen, notice }) => {
 
 	const saveNotice = async () => {
 		await NoticeControllerService.saveNoticeUsingPost(currentNotice);
-		await refreshNotices();
 	};
 
 	const setNoticeBody = (newValue: any) => {
@@ -45,14 +42,14 @@ const NoticeDetail: FC<NoticeDetailProps> = ({ isOpen, setOpen, notice }) => {
 	};
 
 	return (
-		<OffCanvas isOpen={isOpen} setOpen={setOpen} isBackdrop={false}>
+		<>
 			<OffCanvasHeader className='d-flex, justify-content-end'>
 				<OffCanvasTitle id={'aa'}>
 					<Button onClick={modifyHandler} color='primary' type='button'>
 						{isModify ? '저장하기' : '수정하기'}
 					</Button>
 					<Button
-						onClick={() => setOpen(false)}
+						onClick={() => setOffCanvas({ isOpen: false })}
 						className='btn-unset'
 						size='lg'
 						color='primary'
@@ -72,7 +69,7 @@ const NoticeDetail: FC<NoticeDetailProps> = ({ isOpen, setOpen, notice }) => {
 					</CardBody>
 				</Card>
 			</OffCanvasBody>
-		</OffCanvas>
+		</>
 	);
 };
 
