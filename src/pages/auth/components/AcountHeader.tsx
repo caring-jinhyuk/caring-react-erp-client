@@ -7,23 +7,23 @@ interface IAccountHeaderProps {
 	isNewUser?: boolean;
 }
 const AccountHeader: FC<IAccountHeaderProps> = ({ isNewUser }) => {
-	const [signInCurrent] = useRecoilState(signInState);
-	const [signUpCurrent] = useRecoilState(signUpState);
+	const [currentSignIn] = useRecoilState(signInState);
+	const [currentSignUp] = useRecoilState(signUpState);
 
 	const signUpHeaderText = () => {
 		let htmlTag;
 
-		switch (signUpCurrent) {
+		switch (currentSignUp) {
 			case SignUpValidates.PASSWORD:
 				htmlTag = (
-					<div className='text-center h5 fw-bold my-5 text-secondary'>
+					<div className='text-center h5 fw-bold my-5 text-primary'>
 						비밀번호를 다시 확인해주세요.
 					</div>
 				);
 				break;
 			case SignUpValidates.PASSWORD_RULES:
 				htmlTag = (
-					<div className='text-center h5 fw-bold my-5 text-secondary'>
+					<div className='text-center h5 fw-bold my-5 text-primary'>
 						비밀번호는 특수문자를 포함한 <br />
 						8자리 이상이여야 합니다.
 					</div>
@@ -31,12 +31,12 @@ const AccountHeader: FC<IAccountHeaderProps> = ({ isNewUser }) => {
 				break;
 			case SignUpValidates.EXISTS:
 				htmlTag = (
-					<div className='text-center h5 fw-bold my-5 text-secondary'>같은 계정이 존재합니다.</div>
+					<div className='text-center h5 fw-bold my-5 text-primary'>같은 계정이 존재합니다.</div>
 				);
 				break;
 			default:
 				htmlTag = (
-					<div className='text-center h5 fw-bold  my-5'>반갑습니다. 계정을 생성해주세요.</div>
+					<div className='text-center h5 fw-bold my-5'>반갑습니다. 계정을 생성해주세요.</div>
 				);
 				break;
 		}
@@ -46,13 +46,15 @@ const AccountHeader: FC<IAccountHeaderProps> = ({ isNewUser }) => {
 	const signInHeaderText = () => {
 		let htmlTag;
 
-		switch (signInCurrent) {
+		switch (currentSignIn) {
 			case SignInValidates.DEFAULT:
 				htmlTag = <div className='text-center h5 fw-bold my-5'>안녕하세요. 케어링입니다.</div>;
 				break;
 			case SignInValidates.PASSWORD:
 				htmlTag = (
-					<div className='text-center h5 fw-bold my-5 text-primary'>틀린 비밀번호입니다.</div>
+					<div className='text-center h5 fw-bold my-5 text-primary'>
+						비밀번호가 일치하지 않습니다.
+					</div>
 				);
 				break;
 			case SignInValidates.NON_ACCOUNT:

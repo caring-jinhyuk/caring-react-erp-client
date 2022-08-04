@@ -1,10 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import { ConsultControllerService } from '../services/openApi';
+import moment from 'moment';
+import CallStatistics from '../pages/CRM/Statistics/components/CallStatistics';
 
 export const useGetConsultAllList = () => {
 	const result = useQuery(['consultListAll'], async () => getCaregiverAllList(), {
-		cacheTime: 50000,
-		staleTime: 50000,
+		cacheTime: Infinity,
+		staleTime: Infinity,
 	});
 	return {
 		...result,
@@ -80,10 +82,62 @@ export const getCaregiverAllList = async () => {
 		'제주',
 		'세종',
 	];
+	const progressList: string[] = [
+		'서류 받음',
+		'서류 대기중',
+		'연락가능성 높음',
+		'연락가능성 낮음',
+		'매칭 요청',
+		'기존 고객',
+		'이탈 - 시작요청일 늦음',
+		'이탈 - 급여 차이 적음',
+		'이탈 - 타 센터에서 잡음',
+		'이탈 - 기타',
+	];
+
+	const whyList: string[] = [
+		'높은 급여',
+		'정동원 / 장민호 팬',
+		'지인 추천',
+		'일자리가 더 많을 것 같아서',
+		'요양보호사 권익 생각해줘서',
+		'유튜브 설명 좋아서',
+		'티비에 나와서',
+		'전국적이라서',
+		'체계적이라서',
+		'등급 대행 해줄 줄 알고',
+		'기타',
+	];
+	const addInquiryList: string[] = [
+		'이용X',
+		'가족요양',
+		'방문요양',
+		'방문목욕',
+		'방문간호',
+		'주야간',
+		'기타',
+	];
+	const counselors: string[] = [
+		'임규경',
+		'원효정',
+		'김미가',
+		'이수환',
+		'김태석',
+		'이가은',
+		'김지은',
+		'곽조아',
+		'전담비',
+		'최지은',
+	];
 
 	let calls = 0;
 	let recalls = 0;
 	let recallsService = 0;
+	let choiceReasonEtc = '';
+	let addInquiryEtc = '';
+	let create: Date;
+	const now: string = moment().format('YY-MM-DD');
+	const today: string = new Date().toISOString().substring(0, 10);
 
 	const cityCall: number[] = Array.from({ length: cityList.length }, () => 0);
 	const itemCall: Array<number> = new Array(inflowList.length).fill(0);
@@ -93,6 +147,19 @@ export const getCaregiverAllList = async () => {
 	const experienceCheckList: number[][] = Array(5)
 		.fill(0)
 		.map((x) => Array(3).fill(0));
+	const progressCheckList: number[][] = Array(2)
+		.fill(0)
+		.map((x) => Array(progressList.length + 1).fill(0));
+	const choiceReasonCall: number[] = Array.from({ length: whyList.length }, () => 0);
+	const addInquiryCall = Array.from({ length: addInquiryList.length }, () => 0);
+	const counselorsCall = Array.from({ length: counselors.length }, () => 0);
+
+	const todayCallClick: boolean[] = [true, false, false];
+
+	let todayPerson: number = 0;
+	let todayCall: number = 0;
+	let todayNewCall: number = 0;
+	let todayRecall: number = 0;
 
 	for (let i = 0; i < response.length; i++) {
 		if (response[i] != null) {
@@ -249,149 +316,184 @@ export const getCaregiverAllList = async () => {
 				}
 			}
 
-			// if (data[i].progress != '' && data[i].progress != null) {
-			// 	for (let count = 0; count < this.progress_list.length; count++) {
-			// 		if (data[i].progress == this.progress_list[count]) {
-			// 			this.progress_check_list[0][count]++;
-			// 		}
-			// 	}
-			// } else if (data[i].progress == '') {
-			// 	this.progress_check_list[0][this.progress_list.length]++;
-			// }
+			if (response[i].progress != '' && response[i].progress != null) {
+				for (let count = 0; count < progressList.length; count++) {
+					if (response[i].progress == progressList[count]) {
+						progressCheckList[0][count]++;
+					}
+				}
+			} else if (response[i].progress == '') {
+				progressCheckList[0][progressList.length]++;
+			}
+
+			if (response[i].why != '' && response[i].why != null) {
+				for (let count = 0; count < whyList.length; count++) {
+					if (response[i].why?.includes(whyList[count])) {
+						choiceReasonCall[count]++;
+					}
+				}
+				if (response[i].why != null) {
+					// response[i].why
+					// 	?.split(',')
+					// 	.filter((x) => !whyList.includes(x))
+					// 	.forEach((item) => {
+					// 		choiceReasonCall[whyList.length - 1]++;
+					// 		choiceReasonEtc += item + ', ';
+					// 	});
+				}
+			}
+
+			if (response[i].addInquiry != '' && response[i].addInquiry != null) {
+				for (let count = 0; count < addInquiryList.length; count++) {
+					if (response[i].addInquiry?.includes(addInquiryList[count])) {
+						addInquiryCall[count]++;
+					}
+				}
+				if (response[i].addInquiry != null) {
+					// response[i].addInquiry
+					// 	?.split(',')
+					// 	.filter((x) => !addInquiryList.includes(x))
+					// 	.forEach((item) => {
+					// 		addInquiryCall[addInquiryList.length - 1]++;
+					// 		addInquiryEtc += item + ', ';
+					// 	});
+				}
+			}
+
+			if (response[i].first != null && response[i].first != '') {
+				for (let count = 0; count < counselors.length; count++) {
+					if (response[i].first == counselors[count]) {
+						counselorsCall[count]++;
+						break;
+					}
+				}
+			}
+
+			if (response[i].memo != null && response[i].memo != '') {
+				for (let count = 0; count < counselors.length; count++) {
+					let counselor = new RegExp(counselors[count], 'g');
+					if (response[i].memo?.search(counselors[count]) !== -1) {
+						counselorsCall[count] += (response[i].memo?.match(counselor) || []).length;
+						recalls++;
+						if (response[i].progress === '기존 고객') {
+							recallsService++;
+						}
+					}
+				}
+			}
 			//
-			// if (data[i].why != '' && data[i].why != null) {
-			// 	for (let count = 0; count < this.why_list.length; count++) {
-			// 		if (data[i].why.includes(this.why_list[count])) {
-			// 			this.choice_reason_call[count]++;
-			// 		}
-			// 	}
-			// 	data[i].why
-			// 		.split(',')
-			// 		.filter((x) => !this.why_list.includes(x))
-			// 		.forEach((item) => {
-			// 			this.choice_reason_call[this.why_list.length - 1]++;
-			// 			this.choice_reason_etc += item + ', ';
-			// 		});
-			// }
-			//
-			// if (data[i].addInquiry != '' && data[i].addInquiry != null) {
-			// 	for (let count = 0; count < this.addInquiry_list.length; count++) {
-			// 		if (data[i].addInquiry.includes(this.addInquiry_list[count])) {
-			// 			this.addInquiry_call[count]++;
-			// 		}
-			// 	}
-			// 	data[i].addInquiry
-			// 		.split(',')
-			// 		.filter((x) => !this.addInquiry_list.includes(x))
-			// 		.forEach((item) => {
-			// 			this.addInquiry_call[this.addInquiry_list.length - 1]++;
-			// 			this.addInquiry_etc += item + ', ';
-			// 		});
-			// }
-			//
-			// if (data[i].first != null && data[i].first != '') {
-			// 	for (let count = 0; count < this.counselors.length; count++) {
-			// 		if (data[i].first == this.counselors[count]) {
-			// 			this.counselors_call[count]++;
-			// 			break;
-			// 		}
-			// 	}
-			// }
-			//
-			//
-			// if (data[i].memo != null && data[i].memo != '') {
-			// 	for (let count = 0; count < this.counselors.length; count++) {
-			// 		let counselor = new RegExp(this.counselors[count], 'g');
-			// 		if (data[i].memo.search(this.counselors[count]) !== -1) {
-			// 			this.counselors_call[count] += (data[i].memo.match(counselor) || []).length;
-			// 			this.recalls++;
-			// 			if (data[i].progress === '기존 고객') {
-			// 				this.recalls_service++;
-			// 			}
-			// 		}
-			// 	}
-			// }
-			//
-			// if (data[i].lastModifiedDate != null && data[i].lastModifiedDate != '') {
-			// 	create = new Date(data[i].createdAt);
-			// 	// days = '22-07-01/'
-			// 	// for(let minute=0; minute<160; minute++){
-			// 	//   for (let counselors=0; counselors<this.counselors.length; counselors++){
-			// 	//     if(data[i].memo.includes(days + ' ' + this.counselors[counselors] + ') (' + moment(times).add(minute, 'minute').format('HH:mm') + ')')){
-			// 	//       people++;
-			// 	//     }
-			// 	//   }
-			// 	// }
-			// 	// for(let minute=0; minute<145; minute++){
-			// 	//   for (let counselors=0; counselors<this.counselors.length; counselors++){
-			// 	//     if(data[i].memo.includes(days + ' ' + this.counselors[counselors] + ') (' + moment(times1).add(minute, 'minute').format('HH:mm') + ')')){
-			// 	//       people1++;
-			// 	//     }
-			// 	//   }
-			// 	// }
-			// 	// for(let minute=0; minute<142; minute++){
-			// 	//   for (let counselors=0; counselors<this.counselors.length; counselors++){
-			// 	//     if(data[i].memo.includes(days + ' ' + this.counselors[counselors] + ') (' + moment(times2).add(minute, 'minute').format('HH:mm') + ')')){
-			// 	//       people2++;
-			// 	//     }
-			// 	//   }
-			// 	// }
-			// 	// for(let minute=0; minute<150; minute++){
-			// 	//   for (let counselors=0; counselors<this.counselors.length; counselors++){
-			// 	//     if(data[i].memo.includes(days + ' ' + this.counselors[counselors] + ') (' + moment(times3).add(minute, 'minute').format('HH:mm') + ')')){
-			// 	//       people3++;
-			// 	//     }
-			// 	//   }
-			// 	// }
-			// 	// for(let minute=0; minute<150; minute++){
-			// 	//   for (let counselors=0; counselors<this.counselors.length; counselors++){
-			// 	//     if(data[i].memo.includes(days + ' ' + this.counselors[counselors] + ') (' + moment(times4).add(minute, 'minute').format('HH:mm') + ')')){
-			// 	//       people4++;
-			// 	//     }
-			// 	//   }
-			// 	// }
-			// 	// for(let minute=0; minute<130; minute++){
-			// 	//   for (let counselors=0; counselors<this.counselors.length; counselors++){
-			// 	//     if(data[i].memo.includes(days + ' ' + this.counselors[counselors] + ') (' + moment(times5).add(minute, 'minute').format('HH:mm') + ')')){
-			// 	//       people5++;
-			// 	//     }
-			// 	//   }
-			// 	// }
-			// 	// for(let minute=0; minute<150; minute++){
-			// 	//   for (let counselors=0; counselors<this.counselors.length; counselors++){
-			// 	//     if(data[i].memo.includes(days + ' ' + this.counselors[counselors] + ') (' + moment(times6).add(minute, 'minute').format('HH:mm') + ')')){
-			// 	//       people6++;
-			// 	//     }
-			// 	//   }
-			// 	// }
-			// 	// minute++;
-			// 	// console.log(minute);
-			// 	if (data[i].memo != null && data[i].memo.includes(this.now)) {
-			// 		if (create.toISOString().substring(0, 10) === this.today) {
-			// 			this.today_newcall++;
-			// 			if (this.today_call_click[2] != true) {
-			// 				this.today_statistics(data[i]);
-			// 			}
-			// 		} else {
-			// 			this.today_recall++;
-			// 			if (this.today_call_click[1] != true) {
-			// 				this.today_statistics(data[i]);
-			// 			}
-			// 		}
-			// 	}
-			// }
+			if (response[i].lastModifiedDate != null && response[i].lastModifiedDate != '') {
+				create = new Date(response[i].createdAt!);
+				// 	// days = '22-07-01/'
+				// 	// for(let minute=0; minute<160; minute++){
+				// 	//   for (let counselors=0; counselors<this.counselors.length; counselors++){
+				// 	//     if(data[i].memo.includes(days + ' ' + this.counselors[counselors] + ') (' + moment(times).add(minute, 'minute').format('HH:mm') + ')')){
+				// 	//       people++;
+				// 	//     }
+				// 	//   }
+				// 	// }
+				// 	// for(let minute=0; minute<145; minute++){
+				// 	//   for (let counselors=0; counselors<this.counselors.length; counselors++){
+				// 	//     if(data[i].memo.includes(days + ' ' + this.counselors[counselors] + ') (' + moment(times1).add(minute, 'minute').format('HH:mm') + ')')){
+				// 	//       people1++;
+				// 	//     }
+				// 	//   }
+				// 	// }
+				// 	// for(let minute=0; minute<142; minute++){
+				// 	//   for (let counselors=0; counselors<this.counselors.length; counselors++){
+				// 	//     if(data[i].memo.includes(days + ' ' + this.counselors[counselors] + ') (' + moment(times2).add(minute, 'minute').format('HH:mm') + ')')){
+				// 	//       people2++;
+				// 	//     }
+				// 	//   }
+				// 	// }
+				// 	// for(let minute=0; minute<150; minute++){
+				// 	//   for (let counselors=0; counselors<this.counselors.length; counselors++){
+				// 	//     if(data[i].memo.includes(days + ' ' + this.counselors[counselors] + ') (' + moment(times3).add(minute, 'minute').format('HH:mm') + ')')){
+				// 	//       people3++;
+				// 	//     }
+				// 	//   }
+				// 	// }
+				// 	// for(let minute=0; minute<150; minute++){
+				// 	//   for (let counselors=0; counselors<this.counselors.length; counselors++){
+				// 	//     if(data[i].memo.includes(days + ' ' + this.counselors[counselors] + ') (' + moment(times4).add(minute, 'minute').format('HH:mm') + ')')){
+				// 	//       people4++;
+				// 	//     }
+				// 	//   }
+				// 	// }
+				// 	// for(let minute=0; minute<130; minute++){
+				// 	//   for (let counselors=0; counselors<this.counselors.length; counselors++){
+				// 	//     if(data[i].memo.includes(days + ' ' + this.counselors[counselors] + ') (' + moment(times5).add(minute, 'minute').format('HH:mm') + ')')){
+				// 	//       people5++;
+				// 	//     }
+				// 	//   }
+				// 	// }
+				// 	// for(let minute=0; minute<150; minute++){
+				// 	//   for (let counselors=0; counselors<this.counselors.length; counselors++){
+				// 	//     if(data[i].memo.includes(days + ' ' + this.counselors[counselors] + ') (' + moment(times6).add(minute, 'minute').format('HH:mm') + ')')){
+				// 	//       people6++;
+				// 	//     }
+				// 	//   }
+				// 	// }
+				// 	// minute++;
+				// 	// console.log(minute);
+				if (response[i].memo != null && response[i].memo?.includes(now)) {
+					if (create.toISOString().substring(0, 10) === today) {
+						todayNewCall++;
+						if (!todayCallClick[2]) {
+							//this.today_statistics(data[i]);
+						}
+					} else {
+						todayNewCall++;
+						if (!todayCallClick[1]) {
+							//this.today_statistics(data[i]);
+						}
+					}
+					// 	}
+					// }
+				}
+			}
 		}
 	}
 
-	return {
-		calls: calls,
-		recallsService: recallsService,
-		inflowList: inflowList,
-		cityCall: cityCall,
-		itemCall: itemCall,
-		itemService: itemService,
-		stateCall: stateCall,
-		cityVisitHopeCall: cityVisitHopeCall,
-		experienceCheckList: experienceCheckList,
+	const callStatistic: CallStatistic = {
+		calls,
+		recallsService,
+		inflowList,
+		cityCall,
+		itemCall,
+		itemService,
+		stateCall,
+		cityVisitHopeCall,
+		experienceCheckList,
+		cityList,
+		stateList,
+		whyList,
+		choiceReasonCall,
+		addInquiryList,
+		addInquiryCall,
+		counselors,
+		counselorsCall,
 	};
+
+	return callStatistic;
+};
+
+export type CallStatistic = {
+	calls: number;
+	recallsService: number;
+	inflowList: string[];
+	cityCall: number[];
+	itemCall: number[];
+	itemService: number[];
+	stateCall: number[];
+	cityVisitHopeCall: number[];
+	experienceCheckList: number[][];
+	cityList: string[];
+	stateList: string[];
+	whyList: string[];
+	choiceReasonCall: number[];
+	addInquiryList: string[];
+	addInquiryCall: number[];
+	counselors: string[];
+	counselorsCall: number[];
 };
