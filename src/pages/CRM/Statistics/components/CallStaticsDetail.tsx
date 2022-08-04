@@ -30,6 +30,45 @@ const CallStaticsDetail = () => {
 							})}
 						</SubHeader>
 
+						<Card className='scroll-margin'>
+							<CardBody>
+								<table className='table table-modern table-hover'>
+									<thead>
+										<tr>
+											<th>상태</th>
+											<th>call</th>
+											<th>이관</th>
+											<th>신규</th>
+											<th>모름</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>가족 진행중 전체</td>
+											<td>${callStatistic.stateCall[0]}명</td>
+											<td>${callStatistic.experienceCheckList[0][0]}</td>
+											<td>${callStatistic.experienceCheckList[0][1]}</td>
+											<td>${callStatistic.experienceCheckList[0][2]}</td>
+										</tr>
+										<tr>
+											<td>가족 서비스시작 전체</td>
+											<td>${callStatistic.stateCall[5]}</td>
+											<td>${callStatistic.experienceCheckList[1][0]}</td>
+											<td>${callStatistic.experienceCheckList[1][1]}</td>
+											<td>${callStatistic.experienceCheckList[1][2]}</td>
+										</tr>
+										{/*<tr>*/}
+										{/*	<td>합계</td>*/}
+										{/*	<td>{{state_call[0]+state_call[5]}}</td>*/}
+										{/*	<td>{{experience_check_list[0][0]+experience_check_list[1][0]}}</td>*/}
+										{/*	<td>{{experience_check_list[0][1]+experience_check_list[1][1]}}</td>*/}
+										{/*	<td>{{experience_check_list[0][2]+experience_check_list[1][2]}}</td>*/}
+										{/*</tr>*/}
+									</tbody>
+								</table>
+							</CardBody>
+						</Card>
+
 						<Card id={StatisticType.INFLOW.toString()} className='scroll-margin'>
 							<CardBody>
 								<table className='table table-modern table-hover'>
