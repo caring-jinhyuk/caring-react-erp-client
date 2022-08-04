@@ -249,7 +249,7 @@ export class CaregiverControllerService {
 	): CancelablePromise<Page_Caregiver_> {
 		return __request(OpenAPI, {
 			method: 'GET',
-			url: '/caregiver/listss',
+			url: '/caregiver/list',
 			query: {
 				keyword: keyword,
 				page: page,
