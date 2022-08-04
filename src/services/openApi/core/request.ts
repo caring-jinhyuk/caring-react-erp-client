@@ -12,6 +12,7 @@ import { CancelablePromise } from './CancelablePromise';
 import type { OnCancel } from './CancelablePromise';
 import type { OpenAPIConfig } from './OpenAPI';
 import { setToken } from '../../authService';
+import { serverErrorHandler } from '../../../helpers/errorHandlers';
 
 const isDefined = <T>(value: T | null | undefined): value is Exclude<T, null | undefined> => {
 	return value !== undefined && value !== null;
@@ -264,7 +265,9 @@ const catchErrorCodes = (options: ApiRequestOptions, result: ApiResult): void =>
 
 	const error = errors[result.status];
 	if (error) {
-		throw new ApiError(options, result, error);
+		const apiError = new ApiError(options, result, error);
+		console.error(apiError);
+		serverErrorHandler(apiError);
 	}
 
 	if (!result.ok) {
@@ -315,7 +318,7 @@ export const request = <T>(
 					statusText: response.statusText,
 					body: responseBody,
 				};
-
+				catchErrorCodes(options, result);
 				resolve(result.body);
 			}
 		} catch (error) {
