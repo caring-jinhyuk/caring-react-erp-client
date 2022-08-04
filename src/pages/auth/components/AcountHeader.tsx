@@ -52,14 +52,12 @@ const AccountHeader: FC<IAccountHeaderProps> = ({ isNewUser }) => {
 				break;
 			case SignInValidates.PASSWORD:
 				htmlTag = (
-					<div className='text-center h5 fw-bold my-5 text-secondary'>틀린 비밀번호입니다.</div>
+					<div className='text-center h5 fw-bold my-5 text-primary'>틀린 비밀번호입니다.</div>
 				);
 				break;
 			case SignInValidates.NON_ACCOUNT:
 				htmlTag = (
-					<div className='text-center h5 fw-bold my-5 text-secondary'>
-						존재하지 않는 계정입니다.
-					</div>
+					<div className='text-center h5 fw-bold my-5 text-primary'>존재하지 않는 계정입니다.</div>
 				);
 				break;
 		}

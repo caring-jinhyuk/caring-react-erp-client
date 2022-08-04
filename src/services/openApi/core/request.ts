@@ -12,7 +12,7 @@ import { CancelablePromise } from './CancelablePromise';
 import type { OnCancel } from './CancelablePromise';
 import type { OpenAPIConfig } from './OpenAPI';
 import { setToken } from '../../authService';
-import { serverErrorHandler } from '../../../helpers/errorHandlers';
+import { errorHandler } from '../../../helpers/errorHandlers';
 
 const isDefined = <T>(value: T | null | undefined): value is Exclude<T, null | undefined> => {
 	return value !== undefined && value !== null;
@@ -154,8 +154,6 @@ const getHeaders = async (
 	formData?: FormData,
 ): Promise<Record<string, string>> => {
 	const token = await resolve(options, config.TOKEN);
-	const username = await resolve(options, config.USERNAME);
-	const password = await resolve(options, config.PASSWORD);
 	const additionalHeaders = await resolve(options, config.HEADERS);
 	const formHeaders = (typeof formData?.getHeaders === 'function' && formData?.getHeaders()) || {};
 
@@ -251,7 +249,7 @@ const getResponseBody = (response: AxiosResponse<any>): any => {
 	return undefined;
 };
 
-const catchErrorCodes = (options: ApiRequestOptions, result: ApiResult): void => {
+const catchErrorCodes = (options: ApiRequestOptions, result: ApiResult): ApiResult => {
 	const errors: Record<number, string> = {
 		400: 'Bad Request',
 		401: 'Unauthorized',
@@ -267,12 +265,14 @@ const catchErrorCodes = (options: ApiRequestOptions, result: ApiResult): void =>
 	if (error) {
 		const apiError = new ApiError(options, result, error);
 		console.error(apiError);
-		serverErrorHandler(apiError);
+		errorHandler(apiError);
 	}
-
 	if (!result.ok) {
-		throw new ApiError(options, result, 'Generic Error');
+		const apiError = new ApiError(options, result, 'Generic Error');
+		console.error(apiError);
+		errorHandler(apiError);
 	}
+	return result;
 };
 
 /**
@@ -311,14 +311,14 @@ export const request = <T>(
 					setToken(responseHeader['caringerpauthtoken']);
 				}
 
-				const result: ApiResult = {
+				let result: ApiResult = {
 					url,
 					ok: isSuccess(response.status),
 					status: response.status,
 					statusText: response.statusText,
 					body: responseBody,
 				};
-				catchErrorCodes(options, result);
+				result = catchErrorCodes(options, result);
 				resolve(result.body);
 			}
 		} catch (error) {
