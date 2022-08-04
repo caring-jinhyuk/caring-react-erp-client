@@ -1,7 +1,4 @@
 //하드코딩 - 진행여부
-import alert from '../../../../components/bootstrap/Alert';
-import { object } from 'prop-types';
-
 export const selectCompleteItem: object[] = [
 	{
 		text: '전체',
@@ -139,7 +136,7 @@ export const selectDisadvantagesList: string[] = [
 
 export const arrToOption = (arrOption: string[], opt?: 'all' | 'select') => {
 	let rtnArr: any[] = [];
-	if (opt === 'all') rtnArr.push({ text: '전체', value: '전체', label: '전체' });
+	if (opt === 'all') rtnArr.push({ text: '전체', value: '', label: '전체' });
 	if (opt === 'select') rtnArr.push({ text: '선택', value: '', label: '선택' });
 
 	arrOption.forEach((item) => {

@@ -5,7 +5,7 @@ import Button from '../../../../components/bootstrap/Button';
 import Input from '../../../../components/bootstrap/forms/Input';
 import { debounce } from '../../../../helpers/helpers';
 
-import { Caregiver, Smile, SmileControllerService } from '../../../../services/openApi';
+import { Smile, SmileControllerService } from '../../../../services/openApi';
 
 import {
 	arrToOption,
@@ -14,43 +14,20 @@ import {
 } from '../Statistics/SmileCallStatistics';
 
 import SmileCallDetail from './SmileCallDetail';
-import { atom, useRecoilState, useRecoilCallback, selector } from 'recoil';
-import { resolveSchema } from 'openapi-typescript/dist/load';
-import { caregiverModal } from '../../CaregiverManagement/CaregiverContainer';
-
-/*스마일콜 전역상태선언은 타입과 아톰 관리 해야할듯*/
-interface SearchBox {
-	complete: string;
-	manager: string;
-	searchString?: string;
-}
-
-const searchBoxState = atom<SearchBox>({
-	key: 'searchBoxState',
-	default: { complete: '전체', manager: '전체', searchString: '' },
-});
-
-// const resultValue = useRecoilValue(countStateSelector);
-const searchBoxStateSelector = selector({
-	key: 'searchBoxStateSelector',
-
-	get: ({ get }) => {
-		const inputVal = get(searchBoxState);
-		return inputVal.complete;
-	},
-});
-
-export const smileCallInfo = atom({
-	key: 'smileCallInfo',
-	default: {} as Smile,
-});
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { SearchBox, searchBoxState, smileCallInfo } from '../../../../atoms/smileCall';
 
 const SmileCallSearchBox = () => {
+	//셀렉트,체크 등 단건의 이벤트가 발생하는 곳 (onchange 시) - 전역 저장용 atom
 	const [searchBoxParam, setSearchBoxParam] = useRecoilState(searchBoxState);
-	//검색조건 유지
+
+	//스트링 검색조건 유지 - 입력시마다 (onchange) 이벤트가 발생하므로 따로 처리
+	const [complete, setComplete] = useState<string>('');
+	const [manager, setManager] = useState<string>('');
 	const [searchString, setSearchString] = useState<string>('');
 
-	const [newSmileCallInfo, setNewSmileCallInfo] = useRecoilState(smileCallInfo);
+	//스마일콜 추가 버튼 클릭시 초기 값 추가
+	const newSmileCallInfo = useRecoilValue(smileCallInfo);
 
 	const handleOnChange = (e: any) => {
 		switch (e.target.id) {
@@ -70,23 +47,20 @@ const SmileCallSearchBox = () => {
 				break;
 			case 'search-string':
 				setSearchString(e.target.value);
-				/*
-                debounce(
-                    () =>
-                        setSearchBoxParam({
-                            complete: searchBoxParam.complete,
-                            manager: searchBoxParam.manager,
-                            searchString: e.target.value
-                        }),
-                    1000,
-                )();
-                */
 				break;
 		}
 	};
 
+	//스트링 파라메터 관련 debounce 고려
 	const handleOnKeyUp = (e: any) => {
-		if (e.keyCode === '13') {
+		if (e.keyCode === 13) {
+			alert(
+				searchBoxParam.searchString +
+					'@@' +
+					searchBoxParam.manager +
+					'@@' +
+					searchBoxParam.complete,
+			);
 			switch (e.target.id) {
 				case 'search-string':
 					setSearchBoxParam({
@@ -102,11 +76,10 @@ const SmileCallSearchBox = () => {
 	/*스마일콜 추가기능*/
 	//ADD정보를 호출 페이지에서 관리 - 추가창을 닫고 다시 추가창을 켯을때 유지되도록(이전 기록 유지), 초기화 버튼 생성
 	//추가화면 오픈 관리 설정 - 변수명 관리 여러가지의 팝업이 있고 상태를 관리해야할 경우에 따른 명시
-	const [isOpenSmileCallAdd, setIsOpenSmileCallAdd] = useState<boolean>(false);
-	const [addSmileCallInfo, setAddSmileCallInfo] = useState<Smile>({});
+	const [isModal, setModal] = useState<boolean>(false);
 
-	const onClickSmileCallAddHandler = () => {
-		setIsOpenSmileCallAdd(!isOpenSmileCallAdd);
+	const onClickAddHandler = () => {
+		setModal(!isModal);
 	};
 
 	return (
@@ -145,13 +118,13 @@ const SmileCallSearchBox = () => {
 			</div>
 			<div className='row g-3'>
 				<div className='col-2'>
-					<Button color='primary' icon={'Add'} onClick={onClickSmileCallAddHandler}>
+					<Button color='primary' icon={'Add'} onClick={onClickAddHandler}>
 						스마일 콜 추가
 					</Button>
-					{isOpenSmileCallAdd && (
+					{isModal && (
 						<SmileCallDetail
-							isOpen={isOpenSmileCallAdd}
-							setOpen={setIsOpenSmileCallAdd}
+							isOpen={isModal}
+							setOpen={setModal}
 							isMode={'C'}
 							smile={newSmileCallInfo}
 						/>

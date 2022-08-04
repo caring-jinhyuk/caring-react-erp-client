@@ -28,8 +28,8 @@ const SmileCallTableRow: FC<SmileCallTableRowProps> = ({ smile }) => {
 				<td className='text-center'>
 					{smile.callDate ? moment(smile.callDate).format('YYYY-MM-DD HH:mm') : ''}
 				</td>
+				{isOpen && <SmileCallDetail isOpen={isOpen} setOpen={setOpen} isMode={'U'} smile={smile} />}
 			</tr>
-			{isOpen && <SmileCallDetail isOpen={isOpen} setOpen={setOpen} isMode={'U'} smile={smile} />}
 		</>
 	);
 };

@@ -9,7 +9,7 @@ import Card, {
 	CardLabel,
 	CardTitle,
 } from '../../../components/bootstrap/Card';
-import SmileCalls from './components/SmileCalls';
+import SmileCallList from './components/SmileCallList';
 import Button from '../../../components/bootstrap/Button';
 const SmileCall = () => {
 	return (
@@ -23,7 +23,7 @@ const SmileCall = () => {
 					</CardHeader>
 					<CardBody>
 						<SmileCallSearchBox />
-						<SmileCalls />
+						<SmileCallList />
 					</CardBody>
 				</Card>
 			</Page>

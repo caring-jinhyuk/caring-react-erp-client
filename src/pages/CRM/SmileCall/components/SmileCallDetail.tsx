@@ -53,6 +53,7 @@ const validator = (smile: Smile) => {
 };
 
 const SmileCallDetail: FC<SmileCallAddProps> = ({ isOpen, setOpen, isMode, smile }) => {
+	console.log('SmileCallDetail open');
 	//저장할 스마일콜 서버정보 상태
 	const queryClient = useQueryClient(); //서버 상태 관리를 수행 ( 마스터의 키값으로 디테일 조회 ) - 상세조회, 저장, 수정, 삭제
 	const formik = useFormik({
