@@ -10,6 +10,8 @@ import Card, {
 	CardTitle,
 } from '../../../../components/bootstrap/Card';
 import Popovers from '../../../../components/bootstrap/Popovers';
+import Button from '../../../../components/bootstrap/Button';
+import moment from 'moment';
 
 interface DailyCallStatisticsProps {
 	callStatistic: CallStatistic;
@@ -29,6 +31,21 @@ const DailyCallStatistics: FC<DailyCallStatisticsProps> = ({ callStatistic }) =>
 							Reports
 						</CardSubTitle>
 					</CardLabel>
+					<CardActions>
+						<Popovers
+							desc={
+								<DatePicker
+									onChange={(item) => setDate(item)}
+									date={date}
+									color={process.env.REACT_APP_PRIMARY_COLOR}
+								/>
+							}
+							placement='bottom-start'
+							className='mw-100'
+							trigger='click'>
+							<Button color='light'>{moment(date).format('MMM Do')}</Button>
+						</Popovers>
+					</CardActions>
 				</CardHeader>
 			</Card>
 		</>
