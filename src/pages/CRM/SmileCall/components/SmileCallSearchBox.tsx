@@ -3,9 +3,10 @@ import FormGroup from '../../../../components/bootstrap/forms/FormGroup';
 import Select from '../../../../components/bootstrap/forms/Select';
 import Button from '../../../../components/bootstrap/Button';
 import Input from '../../../../components/bootstrap/forms/Input';
-import Checks, { ChecksGroup } from '../../../../components/bootstrap/forms/Checks';
+import { debounce } from '../../../../helpers/helpers';
 
 import { Caregiver, Smile, SmileControllerService } from '../../../../services/openApi';
+
 import {
 	arrToOption,
 	selectCompleteItem,
@@ -13,66 +14,90 @@ import {
 } from '../Statistics/SmileCallStatistics';
 
 import SmileCallDetail from './SmileCallDetail';
-import { atom, useSetRecoilState, atomFamily, useRecoilState } from 'recoil';
-import { useFormik } from 'formik';
-import { useQueryClient } from '@tanstack/react-query';
-import { caregiverSearchParam } from '../../CaregiverManagement/CaregiverListHeader';
+import { atom, useRecoilState, useRecoilCallback, selector } from 'recoil';
+import { resolveSchema } from 'openapi-typescript/dist/load';
+import { caregiverModal } from '../../CaregiverManagement/CaregiverContainer';
 
-//검색조건 선언 및 초기화
-export const smileCallSearchComplete = atom({
-	key: 'smileCallSearchComplete',
-	default: '전체',
+/*스마일콜 전역상태선언은 타입과 아톰 관리 해야할듯*/
+interface SearchBox {
+	complete: string;
+	manager: string;
+	searchString?: string;
+}
+
+const searchBoxState = atom<SearchBox>({
+	key: 'searchBoxState',
+	default: { complete: '전체', manager: '전체', searchString: '' },
 });
 
-export const smileCallSearchManager = atom({
-	key: 'smileCallSearchManager',
-	default: '전체',
+// const resultValue = useRecoilValue(countStateSelector);
+const searchBoxStateSelector = selector({
+	key: 'searchBoxStateSelector',
+
+	get: ({ get }) => {
+		const inputVal = get(searchBoxState);
+		return inputVal.complete;
+	},
 });
 
-export const smileCallSearchString = atom({
-	key: 'smileCallSearchString',
-	default: '',
+export const smileCallInfo = atom({
+	key: 'smileCallInfo',
+	default: {} as Smile,
 });
 
 const SmileCallSearchBox = () => {
-	//const setSearchParam = useSetRecoilState(smileCallSearchParams);
-
-	// formik 구조와 config를 설정하는 formik객체
-	// const formikSearch = useFormik({
-	//     // 설정할 초기값
-	//     initialValues: smileCallSearchParams,
-	//     // 제출시 처리할 함수. 인자로 value객체를 가져온다.
-	//     onSubmit: async (values) => {
-	//
-	//         //alert(JSON.stringify(values, null, 2));
-	//         await saveCaregiver(values);
-	//     },
-	//     // 값 변경시마다 validation 체크
-	//     //validateOnChange: true,
-	//     // 인풋창 블러시에 validation 체크
-	//     //validateOnBlur: true,
-	//     // validation 체크할 함수
-	//     //validate: validator
-	// });
-
-	//검색조건 설정 및 이벤트 관리
-	const [complete, setComplete] = useState<string>('전체');
-	const [manager, setManager] = useState<string>('전체');
+	const [searchBoxParam, setSearchBoxParam] = useRecoilState(searchBoxState);
+	//검색조건 유지
 	const [searchString, setSearchString] = useState<string>('');
 
-	const handleOnChange = useCallback((e: any) => {
+	const [newSmileCallInfo, setNewSmileCallInfo] = useRecoilState(smileCallInfo);
+
+	const handleOnChange = (e: any) => {
 		switch (e.target.id) {
 			case 'search-complete':
-				setComplete(e.target.value);
+				setSearchBoxParam({
+					complete: e.target.value,
+					manager: searchBoxParam.manager,
+					searchString: searchBoxParam.searchString,
+				});
 				break;
 			case 'search-manager':
-				setManager(e.target.value);
+				setSearchBoxParam({
+					complete: searchBoxParam.complete,
+					manager: e.target.value,
+					searchString: searchBoxParam.searchString,
+				});
 				break;
 			case 'search-string':
 				setSearchString(e.target.value);
+				/*
+                debounce(
+                    () =>
+                        setSearchBoxParam({
+                            complete: searchBoxParam.complete,
+                            manager: searchBoxParam.manager,
+                            searchString: e.target.value
+                        }),
+                    1000,
+                )();
+                */
 				break;
 		}
-	}, []);
+	};
+
+	const handleOnKeyUp = (e: any) => {
+		if (e.keyCode === '13') {
+			switch (e.target.id) {
+				case 'search-string':
+					setSearchBoxParam({
+						complete: searchBoxParam.complete,
+						manager: searchBoxParam.manager,
+						searchString: e.target.value,
+					});
+					break;
+			}
+		}
+	};
 
 	/*스마일콜 추가기능*/
 	//ADD정보를 호출 페이지에서 관리 - 추가창을 닫고 다시 추가창을 켯을때 유지되도록(이전 기록 유지), 초기화 버튼 생성
@@ -82,7 +107,6 @@ const SmileCallSearchBox = () => {
 
 	const onClickSmileCallAddHandler = () => {
 		setIsOpenSmileCallAdd(!isOpenSmileCallAdd);
-		alert(JSON.stringify(addSmileCallInfo));
 	};
 
 	return (
@@ -95,8 +119,8 @@ const SmileCallSearchBox = () => {
 						id='search-complete'
 						ariaLabel='진행여부'
 						list={selectCompleteItem}
-						value={complete}
-						onChange={handleOnChange}></Select>
+						value={searchBoxParam.complete}
+						onChange={(e) => handleOnChange(e)}></Select>
 				</div>
 				<div className='col-3'>
 					<thead style={{ fontWeight: 'bold' }}> 담당자</thead>
@@ -104,9 +128,9 @@ const SmileCallSearchBox = () => {
 						className='col-12 mb-3'
 						id='search-manager'
 						ariaLabel='담당자'
-						list={arrToOption(selectCounselorItem)}
-						value={manager}
-						onChange={handleOnChange}></Select>
+						list={arrToOption(selectCounselorItem, 'all')}
+						value={searchBoxParam.manager}
+						onChange={(e) => handleOnChange(e)}></Select>
 				</div>
 				<div className='col-4'>
 					<thead style={{ fontWeight: 'bold' }}> 검색</thead>
@@ -115,8 +139,8 @@ const SmileCallSearchBox = () => {
 						id='search-string'
 						placeholder={'보호자 또는 수급자 이름'}
 						value={searchString}
-						onChange={handleOnChange}
-					/>
+						onChange={(e) => handleOnChange(e)}
+						onKeyUp={(e) => handleOnKeyUp(e)}></Input>
 				</div>
 			</div>
 			<div className='row g-3'>
@@ -124,12 +148,14 @@ const SmileCallSearchBox = () => {
 					<Button color='primary' icon={'Add'} onClick={onClickSmileCallAddHandler}>
 						스마일 콜 추가
 					</Button>
-					<SmileCallDetail
-						isOpen={isOpenSmileCallAdd}
-						setOpen={setIsOpenSmileCallAdd}
-						isMode={'C'}
-						smile={{}}
-					/>
+					{isOpenSmileCallAdd && (
+						<SmileCallDetail
+							isOpen={isOpenSmileCallAdd}
+							setOpen={setIsOpenSmileCallAdd}
+							isMode={'C'}
+							smile={newSmileCallInfo}
+						/>
+					)}
 				</div>
 				<div className='col-3'>
 					<Button

@@ -1,5 +1,6 @@
 //하드코딩 - 진행여부
 import alert from '../../../../components/bootstrap/Alert';
+import { object } from 'prop-types';
 
 export const selectCompleteItem: object[] = [
 	{
@@ -136,14 +137,14 @@ export const selectDisadvantagesList: string[] = [
 	'기타',
 ];
 
-export const arrToOption = (arrOption: string[]) => {
-	let obj: any[] = [];
-	let objJson = { text: '전체', value: '전체' };
+export const arrToOption = (arrOption: string[], opt?: 'all' | 'select') => {
+	let rtnArr: any[] = [];
+	if (opt === 'all') rtnArr.push({ text: '전체', value: '전체', label: '전체' });
+	if (opt === 'select') rtnArr.push({ text: '선택', value: '', label: '선택' });
+
 	arrOption.forEach((item) => {
-		obj.push(objJson);
-		objJson = { text: '', value: '' };
-		objJson.text = item;
-		objJson.value = item;
+		rtnArr.push({ text: item, value: item, label: item });
 	});
-	return obj;
+
+	return rtnArr;
 };

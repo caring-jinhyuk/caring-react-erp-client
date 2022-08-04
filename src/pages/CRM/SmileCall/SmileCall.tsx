@@ -20,18 +20,6 @@ const SmileCall = () => {
 						<CardLabel icon='Info' iconColor='secondary'>
 							<CardTitle>스마일콜</CardTitle> {/* 여기서 파라메터를 전달해줄수 있음 */}
 						</CardLabel>
-						<CardActions>
-							<Button
-								color='info'
-								icon='CloudDownload'
-								isLight
-								tag='a'
-								to='/somefile.txt'
-								target='_blank'
-								download>
-								Export
-							</Button>
-						</CardActions>
 					</CardHeader>
 					<CardBody>
 						<SmileCallSearchBox />
