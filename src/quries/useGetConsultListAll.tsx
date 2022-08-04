@@ -3,19 +3,25 @@ import { ConsultControllerService } from '../services/openApi';
 import moment from 'moment';
 import CallStatistics from '../pages/CRM/Statistics/components/CallStatistics';
 
-export const useGetConsultAllList = () => {
-	const result = useQuery(['consultListAll'], async () => getCaregiverAllList(), {
-		cacheTime: Infinity,
-		staleTime: Infinity,
-	});
+export const useGetConsultAllList = (from: Date, to: Date) => {
+	const result = useQuery(
+		['consultListAll', { from, to }],
+		async () => getCaregiverAllList(from, to),
+		{
+			cacheTime: Infinity,
+		},
+	);
 	return {
 		...result,
 		contents: result.data,
 	};
 };
 
-export const getCaregiverAllList = async () => {
-	const response = await ConsultControllerService.getConsultAllListUsingGet();
+export const getCaregiverAllList = async (from: Date, to: Date) => {
+	const response = await ConsultControllerService.getConsultAllListUsingGet(
+		moment(from).format('YYYY-MM-DD'),
+		moment(to).add(1, 'day').format('YYYY-MM-DD'),
+	);
 	const inflowList: string[] = [
 		'TV광고',
 		'유튜브',
