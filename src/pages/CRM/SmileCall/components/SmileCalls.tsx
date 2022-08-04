@@ -7,31 +7,33 @@ import Card, {
 	CardLabel,
 	CardTitle,
 } from '../../../../components/bootstrap/Card';
-import { useSetRecoilState } from 'recoil';
+import { selectorFamily, useRecoilValue, useSetRecoilState } from 'recoil';
 import { Progress, progressState } from '../../../../atoms/progress';
 import SmileCallTableRow from './SmileCallTableRow';
 import { v1 } from 'uuid';
 import PaginationButtons from '../../../../components/PaginationButtons';
 import Button from '../../../../components/bootstrap/Button';
 
-const SmileCallList = () => {
-	const [smileCallList, setSmileCallList] = useState<Smile[]>([]);
-	const [currentPage, setCurrentPage] = useState<number>(1);
-	const [perPage, setPerPage] = useState<number>(10);
-	const setInProgerss = useSetRecoilState(progressState);
+export const smileCallState = selectorFamily({
+	key: 'smileCalls',
+	get:
+		({ currentPage, perPage }: any) =>
+		async () => {
+			const smileCalls: Page_Notice_ = await SmileControllerService.getSmileListUsingGet(
+				'',
+				'',
+				currentPage - 1,
+				'',
+				perPage,
+			);
+			return smileCalls;
+		},
+});
+const SmileCalls = () => {
+	const [currentPage, setCurrentPage] = useState(1);
+	const [perPage, setPerPage] = useState(10);
 
-	const getSmile = useCallback(async () => {
-		const smile: Page_Notice_ = await SmileControllerService.getSmileListUsingGet();
-
-		setInProgerss(Progress.PROCEEDING);
-		setSmileCallList(smile.content ?? []);
-		setInProgerss(Progress.DONE);
-	}, [setInProgerss]);
-
-	useEffect(() => {
-		//프로미스 객체 반환
-		getSmile().then(() => console.log(1));
-	}, [getSmile]);
+	const { content, totalElements } = useRecoilValue(smileCallState({ currentPage, perPage }));
 
 	return (
 		<FormGroup id='listArea'>
@@ -39,49 +41,49 @@ const SmileCallList = () => {
 				<table className='table table-modern table-hover'>
 					<thead>
 						<tr>
-							<th scope='col' className='text-center'>
+							<th scope='col' className='text-center white-space-nowrap'>
 								배정날짜
 							</th>
-							<th scope='col' className='text-center'>
+							<th scope='col' className='text-center white-space-nowrap'>
 								현재 상황
 							</th>
-							<th scope='col' className='text-center'>
+							<th scope='col' className='text-center white-space-nowrap'>
 								진행 여부
 							</th>
-							<th scope='col' className='text-center'>
+							<th scope='col' className='text-center white-space-nowrap'>
 								선호이유
 							</th>
-							<th scope='col' className='text-center'>
+							<th scope='col' className='text-center white-space-nowrap'>
 								장점
 							</th>
 							<th scope='col' className='text-center'>
 								불편한점
 							</th>
-							<th scope='col' className='text-center'>
+							<th scope='col' className='text-center white-space-nowrap'>
 								담당자
 							</th>
-							<th scope='col' className='text-center'>
+							<th scope='col' className='text-center white-space-nowrap'>
 								완료날짜
 							</th>
 						</tr>
 					</thead>
 					<tbody>
-						{smileCallList.map((smile) => {
+						{content?.map((smile) => {
 							return <SmileCallTableRow key={v1()} smile={smile} />;
 						})}
 					</tbody>
 				</table>
 			</div>
 			<PaginationButtons
-				data={[]}
-				label='items'
+				data={new Array(totalElements)}
+				label='notice'
 				setCurrentPage={setCurrentPage}
-				currentPage={1}
-				perPage={2}
+				currentPage={currentPage}
+				perPage={perPage}
 				setPerPage={setPerPage}
 			/>
 		</FormGroup>
 	);
 };
 
-export default SmileCallList;
+export default SmileCalls;
