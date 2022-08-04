@@ -267,11 +267,6 @@ const catchErrorCodes = (options: ApiRequestOptions, result: ApiResult): ApiResu
 		console.error(apiError);
 		errorHandler(apiError);
 	}
-	if (!result.ok) {
-		const apiError = new ApiError(options, result, 'Generic Error');
-		console.error(apiError);
-		errorHandler(apiError);
-	}
 	return result;
 };
 
