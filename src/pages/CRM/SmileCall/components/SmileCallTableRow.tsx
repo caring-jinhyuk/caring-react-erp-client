@@ -28,7 +28,9 @@ const SmileCallTableRow: FC<SmileCallTableRowProps> = ({ smile }) => {
 				<td className='text-center'>
 					{smile.callDate ? moment(smile.callDate).format('YYYY-MM-DD HH:mm') : ''}
 				</td>
-				{isOpen && <SmileCallDetail isOpen={isOpen} setOpen={setOpen} isMode={'U'} smile={smile} />}
+				{isOpen && (
+					<SmileCallDetail isOpen={isOpen} setOpen={setOpen} modalType={'U'} smile={smile} />
+				)}
 			</tr>
 		</>
 	);

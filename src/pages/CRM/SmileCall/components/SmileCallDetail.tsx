@@ -21,23 +21,28 @@ import { Calendar as DatePicker } from 'react-date-range';
 
 import {
 	arrToOption,
-	selectAdvantagesList,
-	selectCompleteItem,
-	selectDisadvantagesList,
-	selectOXItem,
-	selectResignationReasonList,
-	selectSmileWhyList,
-	selectWorkNowItem,
-} from '../Statistics/SmileCallStatistics';
+	innerItemAdvantages,
+	innerItemCompleteList,
+	innerItemDisadvantages,
+	innerItemOXList,
+	innerItemReactionList,
+	innerItemResignationReasonList,
+	innerItemSmileWhys,
+	innerItemWorkNowList,
+} from '../statics/SmileCallStatics';
 import Select from '../../../../components/bootstrap/forms/Select';
 import MonthPicker from '../../../../components/MonthPicker';
+import { SmileCallDetailForm, smileCallDetailInfo } from '../SmileCallContainer';
+import { useRecoilValue } from 'recoil';
+import collection from '../../../../components/icon/bootstrap/Collection';
 
 //오픈 설정은 해당 화면을 부르는 상위에서 관리하는 것이 좋아보인다.
 type SmileCallAddProps = {
 	isOpen: boolean;
 	setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-	isMode: 'C' | 'R' | 'U' | 'D';
+	modalType: 'C' | 'R' | 'U' | 'D';
 	smile: Smile;
+	title?: string;
 };
 
 const validator = (smile: Smile) => {
@@ -52,13 +57,40 @@ const validator = (smile: Smile) => {
 	return error;
 };
 
-const SmileCallDetail: FC<SmileCallAddProps> = ({ isOpen, setOpen, isMode, smile }) => {
+const SmileCallDetail: FC<SmileCallAddProps> = ({ isOpen, setOpen, modalType, smile, title }) => {
 	console.log('SmileCallDetail open');
+
+	let formSmileCall: SmileCallDetailForm = {
+		advantages: smile.advantages,
+		callDate: smile.callDate,
+		choiceReason: smile.choiceReason,
+		complete: smile.complete,
+		createdAt: smile.createdAt,
+		disadvantages: smile.disadvantages,
+		endDate: smile.endDate,
+		giveName: smile.giveName,
+		id: smile.id,
+		phone: smile.phone,
+		reaction: smile.reaction,
+		resignationReason: smile.resignationReason,
+		resignationReasonCoincide: smile.resignationReasonCoincide,
+		returnPossibility: smile.returnPossibility,
+		significant: smile.significant,
+		takeName: smile.takeName,
+		workNow: smile.workNow,
+		writer: smile.writer,
+		resignationReasonEtc: '', //상세값에 있으면 처리를 하는 로직이 있을수 있다.
+	};
+
+	console.log(formSmileCall);
+
 	//저장할 스마일콜 서버정보 상태
 	const queryClient = useQueryClient(); //서버 상태 관리를 수행 ( 마스터의 키값으로 디테일 조회 ) - 상세조회, 저장, 수정, 삭제
+	//useFormik은 다양한 인풋을 받을때 상태를 효과적으로 관리하기 위한 라이브러리
 	const formik = useFormik({
 		enableReinitialize: true,
-		initialValues: smile,
+		initialValues: formSmileCall,
+
 		// eslint-disable-next-line no-unused-vars
 		// 값 변경시마다 validation 체크
 		//validateOnChange: true,
@@ -68,12 +100,12 @@ const SmileCallDetail: FC<SmileCallAddProps> = ({ isOpen, setOpen, isMode, smile
 		//validate: validator,
 		onSubmit: async (values) => {
 			//alert(JSON.stringify(values, null, 2));
-			await saveSmileCall(values);
+			//await saveSmileCall(values);
 		},
 	});
 
 	//저장하기
-	const saveSmileCall = async (value: Smile) => {
+	const saveSmileCall = async (value: SmileCallDetailForm) => {
 		try {
 			//저장 트랜잭션 호출
 			const response = await SmileControllerService.saveSmileUsingPost(value);
@@ -88,7 +120,19 @@ const SmileCallDetail: FC<SmileCallAddProps> = ({ isOpen, setOpen, isMode, smile
 		<>
 			<Modal id='example-modal' setIsOpen={setOpen} titleId='example-title' isOpen={isOpen}>
 				<ModalHeader>
-					<ModalTitle id='example-title'>Title</ModalTitle>
+					<ModalTitle id='example-title'>{title}</ModalTitle>
+					<div>
+						<Button
+							color='secondary'
+							onClick={() => {
+								formik.resetForm();
+							}}>
+							초기화
+						</Button>
+						<Button color='info' onClick={() => setOpen(false)}>
+							닫기
+						</Button>
+					</div>
 				</ModalHeader>
 				<ModalBody>
 					<FormGroup id='writer' className='mb-3' isFloating={true} label='담당자'>
@@ -104,7 +148,7 @@ const SmileCallDetail: FC<SmileCallAddProps> = ({ isOpen, setOpen, isMode, smile
 						<Select
 							className='col-12 mb-3'
 							ariaLabel='현재상황'
-							list={selectWorkNowItem}
+							list={innerItemWorkNowList}
 							value={formik.values.workNow}
 							onChange={formik.handleChange}></Select>
 					</FormGroup>
@@ -112,7 +156,7 @@ const SmileCallDetail: FC<SmileCallAddProps> = ({ isOpen, setOpen, isMode, smile
 						<Select
 							className='col-12 mb-3'
 							ariaLabel='퇴사사유'
-							list={arrToOption(selectResignationReasonList)}
+							list={arrToOption(innerItemResignationReasonList)}
 							value={formik.values.resignationReason}
 							onChange={formik.handleChange}></Select>
 					</FormGroup>
@@ -123,7 +167,7 @@ const SmileCallDetail: FC<SmileCallAddProps> = ({ isOpen, setOpen, isMode, smile
 						label='퇴사사유-기타'>
 						<Input
 							type='text'
-							value={formik.values.resignationReason}
+							value={formik.values.resignationReasonEtc}
 							onChange={formik.handleChange}
 						/>
 					</FormGroup>
@@ -131,7 +175,7 @@ const SmileCallDetail: FC<SmileCallAddProps> = ({ isOpen, setOpen, isMode, smile
 						<Select
 							className='col-12 mb-3'
 							ariaLabel='선호이유'
-							list={arrToOption(selectSmileWhyList)}
+							list={arrToOption(innerItemSmileWhys)}
 							value={formik.values.choiceReason}
 							onChange={formik.handleChange}></Select>
 					</FormGroup>
@@ -143,7 +187,7 @@ const SmileCallDetail: FC<SmileCallAddProps> = ({ isOpen, setOpen, isMode, smile
 						<Select
 							className='col-12 mb-3'
 							ariaLabel='선호이유'
-							list={selectOXItem}
+							list={innerItemOXList}
 							value={formik.values.resignationReasonCoincide}
 							onChange={formik.handleChange}></Select>
 					</FormGroup>
@@ -151,7 +195,7 @@ const SmileCallDetail: FC<SmileCallAddProps> = ({ isOpen, setOpen, isMode, smile
 						<Select
 							className='col-12 mb-3'
 							ariaLabel='리턴가능성'
-							list={selectOXItem}
+							list={innerItemOXList}
 							value={formik.values.returnPossibility}
 							onChange={formik.handleChange}></Select>
 					</FormGroup>
@@ -159,23 +203,23 @@ const SmileCallDetail: FC<SmileCallAddProps> = ({ isOpen, setOpen, isMode, smile
 						<Select
 							className='col-12 mb-3'
 							ariaLabel='진행여부'
-							list={selectCompleteItem}
+							list={innerItemCompleteList}
 							value={formik.values.complete}
 							onChange={formik.handleChange}></Select>
 					</FormGroup>
 					<FormGroup id='reaction' className='mb-3' isFloating={true} label='긍정/부정'>
 						<Select
 							className='col-12 mb-3'
-							ariaLabel='진행여부'
-							list={selectCompleteItem}
-							value={formik.values.complete}
+							ariaLabel='긍정/부정'
+							list={innerItemReactionList}
+							value={formik.values.advantages}
 							onChange={formik.handleChange}></Select>
 					</FormGroup>
 					<FormGroup id='caring_advantages_list' className='mb-3' isFloating={true} label='좋은점'>
 						<Select
 							className='col-12 mb-3'
 							ariaLabel='좋은점'
-							list={arrToOption(selectAdvantagesList)}
+							list={arrToOption(innerItemAdvantages)}
 							value={formik.values.advantages}
 							onChange={formik.handleChange}></Select>
 					</FormGroup>
@@ -187,7 +231,7 @@ const SmileCallDetail: FC<SmileCallAddProps> = ({ isOpen, setOpen, isMode, smile
 						<Select
 							className='col-12 mb-3'
 							ariaLabel='불편한 점'
-							list={arrToOption(selectDisadvantagesList)}
+							list={arrToOption(innerItemDisadvantages)}
 							value={formik.values.disadvantages}
 							onChange={formik.handleChange}></Select>
 					</FormGroup>
@@ -205,26 +249,21 @@ const SmileCallDetail: FC<SmileCallAddProps> = ({ isOpen, setOpen, isMode, smile
 						<Input type='text' value={formik.values.takeName} onChange={formik.handleChange} />
 					</FormGroup>
 					<FormGroup id='createdAt' className='mb-3' isFloating={true} label='배정날짜'>
-						<Input
-							type='text'
-							value={formik.values.createdAt}
-							format='yyyy-MM-dd HH:mm'
-							onChange={formik.handleChange}
-						/>
+						<Input type='text' value={formik.values.createdAt} onChange={formik.handleChange} />
 					</FormGroup>
 					<FormGroup id='callDate' className='mb-3' isFloating={true} label='완료날짜'>
-						<Input
-							type='text'
-							value={formik.values.callDate}
-							format='yyyy-MM-dd HH:mm'
-							onChange={formik.handleChange}
-						/>
+						<Input type='text' value={formik.values.callDate} onChange={formik.handleChange} />
 					</FormGroup>
 				</ModalBody>
 				<ModalFooter>
-					<Button color='info' onClick={() => setOpen(false)}>
-						Close
+					<Button color='primary' onClick={() => setOpen(false)}>
+						저장
 					</Button>
+					{modalType !== 'C' && (
+						<Button color='warning' onClick={() => setOpen(false)}>
+							삭제
+						</Button>
+					)}
 				</ModalFooter>
 			</Modal>
 		</>

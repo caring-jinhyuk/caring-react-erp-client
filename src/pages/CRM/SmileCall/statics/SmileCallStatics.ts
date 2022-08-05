@@ -1,8 +1,10 @@
 //하드코딩 - 진행여부
-export const selectCompleteItem: object[] = [
+import { number } from 'prop-types';
+
+export const innerItemCompleteList: object[] = [
 	{
 		text: '전체',
-		value: '전체',
+		value: '',
 	},
 	{
 		text: '예정',
@@ -27,7 +29,7 @@ export const selectCompleteItem: object[] = [
 ];
 
 // 하드코딩 담당자
-export const selectCounselorItem: string[] = [
+export const innerItemCounselors: string[] = [
 	'임규경',
 	'원효정',
 	'김미가',
@@ -42,7 +44,7 @@ export const selectCounselorItem: string[] = [
 
 //스마일콜 상세 - 하드코딩 모음
 //현재상황
-export const selectWorkNowItem: object[] = [
+export const innerItemWorkNowList: object[] = [
 	{
 		text: '',
 		value: '',
@@ -57,7 +59,7 @@ export const selectWorkNowItem: object[] = [
 	},
 ];
 //퇴사사유
-export const selectResignationReasonList: string[] = [
+export const innerItemResignationReasonList: string[] = [
 	'수급자 병원 입원',
 	'수급자 요양원 입소',
 	'요보사 취업',
@@ -68,7 +70,7 @@ export const selectResignationReasonList: string[] = [
 ];
 
 //퇴사사유 일치 여부
-export const selectOXItem: object[] = [
+export const innerItemOXList: object[] = [
 	{
 		text: '',
 		value: '',
@@ -84,7 +86,7 @@ export const selectOXItem: object[] = [
 ];
 
 //선호이유
-export const selectSmileWhyList: string[] = [
+export const innerItemSmileWhys: string[] = [
 	'',
 	'높은 급여',
 	'광고 모델',
@@ -96,22 +98,22 @@ export const selectSmileWhyList: string[] = [
 	'기타',
 ];
 
-export const selectReactionItem: object[] = [
+export const innerItemReactionList: object[] = [
 	{
 		text: '긍정',
-		value: '1',
+		value: 1,
 	},
 	{
 		text: '부정',
-		value: 'O',
+		value: 0,
 	},
 	{
 		text: '중립',
-		value: '2',
+		value: 2,
 	},
 ];
 //좋은점
-export const selectAdvantagesList: string[] = [
+export const innerItemAdvantages: string[] = [
 	'친절',
 	'비대면',
 	'높은 급여',
@@ -123,7 +125,7 @@ export const selectAdvantagesList: string[] = [
 	'기타',
 ];
 //불편한점
-export const selectDisadvantagesList: string[] = [
+export const innerItemDisadvantages: string[] = [
 	'휴일 연락 불가',
 	'연락 느림',
 	'구인 늦음-일반',

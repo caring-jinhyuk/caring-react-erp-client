@@ -1,39 +1,21 @@
 import React, { FC, useCallback, useEffect, useState } from 'react';
 import FormGroup from '../../../../components/bootstrap/forms/FormGroup';
-import {
-	Smile,
-	SmileControllerService,
-	Page_Notice_,
-	CaregiverControllerService,
-	Page_Smile_,
-} from '../../../../services/openApi';
+import { SmileControllerService, Page_Smile_ } from '../../../../services/openApi';
 
-import { selectorFamily, useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import {
+	selector,
+	selectorFamily,
+	useRecoilCallback,
+	useRecoilState,
+	useRecoilValue,
+	useSetRecoilState,
+} from 'recoil';
 import { Progress, progressState } from '../../../../atoms/progress';
 import SmileCallTableRow from './SmileCallTableRow';
 import { v1 } from 'uuid';
 import PaginationButtons from '../../../../components/PaginationButtons';
-import Button from '../../../../components/bootstrap/Button';
-import { SearchBox, searchBoxState } from '../../../../atoms/smileCall';
+import { searchBoxState } from '../../../../atoms/smileCall';
 import { useQuery } from '@tanstack/react-query';
-import { string } from 'prop-types';
-import Page from '../../../../layout/Page/Page';
-
-export const smileCallState = selectorFamily({
-	key: 'smileCallList',
-	get:
-		({ complete, manager, currentPage, searchString, perPage }: any) =>
-		async () => {
-			const smileCalls: Page_Smile_ = await SmileControllerService.getSmileListUsingGet(
-				complete,
-				manager,
-				currentPage - 1,
-				searchString,
-				perPage,
-			);
-			return smileCalls;
-		},
-});
 
 //리액트쿼리는 함수명 use를 앞에 붙여주어야한다. (custom hooks)
 export const useSmileListUsingGet = (
@@ -47,7 +29,7 @@ export const useSmileListUsingGet = (
 		['smileCallList', { complete, manager, page, searchString, perPage }],
 		() => getSmileList(complete, manager, page, searchString, perPage),
 		{
-			keepPreviousData: true, // keepPreviousData가 true일 때 isSuccess, isLoading 값이 처음 데이터를 불러오기 시작할 때, 불러온 후 바뀌고 그 후로는 바뀌지 않습니다. -페이징때는 true가 좋음
+			//keepPreviousData: true, // keepPreviousData가 true일 때 isSuccess, isLoading 값이 처음 데이터를 불러오기 시작할 때, 불러온 후 바뀌고 그 후로는 바뀌지 않습니다. -페이징때는 true가 좋음
 			cacheTime: 0,
 		},
 	);
@@ -70,6 +52,8 @@ const SmileCallList: FC = () => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [perPage, setPerPage] = useState(10);
 	const searchBoxParam = useRecoilValue(searchBoxState);
+
+	//상태의 변경에 따라 리액트쿼리 실행되도록
 	const getSmileCallList = useSmileListUsingGet(
 		searchBoxParam.complete,
 		searchBoxParam.manager,
@@ -77,8 +61,7 @@ const SmileCallList: FC = () => {
 		searchBoxParam.searchString,
 		perPage,
 	);
-	console.log(getSmileCallList);
-	//const { content, totalElements } = useRecoilValue(smileCallState({ currentPage, perPage }));
+
 	return (
 		<FormGroup id='listArea'>
 			<div className='table-responsive'>

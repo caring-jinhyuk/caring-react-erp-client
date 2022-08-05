@@ -9,13 +9,14 @@ import { Smile, SmileControllerService } from '../../../../services/openApi';
 
 import {
 	arrToOption,
-	selectCompleteItem,
-	selectCounselorItem,
-} from '../Statistics/SmileCallStatistics';
+	innerItemCompleteList,
+	innerItemCounselors,
+} from '../statics/SmileCallStatics';
 
 import SmileCallDetail from './SmileCallDetail';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { SearchBox, searchBoxState, smileCallInfo } from '../../../../atoms/smileCall';
+import { SearchBox, searchBoxState } from '../../../../atoms/smileCall';
+import { smileCallDetailInfo } from '../SmileCallContainer';
 
 const SmileCallSearchBox = () => {
 	//셀렉트,체크 등 단건의 이벤트가 발생하는 곳 (onchange 시) - 전역 저장용 atom
@@ -25,9 +26,6 @@ const SmileCallSearchBox = () => {
 	const [complete, setComplete] = useState<string>('');
 	const [manager, setManager] = useState<string>('');
 	const [searchString, setSearchString] = useState<string>('');
-
-	//스마일콜 추가 버튼 클릭시 초기 값 추가
-	const newSmileCallInfo = useRecoilValue(smileCallInfo);
 
 	const handleOnChange = (e: any) => {
 		switch (e.target.id) {
@@ -54,13 +52,6 @@ const SmileCallSearchBox = () => {
 	//스트링 파라메터 관련 debounce 고려
 	const handleOnKeyUp = (e: any) => {
 		if (e.keyCode === 13) {
-			console.log(
-				searchBoxParam.searchString +
-					'@@' +
-					searchBoxParam.manager +
-					'@@' +
-					searchBoxParam.complete,
-			);
 			switch (e.target.id) {
 				case 'search-string':
 					setSearchBoxParam({
@@ -85,27 +76,27 @@ const SmileCallSearchBox = () => {
 	return (
 		<FormGroup id='searchArea'>
 			<div className='row g-3'>
-				<div className='col-3'>
+				<div className='col-2'>
 					<thead style={{ fontWeight: 'bold' }}> 진행여부</thead>
 					<Select
 						className='col-12 mb-3'
 						id='search-complete'
 						ariaLabel='진행여부'
-						list={selectCompleteItem}
+						list={innerItemCompleteList}
 						value={searchBoxParam.complete}
 						onChange={(e) => handleOnChange(e)}></Select>
 				</div>
-				<div className='col-3'>
+				<div className='col-2'>
 					<thead style={{ fontWeight: 'bold' }}> 담당자</thead>
 					<Select
 						className='col-12 mb-3'
 						id='search-manager'
 						ariaLabel='담당자'
-						list={arrToOption(selectCounselorItem, 'all')}
+						list={arrToOption(innerItemCounselors, 'all')}
 						value={searchBoxParam.manager}
 						onChange={(e) => handleOnChange(e)}></Select>
 				</div>
-				<div className='col-4'>
+				<div className='col-2'>
 					<thead style={{ fontWeight: 'bold' }}> 검색</thead>
 					<Input
 						type='text'
@@ -115,9 +106,8 @@ const SmileCallSearchBox = () => {
 						onChange={(e) => handleOnChange(e)}
 						onKeyUp={(e) => handleOnKeyUp(e)}></Input>
 				</div>
-			</div>
-			<div className='row g-3'>
-				<div className='col-2'>
+				<div className='col-4'>
+					<thead style={{ fontWeight: 'bold' }}> 기능</thead>
 					<Button color='primary' icon={'Add'} onClick={onClickAddHandler}>
 						스마일 콜 추가
 					</Button>
@@ -125,12 +115,11 @@ const SmileCallSearchBox = () => {
 						<SmileCallDetail
 							isOpen={isModal}
 							setOpen={setModal}
-							isMode={'C'}
-							smile={newSmileCallInfo}
+							modalType={'C'}
+							smile={{} as Smile}
+							title={'스마일콜 추가'}
 						/>
 					)}
-				</div>
-				<div className='col-3'>
 					<Button
 						color='primary'
 						icon='CloudDownload'
