@@ -1,5 +1,4 @@
 import React, { FC, useRef, useState } from 'react';
-import { CallStatistic, useGetConsultAllList } from '../../../../quries/useGetConsultListAll';
 import Card, {
 	CardActions,
 	CardBody,
@@ -9,18 +8,9 @@ import Card, {
 	CardTitle,
 } from '../../../../components/bootstrap/Card';
 import Button from '../../../../components/bootstrap/Button';
-import ScrollspyNav from '../../../../components/bootstrap/ScrollspyNav';
 import SubHeader from '../../../../layout/SubHeader/SubHeader';
-import Popovers from '../../../../components/bootstrap/Popovers';
-import { Calendar as DatePicker, DateRangePicker } from 'react-date-range';
-import moment from 'moment';
-import { QueryClientProvider, useQueryClient } from '@tanstack/react-query';
-import CallStaticsDetail from './CallStaticsDetail';
-import { Caregiver, CaregiverControllerService } from '../../../../services/openApi';
-import showNotification from '../../../../components/extras/showNotification';
-import { statisticsSearchParam } from '../Statistics';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import ko from 'date-fns/locale/ko';
+import ScrollspyNav from '../../../../components/bootstrap/ScrollspyNav';
+import { CallData } from '../CallData';
 
 export enum StatisticType {
 	INFLOW = '유입매체',
@@ -31,32 +21,11 @@ export enum StatisticType {
 	MANAGER = '매니저',
 }
 
-const CallStatistics = () => {
-	const setStatisticsSearchParam = useSetRecoilState(statisticsSearchParam);
-	const [calendarState, setCalendarState] = useState({
-		selection: {
-			startDate: moment().startOf('week').add('-1', 'week').toDate(),
-			endDate: moment().toDate(),
-			key: 'selection',
-		},
-	});
+interface CallStatisticsProps {
+	callStatistic: CallData;
+}
 
-	const queryClient = useQueryClient();
-
-	const search = async () => {
-		try {
-			await queryClient.invalidateQueries([
-				'consultListAll',
-				moment(calendarState.selection.startDate),
-				moment(calendarState.selection.endDate),
-			]);
-			setStatisticsSearchParam({
-				from: moment(calendarState.selection.startDate).toDate(),
-				to: moment(calendarState.selection.endDate).toDate(),
-			});
-		} catch (e) {}
-	};
-
+const CallStatistics: FC<CallStatisticsProps> = ({ callStatistic }) => {
 	return (
 		<>
 			<Card>
@@ -69,36 +38,273 @@ const CallStatistics = () => {
 							Reports
 						</CardSubTitle>
 					</CardLabel>
-					<CardActions>
-						<Popovers
-							placement='bottom-end'
-							className='mw-100 overflow-hidden'
-							data-tour='date-range-menu'
-							bodyClassName='p-0'
-							trigger='click'
-							desc={
-								<DateRangePicker
-									onChange={(item) => setCalendarState({ ...calendarState, ...item })}
-									moveRangeOnFirstSelection={false}
-									retainEndDateOnFirstSelection={false}
-									months={2}
-									ranges={[calendarState.selection]}
-									direction='horizontal'
-									rangeColors={[String('#6c5dd3'), String('#ffa2c0'), String('#46bcaa')]}
-									locale={ko}
-								/>
-							}>
-							<Button color='dark' isLight data-tour='date-range'>
-								{`${moment(calendarState.selection.startDate).format('YYYY.MM.DD')} - ${moment(
-									calendarState.selection.endDate,
-								).format('YYYY.MM.DD')}`}
-							</Button>
-						</Popovers>
-						<Button color='primary' onClick={() => search()}>
-							검색
-						</Button>
-					</CardActions>
 				</CardHeader>
+				<CardBody>
+					{callStatistic && (
+						<div className='row'>
+							<SubHeader className='w-auto'>
+								<ScrollspyNav items={Object.values(StatisticType)} />
+								{Object.values(StatisticType).map((item, index) => {
+									return (
+										<a className='w-auto mb-1' key={index} href={`#${item}`}>
+											<Button isLight className='' shadow='sm' hoverShadow='none'>
+												{item}
+											</Button>
+										</a>
+									);
+								})}
+							</SubHeader>
+
+							<Card>
+								<CardBody>
+									<table>
+										<tbody>
+											<tr>
+												{/*<td>전체 콜</td>*/}
+												{/*<td>{callStatistic.}({callStatistic.})</td>*/}
+											</tr>
+										</tbody>
+									</table>
+								</CardBody>
+							</Card>
+
+							<Card className='scroll-margin'>
+								<CardBody>
+									<table className='table table-modern table-hover'>
+										<thead>
+											<tr>
+												<th>상태</th>
+												<th>call</th>
+												<th>이관</th>
+												<th>신규</th>
+												<th>모름</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>가족 진행중 전체</td>
+												<td>{callStatistic.stateCall[0]}명</td>
+												<td>{callStatistic.experienceCheckList[0][0]}</td>
+												<td>{callStatistic.experienceCheckList[0][1]}</td>
+												<td>{callStatistic.experienceCheckList[0][2]}</td>
+											</tr>
+											<tr>
+												<td>가족 서비스시작 전체</td>
+												<td>{callStatistic.stateCall[5]}명</td>
+												<td>{callStatistic.experienceCheckList[1][0]}</td>
+												<td>{callStatistic.experienceCheckList[1][1]}</td>
+												<td>{callStatistic.experienceCheckList[1][2]}</td>
+											</tr>
+											<tr>
+												<td>합계</td>
+												<td>{callStatistic.stateCall[0] + callStatistic.stateCall[5]}</td>
+												<td>
+													{callStatistic.experienceCheckList[0][0] +
+														callStatistic.experienceCheckList[1][0]}
+												</td>
+												<td>
+													{callStatistic.experienceCheckList[0][1] +
+														callStatistic.experienceCheckList[1][1]}
+												</td>
+												<td>
+													{callStatistic.experienceCheckList[0][2] +
+														callStatistic.experienceCheckList[1][2]}
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</CardBody>
+							</Card>
+
+							<Card className='scroll-margin'>
+								<CardBody>
+									<table className='table table-modern table-hover'>
+										<thead>
+											<tr>
+												<th>고객 상태</th>
+												<th>call</th>
+											</tr>
+										</thead>
+										<tbody>
+											{/*{callStatistic.progressList.map((item, index) => (*/}
+											{/*	<tr key={item}>*/}
+											{/*		<td>{callStatistic.progressList[index]}</td>*/}
+											{/*		<td>{callStatistic.progressCheckList[0][index]}</td>*/}
+											{/*	</tr>*/}
+											{/*))}*/}
+											{/*<tr>*/}
+											{/*	<td>확인필요</td>*/}
+											{/*	<td>*/}
+											{/*		{callStatistic.progressCheckList[0][callStatistic.progressList.length]}*/}
+											{/*	</td>*/}
+											{/*</tr>*/}
+										</tbody>
+									</table>
+								</CardBody>
+							</Card>
+
+							<Card id={StatisticType.INFLOW.toString()} className='scroll-margin'>
+								<CardBody>
+									<table className='table table-modern table-hover'>
+										<thead>
+											<tr>
+												<th>항목</th>
+												<th>
+													call<span>(서비스 시작 수)</span>
+												</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>전화 온 사람</td>
+												<td>
+													{callStatistic.calls}명({callStatistic.stateCall[5]})
+												</td>
+											</tr>
+											<tr>
+												<td>2번이상 전화한 사람</td>
+												<td>
+													{callStatistic.calls}명({callStatistic.recallsService})
+												</td>
+											</tr>
+											{callStatistic.inflowList.map((item, index) => (
+												<tr key={item}>
+													<td>{item}</td>
+													<td>
+														{callStatistic?.itemCall[index]}({callStatistic?.itemService[index]})
+													</td>
+												</tr>
+											))}
+										</tbody>
+									</table>
+								</CardBody>
+							</Card>
+							<Card id={StatisticType.LOCATION.toString()} className='scroll-margin'>
+								<CardBody>
+									<table className='table table-modern table-hover'>
+										<thead>
+											<tr>
+												<th>지역</th>
+												<th>call</th>
+											</tr>
+										</thead>
+										<tbody>
+											{callStatistic.cityCall.map((item, index) => (
+												<tr key={item}>
+													<td>{callStatistic?.cityList[index]}</td>
+													<td>{item}</td>
+												</tr>
+											))}
+											<tr>
+												<td>알수없음</td>
+												<td>{callStatistic?.cityCall[17]}</td>
+											</tr>
+										</tbody>
+									</table>
+								</CardBody>
+							</Card>
+							<Card id={StatisticType.STATUS.toString()} className='scroll-margin'>
+								<CardBody>
+									<table className='table table-modern table-hover'>
+										<thead>
+											<tr>
+												<th>상태</th>
+												<th>call</th>
+											</tr>
+										</thead>
+										<tbody>
+											{callStatistic.stateList.map((item, index) => (
+												<tr key={item}>
+													<td>{item}</td>
+													<td>{callStatistic?.stateCall[index]}</td>
+												</tr>
+											))}
+										</tbody>
+									</table>
+								</CardBody>
+							</Card>
+							<Card id={StatisticType.CAUSE.toString()} className='scroll-margin'>
+								<CardBody>
+									<table className='table table-modern table-hover'>
+										<thead>
+											<tr>
+												<th>선택이유</th>
+												<th>call</th>
+											</tr>
+										</thead>
+										<tbody>
+											{callStatistic.whyList.map((item, index) => (
+												<tr key={item}>
+													<td>{item}</td>
+													<td>{callStatistic?.choiceReasonCall[index]}</td>
+												</tr>
+											))}
+										</tbody>
+										<thead>
+											<tr>
+												<th>타급여</th>
+												<th>call</th>
+											</tr>
+										</thead>
+
+										<tbody>
+											{callStatistic.addInquiryList.map((item, index) => (
+												<tr key={item}>
+													<td>{item}</td>
+													<td>{callStatistic?.addInquiryCall[index]}</td>
+												</tr>
+											))}
+										</tbody>
+									</table>
+								</CardBody>
+							</Card>
+							<Card id={StatisticType.HOPE.toString()} className='scroll-margin'>
+								<CardBody>
+									<table className='table table-modern table-hover'>
+										<thead>
+											<tr>
+												<th>가산희망 지역</th>
+												<th>총 call</th>
+											</tr>
+										</thead>
+										<tbody>
+											{callStatistic.cityCall.map((item, index) => (
+												<tr key={item}>
+													<td>{callStatistic?.cityList[index]}</td>
+													<td>{callStatistic?.cityVisitHopeCall[index]}</td>
+												</tr>
+											))}
+											<tr>
+												<td>알수없음</td>
+												<td>{callStatistic?.cityVisitHopeCall[17]}</td>
+											</tr>
+										</tbody>
+									</table>
+								</CardBody>
+							</Card>
+							<Card id={StatisticType.MANAGER.toString()} className='scroll-margin'>
+								<CardBody>
+									<table className='table table-modern table-hover'>
+										<thead>
+											<tr>
+												<th>매니저</th>
+												<th>총 call</th>
+											</tr>
+										</thead>
+										<tbody>
+											{callStatistic.counselors.map((item, index) => (
+												<tr key={item}>
+													<td>{item}</td>
+													<td>{callStatistic?.counselorsCall[index]}</td>
+												</tr>
+											))}
+										</tbody>
+									</table>
+								</CardBody>
+							</Card>
+						</div>
+					)}
+				</CardBody>
 			</Card>
 		</>
 	);
