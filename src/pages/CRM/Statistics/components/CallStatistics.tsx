@@ -1,6 +1,6 @@
-import React, { FC, useState } from 'react';
-import { CallStatistic, useGetConsultAllList } from '../../../../quries/useGetConsultListAll';
+import React, { FC, useRef, useState } from 'react';
 import Card, {
+	CardActions,
 	CardBody,
 	CardHeader,
 	CardLabel,
@@ -8,31 +8,31 @@ import Card, {
 	CardTitle,
 } from '../../../../components/bootstrap/Card';
 import Button from '../../../../components/bootstrap/Button';
+import SubHeader from '../../../../layout/SubHeader/SubHeader';
+import ScrollspyNav from '../../../../components/bootstrap/ScrollspyNav';
+import { CallData } from '../CallData';
 
-interface CallStatisticsProp {
-	callStatistic: CallStatistic;
+export enum StatisticType {
+	INFLOW = '유입매체',
+	LOCATION = '지역',
+	STATUS = '상태',
+	CAUSE = '선택이유',
+	HOPE = '가산희망',
+	MANAGER = '매니저',
 }
 
-const CallStatistics: FC<CallStatisticsProp> = ({ callStatistic }) => {
-	//const result = useGetConsultAllList();
-	enum StatisticType {
-		INFLOW,
-		LOCATION,
-		STATUS,
-		CAUSE,
-		HOPE,
-		MANAGER,
-	}
+interface CallStatisticsProps {
+	callStatistic: CallData;
+}
 
-	const [statisticType, setStatisticType] = useState(StatisticType.INFLOW);
-
+const CallStatistics: FC<CallStatisticsProps> = ({ callStatistic }) => {
 	return (
 		<>
 			<Card>
 				<CardHeader>
 					<CardLabel icon='ReceiptLong'>
 						<CardTitle tag='h4' className='h5'>
-							전체 콜 통계
+							콜 통계
 						</CardTitle>
 						<CardSubTitle tag='h5' className='h6'>
 							Reports
@@ -42,59 +42,110 @@ const CallStatistics: FC<CallStatisticsProp> = ({ callStatistic }) => {
 				<CardBody>
 					{callStatistic && (
 						<div className='row'>
-							<div className='col-3'>
-								<Button
-									isLight
-									className='col-12 py-4 mb-1'
-									shadow='sm'
-									hoverShadow='none'
-									onClick={() => setStatisticType(StatisticType.INFLOW)}>
-									유입매체
-								</Button>
-								<Button
-									isLight
-									className='col-12 py-4 mb-1'
-									shadow='sm'
-									hoverShadow='none'
-									onClick={() => setStatisticType(StatisticType.LOCATION)}>
-									지역
-								</Button>
-								<Button
-									isLight
-									className='col-12 py-4 mb-1'
-									shadow='sm'
-									hoverShadow='none'
-									onClick={() => setStatisticType(StatisticType.STATUS)}>
-									상태
-								</Button>
-								<Button
-									isLight
-									className='col-12 py-4 mb-1'
-									shadow='sm'
-									hoverShadow='none'
-									onClick={() => setStatisticType(StatisticType.CAUSE)}>
-									선택이유
-								</Button>
-								<Button
-									isLight
-									className='col-12 py-4 mb-1'
-									shadow='sm'
-									hoverShadow='none'
-									onClick={() => setStatisticType(StatisticType.HOPE)}>
-									가산희망
-								</Button>
-								<Button
-									isLight
-									className='col-12 py-4 mb-1'
-									shadow='sm'
-									hoverShadow='none'
-									onClick={() => setStatisticType(StatisticType.MANAGER)}>
-									매니저
-								</Button>
-							</div>
-							{statisticType == StatisticType.INFLOW && (
-								<div className='col-9'>
+							<SubHeader className='w-auto'>
+								<ScrollspyNav items={Object.values(StatisticType)} />
+								{Object.values(StatisticType).map((item, index) => {
+									return (
+										<a className='w-auto mb-1' key={index} href={`#${item}`}>
+											<Button isLight className='' shadow='sm' hoverShadow='none'>
+												{item}
+											</Button>
+										</a>
+									);
+								})}
+							</SubHeader>
+
+							<Card>
+								<CardBody>
 									<table>
+										<tbody>
+											<tr>
+												{/*<td>전체 콜</td>*/}
+												{/*<td>{callStatistic.}({callStatistic.})</td>*/}
+											</tr>
+										</tbody>
+									</table>
+								</CardBody>
+							</Card>
+
+							<Card className='scroll-margin'>
+								<CardBody>
+									<table className='table table-modern table-hover'>
+										<thead>
+											<tr>
+												<th>상태</th>
+												<th>call</th>
+												<th>이관</th>
+												<th>신규</th>
+												<th>모름</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>가족 진행중 전체</td>
+												<td>{callStatistic.stateCall[0]}명</td>
+												<td>{callStatistic.experienceCheckList[0][0]}</td>
+												<td>{callStatistic.experienceCheckList[0][1]}</td>
+												<td>{callStatistic.experienceCheckList[0][2]}</td>
+											</tr>
+											<tr>
+												<td>가족 서비스시작 전체</td>
+												<td>{callStatistic.stateCall[5]}명</td>
+												<td>{callStatistic.experienceCheckList[1][0]}</td>
+												<td>{callStatistic.experienceCheckList[1][1]}</td>
+												<td>{callStatistic.experienceCheckList[1][2]}</td>
+											</tr>
+											<tr>
+												<td>합계</td>
+												<td>{callStatistic.stateCall[0] + callStatistic.stateCall[5]}</td>
+												<td>
+													{callStatistic.experienceCheckList[0][0] +
+														callStatistic.experienceCheckList[1][0]}
+												</td>
+												<td>
+													{callStatistic.experienceCheckList[0][1] +
+														callStatistic.experienceCheckList[1][1]}
+												</td>
+												<td>
+													{callStatistic.experienceCheckList[0][2] +
+														callStatistic.experienceCheckList[1][2]}
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</CardBody>
+							</Card>
+
+							<Card className='scroll-margin'>
+								<CardBody>
+									<table className='table table-modern table-hover'>
+										<thead>
+											<tr>
+												<th>고객 상태</th>
+												<th>call</th>
+											</tr>
+										</thead>
+										<tbody>
+											{/*{callStatistic.progressList.map((item, index) => (*/}
+											{/*	<tr key={item}>*/}
+											{/*		<td>{callStatistic.progressList[index]}</td>*/}
+											{/*		<td>{callStatistic.progressCheckList[0][index]}</td>*/}
+											{/*	</tr>*/}
+											{/*))}*/}
+											{/*<tr>*/}
+											{/*	<td>확인필요</td>*/}
+											{/*	<td>*/}
+											{/*		{callStatistic.progressCheckList[0][callStatistic.progressList.length]}*/}
+											{/*	</td>*/}
+											{/*</tr>*/}
+										</tbody>
+									</table>
+								</CardBody>
+							</Card>
+
+							<Card id={StatisticType.INFLOW.toString()} className='scroll-margin'>
+								<CardBody>
+									<table className='table table-modern table-hover'>
 										<thead>
 											<tr>
 												<th>항목</th>
@@ -126,11 +177,11 @@ const CallStatistics: FC<CallStatisticsProp> = ({ callStatistic }) => {
 											))}
 										</tbody>
 									</table>
-								</div>
-							)}
-							{statisticType === StatisticType.LOCATION && (
-								<div className='col-9'>
-									<table>
+								</CardBody>
+							</Card>
+							<Card id={StatisticType.LOCATION.toString()} className='scroll-margin'>
+								<CardBody>
+									<table className='table table-modern table-hover'>
 										<thead>
 											<tr>
 												<th>지역</th>
@@ -150,11 +201,11 @@ const CallStatistics: FC<CallStatisticsProp> = ({ callStatistic }) => {
 											</tr>
 										</tbody>
 									</table>
-								</div>
-							)}
-							{statisticType === StatisticType.STATUS && (
-								<div className='col-9'>
-									<table>
+								</CardBody>
+							</Card>
+							<Card id={StatisticType.STATUS.toString()} className='scroll-margin'>
+								<CardBody>
+									<table className='table table-modern table-hover'>
 										<thead>
 											<tr>
 												<th>상태</th>
@@ -170,11 +221,11 @@ const CallStatistics: FC<CallStatisticsProp> = ({ callStatistic }) => {
 											))}
 										</tbody>
 									</table>
-								</div>
-							)}
-							{statisticType === StatisticType.CAUSE && (
-								<div className='col-9'>
-									<table>
+								</CardBody>
+							</Card>
+							<Card id={StatisticType.CAUSE.toString()} className='scroll-margin'>
+								<CardBody>
+									<table className='table table-modern table-hover'>
 										<thead>
 											<tr>
 												<th>선택이유</th>
@@ -205,11 +256,11 @@ const CallStatistics: FC<CallStatisticsProp> = ({ callStatistic }) => {
 											))}
 										</tbody>
 									</table>
-								</div>
-							)}
-							{statisticType === StatisticType.HOPE && (
-								<div className='col-9'>
-									<table>
+								</CardBody>
+							</Card>
+							<Card id={StatisticType.HOPE.toString()} className='scroll-margin'>
+								<CardBody>
+									<table className='table table-modern table-hover'>
 										<thead>
 											<tr>
 												<th>가산희망 지역</th>
@@ -219,7 +270,7 @@ const CallStatistics: FC<CallStatisticsProp> = ({ callStatistic }) => {
 										<tbody>
 											{callStatistic.cityCall.map((item, index) => (
 												<tr key={item}>
-													<td>{item}</td>
+													<td>{callStatistic?.cityList[index]}</td>
 													<td>{callStatistic?.cityVisitHopeCall[index]}</td>
 												</tr>
 											))}
@@ -229,11 +280,11 @@ const CallStatistics: FC<CallStatisticsProp> = ({ callStatistic }) => {
 											</tr>
 										</tbody>
 									</table>
-								</div>
-							)}
-							{statisticType === StatisticType.MANAGER && (
-								<div className='col-9'>
-									<table>
+								</CardBody>
+							</Card>
+							<Card id={StatisticType.MANAGER.toString()} className='scroll-margin'>
+								<CardBody>
+									<table className='table table-modern table-hover'>
 										<thead>
 											<tr>
 												<th>매니저</th>
@@ -249,8 +300,8 @@ const CallStatistics: FC<CallStatisticsProp> = ({ callStatistic }) => {
 											))}
 										</tbody>
 									</table>
-								</div>
-							)}
+								</CardBody>
+							</Card>
 						</div>
 					)}
 				</CardBody>
