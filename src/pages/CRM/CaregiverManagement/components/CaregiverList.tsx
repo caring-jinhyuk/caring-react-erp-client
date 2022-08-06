@@ -1,23 +1,15 @@
 import React, { FC, useState } from 'react';
-import { Caregiver } from '../../../../services/openApi';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { caregiverModal, selectCaregiver } from '../CaregiverContainer';
+import { useRecoilValue } from 'recoil';
 import { useGetCaregiverList } from '../../../../quries/useCaregiverList';
 import { caregiverSearchParam } from '../CaregiverListHeader';
 import PaginationButtons from '../../../../components/PaginationButtons';
+import CaregiverTableRow from './CaregiverTableRow';
 
 const CaregiverList: FC = () => {
-	const setCaregiver = useSetRecoilState(selectCaregiver);
-	const setOpen = useSetRecoilState(caregiverModal);
 	const param = useRecoilValue(caregiverSearchParam);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [perPage, setPerPage] = useState(10);
 	const caregivers = useGetCaregiverList(param.keyword, param.search, currentPage, perPage);
-
-	const openDetail = (item: Caregiver) => {
-		setCaregiver(item);
-		setOpen(true);
-	};
 
 	return (
 		<>
@@ -34,16 +26,8 @@ const CaregiverList: FC = () => {
 				</thead>
 				<tbody>
 					{caregivers.contents?.content &&
-						caregivers.contents.content.map((item) => (
-							// eslint-disable-next-line react/jsx-key
-							<tr key={item.id} onClick={() => openDetail(item)}>
-								<td>{item.name}</td>
-								<td>{item.city}</td>
-								<td>{item.ward}</td>
-								<td>{item.town}</td>
-								<td>{item.hopeArea}</td>
-								<td>{item.phone}</td>
-							</tr>
+						caregivers.contents.content.map((caregiver) => (
+							<CaregiverTableRow key={caregiver.id} caregiver={caregiver} />
 						))}
 				</tbody>
 			</table>
