@@ -6,7 +6,12 @@ import {
 } from '../../../../components/bootstrap/OffCanvas';
 import { Caregiver, CaregiverControllerService } from '../../../../services/openApi';
 import { useFormik } from 'formik';
-import Card, { CardBody, CardHeader } from '../../../../components/bootstrap/Card';
+import Card, {
+	CardActions,
+	CardBody,
+	CardHeader,
+	CardTitle,
+} from '../../../../components/bootstrap/Card';
 import Input from '../../../../components/bootstrap/forms/Input';
 import FormGroup from '../../../../components/bootstrap/forms/FormGroup';
 import Button from '../../../../components/bootstrap/Button';
@@ -278,24 +283,20 @@ const CaregiverDetail: FC<CaregiverDetailProps> = ({ caregiver }) => {
 
 	return (
 		<>
-			<OffCanvasHeader>
-				<OffCanvasTitle id='caregiverDetail'>
-					<div className='row'>
-						<div className='col-4'>상세정보</div>
-						<div className='col-8'>
-							<Button onClick={() => formik.submitForm()} icon={'Calculate'} color={'success'}>
-								저장하기
-							</Button>
-							<Button onClick={() => deleteCaregiver(caregiver.id)} icon={'Save'} color={'primary'}>
-								삭제하기
-							</Button>
-							<Button onClick={() => setOffCanvas({ isOpen: false })} />
-						</div>
-					</div>
-				</OffCanvasTitle>
-			</OffCanvasHeader>
 			<OffCanvasBody>
-				<Card>
+				<CardHeader className='bg-transparent'>
+					<CardTitle>{caregiver.name}님의 정보</CardTitle>
+					<CardActions>
+						<Button onClick={() => formik.submitForm()} icon={'Save'} color={'success'}>
+							저장
+						</Button>
+						<Button onClick={() => deleteCaregiver(caregiver.id)} icon={'Delete'} color={'primary'}>
+							삭제
+						</Button>
+						<Button onClick={() => setOffCanvas({ isOpen: false })} icon='close' />
+					</CardActions>
+				</CardHeader>
+				<Card className='mt-5'>
 					<CardHeader>개인정보</CardHeader>
 					<CardBody>
 						<FormGroup id='name' className='mb-3' isFloating={true} label='이름'>
