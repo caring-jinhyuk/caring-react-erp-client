@@ -15,6 +15,7 @@ import { Calendar as DatePicker } from 'react-date-range';
 import ko from 'date-fns/locale/ko';
 import { statisticsSearchDateAtom } from '../Statistics';
 import { useRecoilState } from 'recoil';
+import FamilyServiceStatistics from './FamilyServiceStatistics';
 
 interface DailyCallStatisticsProps {
 	callStatistic: CallData;
@@ -59,115 +60,103 @@ const DailyCallStatistics: FC<DailyCallStatisticsProps> = ({ callStatistic }) =>
 			</CardHeader>
 			<div className='row'>
 				<div className='col-6'>
-					<Card className='scroll-margin'>
-						<CardBody>
-							<table className='table table-modern table-hover'>
-								<thead>
-									<tr>
-										<th>오늘 콜</th>
-										<td>
+					<Card className='scroll-margin p-4'>
+						<div className='col-auto '>
+							<Card shadow='sm'>
+								<CardHeader className='bg-transparent'>
+									<CardLabel className='h6'>
+										<CardTitle>오늘 콜</CardTitle>
+									</CardLabel>
+									<CardActions>
+										<div className='fw-bold fs-5 mb-0'>
 											{callStatistic.todayPerson}({callStatistic.todayCall})
-										</td>
-									</tr>
-									<tr>
-										<th>신규 콜</th>
-										<td>{callStatistic.todayNewCall}</td>
-									</tr>
-									<tr>
-										<th>리 콜</th>
-										<td>
-											{callStatistic.todayRecall}(
-											{callStatistic.todayCall - callStatistic.todayNewcall})
-										</td>
-									</tr>
-									<tr>
-										<td>유의미한 콜</td>
-										<td>{callStatistic.todayStateCall[0]}</td>
-									</tr>
-									<tr>
-										<td>
-											{callStatistic.counselors.map((item, index) => (
-												<p key={item}>
-													{item} {callStatistic.counselorCallDetail[index][1]}
-												</p>
-											))}
-										</td>
-									</tr>
-									<tr>
-										<td>서류 작업중</td>
-										<td>{callStatistic.callDocument}</td>
-									</tr>
-									<tr>
-										<td>고민 후 연락</td>
-										<td>{callStatistic.todayStateCall[0] - callStatistic.callDocument}</td>
-									</tr>
-								</thead>
-							</table>
-						</CardBody>
+										</div>
+									</CardActions>
+								</CardHeader>
+							</Card>
+						</div>
+						<div className='row'>
+							<div className='col-6'>
+								<Card shadow='sm'>
+									<CardHeader className='bg-transparent'>
+										<CardLabel className='h6'>
+											<CardTitle>신규 콜</CardTitle>
+										</CardLabel>
+										<CardActions>
+											<div className='fw-bold fs-5 mb-0'>{callStatistic.todayNewCall}</div>
+										</CardActions>
+									</CardHeader>
+								</Card>
+							</div>
+							<div className='col-6'>
+								<Card shadow='sm'>
+									<CardHeader className='bg-transparent'>
+										<CardLabel className='h6'>
+											<CardTitle>리 콜</CardTitle>
+										</CardLabel>
+										<CardActions>
+											<div className='fw-bold fs-5 mb-0'>
+												{callStatistic.todayRecall}(
+												{callStatistic.todayCall - callStatistic.todayNewcall})
+											</div>
+										</CardActions>
+									</CardHeader>
+								</Card>
+							</div>
+						</div>
+						<div className='row'>
+							<Card shadow='sm'>
+								<CardHeader className='bg-transparent'>
+									<CardLabel className='h6'>
+										<CardTitle>유의미한 콜</CardTitle>
+									</CardLabel>
+									<CardActions>
+										<div className='fw-bold fs-5 mb-0'>{callStatistic.todayStateCall[0]}</div>
+									</CardActions>
+								</CardHeader>
+								<CardBody>
+									<div className='row'>
+										{callStatistic.counselors.map((item, index) => (
+											<div className='col-md-3' key={item}>
+												{item} {callStatistic.counselorCallDetail[index][1]}
+											</div>
+										))}
+									</div>
+								</CardBody>
+							</Card>
+						</div>
+						<div className='row'>
+							<div className='col-6'>
+								<Card shadow='sm'>
+									<CardHeader className='bg-transparent'>
+										<CardLabel className='h6'>
+											<CardTitle>서류 작업중</CardTitle>
+										</CardLabel>
+										<CardActions>
+											<div className='fw-bold fs-5 mb-0'>{callStatistic.callDocument}</div>
+										</CardActions>
+									</CardHeader>
+								</Card>
+							</div>
+							<div className='col-6'>
+								<Card shadow='sm'>
+									<CardHeader className='bg-transparent'>
+										<CardLabel className='h6'>
+											<CardTitle>고민 후 연락</CardTitle>
+										</CardLabel>
+										<CardActions>
+											<div className='fw-bold fs-5 mb-0'>
+												{callStatistic.todayStateCall[0] - callStatistic.callDocument}
+											</div>
+										</CardActions>
+									</CardHeader>
+								</Card>
+							</div>
+						</div>
 					</Card>
 				</div>
 				<div className='col-6'>
-					<Card>
-						<CardBody>
-							<table className='table table-modern table-hover'>
-								<thead>
-									<tr>
-										<th>상태</th>
-										<th>call</th>
-										<th>이관</th>
-										<th>신규</th>
-										<th>모름</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>가족진행중</td>
-										<td>{callStatistic.todayStateCall[0]}</td>
-										<td>{callStatistic.experienceCheckList[2][0]}</td>
-										<td>{callStatistic.experienceCheckList[2][1]}</td>
-										<td>{callStatistic.experienceCheckList[2][2]}</td>
-									</tr>
-									<tr>
-										<td>가족진행중(자격증X)</td>
-										<td>{callStatistic.todayStateCall[1]}</td>
-										<td>{callStatistic.experienceCheckList[4][0]}</td>
-										<td>{callStatistic.experienceCheckList[4][1]}</td>
-										<td>{callStatistic.experienceCheckList[4][2]}</td>
-									</tr>
-									<tr>
-										<td>가족서비스시작</td>
-										<td>{callStatistic.todayStateCall[5]}</td>
-										<td>{callStatistic.experienceCheckList[3][0]}</td>
-										<td>{callStatistic.experienceCheckList[3][1]}</td>
-										<td>{callStatistic.experienceCheckList[3][2]}</td>
-									</tr>
-									<tr>
-										<td>합계</td>
-										<td>
-											{callStatistic.todayStateCall[0] +
-												callStatistic.todayStateCall[1] +
-												callStatistic.todayStateCall[5]}
-										</td>
-										<td>
-											{callStatistic.experienceCheckList[2][0] +
-												callStatistic.experienceCheckList[3][0] +
-												callStatistic.experienceCheckList[4][0]}
-										</td>
-										<td>
-											{callStatistic.experienceCheckList[2][1] +
-												callStatistic.experienceCheckList[3][1] +
-												callStatistic.experienceCheckList[4][1]}
-										</td>
-										<td>
-											{callStatistic.experienceCheckList[2][2] +
-												callStatistic.experienceCheckList[3][2] +
-												callStatistic.experienceCheckList[4][2]}
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</CardBody>
-					</Card>
+					<FamilyServiceStatistics callStatistic={callStatistic} />
 				</div>
 			</div>
 			<div className='row'>

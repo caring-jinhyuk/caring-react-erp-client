@@ -51,7 +51,7 @@ const Statistics = () => {
 								<div>
 									<Header>
 										<HeaderLeft>
-											<div>통계</div>
+											<span className='h4 mb-0 fw-bold'>콜 통계</span>
 										</HeaderLeft>
 										<HeaderRight>
 											<Button
