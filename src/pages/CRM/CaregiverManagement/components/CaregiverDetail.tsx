@@ -23,96 +23,21 @@ import { useSetRecoilState } from 'recoil';
 import { caregiverSearchParam } from '../CaregiverListHeader';
 import { useQueryClient } from '@tanstack/react-query';
 import { offCanvasState } from '../../../../atoms/offCanvas';
-
-export type CaregiverForm = {
-	address?: string;
-	black?: boolean;
-	blackReason?: string;
-	career?: number;
-	certificate?: boolean;
-	city?: string;
-	covid?: boolean;
-	createdAt?: string;
-	dementia?: boolean;
-	gender: string;
-	hopeArea?: string;
-	id?: number;
-	information?: string;
-	lastModifiedDate?: string;
-	modifier?: string;
-	msgLastSendTime1?: string;
-	msgLastSendTime2?: string;
-	msgLastSendTime3?: string;
-	name?: string;
-	phone?: string;
-	prefer_gender: string[];
-	privacy?: boolean;
-	sendNumber1?: string;
-	sendNumber2?: string;
-	sendNumber3?: string;
-	takerProgress?: string;
-	town?: string;
-	ward?: string;
-	work_kinds: string[];
-	writer?: string;
-	year?: number;
-	hope_city1?: string;
-	hope_city2?: string;
-	hope_city3?: string;
-	hope_ward1?: string;
-	hope_ward2?: string;
-	hope_ward3?: string;
-	hope_area?: HopeArea;
-};
-
-export type HopeArea = {
-	hope_city1: string;
-	hope_city2: string;
-	hope_city3: string;
-	hope_ward1: string;
-	hope_ward2: string;
-	hope_ward3: string;
-};
+import { CaregiverForm } from '../../../../models/CaregiverForm';
 
 interface CaregiverDetailProps {
 	caregiver: Caregiver;
 }
 
 const CaregiverDetail: FC<CaregiverDetailProps> = ({ caregiver }) => {
-	const formCaregiver: CaregiverForm = {
-		id: caregiver.id,
-		black: caregiver.black,
-		address: caregiver.address,
-		career: caregiver.career,
-		certificate: caregiver.certificate,
-		city: caregiver.city,
-		covid: caregiver.covid,
-		dementia: caregiver.dementia,
-		gender: caregiver.gender === undefined || false ? '여자' : '남자',
-		hopeArea: caregiver.hopeArea,
-		information:
-			caregiver.information ||
-			'이력/경력사항 : \n' + '요보사가 원하는 사항 : \n' + '면접 특이사항 : ',
-		takerProgress:
-			caregiver.takerProgress ||
-			'1. 수급자 지역 : \n' + '2. 수급자 전화번호: \n' + '3. 수급자 날짜별 진행 상황 : ',
-		name: caregiver.name,
-		phone: caregiver.phone,
-		prefer_gender: convertPreferGender(caregiver.prefer_gender),
-		work_kinds: convertWorkKind(caregiver.work_kinds),
-		town: caregiver.town,
-		ward: caregiver.ward,
-		hope_area: convertHopeArea(caregiver.hopeArea),
-		year: caregiver.year,
-		createdAt: caregiver.createdAt,
-	};
+	const caregiverForm = new CaregiverForm(caregiver);
 	const setSearchParam = useSetRecoilState(caregiverSearchParam);
 	const setOffCanvas = useSetRecoilState(offCanvasState);
 	const queryClient = useQueryClient();
 
 	const formik = useFormik({
 		enableReinitialize: true,
-		initialValues: formCaregiver,
+		initialValues: caregiverForm,
 		// eslint-disable-next-line no-unused-vars
 		onSubmit: async (values) => {
 			//alert(JSON.stringify(values, null, 2));
@@ -135,12 +60,12 @@ const CaregiverDetail: FC<CaregiverDetailProps> = ({ caregiver }) => {
 				prefer_gender: makePreferGenderString(values.prefer_gender),
 				work_kinds: makeWorkKindString(values.work_kinds),
 				hopeArea: makeHomeArea(
-					values.hope_area!.hope_city1,
-					values.hope_area!.hope_city2,
-					values.hope_area!.hope_city3,
-					values.hope_area!.hope_ward1,
-					values.hope_area!.hope_ward2,
-					values.hope_area!.hope_ward3,
+					values.hope_city1,
+					values.hope_city2,
+					values.hope_city3,
+					values.hope_ward1,
+					values.hope_ward2,
+					values.hope_ward3,
 				),
 				year: values.year,
 				createdAt: values.createdAt,
@@ -165,72 +90,6 @@ const CaregiverDetail: FC<CaregiverDetailProps> = ({ caregiver }) => {
 				showNotification('삭제 실패', '');
 			});
 	};
-
-	function convertPreferGender(value?: string) {
-		if (value === null) {
-			return [];
-		} else {
-			const arrGender = [];
-			if (value?.includes('남자')) {
-				arrGender.push('남자');
-			} else if (value?.includes('여자')) {
-				arrGender.push('여자');
-			}
-			return arrGender;
-		}
-	}
-
-	function convertWorkKind(value?: string) {
-		if (value === null) {
-			return [];
-		} else {
-			const arrWorkKind = [];
-			if (value?.includes('방문요양')) {
-				arrWorkKind.push('방문요양');
-			} else if (value?.includes('방문목욕')) {
-				arrWorkKind.push('방문목욕');
-			} else if (value?.includes('입주요양')) {
-				arrWorkKind.push('입주요양');
-			} else if (value?.includes('요양시설')) {
-				arrWorkKind.push('요양시설');
-			}
-
-			return arrWorkKind;
-		}
-	}
-
-	function convertHopeArea(value?: string) {
-		if (value == null) {
-			const emptyHopeArea: HopeArea = {
-				hope_city1: '',
-				hope_city2: '',
-				hope_city3: '',
-				hope_ward1: '',
-				hope_ward2: '',
-				hope_ward3: '',
-			};
-			return emptyHopeArea;
-		} else {
-			const homeValue = value?.split(',');
-			const hopeTown = ['', '', ''];
-			const hopeWard = ['', '', ''];
-			for (let i = 0; i < homeValue.length; i++) {
-				hopeTown[i] = homeValue[i].substr(0, 2);
-				hopeWard[i] = homeValue[i].substring(3);
-			}
-
-			const hopeAreaValue: HopeArea = {
-				hope_city1: hopeTown[0],
-				hope_city2: hopeTown[1],
-				hope_city3: hopeTown[2],
-				hope_ward1: hopeWard[0],
-				hope_ward2: hopeWard[1],
-				hope_ward3: hopeWard[2],
-			};
-
-			return hopeAreaValue;
-		}
-	}
 
 	function makePreferGenderString(value?: string[]) {
 		let stringPreferGender = '';
@@ -366,24 +225,24 @@ const CaregiverDetail: FC<CaregiverDetailProps> = ({ caregiver }) => {
 					<CardHeader>희망지역</CardHeader>
 					<CardBody>
 						<AddressPicker
-							cityId={'hope_area.hope_city1'}
-							cityValue={formik.values.hope_area!.hope_city1}
-							wardId={'hope_area.hope_ward1'}
-							wardValue={formik.values.hope_area!.hope_ward1}
+							cityId={'hope_city1'}
+							cityValue={formik.values.hope_city1}
+							wardId={'hope_ward1'}
+							wardValue={formik.values.hope_ward1}
 							onChange={formik.handleChange}
 						/>
 						<AddressPicker
-							cityId={'hope_area.hope_city2'}
-							cityValue={formik.values.hope_area!.hope_city2}
-							wardId={'hope_area.hope_ward2'}
-							wardValue={formik.values.hope_area!.hope_ward2}
+							cityId={'hope_city2'}
+							cityValue={formik.values.hope_city2}
+							wardId={'hope_ward2'}
+							wardValue={formik.values.hope_ward2}
 							onChange={formik.handleChange}
 						/>
 						<AddressPicker
-							cityId={'hope_area.hope_city3'}
-							cityValue={formik.values.hope_area!.hope_city3}
-							wardId={'hope_area.hope_ward3'}
-							wardValue={formik.values.hope_area!.hope_ward3}
+							cityId={'hope_city3'}
+							cityValue={formik.values.hope_city3}
+							wardId={'hope_ward3'}
+							wardValue={formik.values.hope_ward3}
 							onChange={formik.handleChange}
 						/>
 						<FormGroup id='information' label='요양보호사의 정보'>

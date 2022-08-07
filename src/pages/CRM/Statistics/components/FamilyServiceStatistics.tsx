@@ -7,7 +7,7 @@ import Card, {
 	CardTitle,
 } from '../../../../components/bootstrap/Card';
 import Button from '../../../../components/bootstrap/Button';
-import { CallData } from '../CallData';
+import { CallData } from '../../../../models/CallData';
 import Chart from '../../../../components/extras/Chart';
 
 interface FamilyServiceStatisticsProps {

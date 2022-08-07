@@ -59,7 +59,8 @@
 				"allowLiteral": false,
 				"allowObject": true
 			}
-		]
+		],
+		"@typescript-eslint/lines-between-class-members": "off"
 	},
 	"parser": "@typescript-eslint/parser",
 	"settings": {

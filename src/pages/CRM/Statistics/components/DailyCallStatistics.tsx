@@ -7,7 +7,7 @@ import Card, {
 	CardSubTitle,
 	CardTitle,
 } from '../../../../components/bootstrap/Card';
-import { CallData } from '../CallData';
+import { CallData } from '../../../../models/CallData';
 import Popovers from '../../../../components/bootstrap/Popovers';
 import Button from '../../../../components/bootstrap/Button';
 import moment from 'moment';

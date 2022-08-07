@@ -1,4 +1,4 @@
-import { Consult } from '../../../services/openApi';
+import { Consult } from '../services/openApi';
 import moment from 'moment';
 
 export class CallData {
