@@ -135,7 +135,7 @@ const CaregiverListHeader = () => {
 					<Input
 						id='caregiver-search'
 						value={search}
-						placeholder={'검색어를 입력해세요'}
+						placeholder={'검색어를 입력하세요'}
 						onChange={handleOnChange}
 						onKeyDown={handleOnKeyPress}></Input>
 				</div>

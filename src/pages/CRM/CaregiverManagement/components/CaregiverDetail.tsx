@@ -19,19 +19,27 @@ import Checks from '../../../../components/bootstrap/forms/Checks';
 import Textarea from '../../../../components/bootstrap/forms/Textarea';
 import showNotification from '../../../../components/extras/showNotification';
 import AddressPicker from '../../../../components/AddressPicker';
-import { useSetRecoilState } from 'recoil';
+import {
+	useRecoilRefresher_UNSTABLE,
+	useRecoilState,
+	useRecoilValue,
+	useSetRecoilState,
+} from 'recoil';
 import { caregiverSearchParam } from '../CaregiverListHeader';
 import { useQueryClient } from '@tanstack/react-query';
 import { offCanvasState } from '../../../../atoms/offCanvas';
 import { CaregiverForm } from '../../../../models/CaregiverForm';
+import BirthYearInput from '../../../../components/BirthYearInput';
+import { userState } from '../../../../atoms/user';
 
 interface CaregiverDetailProps {
 	caregiver: Caregiver;
 }
 
 const CaregiverDetail: FC<CaregiverDetailProps> = ({ caregiver }) => {
+	const userAtom = useRecoilValue(userState);
 	const caregiverForm = new CaregiverForm(caregiver);
-	const setSearchParam = useSetRecoilState(caregiverSearchParam);
+	const [searchParam, setSearchParam] = useRecoilState(caregiverSearchParam);
 	const setOffCanvas = useSetRecoilState(offCanvasState);
 	const queryClient = useQueryClient();
 
@@ -50,7 +58,7 @@ const CaregiverDetail: FC<CaregiverDetailProps> = ({ caregiver }) => {
 				city: values.city,
 				covid: values.covid,
 				dementia: values.dementia,
-				gender: values.gender !== '남자',
+				gender: values.gender === '남자',
 				information: values.information,
 				takerProgress: values.takerProgress,
 				name: values.name,
@@ -68,7 +76,10 @@ const CaregiverDetail: FC<CaregiverDetailProps> = ({ caregiver }) => {
 					values.hope_ward3,
 				),
 				year: values.year,
+				privacy: values.privacy,
 				createdAt: values.createdAt,
+				lastModifiedDate: new Date().toISOString(),
+				modifier: userAtom.name,
 			};
 			await saveCaregiver(submitValues);
 		},
@@ -78,24 +89,33 @@ const CaregiverDetail: FC<CaregiverDetailProps> = ({ caregiver }) => {
 		try {
 			await CaregiverControllerService.saveCaregiverUsingPost(value);
 			showNotification('등록 성공', value.name + '님의 정보가 등록되었습니다.');
-			await queryClient.invalidateQueries(['caregiverList', { keyword: '', search: '' }]);
-			setSearchParam({ keyword: '', search: '' });
+			await complete();
 		} catch (e) {}
 	};
 
 	const deleteCaregiver = async (id: number | undefined) => {
 		CaregiverControllerService.deleteCaregiverUsingDelete(id!)
-			.then((value) => {})
+			.then((value) => {
+				showNotification('삭제 성공', '정보가 삭제되었습니다.');
+				complete();
+			})
 			.catch((error) => {
 				showNotification('삭제 실패', '');
 			});
+	};
+
+	const complete = async () => {
+		await queryClient.invalidateQueries(['caregiverList', searchParam]);
+		setSearchParam(searchParam);
+		setOffCanvas({ isOpen: false });
 	};
 
 	function makePreferGenderString(value?: string[]) {
 		let stringPreferGender = '';
 		if (value?.includes('남자')) {
 			stringPreferGender += '남자 ';
-		} else if (value?.includes('여자')) {
+		}
+		if (value?.includes('여자')) {
 			stringPreferGender += '여자';
 		}
 		return stringPreferGender;
@@ -105,11 +125,14 @@ const CaregiverDetail: FC<CaregiverDetailProps> = ({ caregiver }) => {
 		let stringWorkKind = '';
 		if (value?.includes('방문요양')) {
 			stringWorkKind += '방문요양 ';
-		} else if (value?.includes('방문목욕')) {
+		}
+		if (value?.includes('방문목욕')) {
 			stringWorkKind += '방문목욕 ';
-		} else if (value?.includes('입주요양')) {
+		}
+		if (value?.includes('입주요양')) {
 			stringWorkKind += '입주요양 ';
-		} else if (value?.includes('요양시설')) {
+		}
+		if (value?.includes('요양시설')) {
 			stringWorkKind += '요양시설 ';
 		}
 		return stringWorkKind;
@@ -144,10 +167,12 @@ const CaregiverDetail: FC<CaregiverDetailProps> = ({ caregiver }) => {
 		<>
 			<OffCanvasBody>
 				<CardHeader className='bg-transparent'>
-					<CardTitle>{caregiver.name}님의 정보</CardTitle>
+					<CardTitle>
+						{caregiver.id !== undefined ? caregiver.name + `님의 정보` : '요양보호사 추가'}
+					</CardTitle>
 					<CardActions>
 						<Button onClick={() => formik.submitForm()} icon={'Save'} color={'success'}>
-							저장
+							{caregiver.id !== undefined ? '수정' : '저장'}
 						</Button>
 						<Button onClick={() => deleteCaregiver(caregiver.id)} icon={'Delete'} color={'primary'}>
 							삭제
@@ -158,13 +183,17 @@ const CaregiverDetail: FC<CaregiverDetailProps> = ({ caregiver }) => {
 				<Card className='mt-5'>
 					<CardHeader>개인정보</CardHeader>
 					<CardBody>
-						<FormGroup id='name' className='mb-3' isFloating={true} label='이름'>
+						<FormGroup id='name' className='mb-3' label='이름'>
 							<Input type='text' value={formik.values.name} onChange={formik.handleChange} />
 						</FormGroup>
-						<FormGroup id='year' className='mb-3' isFloating={true} label='출생년도'>
-							<Input type='text' value={formik.values.year} onChange={formik.handleChange} />
-						</FormGroup>
-						<FormGroup id='phone' className='mb-3' isFloating={true} label='번호'>
+						<div className='mb-3'>
+							<BirthYearInput
+								birthYearId='year'
+								birthYearValue={formik.values.year}
+								onChange={formik.handleChange}
+							/>
+						</div>
+						<FormGroup id='phone' className='mb-3' label='전화번호'>
 							<Input type='text' value={formik.values.phone} onChange={formik.handleChange} />
 						</FormGroup>
 						<FormGroup id='gender' className='mb-3' label='성별'>
@@ -215,7 +244,7 @@ const CaregiverDetail: FC<CaregiverDetailProps> = ({ caregiver }) => {
 								onChange={formik.handleChange}
 							/>
 						</div>
-						<FormGroup id='address' isFloating={true} label='상세주소'>
+						<FormGroup id='address' label='상세주소'>
 							<Input type='text' value={formik.values.address} onChange={formik.handleChange} />
 						</FormGroup>
 					</CardBody>
@@ -245,7 +274,7 @@ const CaregiverDetail: FC<CaregiverDetailProps> = ({ caregiver }) => {
 							wardValue={formik.values.hope_ward3}
 							onChange={formik.handleChange}
 						/>
-						<FormGroup id='information' label='요양보호사의 정보'>
+						<FormGroup id='information' label='요양보호사의 정보' className='mb-3'>
 							<Textarea value={formik.values.information} onChange={formik.handleChange} />
 						</FormGroup>
 						<FormGroup id='takerProgress' label='수급자별 진행상황'>
@@ -257,12 +286,12 @@ const CaregiverDetail: FC<CaregiverDetailProps> = ({ caregiver }) => {
 				<Card>
 					<CardHeader>추가사항</CardHeader>
 					<CardBody>
-						<FormGroup id='work_kinds' label='일자리 종류'>
+						<FormGroup id='work_kinds' label='일자리 종류' className='mb-3'>
 							<div className='row'>
 								<div className='col-6'>
 									<Checks
 										name='work_kinds'
-										value={'방문요양'}
+										value='방문요양'
 										label='방문요양'
 										checked={formik.values.work_kinds?.includes('방문요양')}
 										onChange={formik.handleChange}
@@ -271,7 +300,7 @@ const CaregiverDetail: FC<CaregiverDetailProps> = ({ caregiver }) => {
 								<div className='col-6'>
 									<Checks
 										name='work_kinds'
-										value={'방문목욕'}
+										value='방문목욕'
 										label='방문목욕'
 										checked={formik.values.work_kinds?.includes('방문목욕')}
 										onChange={formik.handleChange}
@@ -282,7 +311,7 @@ const CaregiverDetail: FC<CaregiverDetailProps> = ({ caregiver }) => {
 								<div className='col-6'>
 									<Checks
 										name='work_kinds'
-										value={'입주요양'}
+										value='입주요양'
 										label='입주요양'
 										checked={formik.values.work_kinds?.includes('입주요양')}
 										onChange={formik.handleChange}
@@ -291,7 +320,7 @@ const CaregiverDetail: FC<CaregiverDetailProps> = ({ caregiver }) => {
 								<div className='col-6'>
 									<Checks
 										name='work_kinds'
-										value={'요양시설'}
+										value='요양시설'
 										label='요양시설'
 										checked={formik.values.work_kinds?.includes('요양시설')}
 										onChange={formik.handleChange}
@@ -299,15 +328,15 @@ const CaregiverDetail: FC<CaregiverDetailProps> = ({ caregiver }) => {
 								</div>
 							</div>
 						</FormGroup>
-						<FormGroup id='career' isFloating={true} label='경력'>
+						<FormGroup id='career' label='경력' className='mb-3'>
 							<Input type='text' value={formik.values.career} onChange={formik.handleChange} />
 						</FormGroup>
-						<FormGroup id='prefer_gender' label='선호하는 어르신 성별'>
+						<FormGroup id='prefer_gender' label='선호하는 어르신 성별' className='mb-3'>
 							<div className='row'>
 								<div className='col-6'>
 									<Checks
 										name='prefer_gender'
-										value={'남자'}
+										value='남자'
 										checked={formik.values.prefer_gender?.includes('남자')}
 										label='남'
 										onChange={formik.handleChange}
@@ -316,7 +345,7 @@ const CaregiverDetail: FC<CaregiverDetailProps> = ({ caregiver }) => {
 								<div className='col-6'>
 									<Checks
 										name='prefer_gender'
-										value={'여자'}
+										value='여자'
 										checked={formik.values.prefer_gender?.includes('여자')}
 										label='녀'
 										onChange={formik.handleChange}
@@ -324,7 +353,7 @@ const CaregiverDetail: FC<CaregiverDetailProps> = ({ caregiver }) => {
 								</div>
 							</div>
 						</FormGroup>
-						<FormGroup id='dementia' label='치매교육 이수'>
+						<FormGroup id='dementia' label='치매교육 이수' className='mb-3'>
 							<div className='row'>
 								<div className='col-6'>
 									<Checks
@@ -337,7 +366,7 @@ const CaregiverDetail: FC<CaregiverDetailProps> = ({ caregiver }) => {
 								</div>
 							</div>
 						</FormGroup>
-						<FormGroup id='covid' label='코로나 백신 접종 여부'>
+						<FormGroup id='covid' label='코로나 백신 접종 여부' className='mb-3'>
 							<div className='row'>
 								<div className='col-6'>
 									<Checks
@@ -350,7 +379,7 @@ const CaregiverDetail: FC<CaregiverDetailProps> = ({ caregiver }) => {
 								</div>
 							</div>
 						</FormGroup>
-						<FormGroup id='privacy' label='개인정보 활용동의'>
+						<FormGroup id='privacy' label='개인정보 활용동의' className='mb-3'>
 							<div className='row'>
 								<div className='col-6'>
 									<Checks
@@ -363,7 +392,7 @@ const CaregiverDetail: FC<CaregiverDetailProps> = ({ caregiver }) => {
 								</div>
 							</div>
 						</FormGroup>
-						<FormGroup id='privacy' label='★유의 요보사 (문자발송/매칭에서 제외)'>
+						<FormGroup id='black' label='★유의 요보사 (문자발송/매칭에서 제외)' className='mb-3'>
 							<div className='row'>
 								<div className='col-6'>
 									<Checks
@@ -378,6 +407,20 @@ const CaregiverDetail: FC<CaregiverDetailProps> = ({ caregiver }) => {
 						</FormGroup>
 					</CardBody>
 				</Card>
+				<div className='d-flex flex-column m-3'>
+					<div className='row'>
+						<div>작성자 : {caregiverForm.writer}</div>
+						<div></div>
+					</div>
+					<div className='row'>
+						<div>최근 수정 시간 : {caregiverForm.lastModifiedDate}</div>
+						<div></div>
+					</div>
+					<div className='row'>
+						<div>수정자 : {caregiverForm.modifier}</div>
+						<div></div>
+					</div>
+				</div>
 			</OffCanvasBody>
 		</>
 	);

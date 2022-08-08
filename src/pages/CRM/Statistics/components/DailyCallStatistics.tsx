@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useCallback, useState } from 'react';
 import Card, {
 	CardActions,
 	CardBody,
@@ -13,20 +13,33 @@ import Button from '../../../../components/bootstrap/Button';
 import moment from 'moment';
 import { Calendar as DatePicker } from 'react-date-range';
 import ko from 'date-fns/locale/ko';
-import { statisticsSearchDateAtom } from '../Statistics';
 import { useRecoilState } from 'recoil';
 import FamilyServiceStatistics from './FamilyServiceStatistics';
+import Select from '../../../../components/bootstrap/forms/Select';
+import { CALL_TYPE_SELECT, CallType } from '../constants/StatisticsConstants';
+import { statisticsSearchParamAtom } from '../Statistics';
 
 interface DailyCallStatisticsProps {
 	callStatistic: CallData;
 }
 
 const DailyCallStatistics: FC<DailyCallStatisticsProps> = ({ callStatistic }) => {
-	const [searchDateAtom, setSearchDateAtom] = useRecoilState(statisticsSearchDateAtom);
-	const [selectDate, setSelectDate] = useState<Date>(searchDateAtom);
+	const [searchParamAtom, setSearchParamAtom] = useRecoilState(statisticsSearchParamAtom);
+	const [selectDate, setSelectDate] = useState<Date>(searchParamAtom!.date);
+	const [searchType, setSearchType] = useState<CallType>(searchParamAtom.type);
+
+	const handleOnChange = useCallback((e: any) => {
+		switch (e.target.id) {
+			case 'searchType':
+				setSearchType(e.target.value);
+				break;
+			default:
+				break;
+		}
+	}, []);
 
 	const changeCallData = () => {
-		setSearchDateAtom(selectDate);
+		setSearchParamAtom({ date: selectDate, type: searchType });
 	};
 
 	return (
@@ -40,22 +53,37 @@ const DailyCallStatistics: FC<DailyCallStatisticsProps> = ({ callStatistic }) =>
 						Reports
 					</CardSubTitle>
 				</CardLabel>
-				<CardActions>
-					<Popovers
-						desc={
-							<DatePicker
-								onChange={(item) => setSelectDate(item!)}
-								date={selectDate}
-								locale={ko}
-								color={'#6c5dd3'}
-							/>
-						}
-						placement='bottom-end'
-						className='mw-100'
-						trigger='click'>
-						<Button>{moment(selectDate).format('YYYY-MM-DD')}</Button>
-					</Popovers>
-					<Button onClick={() => changeCallData()}>검색</Button>
+				<CardActions className='d-flex flex-row'>
+					<div>
+						<Popovers
+							desc={
+								<DatePicker
+									onChange={(item) => setSelectDate(item!)}
+									date={selectDate}
+									locale={ko}
+									color={'#6c5dd3'}
+								/>
+							}
+							placement='bottom-end'
+							className='mw-100'
+							trigger='click'>
+							<Button>{moment(selectDate).format('YYYY-MM-DD')}</Button>
+						</Popovers>
+					</div>
+					<div>
+						<Select id='searchType' ariaLabel={'callType'} onChange={handleOnChange}>
+							{CALL_TYPE_SELECT.map((item, index) => (
+								<option key={index} value={item.value}>
+									{item.text}
+								</option>
+							))}
+						</Select>
+					</div>
+					<div>
+						<Button onClick={() => changeCallData()} icon={'Search'} color={'primary'}>
+							검색
+						</Button>
+					</div>
 				</CardActions>
 			</CardHeader>
 			<div className='row'>

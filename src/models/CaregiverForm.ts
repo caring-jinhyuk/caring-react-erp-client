@@ -13,8 +13,6 @@ export class CaregiverForm {
 	hopeArea?: string;
 	id?: number;
 	information?: string;
-	lastModifiedDate?: string;
-	modifier?: string;
 	name?: string;
 	phone?: string;
 	prefer_gender: string[];
@@ -23,7 +21,6 @@ export class CaregiverForm {
 	town?: string;
 	ward?: string;
 	work_kinds: string[];
-	writer?: string;
 	year?: number;
 	hope_city1?: string;
 	hope_city2?: string;
@@ -31,6 +28,9 @@ export class CaregiverForm {
 	hope_ward1?: string;
 	hope_ward2?: string;
 	hope_ward3?: string;
+	writer?: string;
+	lastModifiedDate?: string;
+	modifier?: string;
 
 	constructor(caregiver: Caregiver) {
 		this.id = caregiver.id;
@@ -41,7 +41,7 @@ export class CaregiverForm {
 		this.city = caregiver.city;
 		this.covid = caregiver.covid;
 		this.dementia = caregiver.dementia;
-		this.gender = caregiver.gender === undefined || false ? '여자' : '남자';
+		this.gender = caregiver.gender === true ? '남자' : '여자';
 		this.information =
 			caregiver.information ||
 			'이력/경력사항 : \n' + '요보사가 원하는 사항 : \n' + '면접 특이사항 : ';
@@ -56,7 +56,11 @@ export class CaregiverForm {
 		this.ward = caregiver.ward;
 		this.convertHopeArea(caregiver.hopeArea);
 		this.year = caregiver.year;
+		this.privacy = caregiver.privacy;
 		this.createdAt = caregiver.createdAt;
+		this.writer = caregiver.writer;
+		this.lastModifiedDate = caregiver.lastModifiedDate;
+		this.modifier = caregiver.modifier;
 	}
 
 	convertPreferGender(value?: string) {
@@ -66,7 +70,8 @@ export class CaregiverForm {
 			const arrGender = [];
 			if (value?.includes('남자')) {
 				arrGender.push('남자');
-			} else if (value?.includes('여자')) {
+			}
+			if (value?.includes('여자')) {
 				arrGender.push('여자');
 			}
 			return arrGender;
@@ -80,11 +85,14 @@ export class CaregiverForm {
 			const arrWorkKind = [];
 			if (value?.includes('방문요양')) {
 				arrWorkKind.push('방문요양');
-			} else if (value?.includes('방문목욕')) {
+			}
+			if (value?.includes('방문목욕')) {
 				arrWorkKind.push('방문목욕');
-			} else if (value?.includes('입주요양')) {
+			}
+			if (value?.includes('입주요양')) {
 				arrWorkKind.push('입주요양');
-			} else if (value?.includes('요양시설')) {
+			}
+			if (value?.includes('요양시설')) {
 				arrWorkKind.push('요양시설');
 			}
 

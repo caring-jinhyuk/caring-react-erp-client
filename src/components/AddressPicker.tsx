@@ -41,11 +41,11 @@ type IAddressPicker = {
 
 const AddressPicker: FC<IAddressPicker> = ({
 	cityId,
-	cityValue,
+	cityValue = '',
 	wardId,
-	wardValue,
+	wardValue = '',
 	townId,
-	townValue,
+	townValue = '',
 	onChange,
 }) => {
 	// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -97,11 +97,9 @@ const AddressPicker: FC<IAddressPicker> = ({
 
 	const init = useCallback(() => {
 		if (cityValue != null) {
-			console.log('-------호출 cityValue------');
 			setWard(selectWardFromCity(cityValue));
 		}
 		if (wardValue != null) {
-			console.log('-------호출 wardValue------');
 			if (townId !== undefined) {
 				AdministrativeDivisionControllerService.getAdministrativeDivisionUsingGet(
 					cityRef.current!.value,
@@ -144,7 +142,7 @@ const AddressPicker: FC<IAddressPicker> = ({
 
 	return (
 		<>
-			<div className='d-flex'>
+			<div className='d-flex mb-3'>
 				<FormGroup label={'시/도'}>
 					<Select
 						id={cityId}
@@ -167,7 +165,7 @@ const AddressPicker: FC<IAddressPicker> = ({
 				</FormGroup>
 
 				{wardId && (
-					<FormGroup label={'시/군/구'}>
+					<FormGroup label={'시/군/구'} className='ms-2'>
 						<Select
 							id={wardId}
 							ref={wardRef}
@@ -191,7 +189,7 @@ const AddressPicker: FC<IAddressPicker> = ({
 				)}
 
 				{townId && (
-					<FormGroup label={'읍/면/동'}>
+					<FormGroup label={'읍/면/동'} className='ms-2'>
 						<Select
 							id={townId}
 							onChange={(e) => {
