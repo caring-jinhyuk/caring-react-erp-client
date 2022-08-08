@@ -11,12 +11,16 @@ import Button, { ButtonGroup } from '../../../components/bootstrap/Button';
 import { atom, useRecoilValue } from 'recoil';
 import { v1 } from 'uuid';
 import moment from 'moment';
-import { SubheaderSeparator } from '../../../layout/SubHeader/SubHeader';
-import { QueryClient, QueryClientProvider, useQueryClient } from '@tanstack/react-query';
+import { useQueryClient } from '@tanstack/react-query';
+import { CallType } from './constants/StatisticsConstants';
+import DownloadStatistics from './components/DownloadStatistics';
 
-export const statisticsSearchDateAtom = atom({
+export const statisticsSearchParamAtom = atom({
 	key: `${v1()}`,
-	default: moment().toDate(),
+	default: {
+		date: moment().toDate() as Date,
+		type: CallType.TODAY as CallType,
+	},
 });
 
 export enum StatisticsPageType {
@@ -25,7 +29,7 @@ export enum StatisticsPageType {
 }
 
 const Statistics = () => {
-	const searchDateAtom = useRecoilValue(statisticsSearchDateAtom);
+	const searchParamAtom = useRecoilValue(statisticsSearchParamAtom);
 	const { isFetching, data } = useGetConsultAllList();
 	const [call, setCall] = useState<CallData>();
 	const [pageType, setPageType] = useState<StatisticsPageType>(StatisticsPageType.DAILY);
@@ -33,10 +37,10 @@ const Statistics = () => {
 
 	useEffect(() => {
 		if (data !== undefined) {
-			const callData = new CallData(data!, searchDateAtom);
+			const callData = new CallData(data!, searchParamAtom.date, searchParamAtom.type);
 			setCall(callData);
 		}
-	}, [data, searchDateAtom, isFetching]);
+	}, [data, searchParamAtom, isFetching]);
 
 	const changePage = (type: StatisticsPageType) => {
 		setPageType(type);
@@ -76,6 +80,7 @@ const Statistics = () => {
 											<Button color='success' icon='Refresh' onClick={refreshData} />
 										</HeaderRight>
 									</Header>
+									<DownloadStatistics />
 									{pageType === StatisticsPageType.DAILY && (
 										<DailyCallStatistics callStatistic={call} />
 									)}

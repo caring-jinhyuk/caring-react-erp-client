@@ -1,5 +1,6 @@
 import { Consult } from '../services/openApi';
 import moment from 'moment';
+import { CallType } from '../pages/CRM/Statistics/constants/StatisticsConstants';
 
 export class CallData {
 	private readonly response: Array<Consult>;
@@ -136,6 +137,7 @@ export class CallData {
 	create: Date = moment().toDate();
 
 	now: string = moment().format('YY-MM-DD');
+	searchType: CallType;
 
 	today: string = new Date().toISOString().substring(0, 10);
 
@@ -209,9 +211,10 @@ export class CallData {
 
 	counselorProgressDetail: number[] = Array.from({ length: this.counselors.length }, () => 0);
 
-	constructor(consults: Array<Consult>, searchDate: Date) {
+	constructor(consults: Array<Consult>, searchDate: Date, searchType: CallType) {
 		this.response = consults;
 		this.now = moment(searchDate).format('YY-MM-DD');
+		this.searchType = searchType;
 		this.calculateCallData();
 	}
 
@@ -494,12 +497,12 @@ export class CallData {
 					if (this.response[i].memo != null && this.response[i].memo?.includes(this.now)) {
 						if (this.create.toISOString().substring(0, 10) === this.today) {
 							this.todayNewCall++;
-							if (!this.todayCallClick[2]) {
+							if (!this.searchType.includes(CallType.RE)) {
 								this.today_statistics(this.response[i]);
 							}
 						} else {
 							this.todayNewCall++;
-							if (!this.todayCallClick[1]) {
+							if (!this.searchType.includes(CallType.NEW)) {
 								this.today_statistics(this.response[i]);
 							}
 						}
