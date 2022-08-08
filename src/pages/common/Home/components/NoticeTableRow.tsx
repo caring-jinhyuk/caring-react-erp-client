@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useState } from 'react';
+import React, { FC } from 'react';
 import { Notice } from '../../../../services/openApi';
 import moment from 'moment';
 import NoticeDetail from './NoticeDetail';
@@ -14,7 +14,6 @@ const NoticeTableRow: FC<NoticeTableRowProps> = ({ notice }) => {
 	const [offCanvas, setOffCanvas] = useRecoilState(offCanvasState);
 
 	const onClickHandler = () => {
-		console.log(1);
 		let offCanvasElement = <NoticeDetail key={v1()} notice={notice} />;
 
 		if (offCanvas.isOpen) {

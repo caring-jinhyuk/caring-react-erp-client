@@ -1,12 +1,13 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import Select from '../../../components/bootstrap/forms/Select';
 import Input from '../../../components/bootstrap/forms/Input';
 import Button from '../../../components/bootstrap/Button';
 import { Caregiver, CaregiverControllerService } from '../../../services/openApi';
 import { downloadCsv } from '../../../utils/XlsxUtils';
-import { atom, useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { caregiverModal, selectCaregiver } from './CaregiverContainer';
-import { QueryClient, useQueryClient } from '@tanstack/react-query';
+import { atom, useRecoilState, useSetRecoilState } from 'recoil';
+import { offCanvasState } from '../../../atoms/offCanvas';
+import CaregiverDetail from './components/CaregiverDetail';
+import { v1 } from 'uuid';
 
 export const caregiverSearchParam = atom({
 	key: 'caregiverSearch',
@@ -20,11 +21,16 @@ const CaregiverListHeader = () => {
 	const setSearchParam = useSetRecoilState(caregiverSearchParam);
 	const [keyword, setKeyword] = useState<string>('');
 	const [search, setSearch] = useState<string>('');
-	const setCaregiver = useSetRecoilState(selectCaregiver);
-	const setOpen = useSetRecoilState(caregiverModal);
-	//const [selectCaregiver, setSelectCaregiver] = useState<any>();
-	//const [openCaregiverDetail, setOpenCaregiverDetail] = useState(false);
-	const queryClient = useQueryClient();
+	const [offCanvas, setOffCanvas] = useRecoilState(offCanvasState);
+	const onClickHandler = () => {
+		let offCanvasElement = <CaregiverDetail key={v1()} caregiver={{} as Caregiver} />;
+
+		if (offCanvas.isOpen) {
+			setOffCanvas({ ...offCanvas, children: offCanvasElement });
+			return;
+		}
+		setOffCanvas({ isOpen: true, children: offCanvasElement });
+	};
 
 	const handleOnChange = (e: any) => {
 		switch (e.target.id) {
@@ -44,11 +50,6 @@ const CaregiverListHeader = () => {
 				search: e.target.value,
 			});
 		}
-	};
-
-	const openDetail = (item: any) => {
-		setCaregiver({});
-		setOpen(true);
 	};
 
 	const caregiverColumns = [
@@ -80,7 +81,7 @@ const CaregiverListHeader = () => {
 
 	function columnValue(item: any, c: any) {
 		let d = item[c.value];
-		if (c.type == 'date') {
+		if (c.type === 'date') {
 			try {
 				const date = new Date(d);
 				return date.toLocaleString();
@@ -140,7 +141,7 @@ const CaregiverListHeader = () => {
 				</div>
 
 				<div className='col-6'>
-					<Button color='primary' icon={'Add'} onClick={() => openDetail(Object())}>
+					<Button color='primary' icon={'Add'} onClick={onClickHandler}>
 						요양 보호사 추가
 					</Button>
 					<Button

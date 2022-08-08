@@ -8,6 +8,9 @@ import { ThemeContextProvider } from './contexts/themeContext';
 import { RecoilRoot } from 'recoil';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import moment from 'moment';
+import 'moment/locale/ko';
+moment.locale('ko');
 
 const queryClient = new QueryClient({
 	defaultOptions: {
