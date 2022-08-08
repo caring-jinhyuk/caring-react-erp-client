@@ -14,6 +14,7 @@ import moment from 'moment';
 import { useQueryClient } from '@tanstack/react-query';
 import { CallType } from './constants/StatisticsConstants';
 import DownloadStatistics from './components/DownloadStatistics';
+import { Line } from '../../../components/icon/bootstrap';
 
 export const statisticsSearchParamAtom = atom({
 	key: `${v1()}`,

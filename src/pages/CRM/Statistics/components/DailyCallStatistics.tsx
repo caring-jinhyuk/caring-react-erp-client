@@ -53,8 +53,8 @@ const DailyCallStatistics: FC<DailyCallStatisticsProps> = ({ callStatistic }) =>
 						Reports
 					</CardSubTitle>
 				</CardLabel>
-				<CardActions className='row'>
-					<div className='col-4'>
+				<CardActions className='d-flex flex-row'>
+					<div>
 						<Popovers
 							desc={
 								<DatePicker
@@ -70,7 +70,7 @@ const DailyCallStatistics: FC<DailyCallStatisticsProps> = ({ callStatistic }) =>
 							<Button>{moment(selectDate).format('YYYY-MM-DD')}</Button>
 						</Popovers>
 					</div>
-					<div className='col-5'>
+					<div>
 						<Select id='searchType' ariaLabel={'callType'} onChange={handleOnChange}>
 							{CALL_TYPE_SELECT.map((item, index) => (
 								<option key={index} value={item.value}>
@@ -79,7 +79,7 @@ const DailyCallStatistics: FC<DailyCallStatisticsProps> = ({ callStatistic }) =>
 							))}
 						</Select>
 					</div>
-					<div className='col-3'>
+					<div>
 						<Button onClick={() => changeCallData()} icon={'Search'} color={'primary'}>
 							검색
 						</Button>
