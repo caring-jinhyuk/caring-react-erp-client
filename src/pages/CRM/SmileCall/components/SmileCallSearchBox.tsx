@@ -10,65 +10,58 @@ import { Smile, SmileControllerService } from '../../../../services/openApi';
 import {
 	arrToOption,
 	innerItemCompleteList,
-	innerItemCounselors,
+	innerItemCounselorList,
 } from '../statics/SmileCallStatics';
 
 import SmileCallDetail from './SmileCallDetail';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { SearchBox, searchBoxState } from '../../../../atoms/smileCall';
+import { SearchBox, smileCallSearchState } from '../../../../atoms/smileCall';
 import { smileCallDetailInfo } from '../SmileCallContainer';
+import event from '../../../../components/icon/material-icons/Event';
 
-const SmileCallSearchBox = () => {
-	//셀렉트,체크 등 단건의 이벤트가 발생하는 곳 (onchange 시) - 전역 저장용 atom
-	const [searchBoxParam, setSearchBoxParam] = useRecoilState(searchBoxState);
-
+const SmileCallSearchBox = (p: {}) => {
+	//규칙 1: 모든 서치값은 useState로 선언 이후 아톰에 적용하는 방식으로 수행. ( 조회버튼 생성시 및 사용자가 검색조건을 전체 설정이후에 조회 1번만 가능하도록 하기 위함)
+	const [searchBoxParam, setSearchBoxParam] = useRecoilState(smileCallSearchState); //- 전역 저장용 atom
 	//스트링 검색조건 유지 - 입력시마다 (onchange) 이벤트가 발생하므로 따로 처리
-	const [complete, setComplete] = useState<string>('');
-	const [manager, setManager] = useState<string>('');
-	const [searchString, setSearchString] = useState<string>('');
+	const [inputs, setInputs] = useState<SearchBox>({
+		complete: '',
+		manager: '',
+		searchString: '',
+	});
 
-	const handleOnChange = (e: any) => {
-		switch (e.target.id) {
-			case 'search-complete':
-				setSearchBoxParam({
-					complete: e.target.value,
-					manager: searchBoxParam.manager,
-					searchString: searchBoxParam.searchString,
-				});
-				break;
-			case 'search-manager':
-				setSearchBoxParam({
-					complete: searchBoxParam.complete,
-					manager: e.target.value,
-					searchString: searchBoxParam.searchString,
-				});
-				break;
-			case 'search-string':
-				setSearchString(e.target.value);
-				break;
-		}
+	const { complete, manager, searchString } = inputs; // 비구조화 할당을 통해 값 추출
+
+	const onReset = () => {
+		setInputs({
+			complete: '',
+			manager: '',
+			searchString: '',
+		});
 	};
 
-	//스트링 파라메터 관련 debounce 고려
-	const handleOnKeyUp = (e: any) => {
-		if (e.keyCode === 13) {
-			switch (e.target.id) {
-				case 'search-string':
-					setSearchBoxParam({
-						complete: searchBoxParam.complete,
-						manager: searchBoxParam.manager,
-						searchString: e.target.value,
-					});
-					break;
-			}
-		}
+	const handleOnChange = (e: any) => {
+		const { value, name } = e.target;
+		setInputs({
+			...inputs, // 기존의 input 객체를 복사한 뒤
+			[name]: value, // name 키를 가진 값을 value 로 설정
+		});
+
+		//스트링 인풋일 경우 제외
+		if (name !== 'searchString') handleOnChangeAtom(e);
+	};
+
+	//아톰 저장
+	const handleOnChangeAtom = (e: any) => {
+		const { value, name } = e.target; // 우선 e.target 에서 name 과 value 를 추출
+		setSearchBoxParam({
+			...searchBoxParam, // 기존의 객체를 복사한 뒤
+			[name]: value,
+		});
 	};
 
 	/*스마일콜 추가기능*/
 	//ADD정보를 호출 페이지에서 관리 - 추가창을 닫고 다시 추가창을 켯을때 유지되도록(이전 기록 유지), 초기화 버튼 생성
-	//추가화면 오픈 관리 설정 - 변수명 관리 여러가지의 팝업이 있고 상태를 관리해야할 경우에 따른 명시
 	const [isModal, setModal] = useState<boolean>(false);
-
 	const onClickAddHandler = () => {
 		setModal(!isModal);
 	};
@@ -77,37 +70,44 @@ const SmileCallSearchBox = () => {
 		<FormGroup id='searchArea'>
 			<div className='row g-3'>
 				<div className='col-2'>
-					<thead style={{ fontWeight: 'bold' }}> 진행여부</thead>
-					<Select
-						className='col-12 mb-3'
-						id='search-complete'
-						ariaLabel='진행여부'
-						list={innerItemCompleteList}
-						value={searchBoxParam.complete}
-						onChange={(e) => handleOnChange(e)}></Select>
+					<FormGroup id='complete' className='mb-3' label='진행여부'>
+						<Select
+							className='col-12 mb-3'
+							id='complete'
+							name='complete'
+							ariaLabel='진행여부'
+							list={innerItemCompleteList}
+							value={complete}
+							onChange={(e) => handleOnChange(e)}></Select>
+					</FormGroup>
 				</div>
 				<div className='col-2'>
-					<thead style={{ fontWeight: 'bold' }}> 담당자</thead>
-					<Select
-						className='col-12 mb-3'
-						id='search-manager'
-						ariaLabel='담당자'
-						list={arrToOption(innerItemCounselors, 'all')}
-						value={searchBoxParam.manager}
-						onChange={(e) => handleOnChange(e)}></Select>
+					<FormGroup id='manager' className='mb-3' label='담당자'>
+						<Select
+							className='col-12 mb-3'
+							id='manager'
+							name='manager'
+							ariaLabel='담당자'
+							list={innerItemCounselorList}
+							value={manager}
+							onChange={(e) => handleOnChange(e)}></Select>
+					</FormGroup>
 				</div>
-				<div className='col-2'>
-					<thead style={{ fontWeight: 'bold' }}> 검색</thead>
-					<Input
-						type='text'
-						id='search-string'
-						placeholder={'보호자 또는 수급자 이름'}
-						value={searchString}
-						onChange={(e) => handleOnChange(e)}
-						onKeyUp={(e) => handleOnKeyUp(e)}></Input>
+				<div className='col-3'>
+					<FormGroup id='searchString' className='mb-3' label='검색'>
+						<Input
+							type='text'
+							id='searchString'
+							name='searchString'
+							placeholder={'보호자 또는 수급자 이름'}
+							value={searchString}
+							onChange={(e) => handleOnChange(e)}
+							onKeyUp={(e) => {
+								if (e.key === 'Enter') handleOnChangeAtom(e);
+							}}></Input>
+					</FormGroup>
 				</div>
 				<div className='col-4'>
-					<thead style={{ fontWeight: 'bold' }}> 기능</thead>
 					<Button color='primary' icon={'Add'} onClick={onClickAddHandler}>
 						스마일 콜 추가
 					</Button>

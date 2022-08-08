@@ -6,7 +6,7 @@ export interface SearchBox {
 	searchString?: string;
 }
 
-export const searchBoxState = atom({
-	key: 'searchBoxState',
+export const smileCallSearchState = atom({
+	key: 'smileCallSearchState',
 	default: { complete: '', manager: '', searchString: '' },
 });

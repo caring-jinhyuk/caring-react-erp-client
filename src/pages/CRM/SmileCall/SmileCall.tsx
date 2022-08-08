@@ -11,6 +11,7 @@ import Card, {
 } from '../../../components/bootstrap/Card';
 import SmileCallList from './components/SmileCallList';
 import Button from '../../../components/bootstrap/Button';
+
 const SmileCall = () => {
 	return (
 		<PageWrapper title='SmileCall Page'>

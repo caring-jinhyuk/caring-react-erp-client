@@ -14,7 +14,7 @@ import { Progress, progressState } from '../../../../atoms/progress';
 import SmileCallTableRow from './SmileCallTableRow';
 import { v1 } from 'uuid';
 import PaginationButtons from '../../../../components/PaginationButtons';
-import { searchBoxState } from '../../../../atoms/smileCall';
+import { smileCallSearchState } from '../../../../atoms/smileCall';
 import { useQuery } from '@tanstack/react-query';
 
 //리액트쿼리는 함수명 use를 앞에 붙여주어야한다. (custom hooks)
@@ -31,6 +31,7 @@ export const useSmileListUsingGet = (
 		{
 			//keepPreviousData: true, // keepPreviousData가 true일 때 isSuccess, isLoading 값이 처음 데이터를 불러오기 시작할 때, 불러온 후 바뀌고 그 후로는 바뀌지 않습니다. -페이징때는 true가 좋음
 			cacheTime: 0,
+			//staleTime:0,
 		},
 	);
 	return {
@@ -45,13 +46,14 @@ export const getSmileList = async (
 	page: number,
 	searchString: string,
 	perPage: number,
-) => SmileControllerService.getSmileListUsingGet(complete, manager, page, searchString, perPage);
+) =>
+	SmileControllerService.getSmileListUsingGet(complete, manager, page - 1, searchString, perPage);
 
 const SmileCallList: FC = () => {
 	//페이징 상태
 	const [currentPage, setCurrentPage] = useState(1);
 	const [perPage, setPerPage] = useState(10);
-	const searchBoxParam = useRecoilValue(searchBoxState);
+	const searchBoxParam = useRecoilValue(smileCallSearchState);
 
 	//상태의 변경에 따라 리액트쿼리 실행되도록
 	const getSmileCallList = useSmileListUsingGet(
@@ -97,8 +99,7 @@ const SmileCallList: FC = () => {
 					<tbody>
 						{getSmileCallList.contents?.content &&
 							getSmileCallList.contents.content.map((item) => (
-								// eslint-disable-next-line react/jsx-key
-								<SmileCallTableRow key={v1()} smile={item} />
+								<SmileCallTableRow key={item.id} smile={item} />
 							))}
 					</tbody>
 				</table>
