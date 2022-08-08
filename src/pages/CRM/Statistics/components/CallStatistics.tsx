@@ -10,7 +10,7 @@ import Card, {
 import Button from '../../../../components/bootstrap/Button';
 import SubHeader from '../../../../layout/SubHeader/SubHeader';
 import ScrollspyNav from '../../../../components/bootstrap/ScrollspyNav';
-import { CallData } from '../CallData';
+import { CallData } from '../../../../models/CallData';
 
 export enum StatisticType {
 	INFLOW = '유입매체',

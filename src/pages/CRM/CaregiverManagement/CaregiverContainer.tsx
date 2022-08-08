@@ -1,39 +1,15 @@
 import React from 'react';
 import CaregiverList from './components/CaregiverList';
-import CaregiverListHeader, { caregiverSearchParam } from './CaregiverListHeader';
+import CaregiverListHeader from './CaregiverListHeader';
 import Card, { CardBody } from '../../../components/bootstrap/Card';
 import CaregiverDetail from './components/CaregiverDetail';
-import { atom, selector, useRecoilValue } from 'recoil';
-import { Caregiver, CaregiverControllerService } from '../../../services/openApi';
+import { atom, useRecoilState, useRecoilValue } from 'recoil';
+import { Caregiver } from '../../../services/openApi';
+import { offCanvasState } from '../../../atoms/offCanvas';
+import NoticeDetail from '../../common/Home/components/NoticeDetail';
 import { v1 } from 'uuid';
 
-export const selectCaregiver = atom({
-	key: 'selectCaregiver',
-	default: {} as Caregiver,
-});
-
-export const caregiverModal = atom({
-	key: 'caregiverModal',
-	default: false,
-});
-
-export const getCaregiverList = selector<Caregiver[]>({
-	key: `${v1()}`,
-	get: async ({ get }) => {
-		const param = get(caregiverSearchParam);
-		const response = await CaregiverControllerService.getCaregiverListUsingGet(
-			param.keyword,
-			0,
-			param.search,
-			10,
-		);
-		return response.content!;
-	},
-});
-
 const CaregiverContainer = () => {
-	const caregiverModel = useRecoilValue(caregiverModal);
-
 	return (
 		<>
 			<Card>
@@ -42,7 +18,6 @@ const CaregiverContainer = () => {
 					<CaregiverList />
 				</CardBody>
 			</Card>
-			{caregiverModel && <CaregiverDetail />}
 		</>
 	);
 };

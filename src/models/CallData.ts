@@ -1,6 +1,5 @@
-import { Consult } from '../../../services/openApi';
+import { Consult } from '../services/openApi';
 import moment from 'moment';
-import CallStatistics from './components/CallStatistics';
 
 export class CallData {
 	private readonly response: Array<Consult>;
@@ -152,11 +151,11 @@ export class CallData {
 
 	experienceCheckList: number[][] = Array(5)
 		.fill(0)
-		.map((x) => Array(3).fill(0));
+		.map(() => Array(3).fill(0));
 
 	progressCheckList: number[][] = Array(2)
 		.fill(0)
-		.map((x) => Array(this.progressList.length + 1).fill(0));
+		.map(() => Array(this.progressList.length + 1).fill(0));
 
 	choiceReasonCall: number[] = Array.from({ length: this.whyList.length }, () => 0);
 
@@ -180,13 +179,13 @@ export class CallData {
 
 	counselorCallDetail: number[][] = Array(this.counselors.length)
 		.fill(0)
-		.map((x) => Array(7).fill(0));
+		.map(() => Array(7).fill(0));
 
 	todayNewcall: number = 0;
 
 	todayCounselorCallList: number[][] = Array(this.counselors.length)
 		.fill(0)
-		.map((x) => Array(2).fill(0));
+		.map(() => Array(2).fill(0));
 
 	todayItemCall: number[] = Array.from({ length: this.inflowList.length }, () => 0);
 
@@ -194,11 +193,11 @@ export class CallData {
 
 	stateComeList: number[][] = Array(this.todayStateCall.length)
 		.fill(0)
-		.map((x) => Array(this.inflowList.length).fill(0));
+		.map(() => Array(this.inflowList.length).fill(0));
 
 	comeStateList: number[][] = Array(this.inflowList.length)
 		.fill(0)
-		.map((x) => Array(this.todayStateCall.length).fill(0));
+		.map(() => Array(this.todayStateCall.length).fill(0));
 
 	todayChoiceReasonEtc: string = '';
 
@@ -315,53 +314,53 @@ export class CallData {
 				}
 
 				for (let y = 0; y < this.cityCall.length; y++) {
-					if (this.response[i].city == this.cityList[y]) {
+					if (this.response[i].city === this.cityList[y]) {
 						this.cityCall[y]++;
-						if (this.response[i].visitHope == 'O') {
+						if (this.response[i].visitHope === 'O') {
 							this.cityVisitHopeCall[y]++;
 						}
 						break;
-					} else if (y == this.cityCall.length - 1) {
+					} else if (y === this.cityCall.length - 1) {
 						this.cityCall[y]++;
 					}
 				}
 
 				for (let count = 0; count < this.stateList.length; count++) {
-					if (this.response[i].state == this.stateList[count]) {
+					if (this.response[i].state === this.stateList[count]) {
 						this.stateCall[count]++;
-						if (count == 0) {
+						if (count === 0) {
 							if (
 								this.response[i].memo?.includes('가족요양중') ||
 								this.response[i].memo?.includes('가족 요양중') ||
 								this.response[i].memo?.includes('가족요양 중') ||
 								this.response[i].memo?.includes('가족 요양 중') ||
 								this.response[i].memo?.includes('이관') ||
-								this.response[i].experience == '이관'
+								this.response[i].experience === '이관'
 							) {
 								this.experienceCheckList[0][0]++;
 							} else if (
 								this.response[i].memo?.includes('처음') ||
 								this.response[i].memo?.includes('신규') ||
-								this.response[i].experience == '신규'
+								this.response[i].experience === '신규'
 							) {
 								this.experienceCheckList[0][1]++;
 							} else {
 								this.experienceCheckList[0][2]++;
 							}
-						} else if (count == 5) {
+						} else if (count === 5) {
 							if (
 								this.response[i].memo?.includes('가족요양중') ||
 								this.response[i].memo?.includes('가족 요양중') ||
 								this.response[i].memo?.includes('가족요양 중') ||
 								this.response[i].memo?.includes('가족 요양 중') ||
 								this.response[i].memo?.includes('이관') ||
-								this.response[i].experience == '이관'
+								this.response[i].experience === '이관'
 							) {
 								this.experienceCheckList[1][0]++;
 							} else if (
 								this.response[i].memo?.includes('처음') ||
 								this.response[i].memo?.includes('신규') ||
-								this.response[i].experience == '신규'
+								this.response[i].experience === '신규'
 							) {
 								this.experienceCheckList[1][1]++;
 							} else {
@@ -372,17 +371,17 @@ export class CallData {
 					}
 				}
 
-				if (this.response[i].progress != '' && this.response[i].progress != null) {
+				if (this.response[i].progress !== '' && this.response[i].progress != null) {
 					for (let count = 0; count < this.progressList.length; count++) {
-						if (this.response[i].progress == this.progressList[count]) {
+						if (this.response[i].progress === this.progressList[count]) {
 							this.progressCheckList[0][count]++;
 						}
 					}
-				} else if (this.response[i].progress == '') {
+				} else if (this.response[i].progress === '') {
 					this.progressCheckList[0][this.progressList.length]++;
 				}
 
-				if (this.response[i].why != '' && this.response[i].why != null) {
+				if (this.response[i].why !== '' && this.response[i].why != null) {
 					for (let count = 0; count < this.whyList.length; count++) {
 						if (this.response[i].why?.includes(this.whyList[count])) {
 							this.choiceReasonCall[count]++;
@@ -399,7 +398,7 @@ export class CallData {
 					}
 				}
 
-				if (this.response[i].addInquiry != '' && this.response[i].addInquiry != null) {
+				if (this.response[i].addInquiry !== '' && this.response[i].addInquiry != null) {
 					for (let count = 0; count < this.addInquiryList.length; count++) {
 						if (this.response[i].addInquiry?.includes(this.addInquiryList[count])) {
 							this.addInquiryCall[count]++;
@@ -416,16 +415,16 @@ export class CallData {
 					}
 				}
 
-				if (this.response[i].first != null && this.response[i].first != '') {
+				if (this.response[i].first != null && this.response[i].first !== '') {
 					for (let count = 0; count < this.counselors.length; count++) {
-						if (this.response[i].first == this.counselors[count]) {
+						if (this.response[i].first === this.counselors[count]) {
 							this.counselorsCall[count]++;
 							break;
 						}
 					}
 				}
 
-				if (this.response[i].memo != null && this.response[i].memo != '') {
+				if (this.response[i].memo != null && this.response[i].memo !== '') {
 					for (let count = 0; count < this.counselors.length; count++) {
 						let counselor = new RegExp(this.counselors[count], 'g');
 						if (this.response[i].memo?.search(this.counselors[count]) !== -1) {
@@ -438,7 +437,7 @@ export class CallData {
 					}
 				}
 				//
-				if (this.response[i].lastModifiedDate != null && this.response[i].lastModifiedDate != '') {
+				if (this.response[i].lastModifiedDate != null && this.response[i].lastModifiedDate !== '') {
 					this.create = new Date(this.response[i].createdAt!);
 					// 	// days = '22-07-01/'
 					// 	// for(let minute=0; minute<160; minute++){
@@ -516,60 +515,60 @@ export class CallData {
 		let create = new Date(data.createdAt!);
 		this.todayPerson++;
 		for (let count = 0; count < this.stateList.length; count++) {
-			if (data.state == this.stateList[count]) {
+			if (data.state === this.stateList[count]) {
 				this.todayStateCall[count]++;
-				if (count == 0) {
+				if (count === 0) {
 					if (
 						data.memo?.includes('가족요양중') ||
 						data.memo?.includes('가족 요양중') ||
 						data.memo?.includes('가족요양 중') ||
 						data.memo?.includes('가족 요양 중') ||
 						data.memo?.includes('이관') ||
-						data.experience == '이관'
+						data.experience === '이관'
 					) {
 						this.experienceCheckList[2][0]++;
 					} else if (
 						data.memo?.includes('처음') ||
 						data.memo?.includes('신규') ||
-						data.experience == '신규'
+						data.experience === '신규'
 					) {
 						this.experienceCheckList[2][1]++;
 					} else {
 						this.experienceCheckList[2][2]++;
 					}
-				} else if (count == 5) {
+				} else if (count === 5) {
 					if (
 						data.memo?.includes('가족요양중') ||
 						data.memo?.includes('가족 요양중') ||
 						data.memo?.includes('가족요양 중') ||
 						data.memo?.includes('가족 요양 중') ||
 						data.memo?.includes('이관') ||
-						data.experience == '이관'
+						data.experience === '이관'
 					) {
 						this.experienceCheckList[3][0]++;
 					} else if (
 						data.memo?.includes('처음') ||
 						data.memo?.includes('신규') ||
-						data.experience == '신규'
+						data.experience === '신규'
 					) {
 						this.experienceCheckList[3][1]++;
 					} else {
 						this.experienceCheckList[3][2]++;
 					}
-				} else if (count == 1) {
+				} else if (count === 1) {
 					if (
 						data.memo?.includes('가족요양중') ||
 						data.memo?.includes('가족 요양중') ||
 						data.memo?.includes('가족요양 중') ||
 						data.memo?.includes('가족 요양 중') ||
 						data.memo?.includes('이관') ||
-						data.experience == '이관'
+						data.experience === '이관'
 					) {
 						this.experienceCheckList[4][0]++;
 					} else if (
 						data.memo?.includes('처음') ||
 						data.memo?.includes('신규') ||
-						data.experience == '신규'
+						data.experience === '신규'
 					) {
 						this.experienceCheckList[4][1]++;
 					} else {
@@ -580,10 +579,10 @@ export class CallData {
 					this.today_state_come_statistics(data.come, count);
 				}
 				if (
-					count == 0 &&
+					count === 0 &&
 					data.progress != null &&
-					data.progress != '' &&
-					(data.progress == '서류 받음' || data.progress == '서류 대기중')
+					data.progress !== '' &&
+					(data.progress === '서류 받음' || data.progress === '서류 대기중')
 				) {
 					this.callDocument++;
 				}
@@ -648,9 +647,9 @@ export class CallData {
 				break;
 		}
 
-		if (data.come != null && data.come != '') {
+		if (data.come != null && data.come !== '') {
 			for (let count = 0; count < this.inflowList.length; count++) {
-				if (data.come == this.inflowList[count]) {
+				if (data.come === this.inflowList[count]) {
 					this.todayItemCall[count]++;
 					if (data.state !== undefined) {
 						this.today_come_state_statistics(data.state!, count);
@@ -665,7 +664,7 @@ export class CallData {
 		}
 
 		for (let i = 0; i < this.counselors.length; i++) {
-			if (data.memo != null && data.memo != '') {
+			if (data.memo != null && data.memo !== '') {
 				if (data.memo.includes(this.now + '/ ' + this.counselors[i])) {
 					let str = new RegExp(this.now + '/ ' + this.counselors[i], 'g');
 					this.counselorCallDetail[i][0] += (data.memo.match(str) || []).length;
@@ -690,23 +689,23 @@ export class CallData {
 			}
 		}
 
-		if (data.progress != '' && data.progress != null) {
+		if (data.progress !== '' && data.progress != null) {
 			for (let count = 0; count < this.progressList.length; count++) {
-				if (data.progress == this.progressList[count]) {
+				if (data.progress === this.progressList[count]) {
 					this.progressCheckList[1][count]++;
 				}
 			}
-		} else if (data.progress == '') {
+		} else if (data.progress === '') {
 			this.progressCheckList[1][this.progressList.length]++;
 			for (let count = 0; count < this.counselors.length; count++) {
-				if (data.manager == this.counselors[count]) {
+				if (data.manager === this.counselors[count]) {
 					this.counselorProgressDetail[count]++;
 					break;
 				}
 			}
 		}
 
-		if (data.why != '' && data.why != null) {
+		if (data.why !== '' && data.why != null) {
 			for (let count = 0; count < this.whyList.length; count++) {
 				if (data.why.includes(this.whyList[count])) {
 					this.todayChoiceReasonCall[count]++;
@@ -720,7 +719,7 @@ export class CallData {
 					this.todayChoiceReasonEtc += item + ', ';
 				});
 		}
-		if (data.addInquiry != '' && data.addInquiry != null) {
+		if (data.addInquiry !== '' && data.addInquiry != null) {
 			for (let count = 0; count < this.addInquiryList.length; count++) {
 				if (data.addInquiry.includes(this.addInquiryList[count])) {
 					this.todayAddInquiryCall[count]++;
