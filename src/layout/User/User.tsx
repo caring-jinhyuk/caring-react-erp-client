@@ -13,6 +13,7 @@ import { userState } from '../../atoms/user';
 
 const User = () => {
 	const userAtom = useRecoilValue(userState);
+
 	const navigate = useNavigate();
 	const handleItem = useNavigationItemHandle();
 	const { darkModeStatus, setDarkModeStatus } = useDarkMode();
