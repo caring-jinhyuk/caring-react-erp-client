@@ -9,8 +9,9 @@ import Card, {
 	CardLabel,
 	CardTitle,
 } from '../../../components/bootstrap/Card';
-import SmileCalls from './components/SmileCalls';
+import SmileCallList from './components/SmileCallList';
 import Button from '../../../components/bootstrap/Button';
+
 const SmileCall = () => {
 	return (
 		<PageWrapper title='SmileCall Page'>
@@ -20,22 +21,10 @@ const SmileCall = () => {
 						<CardLabel icon='Info' iconColor='secondary'>
 							<CardTitle>스마일콜</CardTitle> {/* 여기서 파라메터를 전달해줄수 있음 */}
 						</CardLabel>
-						<CardActions>
-							<Button
-								color='info'
-								icon='CloudDownload'
-								isLight
-								tag='a'
-								to='/somefile.txt'
-								target='_blank'
-								download>
-								Export
-							</Button>
-						</CardActions>
 					</CardHeader>
 					<CardBody>
 						<SmileCallSearchBox />
-						<SmileCalls />
+						<SmileCallList />
 					</CardBody>
 				</Card>
 			</Page>

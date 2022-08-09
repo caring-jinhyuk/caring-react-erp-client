@@ -3,143 +3,134 @@ import FormGroup from '../../../../components/bootstrap/forms/FormGroup';
 import Select from '../../../../components/bootstrap/forms/Select';
 import Button from '../../../../components/bootstrap/Button';
 import Input from '../../../../components/bootstrap/forms/Input';
-import Checks, { ChecksGroup } from '../../../../components/bootstrap/forms/Checks';
+import { debounce } from '../../../../helpers/helpers';
 
-import { Caregiver, Smile, SmileControllerService } from '../../../../services/openApi';
+import {
+	CaregiverControllerService,
+	Smile,
+	SmileControllerService,
+} from '../../../../services/openApi';
+
 import {
 	arrToOption,
-	selectCompleteItem,
-	selectCounselorItem,
-} from '../Statistics/SmileCallStatistics';
+	innerItemCompleteList,
+	innerItemCounselorList,
+} from '../statics/SmileCallStatics';
 
 import SmileCallDetail from './SmileCallDetail';
-import { atom, useSetRecoilState, atomFamily, useRecoilState } from 'recoil';
-import { useFormik } from 'formik';
-import { useQueryClient } from '@tanstack/react-query';
-import { caregiverSearchParam } from '../../CaregiverManagement/CaregiverListHeader';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { SearchBox, smileCallSearchState } from '../../../../atoms/smileCall';
+import { downloadCsv } from '../../../../utils/XlsxUtils';
 
-//검색조건 선언 및 초기화
-export const smileCallSearchComplete = atom({
-	key: 'smileCallSearchComplete',
-	default: '전체',
-});
+const SmileCallSearchBox = (p: {}) => {
+	//규칙 1: 모든 서치값은 useState로 선언 이후 아톰에 적용하는 방식으로 수행. ( 조회버튼 생성시 및 사용자가 검색조건을 전체 설정이후에 조회 1번만 가능하도록 하기 위함)
+	const [searchBoxParam, setSearchBoxParam] = useRecoilState(smileCallSearchState); //- 전역 저장용 atom
+	//스트링 검색조건 유지 - 입력시마다 (onchange) 이벤트가 발생하므로 따로 처리
+	const [inputs, setInputs] = useState<SearchBox>({
+		complete: '',
+		manager: '',
+		searchString: '',
+	});
 
-export const smileCallSearchManager = atom({
-	key: 'smileCallSearchManager',
-	default: '전체',
-});
+	const { complete, manager, searchString } = inputs; // 비구조화 할당을 통해 값 추출
 
-export const smileCallSearchString = atom({
-	key: 'smileCallSearchString',
-	default: '',
-});
+	const onReset = () => {
+		setInputs({
+			complete: '',
+			manager: '',
+			searchString: '',
+		});
+	};
 
-const SmileCallSearchBox = () => {
-	//const setSearchParam = useSetRecoilState(smileCallSearchParams);
+	const handleOnChange = (e: any) => {
+		const { value, name } = e.target;
+		setInputs({
+			...inputs, // 기존의 input 객체를 복사한 뒤
+			[name]: value, // name 키를 가진 값을 value 로 설정
+		});
 
-	// formik 구조와 config를 설정하는 formik객체
-	// const formikSearch = useFormik({
-	//     // 설정할 초기값
-	//     initialValues: smileCallSearchParams,
-	//     // 제출시 처리할 함수. 인자로 value객체를 가져온다.
-	//     onSubmit: async (values) => {
-	//
-	//         //alert(JSON.stringify(values, null, 2));
-	//         await saveCaregiver(values);
-	//     },
-	//     // 값 변경시마다 validation 체크
-	//     //validateOnChange: true,
-	//     // 인풋창 블러시에 validation 체크
-	//     //validateOnBlur: true,
-	//     // validation 체크할 함수
-	//     //validate: validator
-	// });
+		//스트링 인풋일 경우 제외
+		if (name !== 'searchString') handleOnChangeAtom(e);
+	};
 
-	//검색조건 설정 및 이벤트 관리
-	const [complete, setComplete] = useState<string>('전체');
-	const [manager, setManager] = useState<string>('전체');
-	const [searchString, setSearchString] = useState<string>('');
-
-	const handleOnChange = useCallback((e: any) => {
-		switch (e.target.id) {
-			case 'search-complete':
-				setComplete(e.target.value);
-				break;
-			case 'search-manager':
-				setManager(e.target.value);
-				break;
-			case 'search-string':
-				setSearchString(e.target.value);
-				break;
-		}
-	}, []);
+	//아톰 저장
+	const handleOnChangeAtom = (e: any) => {
+		const { value, name } = e.target; // 우선 e.target 에서 name 과 value 를 추출
+		setSearchBoxParam({
+			...searchBoxParam, // 기존의 객체를 복사한 뒤
+			[name]: value,
+		});
+	};
 
 	/*스마일콜 추가기능*/
 	//ADD정보를 호출 페이지에서 관리 - 추가창을 닫고 다시 추가창을 켯을때 유지되도록(이전 기록 유지), 초기화 버튼 생성
-	//추가화면 오픈 관리 설정 - 변수명 관리 여러가지의 팝업이 있고 상태를 관리해야할 경우에 따른 명시
-	const [isOpenSmileCallAdd, setIsOpenSmileCallAdd] = useState<boolean>(false);
-	const [addSmileCallInfo, setAddSmileCallInfo] = useState<Smile>({});
-
-	const onClickSmileCallAddHandler = () => {
-		setIsOpenSmileCallAdd(!isOpenSmileCallAdd);
-		alert(JSON.stringify(addSmileCallInfo));
+	const [isModal, setModal] = useState<boolean>(false);
+	const onClickAddHandler = () => {
+		setModal(!isModal);
 	};
 
 	return (
 		<FormGroup id='searchArea'>
 			<div className='row g-3'>
-				<div className='col-3'>
-					<thead style={{ fontWeight: 'bold' }}> 진행여부</thead>
-					<Select
-						className='col-12 mb-3'
-						id='search-complete'
-						ariaLabel='진행여부'
-						list={selectCompleteItem}
-						value={complete}
-						onChange={handleOnChange}></Select>
+				<div className='col-2'>
+					<FormGroup id='complete' className='mb-3' label='진행여부'>
+						<Select
+							className='col-12 mb-3'
+							id='complete'
+							name='complete'
+							ariaLabel='진행여부'
+							list={innerItemCompleteList}
+							value={complete}
+							onChange={(e) => handleOnChange(e)}></Select>
+					</FormGroup>
+				</div>
+				<div className='col-2'>
+					<FormGroup id='manager' className='mb-3' label='담당자'>
+						<Select
+							className='col-12 mb-3'
+							id='manager'
+							name='manager'
+							ariaLabel='담당자'
+							list={innerItemCounselorList}
+							value={manager}
+							onChange={(e) => handleOnChange(e)}></Select>
+					</FormGroup>
 				</div>
 				<div className='col-3'>
-					<thead style={{ fontWeight: 'bold' }}> 담당자</thead>
-					<Select
-						className='col-12 mb-3'
-						id='search-manager'
-						ariaLabel='담당자'
-						list={arrToOption(selectCounselorItem)}
-						value={manager}
-						onChange={handleOnChange}></Select>
+					<FormGroup id='searchString' className='mb-3' label='검색'>
+						<Input
+							type='text'
+							id='searchString'
+							name='searchString'
+							placeholder={'보호자 또는 수급자 이름'}
+							value={searchString}
+							onChange={(e) => handleOnChange(e)}
+							onKeyUp={(e) => {
+								if (e.key === 'Enter') handleOnChangeAtom(e);
+							}}></Input>
+					</FormGroup>
 				</div>
 				<div className='col-4'>
-					<thead style={{ fontWeight: 'bold' }}> 검색</thead>
-					<Input
-						type='text'
-						id='search-string'
-						placeholder={'보호자 또는 수급자 이름'}
-						value={searchString}
-						onChange={handleOnChange}
-					/>
-				</div>
-			</div>
-			<div className='row g-3'>
-				<div className='col-2'>
-					<Button color='primary' icon={'Add'} onClick={onClickSmileCallAddHandler}>
+					<Button color='primary' icon={'Add'} onClick={onClickAddHandler}>
 						스마일 콜 추가
 					</Button>
-					<SmileCallDetail
-						isOpen={isOpenSmileCallAdd}
-						setOpen={setIsOpenSmileCallAdd}
-						isMode={'C'}
-						smile={{}}
-					/>
-				</div>
-				<div className='col-3'>
+					{isModal && (
+						<SmileCallDetail
+							isOpen={isModal}
+							setOpen={setModal}
+							modalType={'C'}
+							smile={{} as Smile}
+							title={'스마일콜 추가'}
+						/>
+					)}
 					<Button
+						className='ms-3'
 						color='primary'
-						icon='CloudDownload'
-						tag='a'
-						to='/somefile.txt'
-						target='_blank'
-						download>
-						스마일콜 데이터 다운로드
+						icon={'Download'}
+						onClick={() => {
+							/*downloadSmileAsCsv()*/
+						}}>
+						데이터 받기
 					</Button>
 				</div>
 			</div>
