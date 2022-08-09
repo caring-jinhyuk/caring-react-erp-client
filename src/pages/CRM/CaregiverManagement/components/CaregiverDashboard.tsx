@@ -50,6 +50,7 @@ const CaregiverDashboard = () => {
 											horizontal: false,
 										},
 									},
+									colors: [String(process.env.REACT_APP_INFO_COLOR)],
 								}}
 								type={'bar'}
 								height={350}
@@ -57,7 +58,7 @@ const CaregiverDashboard = () => {
 							<div>
 								<div>오늘 증가한 요양보호사: {data.todayGiverCount}명</div>
 								<div>
-									어제 최종 요양보호사 수(증가 수): {data.giverCount - data.todayGiverCount}명(↑)
+									어제 최종 요양보호사 수(증가 수): {data.giverCount - data.todayGiverCount}명(↑
 									{data.yesterdayGiverCount})
 								</div>
 							</div>

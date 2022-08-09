@@ -9,7 +9,7 @@ import Card, {
 } from '../../../../components/bootstrap/Card';
 import { CallData } from '../../../../models/CallData';
 import Popovers from '../../../../components/bootstrap/Popovers';
-import Button from '../../../../components/bootstrap/Button';
+import Button, { ButtonGroup } from '../../../../components/bootstrap/Button';
 import moment from 'moment';
 import { Calendar as DatePicker } from 'react-date-range';
 import ko from 'date-fns/locale/ko';
@@ -18,6 +18,8 @@ import FamilyServiceStatistics from './FamilyServiceStatistics';
 import Select from '../../../../components/bootstrap/forms/Select';
 import { CALL_TYPE_SELECT, CallType } from '../constants/StatisticsConstants';
 import { statisticsSearchParamAtom } from '../Statistics';
+import LocationStatistics from './LocationStatistics';
+import ProcessStatistics from './ProcessStatistics';
 
 interface DailyCallStatisticsProps {
 	callStatistic: CallData;
@@ -40,6 +42,14 @@ const DailyCallStatistics: FC<DailyCallStatisticsProps> = ({ callStatistic }) =>
 
 	const changeCallData = () => {
 		setSearchParamAtom({ date: selectDate, type: searchType });
+	};
+
+	const addDay = () => {
+		setSelectDate(moment(selectDate).add(1, 'days').toDate());
+	};
+
+	const subtractDay = () => {
+		setSelectDate(moment(selectDate).subtract(1, 'days').toDate());
 	};
 
 	return (
@@ -67,7 +77,11 @@ const DailyCallStatistics: FC<DailyCallStatisticsProps> = ({ callStatistic }) =>
 							placement='bottom-end'
 							className='mw-100'
 							trigger='click'>
-							<Button>{moment(selectDate).format('YYYY-MM-DD')}</Button>
+							<ButtonGroup>
+								<Button icon={'ArrowLeft'} onClick={subtractDay} />
+								<Button color='primary'>{moment(selectDate).format('YYYY-MM-DD')}</Button>
+								<Button icon={'ArrowRight'} onClick={addDay} />
+							</ButtonGroup>
 						</Popovers>
 					</div>
 					<div>
@@ -189,26 +203,7 @@ const DailyCallStatistics: FC<DailyCallStatisticsProps> = ({ callStatistic }) =>
 			</div>
 			<div className='row'>
 				<div className='col-6'>
-					<Card>
-						<CardBody>
-							<table className='table table-modern table-hover'>
-								<thead>
-									<tr>
-										<th>고객 상태</th>
-										<th>call</th>
-									</tr>
-								</thead>
-								<tbody>
-									{callStatistic.progressList.map((item, index) => (
-										<tr key={item}>
-											<td>{item}</td>
-											<td>{callStatistic.progressCheckList[1][index]}</td>
-										</tr>
-									))}
-								</tbody>
-							</table>
-						</CardBody>
-					</Card>
+					<ProcessStatistics callStatistic={callStatistic} />
 				</div>
 				<div className='col-6'>
 					<Card>
@@ -233,51 +228,33 @@ const DailyCallStatistics: FC<DailyCallStatisticsProps> = ({ callStatistic }) =>
 					</Card>
 				</div>
 			</div>
-
-			<Card>
-				<CardBody>
-					<table className='table table-modern table-hover'>
-						<thead>
-							<tr>
-								<th>유입매체</th>
-								<th>call</th>
-							</tr>
-						</thead>
-						<tbody>
-							{callStatistic.inflowList.map((item, index) => (
-								<tr key={item}>
-									<td>{item}</td>
-									<td>{callStatistic.todayStateCall[index]}</td>
-								</tr>
-							))}
-						</tbody>
-					</table>
-				</CardBody>
-			</Card>
-			<Card>
-				<CardBody>
-					<table className='table table-modern table-hover'>
-						<thead>
-							<tr>
-								<th>지역</th>
-								<th>call</th>
-							</tr>
-						</thead>
-						<tbody>
-							{callStatistic.cityList.map((item, index) => (
-								<tr key={item}>
-									<td>{item}</td>
-									<td>{callStatistic.todayCityCall[index]}</td>
-								</tr>
-							))}
-							<tr>
-								<td>모름</td>
-								<td>{callStatistic.todayCityCall[17]}</td>
-							</tr>
-						</tbody>
-					</table>
-				</CardBody>
-			</Card>
+			<div className='row'>
+				<div className='col-6'>
+					<Card>
+						<CardBody>
+							<table className='table table-modern table-hover'>
+								<thead>
+									<tr>
+										<th>유입매체</th>
+										<th>call</th>
+									</tr>
+								</thead>
+								<tbody>
+									{callStatistic.inflowList.map((item, index) => (
+										<tr key={item}>
+											<td>{item}</td>
+											<td>{callStatistic.todayStateCall[index]}</td>
+										</tr>
+									))}
+								</tbody>
+							</table>
+						</CardBody>
+					</Card>
+				</div>
+				<div className='col-6'>
+					<LocationStatistics callStatistic={callStatistic} />
+				</div>
+			</div>
 			<Card>
 				<CardBody>
 					<table className='table table-modern table-hover'>

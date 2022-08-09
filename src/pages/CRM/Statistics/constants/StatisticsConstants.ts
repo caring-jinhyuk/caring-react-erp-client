@@ -19,3 +19,8 @@ export const CALL_TYPE_SELECT: TextValueObject<CallType>[] = [
 		value: CallType.RE,
 	},
 ];
+
+export const enum GraphType {
+	TABLE,
+	BAR,
+}
