@@ -5,6 +5,7 @@
 	},
 	"extends": [
 		"plugin:react/recommended",
+		"plugin:react-hooks/recommended",
 		"airbnb-typescript",
 		"plugin:eslint-comments/recommended",
 		"plugin:import/errors",
@@ -36,8 +37,8 @@
 				"depth": 3
 			}
 		],
-		"react-hooks/exhaustive-deps": "error",
 		"react-hooks/rules-of-hooks": "error",
+		"react-hooks/exhaustive-deps": "warn",
 		"react/function-component-definition": [
 			2,
 			{
