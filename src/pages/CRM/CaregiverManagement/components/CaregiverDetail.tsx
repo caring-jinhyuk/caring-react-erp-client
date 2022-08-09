@@ -1,9 +1,5 @@
 import React, { FC } from 'react';
-import {
-	OffCanvasHeader,
-	OffCanvasTitle,
-	OffCanvasBody,
-} from '../../../../components/bootstrap/OffCanvas';
+import { OffCanvasBody } from '../../../../components/bootstrap/OffCanvas';
 import { Caregiver, CaregiverControllerService } from '../../../../services/openApi';
 import { useFormik } from 'formik';
 import Card, {
@@ -19,12 +15,7 @@ import Checks from '../../../../components/bootstrap/forms/Checks';
 import Textarea from '../../../../components/bootstrap/forms/Textarea';
 import showNotification from '../../../../components/extras/showNotification';
 import AddressPicker from '../../../../components/AddressPicker';
-import {
-	useRecoilRefresher_UNSTABLE,
-	useRecoilState,
-	useRecoilValue,
-	useSetRecoilState,
-} from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { caregiverSearchParam } from '../CaregiverListHeader';
 import { useQueryClient } from '@tanstack/react-query';
 import { offCanvasState } from '../../../../atoms/offCanvas';
@@ -79,7 +70,7 @@ const CaregiverDetail: FC<CaregiverDetailProps> = ({ caregiver }) => {
 				privacy: values.privacy,
 				createdAt: values.createdAt,
 				lastModifiedDate: new Date().toISOString(),
-				modifier: userAtom.name,
+				modifier: userAtom?.name,
 			};
 			await saveCaregiver(submitValues);
 		},
