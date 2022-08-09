@@ -345,6 +345,26 @@ export const innerItemDisadvantageList: object[] = [
 	},
 ];
 
+//csv 다운로드 컬럼
+export const smilCallColumns = [
+	{ type: 'date', name: '배정날짜', value: 'createdAt' },
+	{ type: 'date', name: '종료일', value: 'endDate' },
+	{ name: '전화 완료날', value: 'callDate' },
+	{ name: '현재상황', value: 'workNow' },
+	{ name: '선호이유', value: 'choice_reason' },
+	{ name: '진행여부', value: 'complete' },
+	{ name: '번호', value: 'phone' },
+	{ name: '보호자 이름', value: 'giveName' },
+	{ name: '수급자 이름', value: 'takeName' },
+	{ name: '긍정/부정', value: 'reaction' },
+	{ name: '퇴사사유', value: 'resignationReason' },
+	{ name: '퇴사사유 일치 여부', value: 'resignationReasonCoincide' },
+	{ name: '리턴 가능성', value: 'returnPossibility' },
+	{ name: '장점', value: 'advantages' },
+	{ name: '불편한 점', value: 'disadvantages' },
+	{ name: '특이사항', value: 'significant' },
+];
+
 export const arrToOption = (arrOption: string[], opt?: 'all' | 'select') => {
 	let rtnArr: any[] = [];
 	if (opt === 'all') rtnArr.push({ text: '전체', value: '', label: '전체' });

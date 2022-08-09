@@ -19,9 +19,6 @@ import FormGroup from '../../../../components/bootstrap/forms/FormGroup';
 import Input from '../../../../components/bootstrap/forms/Input';
 import Checks, { ChecksGroup } from '../../../../components/bootstrap/forms/Checks';
 
-import { Calendar as DatePicker } from 'react-date-range';
-import Option from '../../../../components/bootstrap/Option';
-
 import {
 	arrToOption,
 	innerItemAdvantageList,
@@ -34,12 +31,8 @@ import {
 	innerItemWorkNowList,
 } from '../statics/SmileCallStatics';
 import Select from '../../../../components/bootstrap/forms/Select';
-import MonthPicker from '../../../../components/MonthPicker';
-import { SmileCallDetailForm, smileCallDetailInfo } from '../SmileCallContainer';
+import { SmileCallDetailForm } from '../SmileCallContainer';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import collection from '../../../../components/icon/bootstrap/Collection';
-import { number, object } from 'prop-types';
-import { caregiverSearchParam } from '../../CaregiverManagement/CaregiverListHeader';
 import { smileCallSearchState } from '../../../../atoms/smileCall';
 
 //오픈 설정은 해당 화면을 부르는 상위에서 관리하는 것이 좋아보인다.
@@ -61,12 +54,19 @@ const validator = (smile: Smile) => {
 	if (!smile.writer) {
 		error.msgStr = 'id 정보가 없습니다.';
 	}
+	if (!smile.phone) {
+		//smile.phone.replace(/\-/g,'');
+		error.msgStr = '연락처 정보가 없습니다.';
+	}
 	//이메일 번호 체크
 	const regEmail =
 		/^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
-	//핸드폰 번호 체크
-	const regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
-	if (smile.phone && regPhone.test(smile.phone) === false) {
+
+	const regPhone1 = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/; //핸드폰 번호 체크 smile.phone.replace(regPhone1,'01$1-$2-$3')
+	const regPhone2 = /^\d{3}-\d{3,4}-\d{4}$/; //핸드폰 번호 체크
+	const regPhone3 = /^\d{2,3}-\d{3,4}-\d{4}$/;
+
+	if (smile.phone && regPhone1.test(smile.phone) === false) {
 		error.msgStr = '유효한 핸드폰 번호가 아닙니다.';
 	}
 
@@ -76,7 +76,8 @@ const validator = (smile: Smile) => {
 const SmileCallDetail: FC<SmileCallAddProps> = ({ isOpen, setOpen, modalType, smile, title }) => {
 	const [searchParam, setSearchParam] = useRecoilState(smileCallSearchState);
 
-	let formSmileCall: SmileCallDetailForm = {
+	//프롭 폼 생성
+	const smileCallDetailForm: SmileCallDetailForm = {
 		advantages: smile.advantages ? smile.advantages : '',
 		callDate: smile.callDate ? smile.callDate : '',
 		choiceReason: smile.choiceReason ? smile.choiceReason : '',
@@ -110,9 +111,8 @@ const SmileCallDetail: FC<SmileCallAddProps> = ({ isOpen, setOpen, modalType, sm
 	//useFormik은 다양한 인풋을 받을때 상태를 효과적으로 관리하기 위한 라이브러리
 	const formik = useFormik({
 		enableReinitialize: true,
-		initialValues: formSmileCall,
+		initialValues: smileCallDetailForm,
 
-		// eslint-disable-next-line no-unused-vars
 		//validateOnChange: true, // 값 변경시마다 validation 체크
 		//validateOnBlur: true, // 인풋창 블러시에 validation 체크
 
@@ -385,7 +385,7 @@ const SmileCallDetail: FC<SmileCallAddProps> = ({ isOpen, setOpen, modalType, sm
 					</FormGroup>
 				</ModalBody>
 				<ModalFooter>
-					<Button color='primary' onClick={() => formik.submitForm()}>
+					<Button icon={'Save'} color={'success'} onClick={() => formik.submitForm()}>
 						저장
 					</Button>
 					{modalType !== 'C' && (

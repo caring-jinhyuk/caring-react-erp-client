@@ -16,6 +16,9 @@ import { v1 } from 'uuid';
 import PaginationButtons from '../../../../components/PaginationButtons';
 import { smileCallSearchState } from '../../../../atoms/smileCall';
 import { useQuery } from '@tanstack/react-query';
+import { downloadCsv } from '../../../../utils/XlsxUtils';
+import { smilCallColumns } from '../statics/SmileCallStatics';
+import { number } from 'prop-types';
 
 //리액트쿼리는 함수명 use를 앞에 붙여주어야한다. (custom hooks)
 export const useSmileListUsingGet = (
@@ -64,6 +67,52 @@ const SmileCallList: FC = () => {
 		perPage,
 	);
 
+	/** 다운로드는 공통 유틸로 빼서 어떻게 할지 고민 해봐야할것 같다.
+     function columnValue(item: any, c: any) {
+		let d = item[c.value];
+		if (c.type === 'date') {
+			try {
+				const date = new Date(d);
+				return date.toLocaleString();
+			} catch (e) {}
+		} else if (c.type === 'address') {
+			return `${d.zipCode} ${replace(d.address)} ${replace(d.addressDetail)}`;
+		} else {
+			const path = c.value;
+			if (!path) {
+				return;
+			}
+			let value = item;
+			path.split('.').forEach((it: string | number) => {
+				if (!value) {
+					return;
+				}
+				value = value[it];
+			});
+			return replace(value);
+		}
+	}
+
+     function replace(value: string) {
+		return value && value.replace ? value.replace(/,/g, '|').replace(/\n/g, '|') : value;
+	}
+
+     const downloadSmileAsCsv = () => {
+		SmileControllerService.getSmileAllListUsingGet()
+			.then((value) => {
+				const rows = [smilCallColumns.map((it) => it.name)];
+				value.forEach((smile) => {
+					const row: any[] = [];
+					smilCallColumns.forEach((c) => {
+						row.push(columnValue(smile, c));
+					});
+					rows.push(row);
+				});
+				downloadCsv(rows, '스마일콜 리스트.csv');
+			})
+			.catch((error) => {});
+	};
+     **/
 	return (
 		<FormGroup id='listArea'>
 			<div className='table-responsive'>

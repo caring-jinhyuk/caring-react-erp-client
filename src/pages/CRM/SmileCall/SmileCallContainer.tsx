@@ -6,8 +6,3 @@ export type SmileCallDetailForm = Smile & {
 	advantagesEtc: string;
 	disadvantagesEtc: string;
 };
-
-export const smileCallDetailInfo = {
-	key: 'smileCallDetailInfo',
-	default: {} as SmileCallDetailForm,
-};

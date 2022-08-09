@@ -5,7 +5,11 @@ import Button from '../../../../components/bootstrap/Button';
 import Input from '../../../../components/bootstrap/forms/Input';
 import { debounce } from '../../../../helpers/helpers';
 
-import { Smile, SmileControllerService } from '../../../../services/openApi';
+import {
+	CaregiverControllerService,
+	Smile,
+	SmileControllerService,
+} from '../../../../services/openApi';
 
 import {
 	arrToOption,
@@ -16,8 +20,7 @@ import {
 import SmileCallDetail from './SmileCallDetail';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { SearchBox, smileCallSearchState } from '../../../../atoms/smileCall';
-import { smileCallDetailInfo } from '../SmileCallContainer';
-import event from '../../../../components/icon/material-icons/Event';
+import { downloadCsv } from '../../../../utils/XlsxUtils';
 
 const SmileCallSearchBox = (p: {}) => {
 	//규칙 1: 모든 서치값은 useState로 선언 이후 아톰에 적용하는 방식으로 수행. ( 조회버튼 생성시 및 사용자가 검색조건을 전체 설정이후에 조회 1번만 가능하도록 하기 위함)
@@ -121,13 +124,13 @@ const SmileCallSearchBox = (p: {}) => {
 						/>
 					)}
 					<Button
+						className='ms-3'
 						color='primary'
-						icon='CloudDownload'
-						tag='a'
-						to='/somefile.txt'
-						target='_blank'
-						download>
-						스마일콜 데이터 다운로드
+						icon={'Download'}
+						onClick={() => {
+							/*downloadSmileAsCsv()*/
+						}}>
+						데이터 받기
 					</Button>
 				</div>
 			</div>
