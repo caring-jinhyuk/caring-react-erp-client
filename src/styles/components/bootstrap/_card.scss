@@ -87,10 +87,6 @@ $border-radius-child: #{$card-border-radius - $card-border-width};
 	@include media-breakpoint-down(md) {
 		flex-direction: column;
 		align-items: baseline;
-
-		> *:not(:last-child) {
-			@include margin-bottom($card-header-padding-y);
-		}
 	}
 
 	&:first-child {
