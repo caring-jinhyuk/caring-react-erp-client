@@ -37,7 +37,7 @@ const FamilyServiceStatistics: FC<FamilyServiceStatisticsProps> = ({ callStatist
 				</CardHeader>
 				<CardBody>
 					{showDataType === GraphType.TABLE && (
-						<table className='table table-modern table-hover'>
+						<table className='table table-modern'>
 							<thead>
 								<tr>
 									<th>상태</th>

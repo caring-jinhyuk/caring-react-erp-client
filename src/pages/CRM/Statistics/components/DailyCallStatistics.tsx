@@ -20,6 +20,7 @@ import { CALL_TYPE_SELECT, CallType } from '../constants/StatisticsConstants';
 import { statisticsSearchParamAtom } from '../Statistics';
 import LocationStatistics from './LocationStatistics';
 import ProcessStatistics from './ProcessStatistics';
+import InflowStatistics from './InflowStatistics';
 
 interface DailyCallStatisticsProps {
 	callStatistic: CallData;
@@ -230,26 +231,7 @@ const DailyCallStatistics: FC<DailyCallStatisticsProps> = ({ callStatistic }) =>
 			</div>
 			<div className='row'>
 				<div className='col-6'>
-					<Card>
-						<CardBody>
-							<table className='table table-modern table-hover'>
-								<thead>
-									<tr>
-										<th>유입매체</th>
-										<th>call</th>
-									</tr>
-								</thead>
-								<tbody>
-									{callStatistic.inflowList.map((item, index) => (
-										<tr key={item}>
-											<td>{item}</td>
-											<td>{callStatistic.todayStateCall[index]}</td>
-										</tr>
-									))}
-								</tbody>
-							</table>
-						</CardBody>
-					</Card>
+					<InflowStatistics callStatistic={callStatistic} />
 				</div>
 				<div className='col-6'>
 					<LocationStatistics callStatistic={callStatistic} />
@@ -257,34 +239,60 @@ const DailyCallStatistics: FC<DailyCallStatisticsProps> = ({ callStatistic }) =>
 			</div>
 			<Card>
 				<CardBody>
-					<table className='table table-modern table-hover'>
-						<thead>
-							<tr>
-								<th>선택이유</th>
-								<th>call</th>
-							</tr>
-						</thead>
-						<tbody>
-							{callStatistic.whyList.map((item, index) => (
-								<tr key={item}>
-									<td>{item}</td>
-									<td>{callStatistic.todayChoiceReasonCall[index]}</td>
-								</tr>
-							))}
-							<thead>
-								<tr>
-									<th>타급여</th>
-									<th>call</th>
-								</tr>
-							</thead>
-							{callStatistic.addInquiryList.map((item, index) => (
-								<tr key={item}>
-									<td>{item}</td>
-									<td>{callStatistic.todayAddInquiryCall[index]}</td>
-								</tr>
-							))}
-						</tbody>
-					</table>
+					<div className='row'>
+						<div className='col-6'>
+							<table className='table table-modern table-hover'>
+								<thead>
+									<tr>
+										<th>선택이유</th>
+										<th>call</th>
+									</tr>
+								</thead>
+								<tbody>
+									{callStatistic.whyList.map((item, index) => (
+										<tr key={item}>
+											<td>{item}</td>
+											<td>
+												{item === '기타' ? (
+													<Popovers title={callStatistic.todayChoiceReasonEtc} trigger={'click'}>
+														<div>{callStatistic.todayChoiceReasonCall[index]}</div>
+													</Popovers>
+												) : (
+													callStatistic.todayChoiceReasonCall[index]
+												)}
+											</td>
+										</tr>
+									))}
+								</tbody>
+							</table>
+						</div>
+						<div className='col-6'>
+							<table className='table table-modern'>
+								<thead>
+									<tr>
+										<th>타급여</th>
+										<th>call</th>
+									</tr>
+								</thead>
+								<tbody>
+									{callStatistic.addInquiryList.map((item, index) => (
+										<tr key={item}>
+											<td>{item}</td>
+											<td>
+												{item === '기타' ? (
+													<Popovers title={callStatistic.todayAddInquiryEtc} trigger={'click'}>
+														<div>{callStatistic.todayAddInquiryCall[index]}</div>
+													</Popovers>
+												) : (
+													callStatistic.todayAddInquiryCall[index]
+												)}
+											</td>
+										</tr>
+									))}
+								</tbody>
+							</table>
+						</div>
+					</div>
 				</CardBody>
 			</Card>
 		</>
