@@ -9,16 +9,13 @@ import Card, {
 import Button from '../../../../components/bootstrap/Button';
 import { CallData } from '../../../../models/CallData';
 import Chart from '../../../../components/extras/Chart';
+import { GraphType } from '../constants/StatisticsConstants';
 
 interface FamilyServiceStatisticsProps {
 	callStatistic: CallData;
 }
 
 const FamilyServiceStatistics: FC<FamilyServiceStatisticsProps> = ({ callStatistic }) => {
-	enum GraphType {
-		TABLE,
-		BAR,
-	}
 	const [showDataType, setShowDataType] = useState<GraphType>(GraphType.TABLE);
 
 	return (

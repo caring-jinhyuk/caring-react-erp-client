@@ -139,26 +139,25 @@ const CaregiverDetail: FC<CaregiverDetailProps> = ({ caregiver }) => {
 	}
 
 	function makeHomeArea(
-		city1?: string,
-		city2?: string,
-		city3?: string,
-		warn1?: string,
-		warn2?: string,
-		ward3?: string,
+		city1: string = '',
+		city2: string = '',
+		city3: string = '',
+		warn1: string = '',
+		warn2: string = '',
+		ward3: string = '',
 	) {
 		let stringHomeArea = '';
 
-		if (city1 !== '') {
-			stringHomeArea += city1;
-			stringHomeArea += ' ' + warn1 + ',';
-		}
-		if (city2 !== '') {
-			stringHomeArea += city2;
-			stringHomeArea += ' ' + warn2 + ',';
-		}
-		if (city3 !== '') {
-			stringHomeArea += city3;
-			stringHomeArea += ' ' + ward3 + ',';
+		const cities = [city1, city2, city3];
+		const warns = [warn1, warn2, ward3];
+
+		for (let i = 0; i < cities.length; i++) {
+			if (cities[i] !== '') {
+				stringHomeArea += cities[i] + ' ' + warns[i];
+				if (cities[i + 1] !== '' && i < 2) {
+					stringHomeArea += ',';
+				}
+			}
 		}
 		return stringHomeArea;
 	}
