@@ -198,12 +198,12 @@ const DailyCallStatistics: FC<DailyCallStatisticsProps> = ({ callStatistic }) =>
 					</Card>
 				</div>
 				<div className='col-6'>
-					<FamilyServiceStatistics callStatistic={callStatistic} />
+					<ProcessStatistics callStatistic={callStatistic} />
 				</div>
 			</div>
 			<div className='row'>
 				<div className='col-6'>
-					<ProcessStatistics callStatistic={callStatistic} />
+					<FamilyServiceStatistics callStatistic={callStatistic} />
 				</div>
 				<div className='col-6'>
 					<Card>
