@@ -10,4 +10,3 @@ export type RecipientBurdenData = {
     deposits?: Array<AccountRecord>;
     recipientId?: number;
 };
-

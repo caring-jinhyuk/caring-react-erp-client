@@ -19,4 +19,3 @@ export type Page_Smile_ = {
     totalElements?: number;
     totalPages?: number;
 };
-

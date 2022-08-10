@@ -9,4 +9,3 @@ export type RecordingSheet = {
     recipientId?: number;
     recordingDate?: string;
 };
-

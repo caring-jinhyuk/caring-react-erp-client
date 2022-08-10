@@ -19,4 +19,3 @@ export type Page_User_ = {
     totalElements?: number;
     totalPages?: number;
 };
-

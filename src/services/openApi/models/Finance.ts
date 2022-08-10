@@ -47,4 +47,3 @@ export type Finance = {
     visitCare30Price?: string;
     visitCare60Price?: string;
 };
-

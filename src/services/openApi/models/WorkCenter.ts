@@ -21,6 +21,6 @@ export type WorkCenter = {
     phone?: string;
     serviceType?: string;
     shortName?: string;
+    stamp?: string;
     w4cCode?: string;
 };
-

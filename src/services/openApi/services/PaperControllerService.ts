@@ -17,18 +17,13 @@ export class PaperControllerService {
      * @throws ApiError
      */
     public static getPaperUsingGet(
-        id: number,
-    ): CancelablePromise<Paper> {
+id: number,
+): CancelablePromise<Paper> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/paper',
             query: {
                 'id': id,
-            },
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
             },
         });
     }
@@ -37,21 +32,15 @@ export class PaperControllerService {
      * savePaper
      * @param paper paper
      * @returns Paper OK
-     * @returns any Created
      * @throws ApiError
      */
     public static savePaperUsingPost(
-        paper: Paper,
-    ): CancelablePromise<Paper | any> {
+paper: Paper,
+): CancelablePromise<Paper> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/paper',
             body: paper,
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
-            },
         });
     }
 
@@ -62,17 +51,13 @@ export class PaperControllerService {
      * @throws ApiError
      */
     public static deletePaperUsingDelete(
-        id: number,
-    ): CancelablePromise<any> {
+id: number,
+): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'DELETE',
             url: '/paper',
             query: {
                 'id': id,
-            },
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
             },
         });
     }
@@ -88,12 +73,12 @@ export class PaperControllerService {
      * @throws ApiError
      */
     public static getPaperListUsingGet(
-        page?: number,
-        providerId?: number,
-        recipientId?: number,
-        size: number = 10,
-        type?: '수급자욕구평가' | '낙상위험도' | '욕창위험도' | 'KMMSE' | 'KMMSE2',
-    ): CancelablePromise<Page_Paper_> {
+page?: number,
+providerId?: number,
+recipientId?: number,
+size: number = 10,
+type?: '수급자욕구평가' | '낙상위험도' | '욕창위험도' | 'KMMSE' | 'KMMSE2',
+): CancelablePromise<Page_Paper_> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/paper/list',
@@ -104,11 +89,6 @@ export class PaperControllerService {
                 'size': size,
                 'type': type,
             },
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
-            },
         });
     }
 
@@ -116,21 +96,31 @@ export class PaperControllerService {
      * getRecipientPaperList
      * @param recipientIdList recipientIdList
      * @returns Paper OK
-     * @returns any Created
      * @throws ApiError
      */
     public static getRecipientPaperListUsingPost(
-        recipientIdList: Array<number>,
-    ): CancelablePromise<Array<Paper> | any> {
+recipientIdList: Array<number>,
+): CancelablePromise<Array<Paper>> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/paper/list/all',
             body: recipientIdList,
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
-            },
+        });
+    }
+
+    /**
+     * getRecipientLoadPaperList
+     * @param longTermNumber longTermNumber
+     * @returns Paper OK
+     * @throws ApiError
+     */
+    public static getRecipientLoadPaperListUsingPost(
+longTermNumber: string,
+): CancelablePromise<Array<Paper>> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/paper/list/allCenter',
+            body: longTermNumber,
         });
     }
 

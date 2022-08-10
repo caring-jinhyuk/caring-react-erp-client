@@ -19,4 +19,3 @@ export type Page_CaringRecipient_ = {
     totalElements?: number;
     totalPages?: number;
 };
-

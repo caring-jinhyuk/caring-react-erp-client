@@ -10,4 +10,3 @@ export type RecipientData = {
     salaryTime2?: string;
     salaryTime2End?: string;
 };
-

@@ -76,4 +76,3 @@ export type CaringContract = {
     type?: 'FAMILY' | 'NORMAL' | 'FAMILY60' | 'FAMILY90' | 'VISITBATH' | 'VISITCARE';
     workCenter?: WorkCenter;
 };
-

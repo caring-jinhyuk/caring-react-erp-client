@@ -19,4 +19,3 @@ export type Page_CaringContract_ = {
     totalElements?: number;
     totalPages?: number;
 };
-

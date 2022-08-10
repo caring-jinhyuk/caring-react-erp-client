@@ -6,4 +6,3 @@ export type ProviderOrRecipientId = {
     providerId?: number;
     recipientId?: number;
 };
-

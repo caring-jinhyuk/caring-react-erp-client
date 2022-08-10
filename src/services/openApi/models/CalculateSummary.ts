@@ -8,4 +8,3 @@ export type CalculateSummary = {
     'a'?: Array<Summary>;
     'b'?: Array<Summary>;
 };
-

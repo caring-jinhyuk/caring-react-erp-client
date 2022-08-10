@@ -14,4 +14,3 @@ export type S3Signature = {
     key?: string;
     'x-amz-meta-uuid'?: string;
 };
-

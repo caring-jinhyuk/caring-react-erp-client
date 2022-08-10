@@ -19,4 +19,3 @@ export type Page_Paper_ = {
     totalElements?: number;
     totalPages?: number;
 };
-

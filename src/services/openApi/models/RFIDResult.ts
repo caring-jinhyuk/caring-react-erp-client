@@ -10,4 +10,3 @@ export type RFIDResult = {
     etcGrouped?: Array<Map_string_object_>;
     services?: Array<string>;
 };
-

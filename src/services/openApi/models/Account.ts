@@ -11,4 +11,3 @@ export type Account = {
     number?: string;
     pw?: string;
 };
-

@@ -12,4 +12,3 @@ export type ProviderData = {
     workingMinute?: string;
     workingType?: string;
 };
-

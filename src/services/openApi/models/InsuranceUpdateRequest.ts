@@ -37,4 +37,3 @@ export type InsuranceUpdateRequest = {
     workHours?: number;
     workType?: string;
 };
-

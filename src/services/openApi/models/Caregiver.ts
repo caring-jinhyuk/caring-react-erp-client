@@ -35,4 +35,3 @@ export type Caregiver = {
     writer?: string;
     year?: number;
 };
-

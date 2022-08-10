@@ -20,4 +20,3 @@ export type Paper = {
     updatedAt?: string;
     writer?: User;
 };
-

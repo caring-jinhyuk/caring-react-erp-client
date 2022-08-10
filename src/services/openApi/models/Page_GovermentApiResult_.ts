@@ -19,4 +19,3 @@ export type Page_GovermentApiResult_ = {
     totalElements?: number;
     totalPages?: number;
 };
-

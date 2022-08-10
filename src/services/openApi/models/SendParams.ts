@@ -7,4 +7,3 @@ export type SendParams = {
     message?: string;
     to?: string;
 };
-

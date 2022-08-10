@@ -11,4 +11,3 @@ export type ProviderPaySubtract = {
     sum?: number;
     workCenter?: number;
 };
-

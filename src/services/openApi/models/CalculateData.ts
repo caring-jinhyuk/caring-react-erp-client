@@ -9,4 +9,3 @@ export type CalculateData = {
     calculate?: CalculateResult;
     calculateRFID?: RFIDResult;
 };
-

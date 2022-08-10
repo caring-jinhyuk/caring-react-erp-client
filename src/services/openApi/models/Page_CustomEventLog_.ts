@@ -19,4 +19,3 @@ export type Page_CustomEventLog_ = {
     totalElements?: number;
     totalPages?: number;
 };
-

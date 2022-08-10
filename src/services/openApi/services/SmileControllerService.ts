@@ -14,21 +14,15 @@ export class SmileControllerService {
      * saveSmile
      * @param smile smile
      * @returns Smile OK
-     * @returns any Created
      * @throws ApiError
      */
     public static saveSmileUsingPost(
-        smile: Smile,
-    ): CancelablePromise<Smile | any> {
+smile: Smile,
+): CancelablePromise<Smile> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/smile',
             body: smile,
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
-            },
         });
     }
 
@@ -39,17 +33,13 @@ export class SmileControllerService {
      * @throws ApiError
      */
     public static deleteSmileUsingDelete(
-        id: number,
-    ): CancelablePromise<any> {
+id: number,
+): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'DELETE',
             url: '/smile',
             query: {
                 'id': id,
-            },
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
             },
         });
     }
@@ -63,11 +53,6 @@ export class SmileControllerService {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/smile/AllList',
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
-            },
         });
     }
 
@@ -78,18 +63,13 @@ export class SmileControllerService {
      * @throws ApiError
      */
     public static getSmileCallCountUsingGet(
-        managerName: string,
-    ): CancelablePromise<number> {
+managerName: string,
+): CancelablePromise<number> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/smile/count',
             query: {
                 'managerName': managerName,
-            },
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
             },
         });
     }
@@ -105,12 +85,12 @@ export class SmileControllerService {
      * @throws ApiError
      */
     public static getSmileListUsingGet(
-        complete?: string,
-        manager?: string,
-        page?: number,
-        searchString?: string,
-        size: number = 10,
-    ): CancelablePromise<Page_Smile_> {
+complete?: string,
+manager?: string,
+page?: number,
+searchString?: string,
+size: number = 10,
+): CancelablePromise<Page_Smile_> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/smile/list',
@@ -121,11 +101,6 @@ export class SmileControllerService {
                 'search_string': searchString,
                 'size': size,
             },
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
-            },
         });
     }
 
@@ -133,21 +108,15 @@ export class SmileControllerService {
      * updateSmile
      * @param id id
      * @returns Smile OK
-     * @returns any Created
      * @throws ApiError
      */
     public static updateSmileUsingPut(
-        id: number,
-    ): CancelablePromise<Smile | any> {
+id: number,
+): CancelablePromise<Smile> {
         return __request(OpenAPI, {
             method: 'PUT',
             url: '/smile/update',
             body: id,
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
-            },
         });
     }
 

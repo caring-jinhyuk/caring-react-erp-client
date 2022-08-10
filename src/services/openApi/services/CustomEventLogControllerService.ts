@@ -17,18 +17,13 @@ export class CustomEventLogControllerService {
      * @throws ApiError
      */
     public static getDLogUsingGet(
-        id: number,
-    ): CancelablePromise<CustomEventLog> {
+id: number,
+): CancelablePromise<CustomEventLog> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/dLog',
             query: {
                 'id': id,
-            },
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
             },
         });
     }
@@ -37,21 +32,15 @@ export class CustomEventLogControllerService {
      * saveDLog
      * @param customEventLog customEventLog
      * @returns CustomEventLog OK
-     * @returns any Created
      * @throws ApiError
      */
     public static saveDLogUsingPost(
-        customEventLog: CustomEventLog,
-    ): CancelablePromise<CustomEventLog | any> {
+customEventLog: CustomEventLog,
+): CancelablePromise<CustomEventLog> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/dLog',
             body: customEventLog,
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
-            },
         });
     }
 
@@ -62,17 +51,13 @@ export class CustomEventLogControllerService {
      * @throws ApiError
      */
     public static deleteDLogUsingDelete(
-        id: number,
-    ): CancelablePromise<any> {
+id: number,
+): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'DELETE',
             url: '/dLog',
             query: {
                 'id': id,
-            },
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
             },
         });
     }
@@ -85,20 +70,15 @@ export class CustomEventLogControllerService {
      * @throws ApiError
      */
     public static getDLogListUsingGet(
-        page?: number,
-        size: number = 10,
-    ): CancelablePromise<Page_CustomEventLog_> {
+page?: number,
+size: number = 10,
+): CancelablePromise<Page_CustomEventLog_> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/dLog/list',
             query: {
                 'page': page,
                 'size': size,
-            },
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
             },
         });
     }

@@ -19,4 +19,3 @@ export type Page_Consult_ = {
     totalElements?: number;
     totalPages?: number;
 };
-

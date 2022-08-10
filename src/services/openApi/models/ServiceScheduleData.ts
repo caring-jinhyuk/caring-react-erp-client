@@ -10,4 +10,3 @@ export type ServiceScheduleData = {
     serviceType?: string;
     startDate?: string;
 };
-

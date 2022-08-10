@@ -10,6 +10,7 @@ import type { User } from './User';
 import type { WorkCenter } from './WorkCenter';
 
 export type CaringProvider = {
+    accountingId?: number;
     address?: AddressInfo;
     bankCode?: string;
     bankName?: string;
@@ -49,4 +50,3 @@ export type CaringProvider = {
     workCenter?: WorkCenter;
     workTypes?: Array<'Family' | 'Bath' | 'Nursing'>;
 };
-

@@ -10,4 +10,3 @@ export type Contractor = {
     name?: string;
     relation?: string;
 };
-

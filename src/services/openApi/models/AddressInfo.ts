@@ -10,4 +10,3 @@ export type AddressInfo = {
     'y'?: number;
     zipCode?: string;
 };
-

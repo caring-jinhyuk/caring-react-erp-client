@@ -7,4 +7,3 @@ export type UploadParams = {
     ext?: string;
     size?: number;
 };
-

@@ -14,21 +14,15 @@ export class ConsultControllerService {
      * saveConsult
      * @param consult consult
      * @returns Consult OK
-     * @returns any Created
      * @throws ApiError
      */
     public static saveConsultUsingPost(
-        consult: Consult,
-    ): CancelablePromise<Consult | any> {
+consult: Consult,
+): CancelablePromise<Consult> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/consult',
             body: consult,
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
-            },
         });
     }
 
@@ -39,17 +33,13 @@ export class ConsultControllerService {
      * @throws ApiError
      */
     public static deleteConsultUsingDelete(
-        id: number,
-    ): CancelablePromise<any> {
+id: number,
+): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'DELETE',
             url: '/consult',
             query: {
                 'id': id,
-            },
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
             },
         });
     }
@@ -61,18 +51,13 @@ export class ConsultControllerService {
      * @throws ApiError
      */
     public static getHomepageReservationUsingGet(
-        state: string,
-    ): CancelablePromise<number> {
+state: string,
+): CancelablePromise<number> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/consult/HRCount',
             query: {
                 'state': state,
-            },
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
             },
         });
     }
@@ -87,11 +72,11 @@ export class ConsultControllerService {
      * @throws ApiError
      */
     public static getLongtimeCustomerListUsingGet(
-        endDate: string,
-        manager: string,
-        startDate: string,
-        state: string,
-    ): CancelablePromise<Array<Consult>> {
+endDate: string,
+manager: string,
+startDate: string,
+state: string,
+): CancelablePromise<Array<Consult>> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/consult/Longtime',
@@ -100,11 +85,6 @@ export class ConsultControllerService {
                 'manager': manager,
                 'start_date': startDate,
                 'state': state,
-            },
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
             },
         });
     }
@@ -122,14 +102,14 @@ export class ConsultControllerService {
      * @throws ApiError
      */
     public static getLongtimeMessageListUsingGet(
-        endDate: string,
-        manager: string,
-        sendEndDate: string,
-        sendStartDate: string,
-        startDate: string,
-        state: string,
-        today: string,
-    ): CancelablePromise<Array<Consult>> {
+endDate: string,
+manager: string,
+sendEndDate: string,
+sendStartDate: string,
+startDate: string,
+state: string,
+today: string,
+): CancelablePromise<Array<Consult>> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/consult/LongtimeMessage',
@@ -142,11 +122,6 @@ export class ConsultControllerService {
                 'state': state,
                 'today': today,
             },
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
-            },
         });
     }
 
@@ -157,18 +132,13 @@ export class ConsultControllerService {
      * @throws ApiError
      */
     public static getMyPickListUsingGet(
-        managerName: string,
-    ): CancelablePromise<Array<Consult>> {
+managerName: string,
+): CancelablePromise<Array<Consult>> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/consult/MyPick',
             query: {
                 'managerName': managerName,
-            },
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
             },
         });
     }
@@ -180,18 +150,13 @@ export class ConsultControllerService {
      * @throws ApiError
      */
     public static getPhoneConsultUsingGet(
-        phone: string,
-    ): CancelablePromise<Consult> {
+phone: string,
+): CancelablePromise<Consult> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/consult/Phone',
             query: {
                 'phone': phone,
-            },
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
             },
         });
     }
@@ -206,11 +171,11 @@ export class ConsultControllerService {
      * @throws ApiError
      */
     public static getManagerRecallListUsingGet(
-        endDate: string,
-        manager: string,
-        startDate: string,
-        state: string,
-    ): CancelablePromise<Array<Consult>> {
+endDate: string,
+manager: string,
+startDate: string,
+state: string,
+): CancelablePromise<Array<Consult>> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/consult/RecallList',
@@ -219,11 +184,6 @@ export class ConsultControllerService {
                 'manager': manager,
                 'start_date': startDate,
                 'state': state,
-            },
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
             },
         });
     }
@@ -237,10 +197,10 @@ export class ConsultControllerService {
      * @throws ApiError
      */
     public static getReservationListUsingGet(
-        manager: string,
-        page?: number,
-        size: number = 10,
-    ): CancelablePromise<Page_Consult_> {
+manager: string,
+page?: number,
+size: number = 10,
+): CancelablePromise<Page_Consult_> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/consult/Reservation',
@@ -248,11 +208,6 @@ export class ConsultControllerService {
                 'manager': manager,
                 'page': page,
                 'size': size,
-            },
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
             },
         });
     }
@@ -264,18 +219,13 @@ export class ConsultControllerService {
      * @throws ApiError
      */
     public static getSamePhoneConsultUsingGet(
-        phone: string,
-    ): CancelablePromise<boolean> {
+phone: string,
+): CancelablePromise<boolean> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/consult/SamePhone',
             query: {
                 'phone': phone,
-            },
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
             },
         });
     }
@@ -288,20 +238,15 @@ export class ConsultControllerService {
      * @throws ApiError
      */
     public static getGoodByeCallConsultUsingGet(
-        page?: number,
-        size: number = 10,
-    ): CancelablePromise<Page_Consult_> {
+page?: number,
+size: number = 10,
+): CancelablePromise<Page_Consult_> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/consult/goodbye',
             query: {
                 'page': page,
                 'size': size,
-            },
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
             },
         });
     }
@@ -320,15 +265,15 @@ export class ConsultControllerService {
      * @throws ApiError
      */
     public static getConsultListUsingGet(
-        from?: string,
-        keyword?: string,
-        page?: number,
-        progress?: string,
-        search?: string,
-        size: number = 10,
-        state?: string,
-        to?: string,
-    ): CancelablePromise<Page_Consult_> {
+from?: string,
+keyword?: string,
+page?: number,
+progress?: string,
+search?: string,
+size: number = 10,
+state?: string,
+to?: string,
+): CancelablePromise<Page_Consult_> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/consult/list',
@@ -342,11 +287,6 @@ export class ConsultControllerService {
                 'state': state,
                 'to': to,
             },
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
-            },
         });
     }
 
@@ -358,20 +298,15 @@ export class ConsultControllerService {
      * @throws ApiError
      */
     public static getConsultAllListUsingGet(
-        from?: string,
-        to?: string,
-    ): CancelablePromise<Array<Consult>> {
+from?: string,
+to?: string,
+): CancelablePromise<Array<Consult>> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/consult/list/all',
             query: {
                 'from': from,
                 'to': to,
-            },
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
             },
         });
     }
@@ -383,18 +318,13 @@ export class ConsultControllerService {
      * @throws ApiError
      */
     public static getTargetConsultListUsingGet(
-        managerName: string,
-    ): CancelablePromise<Array<Consult>> {
+managerName: string,
+): CancelablePromise<Array<Consult>> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/consult/list/target',
             query: {
                 'managerName': managerName,
-            },
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
             },
         });
     }
@@ -408,10 +338,10 @@ export class ConsultControllerService {
      * @throws ApiError
      */
     public static getProgressConsultUsingGet(
-        progress: string,
-        page?: number,
-        size: number = 10,
-    ): CancelablePromise<Page_Consult_> {
+progress: string,
+page?: number,
+size: number = 10,
+): CancelablePromise<Page_Consult_> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/consult/progress',
@@ -419,11 +349,6 @@ export class ConsultControllerService {
                 'page': page,
                 'progress': progress,
                 'size': size,
-            },
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
             },
         });
     }
@@ -436,20 +361,15 @@ export class ConsultControllerService {
      * @throws ApiError
      */
     public static getDeleteReasonConsultUsingGet(
-        page?: number,
-        size: number = 10,
-    ): CancelablePromise<Page_Consult_> {
+page?: number,
+size: number = 10,
+): CancelablePromise<Page_Consult_> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/consult/reason',
             query: {
                 'page': page,
                 'size': size,
-            },
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
             },
         });
     }

@@ -24,4 +24,3 @@ export type ProviderInsuranceState = {
     pensionState?: 'GET' | 'WITHDRAW' | 'INSURANCE_CANCEL' | 'INSURANCE_MODIFY' | 'MOVE_CONFIRM' | 'CHANGE_AMOUNT' | 'ETC_CHANGE';
     workHours?: number;
 };
-

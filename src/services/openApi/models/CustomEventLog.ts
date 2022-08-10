@@ -10,4 +10,3 @@ export type CustomEventLog = {
     id?: number;
     type?: string;
 };
-

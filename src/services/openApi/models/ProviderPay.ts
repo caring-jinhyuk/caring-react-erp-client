@@ -74,4 +74,3 @@ export type ProviderPay = {
     weekRest?: number;
     workHoursPerWeek?: number;
 };
-

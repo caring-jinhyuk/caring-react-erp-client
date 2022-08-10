@@ -19,4 +19,3 @@ export type Page_ModusignContractPaperSent_ = {
     totalElements?: number;
     totalPages?: number;
 };
-

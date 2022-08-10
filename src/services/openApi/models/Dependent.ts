@@ -12,4 +12,3 @@ export type Dependent = {
     permissionStartAt?: string;
     relation?: string;
 };
-

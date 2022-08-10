@@ -15,4 +15,3 @@ export type ModusignContractPaperSent = {
     updatedAt?: string;
     userId?: number;
 };
-

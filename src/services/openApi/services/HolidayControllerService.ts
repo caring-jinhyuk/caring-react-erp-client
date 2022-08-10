@@ -16,18 +16,13 @@ export class HolidayControllerService {
      * @throws ApiError
      */
     public static getHolidayUsingGet(
-        id: number,
-    ): CancelablePromise<Holiday> {
+id: number,
+): CancelablePromise<Holiday> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/holiday',
             query: {
                 'id': id,
-            },
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
             },
         });
     }
@@ -36,21 +31,15 @@ export class HolidayControllerService {
      * saveHoliday
      * @param holiday holiday
      * @returns Holiday OK
-     * @returns any Created
      * @throws ApiError
      */
     public static saveHolidayUsingPost(
-        holiday: Holiday,
-    ): CancelablePromise<Holiday | any> {
+holiday: Holiday,
+): CancelablePromise<Holiday> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/holiday',
             body: holiday,
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
-            },
         });
     }
 
@@ -61,17 +50,13 @@ export class HolidayControllerService {
      * @throws ApiError
      */
     public static deleteHolidayUsingDelete(
-        id: number,
-    ): CancelablePromise<any> {
+id: number,
+): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'DELETE',
             url: '/holiday',
             query: {
                 'id': id,
-            },
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
             },
         });
     }
@@ -83,18 +68,13 @@ export class HolidayControllerService {
      * @throws ApiError
      */
     public static getHolidayListUsingGet(
-        yyyyMm: string,
-    ): CancelablePromise<Array<Holiday>> {
+yyyyMm: string,
+): CancelablePromise<Array<Holiday>> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/holiday/list',
             query: {
                 'yyyyMM': yyyyMm,
-            },
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
             },
         });
     }
