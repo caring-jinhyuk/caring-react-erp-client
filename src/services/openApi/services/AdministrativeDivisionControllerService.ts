@@ -17,20 +17,15 @@ export class AdministrativeDivisionControllerService {
      * @throws ApiError
      */
     public static getAdministrativeDivisionUsingGet(
-        city: string,
-        ward: string,
-    ): CancelablePromise<Array<AdministrativeDivision>> {
+city: string,
+ward: string,
+): CancelablePromise<Array<AdministrativeDivision>> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/administrativeDivision',
             query: {
                 'city': city,
                 'ward': ward,
-            },
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
             },
         });
     }
@@ -39,21 +34,15 @@ export class AdministrativeDivisionControllerService {
      * saveAdministrativeDivision
      * @param administrativeDivision administrativeDivision
      * @returns AdministrativeDivision OK
-     * @returns any Created
      * @throws ApiError
      */
     public static saveAdministrativeDivisionUsingPost(
-        administrativeDivision: AdministrativeDivision,
-    ): CancelablePromise<AdministrativeDivision | any> {
+administrativeDivision: AdministrativeDivision,
+): CancelablePromise<AdministrativeDivision> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/administrativeDivision',
             body: administrativeDivision,
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
-            },
         });
     }
 
@@ -64,17 +53,13 @@ export class AdministrativeDivisionControllerService {
      * @throws ApiError
      */
     public static deleteAdministrativeDivisionUsingDelete(
-        id: number,
-    ): CancelablePromise<any> {
+id: number,
+): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'DELETE',
             url: '/administrativeDivision',
             query: {
                 'id': id,
-            },
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
             },
         });
     }
@@ -83,21 +68,15 @@ export class AdministrativeDivisionControllerService {
      * updateAdministrativeDivision
      * @param id id
      * @returns AdministrativeDivision OK
-     * @returns any Created
      * @throws ApiError
      */
     public static updateAdministrativeDivisionUsingPut(
-        id: number,
-    ): CancelablePromise<AdministrativeDivision | any> {
+id: number,
+): CancelablePromise<AdministrativeDivision> {
         return __request(OpenAPI, {
             method: 'PUT',
             url: '/administrativeDivision/update',
             body: id,
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
-            },
         });
     }
 

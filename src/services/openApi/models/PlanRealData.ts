@@ -23,4 +23,3 @@ export type PlanRealData = {
     startTimeR?: string;
     type?: string;
 };
-

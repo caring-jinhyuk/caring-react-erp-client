@@ -14,4 +14,3 @@ export type PlanData = {
     rfidD?: string;
     workCenterId?: number;
 };
-

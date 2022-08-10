@@ -12,4 +12,3 @@ export type Pageable = {
     sort?: Sort;
     unpaged?: boolean;
 };
-

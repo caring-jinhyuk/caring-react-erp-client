@@ -23,4 +23,3 @@ export type AccountRecord = {
     withdraw?: string;
     workCenter?: WorkCenter;
 };
-

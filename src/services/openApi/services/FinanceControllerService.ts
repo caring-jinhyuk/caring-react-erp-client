@@ -13,21 +13,15 @@ export class FinanceControllerService {
      * saveFinance
      * @param finance finance
      * @returns Finance OK
-     * @returns any Created
      * @throws ApiError
      */
     public static saveFinanceUsingPost(
-        finance: Finance,
-    ): CancelablePromise<Finance | any> {
+finance: Finance,
+): CancelablePromise<Finance> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/finance',
             body: finance,
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
-            },
         });
     }
 
@@ -39,20 +33,15 @@ export class FinanceControllerService {
      * @throws ApiError
      */
     public static getFinanceOptionsUsingGet(
-        providerId?: number,
-        recipientId?: number,
-    ): CancelablePromise<Array<Finance>> {
+providerId?: number,
+recipientId?: number,
+): CancelablePromise<Array<Finance>> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/finance/options',
             query: {
                 'providerId': providerId,
                 'recipientId': recipientId,
-            },
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
             },
         });
     }

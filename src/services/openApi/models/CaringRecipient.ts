@@ -47,4 +47,3 @@ export type CaringRecipient = {
     updatedAt?: string;
     workCenter?: WorkCenter;
 };
-

@@ -19,4 +19,3 @@ export type Synthesis = {
     tvAd?: number;
     youtube?: number;
 };
-

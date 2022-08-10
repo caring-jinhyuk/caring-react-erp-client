@@ -19,4 +19,3 @@ export type Page_Notice_ = {
     totalElements?: number;
     totalPages?: number;
 };
-

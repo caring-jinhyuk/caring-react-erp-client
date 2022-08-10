@@ -19,4 +19,3 @@ export type Page_Caregiver_ = {
     totalElements?: number;
     totalPages?: number;
 };
-

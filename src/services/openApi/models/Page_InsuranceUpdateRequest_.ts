@@ -19,4 +19,3 @@ export type Page_InsuranceUpdateRequest_ = {
     totalElements?: number;
     totalPages?: number;
 };
-

@@ -19,4 +19,3 @@ export type Page_SmsKakaoSentResult_ = {
     totalElements?: number;
     totalPages?: number;
 };
-

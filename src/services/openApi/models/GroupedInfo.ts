@@ -15,4 +15,3 @@ export type GroupedInfo = {
     recipientName?: string;
     record?: Record<string, string>;
 };
-

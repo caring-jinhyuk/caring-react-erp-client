@@ -16,18 +16,13 @@ export class RecordingSheetSentControllerService {
      * @throws ApiError
      */
     public static getSendRecordUsingGet(
-        id: number,
-    ): CancelablePromise<RecordingSheetSent> {
+id: number,
+): CancelablePromise<RecordingSheetSent> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/sendRecord',
             query: {
                 'id': id,
-            },
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
             },
         });
     }
@@ -36,22 +31,16 @@ export class RecordingSheetSentControllerService {
      * saveSendRecord
      * @param key key
      * @returns RecordingSheetSent OK
-     * @returns any Created
      * @throws ApiError
      */
     public static saveSendRecordUsingPost(
-        key: string,
-    ): CancelablePromise<RecordingSheetSent | any> {
+key: string,
+): CancelablePromise<RecordingSheetSent> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/sendRecord',
             query: {
                 'key': key,
-            },
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
             },
         });
     }
@@ -63,17 +52,13 @@ export class RecordingSheetSentControllerService {
      * @throws ApiError
      */
     public static deleteSendRecordUsingDelete(
-        id: number,
-    ): CancelablePromise<any> {
+id: number,
+): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'DELETE',
             url: '/sendRecord',
             query: {
                 'id': id,
-            },
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
             },
         });
     }
@@ -82,21 +67,15 @@ export class RecordingSheetSentControllerService {
      * getSendRecordList
      * @param keys keys
      * @returns RecordingSheetSent OK
-     * @returns any Created
      * @throws ApiError
      */
     public static getSendRecordListUsingPost(
-        keys: Array<string>,
-    ): CancelablePromise<Array<RecordingSheetSent> | any> {
+keys: Array<string>,
+): CancelablePromise<Array<RecordingSheetSent>> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/sendRecord/list',
             body: keys,
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
-            },
         });
     }
 

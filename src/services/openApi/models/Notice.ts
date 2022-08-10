@@ -15,4 +15,3 @@ export type Notice = {
     title?: string;
     updatedAt?: string;
 };
-

@@ -9,4 +9,3 @@ export type GovermentApiResult = {
     response?: string;
     userId?: number;
 };
-

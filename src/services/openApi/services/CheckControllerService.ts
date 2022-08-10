@@ -16,11 +16,6 @@ export class CheckControllerService {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/',
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
-            },
         });
     }
 
@@ -33,46 +28,30 @@ export class CheckControllerService {
         return __request(OpenAPI, {
             method: 'HEAD',
             url: '/',
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-            },
         });
     }
 
     /**
      * healthCheck
      * @returns string OK
-     * @returns any Created
      * @throws ApiError
      */
-    public static healthCheckUsingPost(): CancelablePromise<string | any> {
+    public static healthCheckUsingPost(): CancelablePromise<string> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/',
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
-            },
         });
     }
 
     /**
      * healthCheck
      * @returns string OK
-     * @returns any Created
      * @throws ApiError
      */
-    public static healthCheckUsingPut(): CancelablePromise<string | any> {
+    public static healthCheckUsingPut(): CancelablePromise<string> {
         return __request(OpenAPI, {
             method: 'PUT',
             url: '/',
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
-            },
         });
     }
 
@@ -85,10 +64,6 @@ export class CheckControllerService {
         return __request(OpenAPI, {
             method: 'DELETE',
             url: '/',
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-            },
         });
     }
 
@@ -101,10 +76,6 @@ export class CheckControllerService {
         return __request(OpenAPI, {
             method: 'OPTIONS',
             url: '/',
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-            },
         });
     }
 
@@ -117,10 +88,6 @@ export class CheckControllerService {
         return __request(OpenAPI, {
             method: 'PATCH',
             url: '/',
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-            },
         });
     }
 
@@ -133,11 +100,6 @@ export class CheckControllerService {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/health',
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
-            },
         });
     }
 
@@ -150,46 +112,30 @@ export class CheckControllerService {
         return __request(OpenAPI, {
             method: 'HEAD',
             url: '/health',
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-            },
         });
     }
 
     /**
      * healthCheck
      * @returns string OK
-     * @returns any Created
      * @throws ApiError
      */
-    public static healthCheckUsingPost1(): CancelablePromise<string | any> {
+    public static healthCheckUsingPost1(): CancelablePromise<string> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/health',
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
-            },
         });
     }
 
     /**
      * healthCheck
      * @returns string OK
-     * @returns any Created
      * @throws ApiError
      */
-    public static healthCheckUsingPut1(): CancelablePromise<string | any> {
+    public static healthCheckUsingPut1(): CancelablePromise<string> {
         return __request(OpenAPI, {
             method: 'PUT',
             url: '/health',
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
-            },
         });
     }
 
@@ -202,10 +148,6 @@ export class CheckControllerService {
         return __request(OpenAPI, {
             method: 'DELETE',
             url: '/health',
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-            },
         });
     }
 
@@ -218,10 +160,6 @@ export class CheckControllerService {
         return __request(OpenAPI, {
             method: 'OPTIONS',
             url: '/health',
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-            },
         });
     }
 
@@ -234,10 +172,6 @@ export class CheckControllerService {
         return __request(OpenAPI, {
             method: 'PATCH',
             url: '/health',
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-            },
         });
     }
 

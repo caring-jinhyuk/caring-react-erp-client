@@ -17,18 +17,13 @@ export class RecordingSheetControllerService {
      * @throws ApiError
      */
     public static getRecordingSheetUsingGet(
-        id: number,
-    ): CancelablePromise<RecordingSheet> {
+id: number,
+): CancelablePromise<RecordingSheet> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/recordingSheet',
             query: {
                 'id': id,
-            },
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
             },
         });
     }
@@ -37,21 +32,15 @@ export class RecordingSheetControllerService {
      * saveRecordingSheet
      * @param recordingSheet recordingSheet
      * @returns RecordingSheet OK
-     * @returns any Created
      * @throws ApiError
      */
     public static saveRecordingSheetUsingPost(
-        recordingSheet: RecordingSheet,
-    ): CancelablePromise<RecordingSheet | any> {
+recordingSheet: RecordingSheet,
+): CancelablePromise<RecordingSheet> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/recordingSheet',
             body: recordingSheet,
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
-            },
         });
     }
 
@@ -62,17 +51,13 @@ export class RecordingSheetControllerService {
      * @throws ApiError
      */
     public static deleteRecordingSheetUsingDelete(
-        id: number,
-    ): CancelablePromise<any> {
+id: number,
+): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'DELETE',
             url: '/recordingSheet',
             query: {
                 'id': id,
-            },
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
             },
         });
     }
@@ -83,14 +68,13 @@ export class RecordingSheetControllerService {
      * @param recipientId recipientId
      * @param size size
      * @returns Page_RecordingSheet_ OK
-     * @returns any Created
      * @throws ApiError
      */
     public static getRecordingSheetListUsingPost(
-        page?: number,
-        recipientId?: number,
-        size: number = 10,
-    ): CancelablePromise<Page_RecordingSheet_ | any> {
+page?: number,
+recipientId?: number,
+size: number = 10,
+): CancelablePromise<Page_RecordingSheet_> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/recordingSheet/list',
@@ -99,11 +83,6 @@ export class RecordingSheetControllerService {
                 'size': size,
             },
             body: recipientId,
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
-            },
         });
     }
 

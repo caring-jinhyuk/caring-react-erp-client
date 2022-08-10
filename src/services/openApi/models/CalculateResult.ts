@@ -11,4 +11,3 @@ export type CalculateResult = {
     grouped?: Record<string, GroupedInfo>;
     summeries?: CalculateSummary;
 };
-

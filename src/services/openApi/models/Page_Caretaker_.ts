@@ -2,12 +2,12 @@
 /* tslint:disable */
 /* eslint-disable */
 
+import type { Caretaker } from './Caretaker';
 import type { Pageable } from './Pageable';
-import type { ServiceSchedule } from './ServiceSchedule';
 import type { Sort } from './Sort';
 
-export type Page_ServiceSchedule_ = {
-    content?: Array<ServiceSchedule>;
+export type Page_Caretaker_ = {
+    content?: Array<Caretaker>;
     empty?: boolean;
     first?: boolean;
     last?: boolean;

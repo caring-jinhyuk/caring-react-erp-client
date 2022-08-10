@@ -23,4 +23,3 @@ export type ServiceSchedule = {
     workCenter?: WorkCenter;
     yyyyMM?: string;
 };
-

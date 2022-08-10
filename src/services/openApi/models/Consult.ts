@@ -40,4 +40,3 @@ export type Consult = {
     why?: string;
     work160?: string;
 };
-

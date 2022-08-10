@@ -7,4 +7,3 @@ export type ProviderLicense = {
     publishedAt?: string;
     type?: string;
 };
-

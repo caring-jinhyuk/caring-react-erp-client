@@ -14,21 +14,15 @@ export class SynthesisControllerService {
      * saveSynthesis
      * @param synthesis synthesis
      * @returns Synthesis OK
-     * @returns any Created
      * @throws ApiError
      */
     public static saveSynthesisUsingPost(
-        synthesis: Synthesis,
-    ): CancelablePromise<Synthesis | any> {
+synthesis: Synthesis,
+): CancelablePromise<Synthesis> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/synthesis',
             body: synthesis,
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
-            },
         });
     }
 
@@ -39,17 +33,13 @@ export class SynthesisControllerService {
      * @throws ApiError
      */
     public static deleteSynthesisUsingDelete(
-        id: number,
-    ): CancelablePromise<any> {
+id: number,
+): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'DELETE',
             url: '/synthesis',
             query: {
                 'id': id,
-            },
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
             },
         });
     }
@@ -63,11 +53,6 @@ export class SynthesisControllerService {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/synthesis/list',
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
-            },
         });
     }
 
@@ -79,20 +64,15 @@ export class SynthesisControllerService {
      * @throws ApiError
      */
     public static getSynthesisSearchListUsingGet(
-        endDate: number,
-        startDate: number,
-    ): CancelablePromise<Array<Synthesis>> {
+endDate: number,
+startDate: number,
+): CancelablePromise<Array<Synthesis>> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/synthesis/searchList',
             query: {
                 'end_date': endDate,
                 'start_date': startDate,
-            },
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
             },
         });
     }
@@ -101,21 +81,15 @@ export class SynthesisControllerService {
      * updateSynthesis
      * @param id id
      * @returns Synthesis OK
-     * @returns any Created
      * @throws ApiError
      */
     public static updateSynthesisUsingPut(
-        id: number,
-    ): CancelablePromise<Synthesis | any> {
+id: number,
+): CancelablePromise<Synthesis> {
         return __request(OpenAPI, {
             method: 'PUT',
             url: '/synthesis/update',
             body: id,
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
-            },
         });
     }
 

@@ -18,4 +18,3 @@ export type User = {
     role?: 'Admin' | 'Center' | 'ContactCenter' | 'CenterChief' | 'AccountingFirm' | 'FinancialManager' | 'Infra';
     sendNumber?: string;
 };
-

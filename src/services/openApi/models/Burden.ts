@@ -23,4 +23,3 @@ export type Burden = {
     updatedAt?: string;
     workCenterId?: number;
 };
-

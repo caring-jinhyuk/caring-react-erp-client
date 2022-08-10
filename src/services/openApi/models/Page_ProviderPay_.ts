@@ -19,4 +19,3 @@ export type Page_ProviderPay_ = {
     totalElements?: number;
     totalPages?: number;
 };
-

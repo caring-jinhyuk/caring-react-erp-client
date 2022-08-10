@@ -12,4 +12,3 @@ export type Summary = {
     provider?: string;
     recipient?: string;
 };
-

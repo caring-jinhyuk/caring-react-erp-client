@@ -6,4 +6,3 @@ export type ModusignContractPaperSentQuery = {
     centerIdList?: Array<number>;
     states?: Array<string>;
 };
-

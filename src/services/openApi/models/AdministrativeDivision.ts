@@ -9,4 +9,3 @@ export type AdministrativeDivision = {
     town?: string;
     ward?: string;
 };
-
