@@ -21,6 +21,7 @@ import { statisticsSearchParamAtom } from '../Statistics';
 import LocationStatistics from './LocationStatistics';
 import ProcessStatistics from './ProcessStatistics';
 import InflowStatistics from './InflowStatistics';
+import StateStatistics from './StateStatistics';
 
 interface DailyCallStatisticsProps {
 	callStatistic: CallData;
@@ -207,26 +208,7 @@ const DailyCallStatistics: FC<DailyCallStatisticsProps> = ({ callStatistic }) =>
 					<FamilyServiceStatistics callStatistic={callStatistic} />
 				</div>
 				<div className='col-6'>
-					<Card>
-						<CardBody>
-							<table className='table table-modern table-hover'>
-								<thead>
-									<tr>
-										<th>상태</th>
-										<th>call</th>
-									</tr>
-								</thead>
-								<tbody>
-									{callStatistic.stateList.map((item, index) => (
-										<tr key={item}>
-											<td>{item}</td>
-											<td>{callStatistic.todayStateCall[index]}</td>
-										</tr>
-									))}
-								</tbody>
-							</table>
-						</CardBody>
-					</Card>
+					<StateStatistics callStatistic={callStatistic} />
 				</div>
 			</div>
 			<div className='row'>
