@@ -20,6 +20,8 @@ import { CALL_TYPE_SELECT, CallType } from '../constants/StatisticsConstants';
 import { statisticsSearchParamAtom } from '../Statistics';
 import LocationStatistics from './LocationStatistics';
 import ProcessStatistics from './ProcessStatistics';
+import InflowStatistics from './InflowStatistics';
+import StateStatistics from './StateStatistics';
 
 interface DailyCallStatisticsProps {
 	callStatistic: CallData;
@@ -65,24 +67,24 @@ const DailyCallStatistics: FC<DailyCallStatisticsProps> = ({ callStatistic }) =>
 				</CardLabel>
 				<CardActions className='d-flex flex-row'>
 					<div>
-						<Popovers
-							desc={
-								<DatePicker
-									onChange={(item) => setSelectDate(item!)}
-									date={selectDate}
-									locale={ko}
-									color={'#6c5dd3'}
-								/>
-							}
-							placement='bottom-end'
-							className='mw-100'
-							trigger='click'>
-							<ButtonGroup>
-								<Button icon={'ArrowLeft'} onClick={subtractDay} />
+						<ButtonGroup>
+							<Button color='primary' icon={'ArrowLeft'} onClick={subtractDay} />
+							<Popovers
+								desc={
+									<DatePicker
+										onChange={(item) => setSelectDate(item!)}
+										date={selectDate}
+										locale={ko}
+										color={'#6c5dd3'}
+									/>
+								}
+								placement='bottom-end'
+								className='mw-100'
+								trigger='click'>
 								<Button color='primary'>{moment(selectDate).format('YYYY-MM-DD')}</Button>
-								<Button icon={'ArrowRight'} onClick={addDay} />
-							</ButtonGroup>
-						</Popovers>
+							</Popovers>
+							<Button color='primary' icon={'ArrowRight'} onClick={addDay} />
+						</ButtonGroup>
 					</div>
 					<div>
 						<Select id='searchType' ariaLabel={'callType'} onChange={handleOnChange}>
@@ -198,58 +200,20 @@ const DailyCallStatistics: FC<DailyCallStatisticsProps> = ({ callStatistic }) =>
 					</Card>
 				</div>
 				<div className='col-6'>
-					<FamilyServiceStatistics callStatistic={callStatistic} />
-				</div>
-			</div>
-			<div className='row'>
-				<div className='col-6'>
 					<ProcessStatistics callStatistic={callStatistic} />
 				</div>
+			</div>
+			<div className='row'>
 				<div className='col-6'>
-					<Card>
-						<CardBody>
-							<table className='table table-modern table-hover'>
-								<thead>
-									<tr>
-										<th>상태</th>
-										<th>call</th>
-									</tr>
-								</thead>
-								<tbody>
-									{callStatistic.stateList.map((item, index) => (
-										<tr key={item}>
-											<td>{item}</td>
-											<td>{callStatistic.todayStateCall[index]}</td>
-										</tr>
-									))}
-								</tbody>
-							</table>
-						</CardBody>
-					</Card>
+					<FamilyServiceStatistics callStatistic={callStatistic} />
+				</div>
+				<div className='col-6'>
+					<StateStatistics callStatistic={callStatistic} />
 				</div>
 			</div>
 			<div className='row'>
 				<div className='col-6'>
-					<Card>
-						<CardBody>
-							<table className='table table-modern table-hover'>
-								<thead>
-									<tr>
-										<th>유입매체</th>
-										<th>call</th>
-									</tr>
-								</thead>
-								<tbody>
-									{callStatistic.inflowList.map((item, index) => (
-										<tr key={item}>
-											<td>{item}</td>
-											<td>{callStatistic.todayStateCall[index]}</td>
-										</tr>
-									))}
-								</tbody>
-							</table>
-						</CardBody>
-					</Card>
+					<InflowStatistics callStatistic={callStatistic} />
 				</div>
 				<div className='col-6'>
 					<LocationStatistics callStatistic={callStatistic} />
@@ -257,34 +221,60 @@ const DailyCallStatistics: FC<DailyCallStatisticsProps> = ({ callStatistic }) =>
 			</div>
 			<Card>
 				<CardBody>
-					<table className='table table-modern table-hover'>
-						<thead>
-							<tr>
-								<th>선택이유</th>
-								<th>call</th>
-							</tr>
-						</thead>
-						<tbody>
-							{callStatistic.whyList.map((item, index) => (
-								<tr key={item}>
-									<td>{item}</td>
-									<td>{callStatistic.todayChoiceReasonCall[index]}</td>
-								</tr>
-							))}
-							<thead>
-								<tr>
-									<th>타급여</th>
-									<th>call</th>
-								</tr>
-							</thead>
-							{callStatistic.addInquiryList.map((item, index) => (
-								<tr key={item}>
-									<td>{item}</td>
-									<td>{callStatistic.todayAddInquiryCall[index]}</td>
-								</tr>
-							))}
-						</tbody>
-					</table>
+					<div className='row'>
+						<div className='col-6'>
+							<table className='table table-modern table-hover'>
+								<thead>
+									<tr>
+										<th>선택이유</th>
+										<th>call</th>
+									</tr>
+								</thead>
+								<tbody>
+									{callStatistic.whyList.map((item, index) => (
+										<tr key={item}>
+											<td>{item}</td>
+											<td>
+												{item === '기타' ? (
+													<Popovers title={callStatistic.todayChoiceReasonEtc} trigger={'click'}>
+														<div>{callStatistic.todayChoiceReasonCall[index]}</div>
+													</Popovers>
+												) : (
+													callStatistic.todayChoiceReasonCall[index]
+												)}
+											</td>
+										</tr>
+									))}
+								</tbody>
+							</table>
+						</div>
+						<div className='col-6'>
+							<table className='table table-modern'>
+								<thead>
+									<tr>
+										<th>타급여</th>
+										<th>call</th>
+									</tr>
+								</thead>
+								<tbody>
+									{callStatistic.addInquiryList.map((item, index) => (
+										<tr key={item}>
+											<td>{item}</td>
+											<td>
+												{item === '기타' ? (
+													<Popovers title={callStatistic.todayAddInquiryEtc} trigger={'click'}>
+														<div>{callStatistic.todayAddInquiryCall[index]}</div>
+													</Popovers>
+												) : (
+													callStatistic.todayAddInquiryCall[index]
+												)}
+											</td>
+										</tr>
+									))}
+								</tbody>
+							</table>
+						</div>
+					</div>
 				</CardBody>
 			</Card>
 		</>

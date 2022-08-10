@@ -1,5 +1,4 @@
 import React, { FC, useState } from 'react';
-import { CallData } from '../../../../models/CallData';
 import Card, {
 	CardActions,
 	CardBody,
@@ -7,23 +6,23 @@ import Card, {
 	CardLabel,
 	CardTitle,
 } from '../../../../components/bootstrap/Card';
+import { CallData } from '../../../../models/CallData';
 import { GraphType } from '../constants/StatisticsConstants';
 import Button from '../../../../components/bootstrap/Button';
 import Chart from '../../../../components/extras/Chart';
 
-type ProcessStatisticsProps = {
+type StateStatisticsProps = {
 	callStatistic: CallData;
 };
 
-const ProcessStatistics: FC<ProcessStatisticsProps> = ({ callStatistic }) => {
+const StateStatistics: FC<StateStatisticsProps> = ({ callStatistic }) => {
 	const [showDataType, setShowDataType] = useState<GraphType>(GraphType.TABLE);
-
 	return (
 		<>
 			<Card>
 				<CardHeader>
 					<CardLabel className='h6'>
-						<CardTitle>고객 상태</CardTitle>
+						<CardTitle>상태</CardTitle>
 					</CardLabel>
 					<CardActions>
 						<Button
@@ -37,12 +36,12 @@ const ProcessStatistics: FC<ProcessStatisticsProps> = ({ callStatistic }) => {
 				</CardHeader>
 				<CardBody>
 					{showDataType === GraphType.TABLE && (
-						<table className='table table-modern'>
+						<table className='table table-moder'>
 							<tbody>
-								{callStatistic.progressList.map((item, index) => (
+								{callStatistic.stateList.map((item, index) => (
 									<tr key={item}>
 										<td>{item}</td>
-										<td>{callStatistic.progressCheckList[1][index]}</td>
+										<td>{callStatistic.todayStateCall[index]}</td>
 									</tr>
 								))}
 							</tbody>
@@ -52,26 +51,26 @@ const ProcessStatistics: FC<ProcessStatisticsProps> = ({ callStatistic }) => {
 						<Chart
 							series={[
 								{
-									data: callStatistic.progressCheckList[1],
+									data: callStatistic.todayStateCall,
 								},
 							]}
 							options={{
 								chart: {
-									height: 350,
+									height: 600,
 									type: 'bar',
 								},
 								xaxis: {
-									categories: callStatistic.progressList,
+									categories: callStatistic.stateList,
 								},
 								plotOptions: {
 									bar: {
-										horizontal: false,
+										horizontal: true,
 									},
 								},
 								colors: [String(process.env.REACT_APP_INFO_COLOR)],
 							}}
 							type={'bar'}
-							height={450}
+							height={600}
 						/>
 					)}
 				</CardBody>
@@ -80,4 +79,4 @@ const ProcessStatistics: FC<ProcessStatisticsProps> = ({ callStatistic }) => {
 	);
 };
 
-export default ProcessStatistics;
+export default StateStatistics;

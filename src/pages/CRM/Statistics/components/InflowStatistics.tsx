@@ -1,5 +1,4 @@
 import React, { FC, useState } from 'react';
-import { CallData } from '../../../../models/CallData';
 import Card, {
 	CardActions,
 	CardBody,
@@ -7,23 +6,23 @@ import Card, {
 	CardLabel,
 	CardTitle,
 } from '../../../../components/bootstrap/Card';
+import { CallData } from '../../../../models/CallData';
 import { GraphType } from '../constants/StatisticsConstants';
 import Button from '../../../../components/bootstrap/Button';
 import Chart from '../../../../components/extras/Chart';
 
-type ProcessStatisticsProps = {
+type InflowStatisticsProps = {
 	callStatistic: CallData;
 };
 
-const ProcessStatistics: FC<ProcessStatisticsProps> = ({ callStatistic }) => {
+const InflowStatistics: FC<InflowStatisticsProps> = ({ callStatistic }) => {
 	const [showDataType, setShowDataType] = useState<GraphType>(GraphType.TABLE);
-
 	return (
 		<>
 			<Card>
 				<CardHeader>
 					<CardLabel className='h6'>
-						<CardTitle>고객 상태</CardTitle>
+						<CardTitle>유입매체</CardTitle>
 					</CardLabel>
 					<CardActions>
 						<Button
@@ -39,10 +38,10 @@ const ProcessStatistics: FC<ProcessStatisticsProps> = ({ callStatistic }) => {
 					{showDataType === GraphType.TABLE && (
 						<table className='table table-modern'>
 							<tbody>
-								{callStatistic.progressList.map((item, index) => (
+								{callStatistic.inflowList.map((item, index) => (
 									<tr key={item}>
 										<td>{item}</td>
-										<td>{callStatistic.progressCheckList[1][index]}</td>
+										<td>{callStatistic.todayStateCall[index]}</td>
 									</tr>
 								))}
 							</tbody>
@@ -52,7 +51,7 @@ const ProcessStatistics: FC<ProcessStatisticsProps> = ({ callStatistic }) => {
 						<Chart
 							series={[
 								{
-									data: callStatistic.progressCheckList[1],
+									data: callStatistic.todayStateCall.slice(0, callStatistic.inflowList.length),
 								},
 							]}
 							options={{
@@ -61,7 +60,7 @@ const ProcessStatistics: FC<ProcessStatisticsProps> = ({ callStatistic }) => {
 									type: 'bar',
 								},
 								xaxis: {
-									categories: callStatistic.progressList,
+									categories: callStatistic.inflowList,
 								},
 								plotOptions: {
 									bar: {
@@ -80,4 +79,4 @@ const ProcessStatistics: FC<ProcessStatisticsProps> = ({ callStatistic }) => {
 	);
 };
 
-export default ProcessStatistics;
+export default InflowStatistics;

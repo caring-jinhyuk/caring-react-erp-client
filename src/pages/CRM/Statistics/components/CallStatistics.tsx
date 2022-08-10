@@ -1,6 +1,5 @@
-import React, { FC, useRef, useState } from 'react';
+import React, { FC } from 'react';
 import Card, {
-	CardActions,
 	CardBody,
 	CardHeader,
 	CardLabel,
