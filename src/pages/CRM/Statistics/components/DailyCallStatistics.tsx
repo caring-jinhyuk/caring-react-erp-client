@@ -66,24 +66,24 @@ const DailyCallStatistics: FC<DailyCallStatisticsProps> = ({ callStatistic }) =>
 				</CardLabel>
 				<CardActions className='d-flex flex-row'>
 					<div>
-						<Popovers
-							desc={
-								<DatePicker
-									onChange={(item) => setSelectDate(item!)}
-									date={selectDate}
-									locale={ko}
-									color={'#6c5dd3'}
-								/>
-							}
-							placement='bottom-end'
-							className='mw-100'
-							trigger='click'>
-							<ButtonGroup>
-								<Button icon={'ArrowLeft'} onClick={subtractDay} />
+						<ButtonGroup>
+							<Button color='primary' icon={'ArrowLeft'} onClick={subtractDay} />
+							<Popovers
+								desc={
+									<DatePicker
+										onChange={(item) => setSelectDate(item!)}
+										date={selectDate}
+										locale={ko}
+										color={'#6c5dd3'}
+									/>
+								}
+								placement='bottom-end'
+								className='mw-100'
+								trigger='click'>
 								<Button color='primary'>{moment(selectDate).format('YYYY-MM-DD')}</Button>
-								<Button icon={'ArrowRight'} onClick={addDay} />
-							</ButtonGroup>
-						</Popovers>
+							</Popovers>
+							<Button color='primary' icon={'ArrowRight'} onClick={addDay} />
+						</ButtonGroup>
 					</div>
 					<div>
 						<Select id='searchType' ariaLabel={'callType'} onChange={handleOnChange}>

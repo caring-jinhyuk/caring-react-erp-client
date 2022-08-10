@@ -9,7 +9,6 @@ import Card, {
 } from '../../../../components/bootstrap/Card';
 import { GraphType } from '../constants/StatisticsConstants';
 import Button from '../../../../components/bootstrap/Button';
-import { CITY } from '../../../../constants/address';
 import Chart from '../../../../components/extras/Chart';
 
 type ProcessStatisticsProps = {

@@ -68,10 +68,14 @@ export const priceFormat = (price: number) => {
 	});
 };
 
+export const numberFormat = (value: number) => {
+	return value.toLocaleString('ko-KR');
+};
+
 export const average = (array: any[]) => array.reduce((a, b) => a + b) / array.length;
 
 export const percent = (value1: number, value2: number) =>
-	Number(((value1 / value2 - 1) * 100).toFixed(2));
+	Number(((value1 / value2) * 100).toFixed(2));
 
 export const getFirstLetter = (text: string, letterCount = 2): string =>
 	// @ts-ignore

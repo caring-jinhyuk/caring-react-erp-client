@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { useState } from 'react';
 import Popovers from '../../../../components/bootstrap/Popovers';
 import Button from '../../../../components/bootstrap/Button';
 import moment from 'moment';
