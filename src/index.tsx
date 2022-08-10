@@ -9,6 +9,7 @@ import { RecoilRoot } from 'recoil';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import moment from 'moment';
+import AuthProvider from './contexts/AuthProvider';
 import 'moment/locale/ko';
 moment.locale('ko');
 
@@ -27,7 +28,9 @@ const children = (
 				<Router>
 					<ThemeContextProvider>
 						<ReactQueryDevtools initialIsOpen={false} />
-						<App />
+						<AuthProvider>
+							<App />
+						</AuthProvider>
 					</ThemeContextProvider>
 				</Router>
 			</QueryClientProvider>
