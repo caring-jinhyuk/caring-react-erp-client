@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { CaregiverControllerService } from '../services/openApi';
 import moment from 'moment';
-import { CITY } from '../constants/address';
+import { CITY } from '../statics/address';
 
 export const useGetCaregiverAllList = () => {
 	const result = useQuery(['caregiverAllList'], async () => getCaregiverAllList(), {

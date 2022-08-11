@@ -12,7 +12,7 @@ import { atom, useRecoilValue } from 'recoil';
 import { v1 } from 'uuid';
 import moment from 'moment';
 import { useQueryClient } from '@tanstack/react-query';
-import { CallType } from './constants/StatisticsConstants';
+import { CallType } from './statics/StatisticsStatics';
 import DownloadStatistics from './components/DownloadStatistics';
 import { Line } from '../../../components/icon/bootstrap';
 

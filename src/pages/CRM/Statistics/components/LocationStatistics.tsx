@@ -8,9 +8,9 @@ import Card, {
 } from '../../../../components/bootstrap/Card';
 import { CallData } from '../../../../models/CallData';
 import Button from '../../../../components/bootstrap/Button';
-import { GraphType } from '../constants/StatisticsConstants';
+import { GraphType } from '../statics/StatisticsStatics';
 import Chart from '../../../../components/extras/Chart';
-import { CITY } from '../../../../constants/address';
+import { CITY } from '../../../../statics/address';
 
 type LocationStatisticsProps = {
 	callStatistic: CallData;

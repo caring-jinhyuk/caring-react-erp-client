@@ -7,10 +7,10 @@ import Card, {
 	CardLabel,
 	CardTitle,
 } from '../../../../components/bootstrap/Card';
-import { GraphType } from '../constants/StatisticsConstants';
+import { GraphType } from '../statics/StatisticsStatics';
 import Button from '../../../../components/bootstrap/Button';
 import Chart from '../../../../components/extras/Chart';
-import { COUNSELORS, PROGRESS_LIST } from '../../../../constants/selectValues';
+import { COUNSELORS, PROGRESS_LIST } from '../../../../statics/selectValues';
 
 type ProcessStatisticsProps = {
 	callStatistic: CallData;

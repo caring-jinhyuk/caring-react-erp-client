@@ -7,11 +7,11 @@ import Card, {
 	CardTitle,
 } from '../../../../components/bootstrap/Card';
 import { CallData } from '../../../../models/CallData';
-import { GraphType } from '../constants/StatisticsConstants';
+import { GraphType } from '../statics/StatisticsStatics';
 import Button from '../../../../components/bootstrap/Button';
 import Chart from '../../../../components/extras/Chart';
 import StateStatisticsTableRow from './StateStatisticsTableRow';
-import { STATE_LIST } from '../../../../constants/selectValues';
+import { STATE_LIST } from '../../../../statics/selectValues';
 
 type StateStatisticsProps = {
 	callStatistic: CallData;

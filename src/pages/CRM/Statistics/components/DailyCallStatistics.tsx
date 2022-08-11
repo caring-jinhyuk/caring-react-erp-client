@@ -16,7 +16,7 @@ import ko from 'date-fns/locale/ko';
 import { useRecoilState } from 'recoil';
 import FamilyServiceStatistics from './FamilyServiceStatistics';
 import Select from '../../../../components/bootstrap/forms/Select';
-import { CALL_TYPE_SELECT, CallType } from '../constants/StatisticsConstants';
+import { CALL_TYPE_SELECT, CallType } from '../statics/StatisticsStatics';
 import { statisticsSearchParamAtom } from '../Statistics';
 import LocationStatistics from './LocationStatistics';
 import ProcessStatistics from './ProcessStatistics';
@@ -25,7 +25,7 @@ import StateStatistics from './StateStatistics';
 import WhyStatistics from './WhyStatistics';
 import InquiryStatistics from './InquiryStatistics';
 import CounselorStatistics from './CounselorStatistics';
-import { COUNSELORS } from '../../../../constants/selectValues';
+import { COUNSELORS } from '../../../../statics/selectValues';
 
 interface DailyCallStatisticsProps {
 	callStatistic: CallData;

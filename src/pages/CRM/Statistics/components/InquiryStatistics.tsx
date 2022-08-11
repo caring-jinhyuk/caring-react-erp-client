@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { CallData } from '../../../../models/CallData';
 import Popovers from '../../../../components/bootstrap/Popovers';
-import { ADD_INQUIRY_LIST } from '../../../../constants/selectValues';
+import { ADD_INQUIRY_LIST } from '../../../../statics/selectValues';
 
 type InquiryStatisticsProps = {
 	callStatistic: CallData;

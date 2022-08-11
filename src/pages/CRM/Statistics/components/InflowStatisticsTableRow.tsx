@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import { CallData } from '../../../../models/CallData';
-import { STATE_LIST } from '../../../../constants/selectValues';
+import { STATE_LIST } from '../../../../statics/selectValues';
 
 type InflowStatisticsTableRowProps = {
 	callStatistic: CallData;

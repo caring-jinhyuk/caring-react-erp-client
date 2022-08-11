@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { CallData } from '../../../../models/CallData';
-import { COUNSELORS } from '../../../../constants/selectValues';
+import { COUNSELORS } from '../../../../statics/selectValues';
 
 type CounselorStatisticsProps = {
 	callStatistic: CallData;

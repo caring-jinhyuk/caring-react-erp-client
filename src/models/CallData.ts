@@ -1,7 +1,7 @@
-import { Consult, Synthesis } from '../services/openApi';
+import { Consult } from '../services/openApi';
 import moment from 'moment';
-import { CallType } from '../pages/CRM/Statistics/constants/StatisticsConstants';
-import { CITY } from '../constants/address';
+import { CallType } from '../pages/CRM/Statistics/statics/StatisticsStatics';
+import { CITY } from '../statics/address';
 import {
 	ADD_INQUIRY_LIST,
 	COUNSELORS,
@@ -9,7 +9,7 @@ import {
 	PROGRESS_LIST,
 	STATE_LIST,
 	WHY_LIST,
-} from '../constants/selectValues';
+} from '../statics/selectValues';
 
 export class CallData {
 	private readonly response: Array<Consult>;

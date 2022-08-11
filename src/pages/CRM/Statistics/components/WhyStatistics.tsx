@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { CallData } from '../../../../models/CallData';
 import Popovers from '../../../../components/bootstrap/Popovers';
-import { WHY_LIST } from '../../../../constants/selectValues';
+import { WHY_LIST } from '../../../../statics/selectValues';
 
 type WhyStatisticsProps = {
 	callStatistic: CallData;

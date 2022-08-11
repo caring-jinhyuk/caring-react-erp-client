@@ -16,8 +16,8 @@ import {
 	INFLOW_LIST,
 	STATE_LIST,
 	WHY_LIST,
-} from '../../../../constants/selectValues';
-import { CITY } from '../../../../constants/address';
+} from '../../../../statics/selectValues';
+import { CITY } from '../../../../statics/address';
 
 export enum StatisticType {
 	INFLOW = '유입매체',
