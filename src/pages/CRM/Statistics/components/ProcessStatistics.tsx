@@ -10,6 +10,7 @@ import Card, {
 import { GraphType } from '../constants/StatisticsConstants';
 import Button from '../../../../components/bootstrap/Button';
 import Chart from '../../../../components/extras/Chart';
+import { COUNSELORS, PROGRESS_LIST } from '../../../../constants/selectValues';
 
 type ProcessStatisticsProps = {
 	callStatistic: CallData;
@@ -17,6 +18,7 @@ type ProcessStatisticsProps = {
 
 const ProcessStatistics: FC<ProcessStatisticsProps> = ({ callStatistic }) => {
 	const [showDataType, setShowDataType] = useState<GraphType>(GraphType.TABLE);
+	const [showEtc, setShowEtc] = useState<boolean>(false);
 
 	return (
 		<>
@@ -39,12 +41,29 @@ const ProcessStatistics: FC<ProcessStatisticsProps> = ({ callStatistic }) => {
 					{showDataType === GraphType.TABLE && (
 						<table className='table table-modern'>
 							<tbody>
-								{callStatistic.progressList.map((item, index) => (
+								{PROGRESS_LIST.map((item, index) => (
 									<tr key={item}>
 										<td>{item}</td>
 										<td>{callStatistic.progressCheckList[1][index]}</td>
 									</tr>
 								))}
+								<tr>
+									<td>확인필요</td>
+									<td onClick={() => setShowEtc(!showEtc)}>
+										{callStatistic.progressCheckList[1][PROGRESS_LIST.length]}
+									</td>
+								</tr>
+								{showEtc && (
+									<tr>
+										<td colSpan={1} className='d-flex flex-wrap'>
+											{COUNSELORS.map((counselor, index) => (
+												<div key={index} className='ps-2 pe-2'>
+													{counselor} : {callStatistic.counselorProgressDetail[index]}
+												</div>
+											))}
+										</td>
+									</tr>
+								)}
 							</tbody>
 						</table>
 					)}
@@ -61,7 +80,7 @@ const ProcessStatistics: FC<ProcessStatisticsProps> = ({ callStatistic }) => {
 									type: 'bar',
 								},
 								xaxis: {
-									categories: callStatistic.progressList,
+									categories: PROGRESS_LIST,
 								},
 								plotOptions: {
 									bar: {

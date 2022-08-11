@@ -10,6 +10,7 @@ import { CallData } from '../../../../models/CallData';
 import Button from '../../../../components/bootstrap/Button';
 import { GraphType } from '../constants/StatisticsConstants';
 import Chart from '../../../../components/extras/Chart';
+import { CITY } from '../../../../constants/address';
 
 type LocationStatisticsProps = {
 	callStatistic: CallData;
@@ -38,7 +39,7 @@ const LocationStatistics: FC<LocationStatisticsProps> = ({ callStatistic }) => {
 				{showDataType === GraphType.TABLE && (
 					<table className='table table-modern'>
 						<tbody>
-							{callStatistic.cityList.map((item, index) => (
+							{CITY.map((item, index) => (
 								<tr key={item}>
 									<td>{item}</td>
 									<td>{callStatistic.todayCityCall[index]}</td>
@@ -65,7 +66,7 @@ const LocationStatistics: FC<LocationStatisticsProps> = ({ callStatistic }) => {
 									type: 'bar',
 								},
 								xaxis: {
-									categories: callStatistic.cityList,
+									categories: CITY,
 								},
 								plotOptions: {
 									bar: {
