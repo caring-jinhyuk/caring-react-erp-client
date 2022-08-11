@@ -9,7 +9,7 @@ import Card, {
 import Button from '../../../../components/bootstrap/Button';
 import { CallData } from '../../../../models/CallData';
 import Chart from '../../../../components/extras/Chart';
-import { GraphType } from '../constants/StatisticsConstants';
+import { GraphType } from '../statics/StatisticsStatics';
 
 interface FamilyServiceStatisticsProps {
 	callStatistic: CallData;

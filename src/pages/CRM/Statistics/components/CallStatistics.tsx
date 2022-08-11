@@ -10,6 +10,14 @@ import Button from '../../../../components/bootstrap/Button';
 import SubHeader from '../../../../layout/SubHeader/SubHeader';
 import ScrollspyNav from '../../../../components/bootstrap/ScrollspyNav';
 import { CallData } from '../../../../models/CallData';
+import {
+	ADD_INQUIRY_LIST,
+	COUNSELORS,
+	INFLOW_LIST,
+	STATE_LIST,
+	WHY_LIST,
+} from '../../../../statics/selectValues';
+import { CITY } from '../../../../statics/address';
 
 export enum StatisticType {
 	INFLOW = '유입매체',
@@ -166,7 +174,7 @@ const CallStatistics: FC<CallStatisticsProps> = ({ callStatistic }) => {
 													{callStatistic.calls}명({callStatistic.recallsService})
 												</td>
 											</tr>
-											{callStatistic.inflowList.map((item, index) => (
+											{INFLOW_LIST.map((item, index) => (
 												<tr key={item}>
 													<td>{item}</td>
 													<td>
@@ -190,7 +198,7 @@ const CallStatistics: FC<CallStatisticsProps> = ({ callStatistic }) => {
 										<tbody>
 											{callStatistic.cityCall.map((item, index) => (
 												<tr key={item}>
-													<td>{callStatistic?.cityList[index]}</td>
+													<td>{CITY[index]}</td>
 													<td>{item}</td>
 												</tr>
 											))}
@@ -212,7 +220,7 @@ const CallStatistics: FC<CallStatisticsProps> = ({ callStatistic }) => {
 											</tr>
 										</thead>
 										<tbody>
-											{callStatistic.stateList.map((item, index) => (
+											{STATE_LIST.map((item, index) => (
 												<tr key={item}>
 													<td>{item}</td>
 													<td>{callStatistic?.stateCall[index]}</td>
@@ -232,7 +240,7 @@ const CallStatistics: FC<CallStatisticsProps> = ({ callStatistic }) => {
 											</tr>
 										</thead>
 										<tbody>
-											{callStatistic.whyList.map((item, index) => (
+											{WHY_LIST.map((item, index) => (
 												<tr key={item}>
 													<td>{item}</td>
 													<td>{callStatistic?.choiceReasonCall[index]}</td>
@@ -247,7 +255,7 @@ const CallStatistics: FC<CallStatisticsProps> = ({ callStatistic }) => {
 										</thead>
 
 										<tbody>
-											{callStatistic.addInquiryList.map((item, index) => (
+											{ADD_INQUIRY_LIST.map((item, index) => (
 												<tr key={item}>
 													<td>{item}</td>
 													<td>{callStatistic?.addInquiryCall[index]}</td>
@@ -269,7 +277,7 @@ const CallStatistics: FC<CallStatisticsProps> = ({ callStatistic }) => {
 										<tbody>
 											{callStatistic.cityCall.map((item, index) => (
 												<tr key={item}>
-													<td>{callStatistic?.cityList[index]}</td>
+													<td>{CITY[index]}</td>
 													<td>{callStatistic?.cityVisitHopeCall[index]}</td>
 												</tr>
 											))}
@@ -291,7 +299,7 @@ const CallStatistics: FC<CallStatisticsProps> = ({ callStatistic }) => {
 											</tr>
 										</thead>
 										<tbody>
-											{callStatistic.counselors.map((item, index) => (
+											{COUNSELORS.map((item, index) => (
 												<tr key={item}>
 													<td>{item}</td>
 													<td>{callStatistic?.counselorsCall[index]}</td>

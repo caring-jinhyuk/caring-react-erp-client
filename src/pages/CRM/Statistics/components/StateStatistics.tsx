@@ -7,9 +7,11 @@ import Card, {
 	CardTitle,
 } from '../../../../components/bootstrap/Card';
 import { CallData } from '../../../../models/CallData';
-import { GraphType } from '../constants/StatisticsConstants';
+import { GraphType } from '../statics/StatisticsStatics';
 import Button from '../../../../components/bootstrap/Button';
 import Chart from '../../../../components/extras/Chart';
+import StateStatisticsTableRow from './StateStatisticsTableRow';
+import { STATE_LIST } from '../../../../statics/selectValues';
 
 type StateStatisticsProps = {
 	callStatistic: CallData;
@@ -17,6 +19,7 @@ type StateStatisticsProps = {
 
 const StateStatistics: FC<StateStatisticsProps> = ({ callStatistic }) => {
 	const [showDataType, setShowDataType] = useState<GraphType>(GraphType.TABLE);
+
 	return (
 		<>
 			<Card>
@@ -36,13 +39,15 @@ const StateStatistics: FC<StateStatisticsProps> = ({ callStatistic }) => {
 				</CardHeader>
 				<CardBody>
 					{showDataType === GraphType.TABLE && (
-						<table className='table table-moder'>
+						<table className='table table-modern'>
 							<tbody>
-								{callStatistic.stateList.map((item, index) => (
-									<tr key={item}>
-										<td>{item}</td>
-										<td>{callStatistic.todayStateCall[index]}</td>
-									</tr>
+								{STATE_LIST.map((item, index) => (
+									<StateStatisticsTableRow
+										key={item}
+										callStatistic={callStatistic}
+										text={item}
+										index={index}
+									/>
 								))}
 							</tbody>
 						</table>
@@ -60,7 +65,7 @@ const StateStatistics: FC<StateStatisticsProps> = ({ callStatistic }) => {
 									type: 'bar',
 								},
 								xaxis: {
-									categories: callStatistic.stateList,
+									categories: STATE_LIST,
 								},
 								plotOptions: {
 									bar: {
