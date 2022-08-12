@@ -24,7 +24,7 @@ import {
 	SEJONG,
 	SEOUL,
 	ULSAN,
-} from '../constants/address';
+} from '../statics/address';
 
 /**
  * 연도/월 정보를 가져오는 피커

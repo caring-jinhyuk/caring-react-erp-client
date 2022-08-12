@@ -5,8 +5,8 @@ import Spinner from '../../../../components/bootstrap/Spinner';
 import { useGetCaregiverAllList } from '../../../../quries/useCaregiverAllList';
 import { useQueryClient } from '@tanstack/react-query';
 import Button from '../../../../components/bootstrap/Button';
-import { CITY } from '../../../../constants/address';
-import { GraphType } from '../../Statistics/constants/StatisticsConstants';
+import { CITY } from '../../../../statics/address';
+import { GraphType } from '../../Statistics/statics/StatisticsStatics';
 import CaregiverDashboardTableRow from './CaregiverDashboardTableRow';
 import { numberFormat, percent } from '../../../../helpers/helpers';
 

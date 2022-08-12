@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { CaregiverDashboardData } from '../../../../models/CaregiverDashboardData';
 import { numberFormat, percent } from '../../../../helpers/helpers';
-import { CITY } from '../../../../constants/address';
+import { CITY } from '../../../../statics/address';
 
 type CaregiverDashboardTableRowProps = {
 	text: string;

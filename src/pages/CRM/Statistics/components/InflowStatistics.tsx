@@ -7,9 +7,11 @@ import Card, {
 	CardTitle,
 } from '../../../../components/bootstrap/Card';
 import { CallData } from '../../../../models/CallData';
-import { GraphType } from '../constants/StatisticsConstants';
+import { GraphType } from '../statics/StatisticsStatics';
 import Button from '../../../../components/bootstrap/Button';
 import Chart from '../../../../components/extras/Chart';
+import InflowStatisticsTableRow from './InflowStatisticsTableRow';
+import { INFLOW_LIST } from '../../../../statics/selectValues';
 
 type InflowStatisticsProps = {
 	callStatistic: CallData;
@@ -38,11 +40,13 @@ const InflowStatistics: FC<InflowStatisticsProps> = ({ callStatistic }) => {
 					{showDataType === GraphType.TABLE && (
 						<table className='table table-modern'>
 							<tbody>
-								{callStatistic.inflowList.map((item, index) => (
-									<tr key={item}>
-										<td>{item}</td>
-										<td>{callStatistic.todayStateCall[index]}</td>
-									</tr>
+								{INFLOW_LIST.map((item, index) => (
+									<InflowStatisticsTableRow
+										key={item}
+										callStatistic={callStatistic}
+										text={item}
+										index={index}
+									/>
 								))}
 							</tbody>
 						</table>
@@ -51,7 +55,7 @@ const InflowStatistics: FC<InflowStatisticsProps> = ({ callStatistic }) => {
 						<Chart
 							series={[
 								{
-									data: callStatistic.todayStateCall.slice(0, callStatistic.inflowList.length),
+									data: callStatistic.todayStateCall.slice(0, INFLOW_LIST.length),
 								},
 							]}
 							options={{
@@ -60,7 +64,7 @@ const InflowStatistics: FC<InflowStatisticsProps> = ({ callStatistic }) => {
 									type: 'bar',
 								},
 								xaxis: {
-									categories: callStatistic.inflowList,
+									categories: INFLOW_LIST,
 								},
 								plotOptions: {
 									bar: {
