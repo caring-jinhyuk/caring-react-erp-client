@@ -95,7 +95,7 @@ export const asideMenus = {
 	consult: {
 		id: 'consult',
 		text: '상담관리',
-		path: 'pages/Consult',
+		path: 'pages/consult',
 		icon: 'HeadsetMic',
 		subMenu: null,
 	},
@@ -114,7 +114,7 @@ export const asideMenus = {
 		subMenu: null,
 	},
 	beneficiary_management: {
-		id: 'Beneficiary Management',
+		id: 'beneficiary_management',
 		text: '수급자 관리',
 		path: 'pages/beneficiary',
 		icon: 'Accessible',

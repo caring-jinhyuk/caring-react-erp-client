@@ -6,12 +6,6 @@ export const homepages = {
 		icon: 'Home',
 		subMenu: null,
 	},
-	// blank: {
-	// 	id: 'blank',
-	// 	text: 'Blank',
-	// 	path: 'page-layouts/blank',
-	// 	icon: 'check_box_outline_blank ',
-	// },
 };
 
 export const authPages = {

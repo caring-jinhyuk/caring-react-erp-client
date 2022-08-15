@@ -7,6 +7,7 @@ const LANDING = {
 };
 const CRM = {
 	CONSULT: lazy(() => import('../pages/CRM/Consult/Consult')),
+	CONSULT_DETAIL: lazy(() => import('../pages/CRM/ConsultDetail/ConsultDetail')),
 	STATISTICS: lazy(() => import('../pages/CRM/Statistics/Statistics')),
 	SMILE: lazy(() => import('../pages/CRM/SmileCall/SmileCall')),
 	BENEFICIARY: lazy(() => import('../pages/CRM/BeneficiaryManagement/BeneficiaryManagement')),
@@ -55,6 +56,10 @@ const presentation = [
 	{
 		path: asideMenus.caregiver_management.path,
 		element: <CRM.CAREGIVER />,
+	},
+	{
+		path: 'pages/consultDetail',
+		element: <CRM.CONSULT_DETAIL />,
 	},
 ];
 const contents = [...presentation];
