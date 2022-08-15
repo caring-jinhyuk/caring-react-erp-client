@@ -24,6 +24,7 @@ interface IPaginationButtonsProps {
 	perPage: number;
 	setPerPage(...args: unknown[]): unknown;
 	data: unknown[];
+	total?: number;
 	label: string;
 }
 const PaginationButtons: FC<IPaginationButtonsProps> = ({
@@ -33,8 +34,9 @@ const PaginationButtons: FC<IPaginationButtonsProps> = ({
 	setPerPage,
 	data,
 	label,
+	total,
 }) => {
-	const totalItems = data.length;
+	const totalItems = total ?? data.length;
 	const totalPage = Math.ceil(totalItems / perPage);
 
 	const pagination = () => {

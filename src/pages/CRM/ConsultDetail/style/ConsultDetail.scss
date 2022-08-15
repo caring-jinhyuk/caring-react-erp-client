@@ -1,0 +1,28 @@
+@import '../../../../styles/settings';
+
+.title_phone {
+  font-size: larger;
+  color: #0b0808;
+  padding: 0.7rem;
+  margin-right: 1rem;
+}
+
+.detail_header {
+  min-height: 3.5rem;
+}
+
+.detail_input:disabled {
+  border: none;
+}
+
+.anchor_menu {
+  &:hover, &:focus {
+    background-color: $primary;
+    color: white;
+  }
+  &.active {
+    background-color: $primary;
+    color: white;
+    border: none;
+  }
+}
